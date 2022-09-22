@@ -45,7 +45,7 @@ function createTask(element, priority) {
         alert(ERRORS.NULLSTRING);
     }
 }
-// почему не работает ? element === (ELEMENTS.HIGHADDBUTTON || ELEMENTS.LOWADDBUTTON)
+gagds
 const addTask = (event, element) => {
     if (element === ELEMENTS.HIGHADDBUTTON || element === ELEMENTS.LOWADDBUTTON) {
         const button = element === ELEMENTS.HIGHADDBUTTON ? ELEMENTS.HIGHPRIORITYINPUT : ELEMENTS.LOWPRIORITYINPUT;
