@@ -1,0 +1,60 @@
+.container {
+    box-sizing: border-box;
+    margin: 0px auto;
+    width: 470px;
+    height: 680px;
+    display: block;
+    align-items: center;
+}
+#high-priority, #low-priority {
+    text-align: center;
+    margin-top: 8px;
+}
+.input-container {
+    outline: 1px solid #989898;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: inline-flex;
+    width: 100%;
+    margin: 0px auto;
+}
+.task-todo {
+    margin: 0px auto;
+    margin-top: 8px;
+}
+form {
+    box-sizing: border-box;
+    display: inline-flex;
+    width: 100%;
+    margin: 6px;
+}
+#high-priority-input, #low-priority-input {
+    margin: 8px;
+    width: 100%;
+    text-align: left;
+}
+input, button {
+    outline: none;
+    border: none;
+    background-color: white;
+    box-sizing: border-box;
+}
+.text, .text-container{
+    width: 100%;
+    display: flex;
+    outline: 1px solid #989898;
+    border-radius: 6px;
+    margin: 0px auto;
+    text-align: left;
+    box-sizing: border-box;
+    min-height: 45px;
+
+}
+form{
+    width: 100%;
+    word-wrap: break-word;
+}
+.texttask {
+    width: 100%;
+    word-wrap: break-word;
+}
