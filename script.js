@@ -1,10 +1,14 @@
-const list = [];                //массив задач todo листа
-const STATUS = {TO_DO:'To Do',  
-                DONE:'Done'};              // массив статусов
+const list = [];
+
+const STATUS = {TO_DO:'To Do',
+                DONE:'Done'
+}
+
 const PRIORITY = {
     HIGH: "High",
     LOW: "Low"
 }
+
 const ELEMENTS = {
     CONTAINERTODO: document.querySelector('.container'),
     HIGHPRIORITYCONTAINER: document.querySelector('#high-priority'),
@@ -18,54 +22,60 @@ const ELEMENTS = {
     HIGHADDBUTTON: document.querySelector('#high-add-button'),
     LOWADDBUTTON: document.querySelector('#low-add-button'),
 }
+
 const ERRORS = {
     NULLSTRING: 'Введите что-нибудь',
     SAMETASK: 'Такая задача уже существует'
 }
-const nullString = ''
 
-function createTask(element, priority) {
+const nullString = '';
+
+function createTaskInList(task, element) {
+    list.push(task);
+    if (list.slice(0, -1).find( (item) => item.name === element.value)) {
+        alert(ERRORS.SAMETASK)
+        list.pop()
+    }
+    render();
+}
+
+function Task(id, name, priority) {
+    this.id = id;
+    this.name = name;
+    this.status = STATUS.TO_DO;
+    this.priority = priority;
+}
+
+function createTaskUI(element, priority) {
     const i = Date.now();
     if (element.value) {
-        const task = {
-            id: i, 
-            name: element.value, 
-            status: STATUS.TO_DO, 
-            priority
-        };
-        list.push(task); 
-        if (list.slice(0, -1).find( (item) => item.name === element.value)) {
-            alert(ERRORS.SAMETASK)
-            list.pop()
-            element.value = nullString;   
-        }
-        element.value = nullString;  
-        render();
+        const task = new Task(i, element.value, priority)
+        createTaskInList(task, element);
+        element.value = nullString;
     } else {
         alert(ERRORS.NULLSTRING);
     }
 }
-gagds
-const addTask = (event, element) => {
+
+function addTask(event, element) {
     if (element === ELEMENTS.HIGHADDBUTTON || element === ELEMENTS.LOWADDBUTTON) {
         const button = element === ELEMENTS.HIGHADDBUTTON ? ELEMENTS.HIGHPRIORITYINPUT : ELEMENTS.LOWPRIORITYINPUT;
-        const priority = element === ELEMENTS.HIGHADDBUTTON ? PRIORITY.HIGH : PRIORITY.LOW 
-        createTask(button, priority);
+        const priority = element === ELEMENTS.HIGHADDBUTTON ? PRIORITY.HIGH : PRIORITY.LOW
+        createTaskUI(button, priority);
         return;
-    } else {
-        const form = element === ELEMENTS.HIGHTASKFORM ? ELEMENTS.HIGHTASKFORM : ELEMENTS.LOWTASKFORM
-        const priority = element ===  ELEMENTS.HIGHTASKFORM ? PRIORITY.HIGH : PRIORITY.LOW
-        createTask(form, priority);
     }
+    const form = element === ELEMENTS.HIGHTASKFORM ? ELEMENTS.HIGHTASKFORM : ELEMENTS.LOWTASKFORM
+    const priority = element ===  ELEMENTS.HIGHTASKFORM ? PRIORITY.HIGH : PRIORITY.LOW
+    createTaskUI(form, priority);
 }
 
-const clickHandler = (event) => {
+function clickHandler(event) {
     event.preventDefault();
     const isHighPriorityTask = event.target.closest('#high-priority')
     addTask(event, isHighPriorityTask ? ELEMENTS.HIGHADDBUTTON : ELEMENTS.LOWADDBUTTON)
 }
 
-const submitHandler = (event) => {
+function submitHandler(event) {
     event.preventDefault();
     const isHighPriorityTask = event.target.closest('#high-priority')
     addTask(event, isHighPriorityTask ? ELEMENTS.HIGHTASKFORM : ELEMENTS.LOWTASKFORM)
@@ -82,12 +92,11 @@ function changeStatus(name, i) {
         if (list[i].id === name) {
             const status = checkbox.checked ? list[i].status = STATUS.DONE : list[i].status = STATUS.TO_DO
             render();
-        }              
-    } 
+        }
+    }
 }
 
 function removeTask(name, i) {
-    const button = ELEMENTS.CONTAINERTODO.querySelector(`#button${i}`);
     const div = document.querySelector(`#task-outer${i}`).remove();
     for (let i = 0;  i < list.length; i++) {
         if (list.find(item => item.id === name)) {
@@ -97,21 +106,25 @@ function removeTask(name, i) {
     render();
 }
 
-function render() {
+function removeTaskUI() {
     const deleteTask = document.querySelectorAll('.task-todo');
     deleteTask.forEach(function(item) {
         item.remove()
     });
+}
+
+function render() {
+    removeTaskUI()
     for (let i = 0;  i < list.length; i++) {
         const priorityTask = list[i].priority === PRIORITY.HIGH ? ELEMENTS.HIGHINPUTCONTAINER : ELEMENTS.LOWINPUTCONTAINER
         priorityTask.insertAdjacentHTML('afterend', `
         <div class='task-todo' id="task-outer${i}">
             <div class="text-container">
-                <input ${list[i].status === STATUS.DONE ? "checked" : nullString} onchange="changeStatus(${list[i].id}, ${i})" class="checkbox" type="checkbox" id="checkbox${i}" name="checkbox${i}"> 
-                <label for="checkbox${i}" class="texttask">${list[i].name}</label>      
+                <input ${list[i].status === STATUS.DONE ? "checked" : nullString} onchange="changeStatus(${list[i].id}, ${i})" class="checkbox" type="checkbox" id="checkbox${i}" name="checkbox${i}">
+                <label for="checkbox${i}" class="texttask">${list[i].name}</label>
                 <button onclick="removeTask(${list[i].id}, ${i})" id="button${i}"> <img src="./img/close-icon.svg"> </button>
             </div>
         </div>
-        `); 
+        `);
     }
 }

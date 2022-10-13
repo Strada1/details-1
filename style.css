@@ -1,6 +1,6 @@
 .container {
     box-sizing: border-box;
-    margin: auto;
+    margin: 0px auto;
     width: 470px;
     height: 680px;
     display: block;
@@ -8,14 +8,19 @@
 }
 #high-priority, #low-priority {
     text-align: center;
-} 
+    margin-top: 8px;
+}
 .input-container {
     outline: 1px solid #989898;
     border-radius: 6px;
     box-sizing: border-box;
     display: inline-flex;
     width: 100%;
-    margin: 8px;
+    margin: 0px auto;
+}
+.task-todo {
+    margin: 0px auto;
+    margin-top: 8px;
 }
 form {
     box-sizing: border-box;
@@ -29,7 +34,7 @@ form {
     text-align: left;
 }
 input, button {
-    outline: none; 
+    outline: none;
     border: none;
     background-color: white;
     box-sizing: border-box;
@@ -39,13 +44,11 @@ input, button {
     display: flex;
     outline: 1px solid #989898;
     border-radius: 6px;
-    margin: 8px; 
-    width: 100%;
+    margin: 0px auto;
     text-align: left;
-    display: inline-flex;
     box-sizing: border-box;
     min-height: 45px;
-    
+
 }
 form{
     width: 100%;
