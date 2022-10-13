@@ -95,9 +95,9 @@ export function Task(task, priority) {
     this.priority = priority;
 }
 
-function addTask(name, status, priority) {
+function addTask(name, priority) {
     try {
-        const newTask = new Task(name, status, priority)
+        const newTask = new Task(name, priority)
         const task = checkTask(name);
 
         if (task) {
