@@ -21,9 +21,9 @@ export const PRIORITIES = {
 }
 
 export const list = [
-    new Task('Начать делать задачу', STATUSES.TO_DO, PRIORITIES.HIGH),
-    new Task('Сверстать этот TODO list', STATUSES.TO_DO, PRIORITIES.HIGH),
-    new Task('Почитать книгу', STATUSES.TO_DO, PRIORITIES.LOW)
+    new Task('Начать делать задачу', PRIORITIES.HIGH),
+    new Task('Сверстать этот TODO list', PRIORITIES.HIGH),
+    new Task('Почитать книгу', PRIORITIES.LOW)
 ]
 
 export let high = ELEMENTS.HIGH_PRIORITY_LIST;

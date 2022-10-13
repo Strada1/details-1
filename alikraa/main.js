@@ -3,10 +3,10 @@ import { ELEMENTS, STATUSES, DEFAULT_STATUS, PRIORITIES, high, low, empty, list,
 for (let form of ELEMENTS.FORMS) {
     form.addEventListener('submit', function () {
         if (ELEMENTS.INPUT_TASK_HIGH.value !== empty) {
-            addTask(ELEMENTS.INPUT_TASK_HIGH.value, DEFAULT_STATUS, PRIORITIES.HIGH)
+            addTask(ELEMENTS.INPUT_TASK_HIGH.value, PRIORITIES.HIGH)
             ELEMENTS.INPUT_TASK_HIGH.value = empty;
         } else if (ELEMENTS.INPUT_TASK_LOW.value !== empty) {
-            addTask(ELEMENTS.INPUT_TASK_LOW.value, DEFAULT_STATUS, PRIORITIES.LOW)
+            addTask(ELEMENTS.INPUT_TASK_LOW.value, PRIORITIES.LOW)
             ELEMENTS.INPUT_TASK_LOW.value = empty;
         }
         event.preventDefault();
@@ -89,9 +89,9 @@ function render() {
     })
 }
 
-export function Task(task, status, priority) {
+export function Task(task, priority) {
     this.name = task;
-    this.status = status;
+    this.status = DEFAULT_STATUS;
     this.priority = priority;
 }
 
