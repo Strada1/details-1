@@ -16,6 +16,23 @@ export const ELEMENTS = {
   DETAILS_WEATHER: document.querySelector('#details__feels-weather'),
   DETAILS_SUNRISE: document.querySelector('#details__sunrise'),
   DETAILS_SUNSET: document.querySelector('#details__sunset'),
+  FORECAST_CITY: document.querySelector('.forecast__city'),
+  FORECAST_LIST: document.querySelector('.forecast__list'),
 };
 export const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
 export const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
+export const mounths = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+export const urlForecast = 'http://api.openweathermap.org/data/2.5/forecast';
