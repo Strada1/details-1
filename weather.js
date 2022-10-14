@@ -1,8 +1,8 @@
 const searchForm = document.querySelector(".forecast-form");
 const searchInput = document.querySelector(".inputForm");
 
-import { ELEMENTS } from "../../strada-detaills/details-1/elements.js";
-import { city, localSet, CITYNAME } from "../../strada-detaills/details-1/storage.js";
+import { ELEMENTS } from "./elements.js";
+import { city, localSet, CITYNAME } from "./storage.js";
 
 const serverUrl = "http://api.openweathermap.org/data/2.5/weather";
 const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
