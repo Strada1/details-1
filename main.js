@@ -2,6 +2,13 @@ import { ELEMENTS, serverUrl, apiKey, mounths, urlForecast } from './value.js';
 
 let city = new Set(['Amur', 'Samara', 'Bali']);
 
+class ServerError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'ValidationError';
+  }
+}
+
 ELEMENTS.BTN.addEventListener('click', function (event) {
   event.preventDefault();
   let cityName = ELEMENTS.INPUT.value;
@@ -12,29 +19,39 @@ ELEMENTS.BTN.addEventListener('click', function (event) {
 function checkCityName(cityName, url) {
   if (!cityName || !isNaN(cityName)) {
     alert('Enter a correct city');
-  } else {
-    changeNow(url);
-    changeDetails(url);
-    changeForecast(cityName);
+    return;
   }
+  checkUrl(url);
+  changeForecast(cityName);
 }
 
-function changeNow(url) {
+function checkUrl(url) {
   fetch(url)
     .then((response) => {
       if (!response.ok) {
-        throw new Error('data not received from the server');
+        throw new ServerError('data not received from the server');
       }
       return response.json();
     })
     .then((result) => {
-      ELEMENTS.NOW_CITY_NAME.textContent = result.name;
-      ELEMENTS.TEMPERATURE.textContent = Math.round(result.main.temp) + '°';
-      let iconCode = result.weather[0].icon;
-      let urlWeather = ` https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-      ELEMENTS.ICON_NOW.src = urlWeather;
+      changeDetails(result);
+      changeNow(result);
     })
-    .catch(alert);
+    .catch((err) => {
+      if (err instanceof ServerError) {
+        alert(err.message);
+      } else {
+        throw err;
+      }
+    });
+}
+
+function changeNow(result) {
+  ELEMENTS.NOW_CITY_NAME.textContent = result.name;
+  ELEMENTS.TEMPERATURE.textContent = Math.round(result.main.temp) + '°';
+  let iconCode = result.weather[0].icon;
+  let urlWeather = ` https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  ELEMENTS.ICON_NOW.src = urlWeather;
 }
 
 ELEMENTS.BODY.onload = function () {
@@ -70,8 +87,8 @@ function getLocalStorageCurrentCity() {
   let currentCity = localStorage.getItem('currentCity');
   currentCity = JSON.parse(currentCity);
   let url = `${serverUrl}?q=${currentCity}&appid=${apiKey}&units=metric`;
-  changeNow(url);
-  changeDetails(url);
+  checkUrl(url);
+  changeForecast(currentCity);
 }
 
 function renderLocation(cityes) {
@@ -102,8 +119,7 @@ function renderLocation(cityes) {
 
 function changeCurrentCity(nameCity) {
   let url = `${serverUrl}?q=${nameCity}&appid=${apiKey}&units=metric`;
-  changeNow(url);
-  changeDetails(url);
+  checkUrl(url);
   changeForecast(nameCity);
   localStorage.setItem('currentCity', JSON.stringify(nameCity));
   getLocalStorageCurrentCity();
@@ -116,26 +132,13 @@ function deleteCity(nameCity, li) {
   li.remove();
 }
 
-function changeDetails(url) {
-  document.querySelectorAll('.forecast__item').forEach(function (item) {
-    item.remove();
-  });
-  fetch(url)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('data not received from the server');
-      }
-      return response.json();
-    })
-    .then((result) => {
-      ELEMENTS.DETAILS_CITY.textContent = result.name;
-      changeTemperature(ELEMENTS.DETAILS_TEMPERATURE, 'Temperature: ', result.main.temp);
-      changeTemperature(ELEMENTS.DETAILS_FEELS_LIKE, 'Feels like: ', result.main.feels_like);
-      ELEMENTS.DETAILS_WEATHER.textContent = 'Weather: ' + result.weather[0].main;
-      changeSunriseSunset(result.sys.sunrise, 'Sunrise: ', ELEMENTS.DETAILS_SUNRISE);
-      changeSunriseSunset(result.sys.sunset, 'Sunset: ', ELEMENTS.DETAILS_SUNSET);
-    })
-    .catch(alert);
+function changeDetails(result) {
+  ELEMENTS.DETAILS_CITY.textContent = result.name;
+  changeTemperature(ELEMENTS.DETAILS_TEMPERATURE, 'Temperature: ', result.main.temp);
+  changeTemperature(ELEMENTS.DETAILS_FEELS_LIKE, 'Feels like: ', result.main.feels_like);
+  ELEMENTS.DETAILS_WEATHER.textContent = 'Weather: ' + result.weather[0].main;
+  changeSunriseSunset(result.sys.sunrise, 'Sunrise: ', ELEMENTS.DETAILS_SUNRISE);
+  changeSunriseSunset(result.sys.sunset, 'Sunset: ', ELEMENTS.DETAILS_SUNSET);
 }
 
 function changeTemperature(elementTemperature, textTemperature, resultTemp) {
@@ -153,7 +156,7 @@ function changeForecast(cityName) {
   fetch(serverForecast)
     .then((response) => {
       if (!response.ok) {
-        throw new Error('data not received from the server');
+        throw new ServerError('data not received from the server');
       }
       return response.json();
     })
@@ -161,7 +164,13 @@ function changeForecast(cityName) {
       ELEMENTS.FORECAST_CITY.textContent = result.city.name;
       result.list.map((itemList) => setForecastItem(itemList));
     })
-    .catch(alert);
+    .catch((err) => {
+      if (err instanceof ServerError) {
+        alert(err.message);
+      } else {
+        throw err;
+      }
+    });
 }
 
 function setForecastItem(itemList) {
