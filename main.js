@@ -26,6 +26,11 @@ form.addEventListener('submit', () => {
 
 //обработка нажатия кнопки лайк
 likeButton.addEventListener('click', () => {
+    if (addedLocationsSet.has(nowTabCityName.textContent)) {
+        deleteCityFromFavorites(nowTabCityName.textContent);
+        likeButton.childNodes[1].setAttribute('fill', 'none');
+        return;
+    }
     addCityToFavorites(nowTabCityName.textContent);
     likeButton.childNodes[1].setAttribute('fill', 'red');
 })
@@ -57,6 +62,11 @@ function renderNowTab(weatherInfo) {
     }
 }
 
+function deleteCityFromFavorites(cityName) {
+    addedLocationsSet.delete(cityName);
+    renderAddedLocationsList(addedLocationsSet);
+}
+
 function addCityToFavorites(cityName) {
     addedLocationsSet.add(cityName);
     renderAddedLocationsList(addedLocationsSet);
@@ -73,6 +83,7 @@ function renderAddedLocationsList(addedLocationsSet) {
     saveData(arr);
 }
 
+//сохранение списка избранных в ЛС
 function saveData(list) {
     localStorage.clear();
     list.forEach((element, index) => {
@@ -98,6 +109,7 @@ function createItem(city) {
     closeButton.addEventListener('click', () => {
         addedLocationsSet.delete(city);
         renderAddedLocationsList(addedLocationsSet);
+        likeButton.childNodes[1].setAttribute('fill', 'none');
     })
     closeButton.append(closeButtonIcon);
     listItem.append(cityNameHolder);
