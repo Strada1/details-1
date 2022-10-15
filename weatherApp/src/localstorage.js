@@ -3,9 +3,9 @@ export function saveFavoriteCities (favoriteCities ){
 }
 
 export function getFavoriteCities(){
-    let favoriteCity = localStorage.getItem("cityName");
+    let favoriteCity =  localStorage.getItem("cityName")  ;
     if(!favoriteCity){
         return [];
     }
-    return (JSON.parse(favoriteCity));
+    return  JSON.parse(favoriteCity) ;
 }

@@ -96,7 +96,7 @@ function renderLikeList (){
 
         div.addEventListener("click",() => {
             const divRemove = document.querySelector("#divRemove");
-            const inputCity = getWeatherPromise(el);
+            const inputCity = getWeatherPromise(el.cityName);
             divRemove.innerHTML = "";
             renderNow(inputCity);
             renderDetails(inputCity);
@@ -109,28 +109,21 @@ function AddFavoriteCities(list){
     this.cityName =  list;
 }
 
+
 function likeLocation(){
     try {
-        //const list = getFavoriteCities();
-        const list = new Set(getFavoriteCities());
-
+        const list = new Set ( getFavoriteCities() );
         const likeCity = document.querySelector(".city-name");
-        // console.log(list);
-        //
-        // const result = list.findIndex(item => likeCity.textContent === item.cityName);
-        //
-        // if(result !== -1){
-        //     throw new Error(`${likeCity.textContent}  уже существует в избранных `)
-        // }
 
+        list.forEach((item) => {
+            if ( likeCity.textContent === item.cityName ){
+                throw new Error(`${likeCity.textContent}  уже существует в избранных `)
+            }
+        })
 
         const favoriteCities  =  new AddFavoriteCities(likeCity.textContent);
-
-       // list.push(favoriteCities);
         list.add(favoriteCities);
-
         saveFavoriteCities(list);
-        console.log(list);
         renderLikeList();
     }catch (error) {
         alert(error.message);
