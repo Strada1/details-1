@@ -2,6 +2,7 @@ import {UIELEMENTS} from './uielements.js';
 import {saveFavoriteCities,getFavoriteCities} from './localstorage.js';
 import {getWeatherPromise} from "./getWeatherPromise.js";
 import {renderDetails} from "./renderDetails.js";
+import {MyError} from "./customError.js";
 
 UIELEMENTS.form_input.addEventListener('submit', function (event, TODO) {
     event.preventDefault();
@@ -106,6 +107,8 @@ function AddFavoriteCities(list){
 }
 
 
+
+
 function likeLocation(){
     try {
         const list = new Set ( getFavoriteCities() );
@@ -113,7 +116,7 @@ function likeLocation(){
 
         list.forEach((item) => {
             if ( likeCity.textContent === item.cityName ){
-                throw new Error(`${likeCity.textContent}  уже существует в избранных `)
+                throw new MyError (`${likeCity.textContent}  уже существует в избранных `)
             }
         })
 
