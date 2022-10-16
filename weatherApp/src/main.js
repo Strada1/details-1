@@ -85,13 +85,9 @@ function renderLikeList (){
         locations.append(selectLocation);
 
         remove.addEventListener("click", () => {
-            const result = list.findIndex(item => el.cityName === item);
-
-           // TODO: splice нужно заменить на фильтр
-            list.splice( result, 1 );
-            saveFavoriteCities(list);
+            const newList = list.filter((item) =>(item !== el))
+            saveFavoriteCities(newList);
             renderLikeList();
-
         });
 
         div.addEventListener("click",() => {
