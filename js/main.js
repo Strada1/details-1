@@ -43,12 +43,24 @@ export function showForecast(cityName) {
 
   const url = `${SERVER.serverUrl}?q=${cityName}&appid=${SERVER.apiKey}&units=metric`;
 
+  class ValidationError extends Error {
+    constructor(message, cause) {
+      super(message);
+      this.cause = cause;
+      this.name = "ValidationError";
+    }
+  }
+
   fetch(url)
     .then((response) => {
       if (response.ok) {
         return response.json();
       } else {
-        alert("Ошибка HTTP: " + response.status);
+        if (response.status === 400 || response.status === 404) {
+          throw new ValidationError("отсутствует название города");
+        } else {
+          alert("Ошибка HTTP: " + response.status);
+        }
       }
     })
     .then((forecast) => {
@@ -65,6 +77,8 @@ export function showForecast(cityName) {
         detailsWeather: forecast.weather[0].main,
       };
 
+      kkk;
+
       const sunriseTime = cityTime(FORECAST.sunrise, FORECAST.currentTimeZone);
       const sunsetTime = cityTime(FORECAST.sunset, FORECAST.currentTimeZone);
 
@@ -78,17 +92,19 @@ export function showForecast(cityName) {
         FORECAST.forecastCity
       );
     })
-    .catch((err) => alert(err));
+    .catch((err) => {
+      if (err instanceof ValidationError) {
+        alert("Данные введены некорректно:" + err.message);
+      } else {
+        alert(err.message);
+      }
+    });
 
   const forecastUrl = `${SERVER.serverForecast}?q=${cityName}&cnt=3&appid=${SERVER.apiKey}&units=metric`;
 
   fetch(forecastUrl)
     .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        alert("Ошибка HTTP: " + response.status);
-      }
+      return response.json();
     })
     .then((forecastData) => {
       const newForecast = forecastData.list.map((item) => {
@@ -103,11 +119,16 @@ export function showForecast(cityName) {
         ];
       });
 
-      document.querySelector('.text-locations.details').textContent = forecastData.city.name;
+      document.querySelector(".text-locations.details").textContent =
+        forecastData.city.name;
 
       const DATA = [
-        document.querySelectorAll(".forecast-date p:nth-child(1) span:nth-child(1)"),
-        document.querySelectorAll(".forecast-date p:nth-child(1) span:nth-child(2)"),
+        document.querySelectorAll(
+          ".forecast-date p:nth-child(1) span:nth-child(1)"
+        ),
+        document.querySelectorAll(
+          ".forecast-date p:nth-child(1) span:nth-child(2)"
+        ),
         document.querySelectorAll(".forecast-date p:nth-child(2)"),
         document.querySelectorAll(".forecast-temperature p:nth-child(1) span"),
         document.querySelectorAll(".forecast-temperature p:nth-child(2) span"),
@@ -131,6 +152,9 @@ export function showForecast(cityName) {
         }
         j++;
       }
+    })
+    .catch((err) => {
+      alert(err.message);
     });
 
   ELEMENTS.cityInput.value = "";
