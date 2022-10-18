@@ -54,27 +54,24 @@ li {
 .weather {
     display: flex;
 }
-.tabs {
-    border-right: 1px solid #000;
-    width: 300px;
-    height: 355px;
-}
 .tabs-body {
-    height: 100%;
+    width: 300px;
+    height: 310px;
 }
+
 .tabs-items {
     display: flex;
 }
 
 .tabs-item {
-    flex: 0 1 50%;
+    flex: 0 1 33.333%;
     height: 45px;
-    outline: 1px solid #000;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
     display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
-    /* color: #000; */
     text-decoration: none;
 }
 
@@ -90,35 +87,6 @@ li {
     display: none;
     box-sizing: border-box;
     height: 310px;
-
-}
-
-
-.tabs-block:before {
-    content: "";
-    height: 45px;
-    width: 50%;
-    position: absolute;
-    top: 100%;
-}
-
-.tabs-block:nth-child(1) {
-
-}
-
-.tabs-block:nth-child(1):before {
-    background-color: #000;
-    left: 0;
-
-}
-
-.tabs-block:nth-child(2) {
-
-}
-
-.tabs-block:nth-child(2):before {
-    background-color: #000;
-    right: 0;
 }
 
 .tabs-block:target {
@@ -126,18 +94,64 @@ li {
 }
 
 .tabs-item span {
-    position: relative;
+    position: absolute;
     z-index: 2;
     color: #000;
-}
-
-.tabs-item:focus {
-    background-color: #000;
-    color: white;
+    box-sizing: border-box;
 }
 
 .locations {
     height: 300px;
+    overflow-y: scroll;
+}
+.cities {
+    border-left: 1px solid #000;
+}
+.tabs-item:last-child {
+    border-right: none;
+}
+.forecast {
+    height: 40%;
+    border: 1px solid #000;
+    margin-top: 7px; 
+}
+.forecast span {
+    margin-top: 6px;
+    margin-left: 8px;
+    font-size: 18px;
+} 
+.forecast .datee {
+    display: flex;
+    margin-top: 6px;
+    margin-right: 8px;
+}
+.forecast .day {
+    width: 100%;
+}
+
+.forecast ol li {
+    align-items: center;
+    line-height: 0px;
+}
+.forecast ol {
+    margin-top: 40px;
+}
+.forecast .temper{
+    margin-left: 9px;
+}
+.f, .t {
+    width: 100%;
+}
+.f2, .t2 {
+    align-items: center;
+    text-align: center;
+    margin-right: 8px;
+}
+img[alt="weather-status"] {
+    max-height: 35px;
+    max-width: 35px;
+}
+#tab-3 {
     overflow-y: scroll;
 }
 .liked-cities {

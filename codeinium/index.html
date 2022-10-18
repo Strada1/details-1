@@ -24,7 +24,7 @@
                         <div class="temperature">
                             <div class="temp">
                                 <span id="temperature">
-                
+
                                 </span>
                             </div>
                             <div class="status">
@@ -38,7 +38,7 @@
                                     <img id="add-icon" src="./icons/like.svg" hidden>
                                 </button>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                     <div id="tab-2" class="tabs-block">
                         <div class="city">
@@ -56,17 +56,107 @@
                                     <span id="weather"> </span>
                                 </li>
                                 <li>
-                                    <span id="sunrise">  </span>
+                                    <span id="sunrise"> </span>
                                 </li>
                                 <li>
                                     <span id="sunset"> </span>
                                 </li>
-                            </ol>                 
+                            </ol>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tabs-block">
+                        <div class="city">
+                            <span id="city2"> </span>
+                        </div>
+                        <div class="forecast">                            
+                            <div class="datee">
+                                <div class="day">
+                                    <span class="dayy">15 Oct</span>
+                                </div>
+                                <div class="time">
+                                    <span class="timee">12:00</span>
+                                </div>
+                            </div>
+                            <ol>
+                                <li>
+                                    <div class="t">
+                                        <span id="temper">Temperature: </span>
+                                    </div>
+                                    <div class="t2">
+                                        <span id="weather-status">Rain</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="f">
+                                        <span id="feels">Feels like: </span>
+                                    </div>
+                                    <div class="f2">
+                                        <img src="./icons/cloud.svg" alt="weather-status">
+                                    </div> 
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="forecast">                            
+                            <div class="datee">
+                                <div class="day">
+                                    <span class="dayy">15 Oct</span>
+                                </div>
+                                <div class="time">
+                                    <span class="timee">12:00</span>
+                                </div>
+                            </div>
+                            <ol>
+                                <li>
+                                    <div class="t">
+                                        <span id="temper">Temperature: </span>
+                                    </div>
+                                    <div class="t2">
+                                        <span id="weather-status">Rain</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="f">
+                                        <span id="feels">Feels like: </span>
+                                    </div>
+                                    <div class="f2">
+                                        <img src="./icons/cloud.svg" alt="weather-status">
+                                    </div> 
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="forecast">                            
+                            <div class="datee">
+                                <div class="day">
+                                    <span class="dayy">15 Oct</span>
+                                </div>
+                                <div class="time">
+                                    <span class="timee">12:00</span>
+                                </div>
+                            </div>
+                            <ol>
+                                <li>
+                                    <div class="t">
+                                        <span id="temper">Temperature: </span>
+                                    </div>
+                                    <div class="t2">
+                                        <span id="weather-status">Rain</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="f">
+                                        <span id="feels">Feels like: </span>
+                                    </div>
+                                    <div class="f2">
+                                        <img src="./icons/cloud.svg" alt="weather-status">
+                                    </div> 
+                                </li>
+                            </ol>
                         </div>
                     </div>
                     <nav class="tabs-items">
-                        <a href="#tab-1" class="tabs-item"><span>Now</span></a>
-                        <a href="#tab-2" class="tabs-item"><span>Details</span> </a>
+                        <a href="#tab-1" id="Now" class="tabs-item"><span>Now</span></a>
+                        <a href="#tab-2" id="Details" class="tabs-item"><span>Details</span></a>
+                        <a href="#tab-3" id="Forecast" class="tabs-item"><span>Forecast</span></a>
                     </nav>
                 </div>
             </div>
@@ -81,4 +171,6 @@
 </body>
 <script type="module" src="./main.js"> </script>
 <script type="module" src="./localstorage.js"></script>
+<script src="./tabs.js"></script>
 </html>
+
