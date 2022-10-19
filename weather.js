@@ -15,20 +15,17 @@ function getCity(event) {
   request(searchInput);
 }
 
-function request(item) {
+async function request(item) {
   const url = `${serverUrl}?q=${item}&appid=${apiKey}&units=metric`;
-  fetch(url)
-    .then((result) => result.json())
-    .then((result) => {
-      if (result.cod !== 200) {
-        alert(`${result.message}`);
+  let result =  await fetch(url)
+    let jsonResult = await result.json();
+      if (jsonResult.cod !== 200) {
+        alert(`${jsonResult.message}`);
       } else {
-        renderLeftNow(result.name, result.main.temp, result.weather[0].icon);
-        renderDetails(result.name,result.main.temp,result.weather[0].main,result.main.feels_like,result.sys.sunrise,result.sys.sunset
+        renderLeftNow(jsonResult.name, jsonResult.main.temp, jsonResult.weather[0].icon);
+        renderDetails(jsonResult.name,jsonResult.main.temp,jsonResult.weather[0].main,jsonResult.main.feels_like,jsonResult.sys.sunrise,jsonResult.sys.sunset
         );
       }
-    })
-    .catch((err) => err.message);
   searchInput.value = "";
 }
 
