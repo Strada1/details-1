@@ -9,9 +9,7 @@ import {
 	navNow,
 	navForecast,
 	headerDetails,
-} from "./const/const.js";
-
-import { getCurrentCity } from "./localStorage.js";
+} from './const/const.js';
 
 import {
 	addToFavorite,
@@ -20,13 +18,14 @@ import {
 	showDetails,
 	render,
 	createCityItem,
-	getCurrentCityName
-} from "./more.js";
+	getCurrentCityName,
+} from './more.js';
 
+import { getCurrentCity } from './localStorage.js';
 import { getData, getDataForecast } from './fetch.js';
 import { renderNow } from './renderNow.js';
 import { renderDetails } from './renderDetails.js';
-import { renderForecast } from "./renderForecast.js";
+import { renderForecast } from './renderForecast.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const currentCity = getCurrentCity();
@@ -39,15 +38,15 @@ document.addEventListener('DOMContentLoaded', () => {
 		const city = getData(favoriteCity.textContent);
 		renderNow(city);
 	}
-})
+});
 
 form.addEventListener('submit', evt => {
 	submit(evt);
-})
+});
 
 searchButton.addEventListener('submit', evt => {
 	submit(evt);
-})
+});
 
 favoriteButton.addEventListener('click', () => {
 	createCityItem(favoriteCity.textContent);
@@ -58,22 +57,21 @@ favoriteButton.addEventListener('click', () => {
 	addToFavorite(favoriteCity.textContent, list);
 	showDetails(cities);
 	deleteFavorite(deleteButton, favoriteCity.textContent);
-})
-
+});
 
 navNow.addEventListener('click', () => {
 	const cityName = getCurrentCityName(headerDetails);
-	renderNow(cityName)
-})
+	renderNow(cityName);
+});
 
 navDetail.addEventListener('click', () => {
-	const cityName = getCurrentCity(favoriteCity);
+	const cityName = getCurrentCityName(favoriteCity);
 	renderDetails(cityName);
-})
+});
 
 navForecast.addEventListener('click', () => {
 	const currentCity = getCurrentCity();
 	const name = getDataForecast(currentCity);
 
-	renderForecast(name)
-})
+	renderForecast(name);
+});

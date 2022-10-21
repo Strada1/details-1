@@ -6,11 +6,13 @@ import {
 	feelsLikeDetail,
 	weatherDetail,
 	sunriseDetail,
-	sunsetDetail
+	sunsetDetail,
+	favoriteCity,
 } from './const/const.js';
 
 import { calcTimeSun } from './date.js';
 import { addClassHide, removeClassActive } from './more.js';
+import { getCurrentCity } from './localStorage.js';
 
 export function renderDetails(cityName) {
 	addClassHide();
@@ -33,5 +35,5 @@ export function renderDetails(cityName) {
 		weatherDetail.textContent = `Weather: ${weather}`;
 		sunriseDetail.textContent = `Sunrise: ${calcTimeSun(sunrise)}`;
 		sunsetDetail.textContent = `Sunset: ${calcTimeSun(sunset)}`;
-	})
+	});
 }

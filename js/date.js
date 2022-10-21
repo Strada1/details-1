@@ -18,33 +18,32 @@ export function calcTime(time) {
 
 	if (hours < 10) {
 		hours = '0' + hours;
-	} 
+	}
 
 	let minutes = convertTime.getMonth();
 
 	if (minutes < 10) {
 		minutes = '0' + minutes;
-	} 
+	}
 
-	return `${hours}:${minutes}`
+	return `${hours}:${minutes}`;
 }
 
 export function getConvertDate(time) {
 	const convertTime = new Date(time * 1000);
-	console.log(convertTime)
 	let date = convertTime.getDate();
 
 	if (date < 10) {
 		date = '0' + date;
-	} 
+	}
 
 	let month = convertTime.getMonth();
 
 	if (month < 10) {
 		month = '0' + month;
-	} 
+	}
 
-  return `${date} ${months[month - 1]}`;
+	return `${date} ${months[month - 1]}`;
 }
 
 export function calcTimeSun(time) {
