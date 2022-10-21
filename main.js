@@ -24,18 +24,14 @@ let list = [
   new AddTask("Посмотреть ютубчик", PRIORITY.low),
 ];
 
-// Add new task
-
 function AddTask(name, priority) {
   this.name = name;
   this.priority = priority;
   this.status = STATUS.toDo;
-};
+}
 
 function addTask(event, newTask, priority) {
   try {
-    // const task = new AddTask(newTask.value, priority);
-
     if (
       newTask.value.trim() != "" &&
       list.findIndex(function (item) {
@@ -52,8 +48,6 @@ function addTask(event, newTask, priority) {
   }
 }
 
-// Add listener for addTask
-
 ELEMENTS.highInput.addEventListener("submit", (event) => {
   addTask(event, ELEMENTS.addTaskHigh, PRIORITY.high);
 });
@@ -61,8 +55,6 @@ ELEMENTS.highInput.addEventListener("submit", (event) => {
 ELEMENTS.lowInput.addEventListener("submit", (event) => {
   addTask(event, ELEMENTS.addTaskLow, PRIORITY.low);
 });
-
-// Remove selected task
 
 function deleteTask(task) {
   try {
@@ -81,8 +73,6 @@ function deleteTask(task) {
     alert(`Ошибка: ${err.message}`);
   }
 }
-
-// Change task status
 
 function changeStatus(task) {
   try {
@@ -106,42 +96,50 @@ function changeStatus(task) {
   }
 }
 
-// Add tasks in HTML
-
 function addHTML(task, position) {
   try {
-    let li = document.createElement("li");
-    li.classList.add("task_todo");
-    position.append(li);
+    if (typeof task === "object" && !Array.isArray(task)) {
+      let li = document.createElement("li");
+      li.classList.add("task_todo");
+      position.append(li);
 
-    let label = document.createElement("label");
-    li.append(label);
+      let label = document.createElement("label");
+      li.append(label);
 
-    let input = document.createElement("input");
-    input.setAttribute("type", "checkbox");
-    input.setAttribute("onclick", `changeStatus("${task.name}")`);
-    if (task.status === STATUS.done) {
-      input.setAttribute("checked", "");
+      let input = document.createElement("input");
+      input.setAttribute("type", "checkbox");
+      input.setAttribute("onclick", `changeStatus("${task.name}")`);
+      if (task.status === STATUS.done) {
+        input.setAttribute("checked", "");
+      }
+      label.append(input);
+
+      let p = document.createElement("p");
+      p.classList.add("task_name");
+      input.after(p);
+      let text = document.createTextNode(`${task.name}`);
+      p.prepend(text);
+
+      let button = document.createElement("button");
+      button.classList.add("btn_exit");
+      button.setAttribute("type", "button");
+      button.setAttribute("onclick", `deleteTask("${task.name}")`);
+      li.append(button);
+    } else {
+      for (let item of list) {
+        if (item.priority === PRIORITY.high) {
+          addHTML(item, ELEMENTS.listHigh);
+        }
+
+        if (item.priority === PRIORITY.low) {
+          addHTML(item, ELEMENTS.listLow);
+        }
+      }
     }
-    label.append(input);
-
-    let p = document.createElement("p");
-    p.classList.add("task_name");
-    input.after(p);
-    let text = document.createTextNode(`${task.name}`);
-    p.prepend(text);
-
-    let button = document.createElement("button");
-    button.classList.add("btn_exit");
-    button.setAttribute("type", "button");
-    button.setAttribute("onclick", `deleteTask("${task.name}")`);
-    li.append(button);
   } catch (err) {
     alert(`Ошибка: ${err.message}`);
   }
 }
-
-// Page update
 
 function render() {
   try {
@@ -150,15 +148,7 @@ function render() {
       item.remove();
     });
 
-    for (let item of list) {
-      if (item.priority === PRIORITY.high) {
-        addHTML(item, ELEMENTS.listHigh);
-      }
-
-      if (item.priority === PRIORITY.low) {
-        addHTML(item, ELEMENTS.listLow);
-      }
-    }
+    addHTML(list);
 
     for (let item of document.querySelectorAll("input[type=checkbox]")) {
       if (item.checked) {
