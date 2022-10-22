@@ -25,21 +25,6 @@ function myFindIndex (nameTask){
     return result;
 }
 
-// function addTask (nameTask , priorities, statuses = STATUS.STATUS_TO_DO){
-//     try{
-//         let result = myFindIndex(nameTask);
-//
-//         if (result !== -1) {
-//             alert(`Вы не можете добавить ${nameTask} , так как существует в  ${list.name}`);
-//             return 0;
-//         }
-//             list.push({name: nameTask, status: statuses, priority: priorities});
-//          }catch (err) {
-//             alert(err.message);
-//      }
-// }
-
-
 function addTask (nameTask , priorities, statuses = STATUS.STATUS_TO_DO){
     try{
         let result = myFindIndex(nameTask);
@@ -63,7 +48,7 @@ function changeStatus(nameTask, newStatus) {
         if ( result === -1 ) {
             throw new Error( `Вы не можете поменять статус ${newStatus} , так как не существует` );
         }
-        return (result.status = newStatus);
+        return (list[result].status = newStatus);
     }catch (err) {
         alert(err.message);
     }
@@ -77,7 +62,6 @@ function inputMyTaskHigh (event){
         if (value_input.trim() !== "") {
             let newTask = new addTask(value_input,PRIORITY.PRIORITY_HIGH);
             list.push(newTask);
-            //changePriority(value_input,PRIORITY.PRIORITY_HIGH);
             FORM_HIGH.reset();
             render();
         } else {
@@ -97,9 +81,8 @@ function inputMyTaskLow (event){
         let value_input = INPUT_TASK_LOW.value;
 
         if (value_input.trim() !== "") {
-            let newTask = new addTask(value_input, PRIORITY.PRIORITY_LOW);
+            let newTask = new addTask(value_input,PRIORITY.PRIORITY_LOW);
             list.push(newTask);
-           // changePriority(value_input,PRIORITY.PRIORITY_LOW);
             FORM_LOW.reset();
             render();
         } else {
@@ -118,7 +101,7 @@ function deleteTask(nameTask){
     if ( result === -1 ) {
         console.log( `Вы не можете удалить ${nameTask} , так как не существует` );
     } else {
-         list.splice( result, 1 );
+        list.splice( result, 1 );
     }
     render();
 }
@@ -128,7 +111,7 @@ function changePriority(nameTask, newPriority) {
     if ( result === -1 ) {
         console.log( `Вы не можете поменять приоритет ${newPriority} , так как не существует` );
     } else {
-        return (result.priority = newPriority);
+        return (list[result].priority = newPriority);
     }
 }
 
@@ -194,93 +177,3 @@ function render(){
 
 render();
 console.log(list);
-
-
-
-
-// function addTask (nameTask , statuses = STATUS.STATUS_TO_DO, priorities = PRIORITY.PRIORITY_LOW){
-//
-//     let result = myFindIndex(nameTask);
-//     if ( result === -1 ) {
-//         return  ( list.push({name:nameTask, status: statuses, priority: priorities}) );
-//     } else {
-//         console.log( `Вы не можете добавить ${nameTask} , так как существует` );
-//     }
-//
-// }
-//
-// function deleteTask(nameTask){
-//
-//     let result = myFindIndex(nameTask);
-//     if ( result === -1 ) {
-//         console.log( `Вы не можете удалить ${nameTask} , так как не существует` );
-//     } else {
-//         return list.splice( result, 1 );
-//     }
-//
-// }
-//
-//
-// function changeStatus(nameTask, newStatus) {
-//
-//     let result = myFindIndex(nameTask);
-//     if ( result === -1 ) {
-//         console.log( `Вы не можете поменять статус ${newStatus} , так как не существует` );
-//     } else {
-//         return (list[result].status = newStatus);
-//     }
-//
-// }
-//
-// function changePriority(nameTask, newPriority) {
-//
-//     let result = myFindIndex(nameTask);
-//     if ( result === -1 ) {
-//         console.log( `Вы не можете поменять статус ${newPriority} , так как не существует` );
-//     } else {
-//         return (list[result].priority = newPriority);
-//     }
-//
-// }
-//
-//
-// function showIndividual (status){
-//     let count = false;
-//     console.log (`\t ${status}:`);
-//     let obj = list.filter(item => item.status === status);
-//     //console.log(obj);
-//     for (let task of obj){
-//         if(obj[task] === status.name) {
-//             console.log(`\t\t "${task.name}" \n\t\t\t priority: "${task.priority}"`);
-//             count = true;
-//         }
-//     } if (!count) {
-//         console.log (`\t\t-`);
-//     }
-//     count = false;
-// }
-//
-//
-// function showList() {
-//
-//     console.log('ToDO:')
-//     showIndividual(STATUS.STATUS_TO_DO);
-//     showIndividual(STATUS.STATUS_IN_PROGRESS);
-//     showIndividual(STATUS.STATUS_DONE);
-//
-// }
-
-// addTask("JS",STATUS.STATUS_TO_DO,PRIORITY.PRIORITY_HIGH );
-// addTask("VITALIK",STATUS.STATUS_TO_DO,PRIORITY.PRIORITY_HIGH );
-// addTask("JS",STATUS.STATUS_TO_DO,PRIORITY.PRIORITY_HIGH );
-// addTask("VITALIK",STATUS.STATUS_TO_DO,PRIORITY.PRIORITY_HIGH );
-//
-// changeStatus ("JS" , STATUS.STATUS_TO_DO);
-// changeStatus ("JS" , STATUS.STATUS_DONE);
-//
-// changePriority ("test", PRIORITY.PRIORITY_HIGH);
-// changePriority ("test", PRIORITY.PRIORITY_LOW);
-//
-// deleteTask('JS');
-//
-// showList();
