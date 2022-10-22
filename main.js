@@ -10,92 +10,54 @@ let list = [];
 ITEMS_TAB.formSumbitNow.addEventListener("submit", addTown)
 ITEMS_TAB.formSumbitDetalis.addEventListener("submit", addTown)
 
-
-class ValidationError extends Error {
-	constructor(message) {
-		super(message);
-		this.name = "ValidationError";
-	}
-}
-
-function checkError(responce, json) {
-	if (!responce) {
-		throw new ValidationError('Произошла ошибка запроса 1, обратитесь к администратору');
-	}
-	if (!json) {
-		throw new ValidationError("Произошла ошибка запроса 2, обратитесь к администратору")
-	}
-
-	return responce, json;
-}
-
-async function request(url) {
-	let responce = await fetch(url);
-	let json = await responce.json();
-	if (!responce) {
-		throw new ValidationError('Произошла ошибка запроса 1, обратитесь к администратору');
-	}
-	if (!json) {
-		throw new ValidationError("Произошла ошибка запроса 2, обратитесь к администратору")
-	}
-
-	return responce, json;
-}
-
-
 async function getItem() {
 	let cityName = ITEMS_TAB.Town.value;
 	if(!cityName) {
 		cityName = localStorage.getItem('lastCity')
 	}
-
 	cityName = cityName.trim()
 
-		const apiKey = 'f660a2fb1e4bad10d6160b7f58c555f';
-		const serverUrl = '//api.openweahermap.org/data/2.5/weather';
-		const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
-		request(url)
+	const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
+	const serverUrl = '//api.openweathermap.org/data/2.5/weather';
+	const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
 
-		let temperature = (json.main.temp)
-		temperature = Math.round(temperature)
+	let response = await fetch(url);
+	if(response.ok) {
+		let json = await response.json();
+		createItems(json, cityName)
+	} else {
+		alert("Ошибка HTTP: " + response.status);
+	  }
+}
 
-		let feels_like = (json.main.feels_like)
-		feels_like = Math.round(feels_like)
+function createItems(json, cityName) {
+	let temperature = (json.main.temp)
+	temperature = Math.round(temperature)
 
-		let Weather_status = (json.weather[0].main)
+	let feels_like = (json.main.feels_like)
+	feels_like = Math.round(feels_like)
 
-		let Sunrise = (json.sys.sunrise)
-		Sunrise = new Date(Sunrise * 1000);
-		Sunrise = Sunrise.toLocaleTimeString()
+	let Weather_status = (json.weather[0].main)
 
-		let Sunset = (json.sys.sunset)
-		Sunset = new Date(Sunset * 1000);
-		Sunset = Sunset.toLocaleTimeString()
+	let Sunrise = (json.sys.sunrise)
+	Sunrise = new Date(Sunrise * 1000);
+	Sunrise = Sunrise.toLocaleTimeString()
 
-		const icon = (json.weather[0].icon) 
+	let Sunset = (json.sys.sunset)
+	Sunset = new Date(Sunset * 1000);
+	Sunset = Sunset.toLocaleTimeString()
 
-		renderNow(temperature, cityName, icon)
-		renderDetalis (temperature, cityName, feels_like, Weather_status, Sunrise, Sunset)
-		ITEMS_TAB.formSumbitNow.reset()
-		ITEMS_TAB.formSumbitDetalis.reset()
+	const icon = (json.weather[0].icon) 
 
-		
+	renderNow(temperature, cityName, icon)
+	renderDetalis (temperature, cityName, feels_like, Weather_status, Sunrise, Sunset)
+	ITEMS_TAB.formSumbitNow.reset()
+	ITEMS_TAB.formSumbitDetalis.reset()	
 }
 
 async function addTown(event) {
 		event.preventDefault();
-		try {
-			getItem()
-		} catch(error) {
-			alert('error')
-			if (error instanceof ValidationError) {
-				alert("Ошибка: " + error.message);
-			} else if (error instanceof SyntaxError) {
-				alert("JSON Ошибка Синтаксиса: " + error.message);
-			} else {
-				throw err; 
-			  }
-		}	
+		getItem()
 }
 
 function renderNow(temperature, cityName, icon) {
@@ -143,12 +105,9 @@ function addLocation() {
 		return item == cityName
 	})
 
-	if (indexObj == -1) {
-		if(localStorage.length) {
+	if (indexObj == -1 && localStorage.length) {
 			let cityInLs = JSON.parse(localStorage.getItem("citiesArray"));
 			list = cityInLs
-		}
-		
 		list.push(cityName) // (заменить на concat или оператор расширения)
 			
 		toStorage(list)
@@ -182,17 +141,11 @@ function renderAddedLocation() {
 }
 
 function deleteTown(event) {
-	let town = event.target.previousSibling.textContent 
+	let town = event.target.previousSibling.textContent
 	town = town.trim()
-
-	const IndexObj = list.findIndex(function(item){
-		return item == town
-	  })
-
-	  list.splice(IndexObj, 1) // сделать фильтр (поиск флуд: как избавится от splice? )
-	  toStorage (list)
-	  
-	  renderAddedLocation()
+	const newList = list.filter((item) =>(item !== town))
+	toStorage(newList);
+	renderAddedLocation()
 }
 
 async function showNowTab(event) {
@@ -215,9 +168,3 @@ async function showlastCity() {
 
 	getItem()
 }
-
-// tabNow.addEventListener('click', TabmenuNow)
-
-// function TabmenuNow() {
-// 	tabNow.classList = "active"
-// }
