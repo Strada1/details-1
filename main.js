@@ -133,7 +133,6 @@ function render (event) {
 		// task_Low.textContent = ""
 
 		list.forEach(function(item) {
-
 			if (item.status === STATUS.TO_DO && item.priority === PRIORITY.High) {
 
 				task_High.insertAdjacentHTML("afterbegin", 
