@@ -19,8 +19,8 @@ UIELEMENTS.form_input.addEventListener('submit', function (event, TODO) {
 
 function renderNow(inputCity){
     const divRemove = document.querySelector("#divRemove");
-
     let promise = inputCity;
+
     promise
         .then((data) => {
         const temperature = data.main.temp;
@@ -68,7 +68,6 @@ function renderLikeList (){
    locations.innerHTML = "";
 
     list.forEach( (el) => {
-
         const selectLocation = document.createElement("div");
         selectLocation.className = "selectLocation";
 
@@ -105,9 +104,6 @@ function renderLikeList (){
 function AddFavoriteCities(list){
     this.cityName =  list;
 }
-
-
-
 
 function likeLocation(){
     try {
