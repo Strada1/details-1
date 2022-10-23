@@ -1,60 +1,9 @@
 import { getCurrentCity, setCurrentCity, setFavoriteCities, getFavoriteCities} from "./localstorage.js";
+import { ELEMENTS, API, TEMPERATURE_WORDS, MONTHES} from "./items.js";
 
 const favoriteCities = new Set(JSON.parse(getFavoriteCities()));
 
-const ELEMENTS = {
-    FINDINPUT: document.querySelector("#find-input"),
-    FORM: document.querySelector("#find-form"),
-    WEATHERICON: document.querySelector("#weather-icon"),
-    TEMPERATURE: document.querySelector("#temperature"),
-    LOCATION: document.querySelector("#loca"),
-    LOCATIONFORBUTTON: document.querySelector('.location'),
-    ADDBUTTON: document.querySelector('#add-button'),
-    ADDBUTTONICON: document.querySelector('#add-icon'),
-    ADDEDLOCATIONS: document.querySelector("#added-locations"),
-    DETAILS_LOCATION: document.querySelector('#city'),
-    DETAILS_TEMPERATURE: document.querySelector('#temp'),
-    DETAILS_FEEL: document.querySelector('#feel'),
-    DETAILS_WEATHER: document.querySelector('#weather'),
-    DETAILS_SUNRISE: document.querySelector('#sunrise'),
-    DETAILS_SUNSET: document.querySelector('#sunset'),
-    FORECAST_LOCATION: document.querySelector('#city2'),
-    FORECASTS: document.querySelectorAll('.forecast')
-}
-
-const API = {
-    KEY: '4dac46ba5170c186410fd41ea59f39db',
-    SERVERURL: `https://api.openweathermap.org/data/2.5/weather`,
-    IMG: "https://openweathermap.org/img/wn/",
-    FORECAST_URL: `https://api.openweathermap.org/data/2.5/forecast`
-}
-
-const TEMPERATURE_WORDS = {
-    TEMPERATURE: 'Temperature: ',
-    FEELS_LIKE: 'Feels like: ',
-    WEATHER: 'Weather: ',
-    SUNRISE: 'Sunrise: ',
-    SUNSET: 'Sunset: '
-}
-
-function getWordMonth(num) {
-    switch(+num) {
-        case 0: return 'Jan'; 
-        case 1: return 'Feb';
-        case 2: return 'Mar'; 
-        case 3: return 'Apr';
-        case 4: return 'May';
-        case 5: return 'Jun';
-        case 6: return 'Jul';
-        case 7: return 'Aug';
-        case 8: return 'Sen';
-        case 9: return 'Oct';
-        case 10: return 'Nov';
-        case 11: return 'Dec';
-    }
-}
-
-class NameError extends Error { 
+class NameError extends Error {
     constructor(message) {
         super(message)
         this.name = "NameError"
@@ -63,15 +12,17 @@ class NameError extends Error {
 
 async function weatherResponse(cityName) {
     try {
+        if (!cityName) {
+            throw new NameError("не введен город");
+        }
         const serverUrl = API.SERVERURL + `?q=${cityName}&appid=${API.KEY}&units=metric`
         const responce = await fetch(serverUrl)
-        const data1 = await responce.json(); 
-
+        const data1 = await responce.json();
         const forecastUrl = API.FORECAST_URL +`?q=${cityName}&appid=${API.KEY}&units=metric`;
         const response2 = await fetch(forecastUrl);
         const data2 = await response2.json();
         if (data1.cod === '404' && data2.cod === '404') {
-            throw new NameError("введен неправильный город")
+            throw new NameError("город не найден");
         }
         //now and details
         ELEMENTS.WEATHERICON.src = API.IMG + `${ data1.weather[0].icon }@2x.png`;
@@ -94,6 +45,8 @@ async function weatherResponse(cityName) {
         }`
         //forecast
         ELEMENTS.FORECAST_LOCATION.textContent = data1.name;
+
+
         let i = 0;
         for(let forecast of ELEMENTS.FORECASTS) {
             i += 1;
@@ -105,45 +58,42 @@ async function weatherResponse(cityName) {
             const day = forecast.querySelector('.dayy');
             const time = forecast.querySelector('.timee');
             const monthNumber = new Date( date ).getMonth();
-            temperature.textContent = TEMPERATURE_WORDS.TEMPERATURE + data2.list[i].main.temp.toFixed(1); 
-            feels_like.textContent = 'Feels like: ' + data2.list[i].main.feels_like.toFixed(1);
-            day.textContent = new Date( date ).getDate() + ' ' + getWordMonth(monthNumber);
+            temperature.textContent = TEMPERATURE_WORDS.TEMPERATURE + data2.list[i].main.temp.toFixed(0);
+            feels_like.textContent = 'Feels like: ' + data2.list[i].main.feels_like.toFixed(0);
+            day.textContent = new Date( date ).getDate() + ' ' + MONTHES[monthNumber];
             time.textContent = new Date( date ).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
             iconStatus.src = API.IMG + `${ data2.list[i].weather[0].icon }@2x.png`;
-            weatherStatus.textContent = data2.list[i].weather[0].main;                
+            weatherStatus.textContent = data2.list[i].weather[0].main;
         };
     } catch (error) {
-        alert(error.message)
+        alert(error);
+        throw new NameError(error);
     }
 }
 
+
+
 function getCity() {
     const city = ELEMENTS.FINDINPUT.value;
-    if (!city) {
-        throw new NameError("не введен город");
-    }
     ELEMENTS.FINDINPUT.value = '';
     return city;
 }
 
 function addLocationToNow(value) {
-    favoriteCities.forEach((valueInSet) => {
-        if (valueInSet === value) {
-            const cityName = valueInSet;
-            weatherResponse(cityName);
-        }
-    })
+    if (!favoriteCities.has(value)) {
+        return;
+    } else {
+        weatherResponse(value);
+    }
 }
 
 function addLocationToNowFromLocal() {
-    const cityName = getCurrentCity();
-    weatherResponse(cityName);
+    weatherResponse(getCurrentCity());
 }
 
 function submitHandler(event) {
     event.preventDefault();
-    const cityName = getCity();
-    weatherResponse(cityName);
+    weatherResponse(getCity());
 }
 
 function clickHandler() {
@@ -161,11 +111,24 @@ function deleteFavoriteLocation(city) {
     render();
 }
 
+function removingCities(deleteFavoriteCities) {
+    if (deleteFavoriteCities.length === 0) {
+        return;
+    } else {
+        let item = document.querySelector('.item');
+        for (let subitem of deleteFavoriteCities) {
+            if (subitem === item) {
+                subitem.remove();
+                removingCities(deleteFavoriteCities)
+            }
+        }
+    }
+}
+
 function render() {
     const deleteFavotiteCities = document.querySelectorAll('.item')
-    deleteFavotiteCities.forEach(function(item) {
-        item.remove();
-    })
+    removingCities(deleteFavotiteCities);
+
     favoriteCities.forEach((value) => {
         const element = document.createElement('li');
         const button = document.createElement('button');
