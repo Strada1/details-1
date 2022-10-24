@@ -125,4 +125,39 @@ function likeLocation(){
     }
 }
 
+
+// function likeLocation() {
+//
+//       const list = new Set ( getFavoriteCities() );
+//     const likeCity = document.querySelector(".city-name");
+//     const cloneList =  [...list];
+//
+//
+//     if (cloneList.length === 0) {
+//         return;
+//     }
+//
+//     // for(let key of cloneList){
+//     //     if( key["cityName"] === likeCity.textContent) {
+//     //         console.log(`${likeCity.textContent}  уже существует в избранных `)
+//     //         return;
+//     //     }
+//     // }
+//
+//     cityList.pop();
+//
+//     if(cloneList === likeCity.textContent){
+//         console.log(`${likeCity.textContent}  уже существует в избранных `)
+//         return;
+//     }
+//
+//     likeLocation(list,cloneList);
+//
+//     const favoriteCities  =  new AddFavoriteCities(likeCity.textContent);
+//     list.add(favoriteCities);
+//    saveFavoriteCities(list);
+//     renderLikeList();
+// }
+
+
 renderLikeList();

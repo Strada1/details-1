@@ -7,4 +7,3 @@ export const UIELEMENTS =  {
      city_name: document.querySelector(".city-name"),
      likeCity: document.querySelector(".like"),
 }
-
