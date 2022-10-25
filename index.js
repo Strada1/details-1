@@ -1,9 +1,6 @@
 import {ITEMS_TAB, renderNowHTML, renderDetailsHTML, renderAddedLocationHTML} from './view.js';
 import { format } from 'date-fns'
 
-const test = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
-console.log('test: ', test);
-
 window.addEventListener('unhandledrejection', function(event) {
 	console.log(event.promise);
 	console.log(event.reason); 
@@ -45,12 +42,12 @@ function createItems(json, cityName) {
 
 	let Sunrise = (json.sys.sunrise)
 	Sunrise = new Date(Sunrise * 1000);
-	Sunrise = Sunrise.toLocaleTimeString()
+	Sunrise = format(Sunrise, "H':'mm':'ss")
 
 	let Sunset = (json.sys.sunset)
-	sunset = format(new Date(Sunset), 'kms')
-	// Sunset = new Date(Sunset * 1000);
-	// Sunset = Sunset.toLocaleTimeString()
+	Sunset = new Date(Sunset * 1000);
+	Sunset = format(Sunset, "H':'mm':'ss")
+	
 
 	const icon = (json.weather[0].icon) 
 
@@ -103,7 +100,6 @@ function addLocation() {
 	if(!list) {
 		list = ["Варшава"]
 	}
-	console.log(`list: ${list}`)
 	lastFavoriteViewed(cityName)
 	 
 	const indexObj = list.findIndex(function(item){
@@ -111,6 +107,7 @@ function addLocation() {
 	})
 
 	if (indexObj == -1 && localStorage.length) {
+		toStorage(list)
 			let cityInLs = JSON.parse(localStorage.getItem("citiesArray"));
 			list = cityInLs
 		list.push(cityName) // (заменить на concat или оператор расширения)
@@ -139,7 +136,6 @@ function renderAddedLocation() {
 		listLocal = ["Варшава"]
 	}
 
-	console.log(`listLocal: ${listLocal}`)
 
 	renderAddedLocationHTML(listLocal, showNowTab, deleteTown)
 	showlastCity()

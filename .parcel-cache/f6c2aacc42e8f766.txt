@@ -1,4 +1,4 @@
-4169
+4170
 62D:\Web\STRADA\Git\details-1\node_modules\ordered-binary\assets133111976772138995 1
 72D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\regions\BM.js133111963750078712 0
 65D:\Web\STRADA\Git\details-1\node_modules\abortcontroller-polyfill133111976734084188 1
@@ -23,6 +23,10 @@
 57D:\Web\STRADA\Git\details-1\node_modules\msgpackr-extract133111976770073389 1
 92D:\Web\STRADA\Git\details-1\node_modules\@parcel\package-manager\src\MockPackageInstaller.js133111963742521357 0
 35D:\Web\STRADA\Git\details-1\.vscode133111977945920415 1
+38D:\Web\STRADA\Git\details-1\.gitignore133111985869252432 0
+66D:\Web\STRADA\Git\details-1\node_modules\svgo\plugins\prefixIds.js133111963746692293 0
+58D:\Web\STRADA\Git\details-1\node_modules\@msgpackr-extract133111979610182948 1
+53D:\Web\STRADA\Git\details-1\node_modules\yaml\pair.js133111963740624587 0
 70D:\Web\STRADA\Git\details-1\node_modules\type-fest\source\mutable.d.ts133111963742382326 0
 49D:\Web\STRADA\Git\details-1\node_modules\has-flag133111976762565713 1
 55D:\Web\STRADA\Git\details-1\node_modules\type-fest\ts41133111976781871175 1
@@ -49,7 +53,6 @@
 89D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\css3-cursors-newer.js133111963763832847 0
 73D:\Web\STRADA\Git\details-1\node_modules\@parcel\source-map\dist\types.js133111963740018801 0
 55D:\Web\STRADA\Git\details-1\node_modules\dom-serializer133111976759089930 1
-35D:\Web\STRADA\Git\details-1\view.js133101427081563906 0
 70D:\Web\STRADA\Git\details-1\node_modules\json-parse-even-better-errors133111976764919308 1
 91D:\Web\STRADA\Git\details-1\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\chacha8.h133111963756166274 0
 77D:\Web\STRADA\Git\details-1\node_modules\@jridgewell\gen-mapping\package.json133111963730187308 0
@@ -70,6 +73,7 @@
 62D:\Web\STRADA\Git\details-1\node_modules\@parcel\optimizer-css133111976709594841 1
 40D:\Web\STRADA\Git\details-1\node_modules133111979610182948 1
 56D:\Web\STRADA\Git\details-1\node_modules\yaml\index.d.ts133111963749145197 0
+35D:\Web\STRADA\Git\details-1\view.js133101427081563906 0
 58D:\Web\STRADA\Git\details-1\node_modules\parcel\src\bin.js133111963730455442 0
 73D:\Web\STRADA\Git\details-1\node_modules\css-what\lib\commonjs\types.d.ts133111963742998043 0
 64D:\Web\STRADA\Git\details-1\node_modules\yaml\types\timestamp.js133111963747149109 0
@@ -130,9 +134,6 @@
 61D:\Web\STRADA\Git\details-1\node_modules\htmlnano\LICENSE.txt133111963750356754 0
 80D:\Web\STRADA\Git\details-1\node_modules\@parcel\transformer-babel\src\config.js133111963735986892 0
 50D:\Web\STRADA\Git\details-1\node_modules\@mischnic133111976698243931 1
-66D:\Web\STRADA\Git\details-1\node_modules\svgo\plugins\prefixIds.js133111963746692293 0
-58D:\Web\STRADA\Git\details-1\node_modules\@msgpackr-extract133111979610182948 1
-53D:\Web\STRADA\Git\details-1\node_modules\yaml\pair.js133111963740624587 0
 105D:\Web\STRADA\Git\details-1\node_modules\@parcel\core\test\fixtures\custom-format-infer-type\package.json133111963761806958 0
 56D:\Web\STRADA\Git\details-1\node_modules\htmlparser2\lib133111976764263875 1
 45D:\Web\STRADA\Git\details-1\node_modules\@swc133111976728483209 1
@@ -1085,8 +1086,6 @@
 83D:\Web\STRADA\Git\details-1\node_modules\css-select\lib\pseudo-selectors\pseudos.js133111963737069364 0
 88D:\Web\STRADA\Git\details-1\node_modules\@jridgewell\gen-mapping\dist\gen-mapping.umd.js133111963728866526 0
 66D:\Web\STRADA\Git\details-1\node_modules\terser\dist\bundle.min.js133111963742163860 0
-60D:\Web\STRADA\Git\details-1\node_modules\lmdb\src\cursor.cpp133111963751032050 0
-70D:\Web\STRADA\Git\details-1\node_modules\react-refresh\build-info.json133111963735480429 0
 60D:\Web\STRADA\Git\details-1\node_modules\terser\lib\parse.js133111963748311002 0
 89D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\html-media-capture.js133111963768996864 0
 72D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\regions\SD.js133111963772770567 0
@@ -1376,6 +1375,8 @@
 70D:\Web\STRADA\Git\details-1\node_modules\regenerator-runtime\README.md133111963732818976 0
 72D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\regions\BO.js133111963750217735 0
 71D:\Web\STRADA\Git\details-1\node_modules\regenerator-runtime\runtime.js133111963730038349 0
+60D:\Web\STRADA\Git\details-1\node_modules\lmdb\src\cursor.cpp133111963751032050 0
+70D:\Web\STRADA\Git\details-1\node_modules\react-refresh\build-info.json133111963735480429 0
 96D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\css-container-query-units.js133111963760198178 0
 58D:\Web\STRADA\Git\details-1\node_modules\react-refresh\cjs133111976774552179 1
 67D:\Web\STRADA\Git\details-1\node_modules\react-refresh\package.json133111963736056414 0
@@ -1620,11 +1621,6 @@
 82D:\Web\STRADA\Git\details-1\node_modules\node-gyp-build-optional-packages\index.js133111963730773228 0
 89D:\Web\STRADA\Git\details-1\node_modules\@parcel\runtime-js\lib\helpers\get-worker-url.js133111963740098245 0
 63D:\Web\STRADA\Git\details-1\node_modules\node-gyp-build\LICENSE133111963727654954 0
-85D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\css-exclusions.js133111963760774166 0
-72D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\regions\GL.js133111963768649291 0
-90D:\Web\STRADA\Git\details-1\node_modules\@parcel\reporter-dev-server\lib\ServerReporter.js133111963741657381 0
-61D:\Web\STRADA\Git\details-1\node_modules\htmlnano\lib\presets133111976763886507 1
-78D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\netinfo.js133111963771410051 0
 68D:\Web\STRADA\Git\details-1\node_modules\node-gyp-build\package.json133111963733295649 0
 77D:\Web\STRADA\Git\details-1\node_modules\@parcel\package-manager\lib\index.js133111963733236065 0
 65D:\Web\STRADA\Git\details-1\node_modules\node-gyp-build\README.md133111963734239093 0
@@ -1995,6 +1991,11 @@
 64D:\Web\STRADA\Git\details-1\node_modules\htmlnano\lib\helpers.js133111963737615545 0
 61D:\Web\STRADA\Git\details-1\node_modules\htmlnano\lib\modules133111976763807055 1
 67D:\Web\STRADA\Git\details-1\node_modules\@parcel\utils\.eslintrc.js133111963732223133 0
+85D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\css-exclusions.js133111963760774166 0
+72D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\regions\GL.js133111963768649291 0
+90D:\Web\STRADA\Git\details-1\node_modules\@parcel\reporter-dev-server\lib\ServerReporter.js133111963741657381 0
+61D:\Web\STRADA\Git\details-1\node_modules\htmlnano\lib\presets133111976763886507 1
+78D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\netinfo.js133111963771410051 0
 72D:\Web\STRADA\Git\details-1\node_modules\htmlnano\lib\presets\ampSafe.js133111963729343189 0
 85D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\css-namespaces.js133111963762472338 0
 68D:\Web\STRADA\Git\details-1\node_modules\htmlnano\lib\presets\max.js133111963739373296 0
@@ -3420,8 +3421,8 @@
 63D:\Web\STRADA\Git\details-1\node_modules\@parcel\config-default133111976699445565 1
 53D:\Web\STRADA\Git\details-1\node_modules\@parcel\core133111976701600536 1
 59D:\Web\STRADA\Git\details-1\node_modules\@parcel\diagnostic133111976704152762 1
-53D:\Web\STRADA\Git\details-1\node_modules\@parcel\hash133111976705970098 1
 92D:\Web\STRADA\Git\details-1\node_modules\@babel\highlight\node_modules\ansi-styles\readme.md133111963731448522 0
+53D:\Web\STRADA\Git\details-1\node_modules\@parcel\hash133111976705970098 1
 62D:\Web\STRADA\Git\details-1\node_modules\@parcel\markdown-ansi133111976706307744 1
 67D:\Web\STRADA\Git\details-1\node_modules\@parcel\optimizer-htmlnano133111976709753740 1
 64D:\Web\STRADA\Git\details-1\node_modules\@parcel\optimizer-image133111976710101309 1
