@@ -9,6 +9,15 @@ html.dark, .dark body {
     background-color: rgb(50, 50, 50);
     color: white;
 }
+.main {
+    width: 478px;
+    height: 100vh;
+    margin: 0 auto;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5), 0 0 25px rgba(0,0,0,0.2);
+}
+.dark .main {
+    box-shadow: 0 0 5px rgba(108, 108, 108, 0.5), 0 0 25px rgba(138,138,138,0.2);
+}
 .wrapper {
     width: 478px;
     height: 50vh;
