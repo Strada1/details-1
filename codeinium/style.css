@@ -1,0 +1,212 @@
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+html, body {
+    height: 100%;
+}
+
+body {
+    padding: 70px 0;
+}
+
+ol {
+    list-style-type: none;
+}
+li {
+    display: flex;
+    margin-top: 8px;
+}
+.container {
+    outline: 1px solid #000;
+    height: 400px;
+    width: 600px;
+    margin: 0px auto;
+}
+
+.find {
+    outline: 1px solid #000;
+    height: 45px;
+    display: flex;
+    text-align: center;
+}
+
+#find-form, #find-input {
+    width: 100%;
+    outline: none;
+    border: none;
+    background-color: white;
+    margin-top: 6px;
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+#find-button, #add-button {
+    background-color: white;
+    outline: none;
+    border: none;
+    margin-right: 8px;
+}
+.weather {
+    display: flex;
+}
+.tabs-body {
+    width: 300px;
+    height: 310px;
+}
+
+.tabs-items {
+    display: flex;
+}
+
+.tabs-item {
+    flex: 0 1 33.333%;
+    height: 45px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+.tabs-items:before {
+    position: relative;
+    z-index: 2;
+}
+
+.tabs-block {
+    position: relative;
+    padding: 20px;
+    display: none;
+    box-sizing: border-box;
+    height: 310px;
+}
+
+.tabs-block:target {
+    display: block;
+}
+
+.tabs-item span {
+    position: absolute;
+    z-index: 2;
+    color: #000;
+    box-sizing: border-box;
+}
+
+.locations {
+    height: 300px;
+    overflow-y: scroll;
+}
+.cities {
+    border-left: 1px solid #000;
+}
+.tabs-item:last-child {
+    border-right: none;
+}
+.forecast {
+    height: 40%;
+    border: 1px solid #000;
+    margin-top: 7px;
+}
+.forecast span {
+    margin-top: 6px;
+    margin-left: 8px;
+    font-size: 18px;
+}
+.forecast .datee {
+    display: flex;
+    margin-top: 6px;
+    margin-right: 8px;
+}
+.forecast .day {
+    width: 100%;
+}
+
+.forecast ol li {
+    align-items: center;
+    line-height: 0px;
+}
+.forecast ol {
+    margin-top: 40px;
+}
+.forecast .temper{
+    margin-left: 9px;
+}
+.f, .t {
+    width: 100%;
+}
+.f2, .t2 {
+    align-items: center;
+    text-align: center;
+    margin-right: 8px;
+}
+img[alt="weather-status"] {
+    max-height: 35px;
+    max-width: 35px;
+}
+#tab-3 {
+    overflow-y: scroll;
+}
+.liked-cities {
+    border-bottom: 1px solid #000;
+    width: 300px;
+    height: 55px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#added-locations , .liked-cities span {
+    margin: 25px;
+    font-size: 24px;
+    list-style-type: none;
+}
+
+.temp {
+    height: 33.333%;
+}
+.temperature span {
+    font-size: 70px;
+    height: 33.333%;
+}
+.status {
+    height: 103px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.location {
+    padding-top: 60px;
+    display: flex;
+    font-size: 24px;
+}
+
+.spancontainer {
+    width: 100%;
+    font-size: 24px;
+}
+
+#loca, .city span {
+    font-size: 24px;
+}
+.details {
+    margin-top: 28px;
+    font-size: 24px;
+}
+button {
+    font-size: 24px;
+    background-color: white;
+}
+
+.location-button {
+    text-align: left;
+    width: 100%;
+}
