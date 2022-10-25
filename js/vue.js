@@ -1,7 +1,7 @@
-import { showForecast } from "./main.js";
+import { showForecast } from "./index.js";
 import { ELEMENTS } from "./elements.js";
-import { list } from "./main.js";
-import { deleteFavoriteLocation } from "./main.js";
+import { list } from "./index.js";
+import { deleteFavoriteLocation } from "./index.js";
 
 export function render() {
   let delCity = document.querySelectorAll(".locations-items li");

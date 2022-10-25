@@ -1,6 +1,7 @@
 import { cityTime } from "./setTime.js";
 import { setNowHTML, setDetailHTML } from "./vue.js";
 import { DATA } from "./elements.js";
+import { format } from "date-fns";
 
 class ValidationError extends Error {
   constructor(message, cause) {
@@ -30,7 +31,7 @@ export async function loadWeather(url) {
 
       detailsWeather: json.weather[0].main,
     };
-
+console.log(FORECAST.currentTimeZone)
     const sunriseTime = cityTime(FORECAST.sunrise, FORECAST.currentTimeZone);
     const sunsetTime = cityTime(FORECAST.sunset, FORECAST.currentTimeZone);
 
@@ -59,9 +60,9 @@ export async function loadForecast(forecastUrl) {
 
     const newForecast = json.list.map((item) => {
       return [
-        new Date(item.dt_txt).getDate(),
-        new Date(item.dt_txt).toLocaleString("en-us", { month: "short" }),
-        `${new Date(item.dt_txt).getHours()}:00`,
+        format(new Date(item.dt_txt), 'd'),
+        format(new Date(item.dt_txt), 'MMM'),
+        format(new Date(item.dt_txt), 'HH:mm'),
         Math.round(item.main.temp),
         Math.round(item.main.feels_like),
         item.weather[0].main,
