@@ -1,5 +1,7 @@
 import { getCurrentCity, setCurrentCity, setFavoriteCities, getFavoriteCities} from "./localstorage.js";
 import { ELEMENTS, API, TEMPERATURE_WORDS, MONTHES} from "./items.js";
+import { format } from "date-fns";
+
 
 const favoriteCities = new Set(JSON.parse(getFavoriteCities()));
 
@@ -35,42 +37,46 @@ async function weatherResponse(cityName) {
         ELEMENTS.DETAILS_TEMPERATURE.textContent = TEMPERATURE_WORDS.TEMPERATURE + `${ Number(data1.main.temp).toFixed(2) }°`;
         ELEMENTS.DETAILS_FEEL.textContent = TEMPERATURE_WORDS.FEELS_LIKE + `${ Number(data1.main.feels_like).toFixed(2) }°`
         ELEMENTS.DETAILS_WEATHER.textContent = TEMPERATURE_WORDS.WEATHER + `${ data1.weather[0].main }`
-        const dateSunrise = new Date(data1.sys.sunrise * 1000)
-        const dateSunset = new Date(data1.sys.sunset * 1000)
+        const dateSunrise = format(new Date(data1.sys.sunrise * 1000), 'HH:mm')
+        const dateSunset = format(new Date(data1.sys.sunset * 1000), 'HH:mm')
         ELEMENTS.DETAILS_SUNRISE.textContent = TEMPERATURE_WORDS.SUNRISE + `${
-            dateSunrise.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            dateSunrise
         }`
         ELEMENTS.DETAILS_SUNSET.textContent = TEMPERATURE_WORDS.SUNSET + `${
-            dateSunset.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            dateSunset
         }`
         //forecast
         ELEMENTS.FORECAST_LOCATION.textContent = data1.name;
 
-
         let i = 0;
-        for(let forecast of ELEMENTS.FORECASTS) {
-            i += 1;
-            const weatherStatus = forecast.querySelector('#weather-status');
-            const iconStatus = forecast.querySelector('img[alt="weather-status"]')
-            const date = data2.list[i].dt * 1000;
-            const temperature = forecast.querySelector('#temper');
-            const feels_like = forecast.querySelector('#feels');
-            const day = forecast.querySelector('.dayy');
-            const time = forecast.querySelector('.timee');
-            const monthNumber = new Date( date ).getMonth();
-            temperature.textContent = TEMPERATURE_WORDS.TEMPERATURE + data2.list[i].main.temp.toFixed(0);
-            feels_like.textContent = 'Feels like: ' + data2.list[i].main.feels_like.toFixed(0);
-            day.textContent = new Date( date ).getDate() + ' ' + MONTHES[monthNumber];
-            time.textContent = new Date( date ).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-            iconStatus.src = API.IMG + `${ data2.list[i].weather[0].icon }@2x.png`;
-            weatherStatus.textContent = data2.list[i].weather[0].main;
-        };
+        function recurtionForecast(i) {
+            if (i === ELEMENTS.FORECASTS.length) {
+                return;
+            } else {
+                const weatherStatus = ELEMENTS.FORECASTS[i].querySelector('#weather-status');
+                const iconStatus = ELEMENTS.FORECASTS[i].querySelector('img[alt="weather-status"]')
+                const date = data2.list[i].dt * 1000;
+                const temperature = ELEMENTS.FORECASTS[i].querySelector('#temper');
+                const feels_like = ELEMENTS.FORECASTS[i].querySelector('#feels');
+                const day = ELEMENTS.FORECASTS[i].querySelector('.dayy');
+                const time = ELEMENTS.FORECASTS[i].querySelector('.timee');
+                const monthNumber = format(new Date( date ), 'MMM')
+                temperature.textContent = TEMPERATURE_WORDS.TEMPERATURE + data2.list[i].main.temp.toFixed(0);
+                feels_like.textContent = 'Feels like: ' + data2.list[i].main.feels_like.toFixed(0);
+                day.textContent = format(new Date( date ), 'd');
+                time.textContent = format(new Date( date ), 'HH:mm');
+                iconStatus.src = API.IMG + `${ data2.list[i].weather[0].icon }@2x.png`;
+                weatherStatus.textContent = data2.list[i].weather[0].main;
+                i += 1;
+                recurtionForecast(i);
+            }    
+        }
+        recurtionForecast(i);
     } catch (error) {
         alert(error);
         throw new NameError(error);
     }
 }
-
 
 
 function getCity() {
@@ -125,30 +131,38 @@ function removingCities(deleteFavoriteCities) {
     }
 }
 
+function renderFavoriteCities() {
+    if (favoriteCities.size === 0) {
+        return;
+    } else {
+        for (let value of favoriteCities) {
+            const element = document.createElement('li');
+            const button = document.createElement('button');
+            const closeButton = document.createElement('button');
+            const closeIcon = document.createElement('img');
+            closeIcon.src = './icons/close-icon.svg';
+            element.id = value;
+            element.className = 'item';
+            element.prepend(button);
+            element.append(closeButton);
+            ELEMENTS.ADDEDLOCATIONS.prepend(element);
+            button.id = value;
+            button.className = 'location-button';
+            button.textContent = value;
+            button.addEventListener('click', () => addLocationToNow(value));
+            closeButton.id = value;
+            closeButton.className = 'close-button';
+            closeButton.prepend(closeIcon);
+            closeButton.addEventListener('click', () => deleteFavoriteLocation(value));
+        }
+    }
+}
+
 function render() {
     const deleteFavotiteCities = document.querySelectorAll('.item')
     removingCities(deleteFavotiteCities);
-
-    favoriteCities.forEach((value) => {
-        const element = document.createElement('li');
-        const button = document.createElement('button');
-        const closeButton = document.createElement('button');
-        const closeIcon = document.createElement('img');
-        closeIcon.src = './icons/close-icon.svg';
-        element.id = value;
-        element.className = 'item';
-        element.prepend(button);
-        element.append(closeButton);
-        ELEMENTS.ADDEDLOCATIONS.prepend(element);
-        button.id = value;
-        button.className = 'location-button';
-        button.textContent = value;
-        button.addEventListener('click', () => addLocationToNow(value));
-        closeButton.id = value;
-        closeButton.className = 'close-button';
-        closeButton.prepend(closeIcon);
-        closeButton.addEventListener('click', () => deleteFavoriteLocation(value));
-    })
+    renderFavoriteCities();
 };
+
 addLocationToNowFromLocal();
 render()

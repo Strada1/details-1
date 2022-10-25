@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="/index.3a01df49.css">
+</head>
+<body>
+    <div class="container">
+        <div class="find">
+            <form id="find-form" type="submit">
+                <input id="find-input" type="text" placeholder="City">
+            </form>
+            <button id="find-button">
+                <img src="/find.148d27a3.svg">
+            </button>
+        </div>
+        <div class="weather">
+            <div class="tabs">
+                <div class="tabs-body">
+                    <div id="tab-1" class="tabs-block">
+                        <div class="temperature">
+                            <div class="temp">
+                                <span id="temperature">
+
+                                </span>
+                            </div>
+                            <div class="status">
+                                <img id="weather-icon">
+                            </div>
+                            <div class="location">
+                                <div class="spancontainer">
+                                    <span id="loca">  </span>
+                                </div>
+                                <button id="add-button">
+                                    <img id="add-icon" src="/like.e5a96608.svg" hidden="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab-2" class="tabs-block">
+                        <div class="city">
+                            <span id="city"> </span>
+                        </div>
+                        <div class="details">
+                            <ol>
+                                <li>
+                                    <span id="temp"> </span>
+                                </li>
+                                <li>
+                                    <span id="feel"> </span>
+                                </li>
+                                <li>
+                                    <span id="weather"> </span>
+                                </li>
+                                <li>
+                                    <span id="sunrise"> </span>
+                                </li>
+                                <li>
+                                    <span id="sunset"> </span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div id="tab-3" class="tabs-block">
+                        <div class="city">
+                            <span id="city2"> </span>
+                        </div>
+                        <div class="forecast">                            
+                            <div class="datee">
+                                <div class="day">
+                                    <span class="dayy">15 Oct</span>
+                                </div>
+                                <div class="time">
+                                    <span class="timee">12:00</span>
+                                </div>
+                            </div>
+                            <ol>
+                                <li>
+                                    <div class="t">
+                                        <span id="temper">Temperature: </span>
+                                    </div>
+                                    <div class="t2">
+                                        <span id="weather-status">Rain</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="f">
+                                        <span id="feels">Feels like: </span>
+                                    </div>
+                                    <div class="f2">
+                                        <img src="/cloud.07d6bb49.svg" alt="weather-status">
+                                    </div> 
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="forecast">                            
+                            <div class="datee">
+                                <div class="day">
+                                    <span class="dayy">15 Oct</span>
+                                </div>
+                                <div class="time">
+                                    <span class="timee">12:00</span>
+                                </div>
+                            </div>
+                            <ol>
+                                <li>
+                                    <div class="t">
+                                        <span id="temper">Temperature: </span>
+                                    </div>
+                                    <div class="t2">
+                                        <span id="weather-status">Rain</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="f">
+                                        <span id="feels">Feels like: </span>
+                                    </div>
+                                    <div class="f2">
+                                        <img src="/cloud.07d6bb49.svg" alt="weather-status">
+                                    </div> 
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="forecast">                            
+                            <div class="datee">
+                                <div class="day">
+                                    <span class="dayy">15 Oct</span>
+                                </div>
+                                <div class="time">
+                                    <span class="timee">12:00</span>
+                                </div>
+                            </div>
+                            <ol>
+                                <li>
+                                    <div class="t">
+                                        <span id="temper">Temperature: </span>
+                                    </div>
+                                    <div class="t2">
+                                        <span id="weather-status">Rain</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="f">
+                                        <span id="feels">Feels like: </span>
+                                    </div>
+                                    <div class="f2">
+                                        <img src="/cloud.07d6bb49.svg" alt="weather-status">
+                                    </div> 
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <nav class="tabs-items">
+                        <a href="#tab-1" id="Now" class="tabs-item"><span>Now</span></a>
+                        <a href="#tab-2" id="Details" class="tabs-item"><span>Details</span></a>
+                        <a href="#tab-3" id="Forecast" class="tabs-item"><span>Forecast</span></a>
+                    </nav>
+                </div>
+            </div>
+            <div class="cities">
+                <div class="liked-cities"> <span>Added locations:  </span></div>
+                <div class="locations">
+                    <ol id="added-locations"> </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/index.63aff760.js" defer="">
+</script>
+<script src="./localstorage.js" defer=""></script>
+<script src="./items.js" defer=""></script>
+<script src="/index.7f9af00b.js"></script>
+</html>
+
