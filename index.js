@@ -1,5 +1,5 @@
 import {ITEMS_TAB, renderNowHTML, renderDetailsHTML, renderAddedLocationHTML} from './view.js';
-import { format, compareAsc } from 'date-fns'
+import { format } from 'date-fns'
 
 const test = format(new Date(2014, 1, 11), 'MM/dd/yyyy')
 console.log('test: ', test);
