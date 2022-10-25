@@ -11,5 +11,8 @@ function recordToStorage(tasks) {
 // извлечение списка задач из localStorage
 function getFromStorage() {
     tasks = JSON.parse(localStorage.getItem('list'));
+    if(!tasks) {
+        tasks = [];
+    }
     return tasks;
 }
