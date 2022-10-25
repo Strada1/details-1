@@ -1,4 +1,4 @@
-import {getConvertDate, getConvertTime, getNowDate} from './checks.js';
+import {getConvertDate, getConvertTime, getNowDate} from './hepls.js';
 import { closePopup } from './popup.js';
 
 export const UI = {
@@ -20,7 +20,6 @@ export const UI_NOW = {
   IMAGE: document.querySelector('.now__image>img'),
   CURRENT_CITY: document.querySelector('.now__city'),
   DAY: document.querySelector('.now__date-day'),
-  MONTH: document.querySelector('.now__date-month'),
   TIME: document.querySelector('.now__date-time'),
 };
 
@@ -47,9 +46,15 @@ export function renderNowTab(jsonWeatherCity, place) {
   place.IMAGE.src = getImageLink(jsonWeatherCity.weather[0].icon);
   const nowDate = getNowDate();
   place.DAY.textContent = nowDate[0];
-  place.MONTH.textContent = nowDate[1];
-  place.TIME.textContent = `${nowDate[2]}:${nowDate[3]}`;
+  place.TIME.textContent =  nowDate[1];
 }
+
+function renderSeconds(){
+  const nowDate = getNowDate();
+  UI_NOW.TIME.textContent =  nowDate[1];
+}
+
+const seconds = setInterval(renderSeconds,1000)
 
 export function renderDetailsTab(jsonWeatherCity, place) {
   place.CITY_NAME.textContent = jsonWeatherCity.name;

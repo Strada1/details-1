@@ -3,7 +3,7 @@ import {
   getCityWeather,
   getWeatherFavoriteList,
 } from './requests.js';
-import { checkInput } from './checks.js';
+import { checkInput } from './hepls.js';
 import {
   favoriteCities,
   addFavoriteCitDatabase,
