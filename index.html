@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles/styles.css" rel="stylesheet" type="text/css">
+    <link type="Image/x-icon" href="./images/tasks_list.ico" rel="icon">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet"/>
+    <title>ToDo Tasks</title>
+</head>
+<body>
+    <main class="main">
+        <div class="wrapper">
+            <header class="header">High
+                <a href="#" class="theme-toggle">
+                    <span class="material-symbols-outlined">wb_sunny</span>
+                </a>
+            </header>
+            <form class="input-field task-high" autocomplete="off">
+                <input type="text" class="task-input-higth" id="input" placeholder=" Добавить важных дел" autocomplete="off" autofocus/>
+                <button type="submit" class="btn-add"></button>
+            </form>
+            <div class="container">
+                <div class="task-list-high">
+                    <!-- здесь будут появляться задачи с приоритетом HIGH -->
+                </div>
+            </div>
+        </div>
+        <div class="wrapper">
+            <header class="header">Low</header>
+            <form class="input-field task-low">
+                <input type="text" class="task-input-low" placeholder=" Добавить"/>
+                <button type="submit" class="btn-add"></button>
+            </form> 
+            <div class="container">
+                <div class="task-list-low">
+                    <!-- здесь будут появляться задачи с приоритетом LOW -->
+                </div>
+            </div>
+        </div>
+    </main>
+<script type="module" src="./js/main.js"></script>
+
+</body>
+</html>
