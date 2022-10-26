@@ -7,3 +7,4 @@
 # Игнорировать все .txt файлы в каталоге doc/ (doc/**/*.txt)
 /node_modules
 .parcel-cache
+/dist
