@@ -1,5 +1,8 @@
-import { ELEMENTS, PRIORITY, STATUS, ERROR_LIST } from './view.js';
+import { ELEMENTS, PRIORITY, STATUS, ERROR_LIST, DATE } from './view.js';
 import { tasks, recordToStorage, getFromStorage } from './storage.js';
+import { format, formatDistanceStrict } from 'date-fns';
+
+
 
 // проверка на доступность слушателей событий форм инпутов
 try {
@@ -72,6 +75,7 @@ function publishTask(task) {
     const handlerAddDone = (event) => {
         event.preventDefault();
         task.status = STATUS.DONE;
+        task.timeFinish = new Date();
         recordToStorage(tasks);
         showTasks();
     }
@@ -88,10 +92,40 @@ function publishTask(task) {
     ? 'task task-done'
     : 'task';
 // текст задачи
+    const containerTask = document.createElement('div');
+    containerTask.classList = 'task-container';
     const textTask = document.createElement('span');
     textTask.classList = 'task-text';
     textTask.textContent = task.name;
-    ELEMENTS.taskDiv.append(textTask);
+    containerTask.append(textTask);
+    const containerDate = document.createElement('div');
+    containerDate.classList = ('date-container');
+    const dateStart = document.createElement('div');
+    dateStart.classList = ('date-content');
+    DATE.START = format((new Date(task.id)), 'hh:mm eee dd MMM');
+    dateStart.textContent = `Start: ${DATE.START}`;
+    containerDate.append(dateStart);
+    const dateFinish = document.createElement('div');
+    dateFinish.classList = ('date-content');
+    
+    if(task.timeFinish !== 'in progress') {
+        DATE.FINISH = format((new Date(task.timeFinish)), 'hh:mm eee dd MMM');
+        DATE.LEAD_TIME = formatDistanceStrict(new Date(task.timeFinish), new Date(task.id));
+        console.log(DATE.LEAD_TIME);
+    } else {
+        DATE.FINISH = 'in progress';
+        DATE.LEAD_TIME = '';
+    }
+    dateFinish.textContent = `Finish: ${DATE.FINISH}`;
+    DATE.FINISH = 'in progress';
+    containerDate.append(dateFinish);
+    const dateDifference = document.createElement('div');
+    dateDifference.classList = ('date-content');
+    dateDifference.textContent = `Lead Time: ${DATE.LEAD_TIME}`;
+    containerDate.append(dateDifference);
+    containerTask.append(containerDate);
+    ELEMENTS.taskDiv.append(containerTask);
+    // ELEMENTS.taskDiv.append(textTask);
 // чекбокс taskDoneBtn "выполнено"
     const taskDoneBtn = document.createElement('input');
     taskDoneBtn.setAttribute('type', 'radio');
@@ -112,6 +146,7 @@ function publishTask(task) {
 function createNewTask(priority) {
     const newTask = {};
     newTask.id = new Date();
+    newTask.timeFinish = 'in progress';
     switch(priority) {
         case PRIORITY.HIGH:
             newTask.name = ELEMENTS.taskInputHigth.value;
@@ -134,6 +169,7 @@ function addTask(event, priority) {
     }
     const newTask = {};
     newTask.id = new Date();
+    newTask.timeFinish = 'in progress';
     switch(priority) {
         case PRIORITY.HIGH:
             newTask.name = ELEMENTS.taskInputHigth.value;

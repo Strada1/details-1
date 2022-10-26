@@ -1,4 +1,4 @@
-export { ELEMENTS, PRIORITY, STATUS, ERROR_LIST };
+export { ELEMENTS, PRIORITY, STATUS, ERROR_LIST, DATE };
 
 const ELEMENTS = {
     themeToggle: document.querySelector('.theme-toggle'),
@@ -10,6 +10,12 @@ const ELEMENTS = {
     taskDivHigh: document.querySelector('.task-list-high'),
     taskDivLow: document.querySelector('.task-list-low'),
     taskDiv: undefined,
+}
+
+const DATE = {
+    START: '',
+    FINISH: 'in progress',
+    LEAD_TIME: '',
 }
 
 const PRIORITY = {

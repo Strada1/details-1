@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 html, body {
+    width: 100vw;
+    height: 100vh;
     background-color: #E5E5E5;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
@@ -10,7 +12,7 @@ html.dark, .dark body {
     color: white;
 }
 .main {
-    width: 478px;
+    width: 480px;
     height: 100vh;
     margin: 0 auto;
     box-shadow: 0 0 5px rgba(0,0,0,0.5), 0 0 25px rgba(0,0,0,0.2);
@@ -177,16 +179,29 @@ html.dark, .dark body {
     background: rgb(189, 189, 189);
     box-shadow: inset 0 0 0 2px rgb(46, 46, 46);
 }
-
-
-
-
-.task-text {
+.task-container {
+    display: flex;
+    flex-direction: column;
     width: 376px;
-    margin-left: 10px;
+    margin: 0 0 5px 10px;
+}
+.task-text {
     font-size: 16px;
     padding: 5px 0;
 }
+.date-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+.date-content {
+    width: 33.33%;
+    color: rgb(108, 108, 108);
+    margin-right: 5px;
+    font-size: 10px;
+}
+
 ::-webkit-scrollbar {
     width: 4px;
     margin-left: 1px;
