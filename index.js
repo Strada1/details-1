@@ -9,7 +9,7 @@ import {
 	navNow,
 	navForecast,
 	headerDetails,
-} from './const/const.js';
+} from './src/js/const/const.js';
 
 import {
 	addToFavorite,
@@ -19,13 +19,13 @@ import {
 	render,
 	createCityItem,
 	getCurrentCityName,
-} from './more.js';
+} from './src/js/more.js';
 
-import { getCurrentCity } from './localStorage.js';
-import { getData, getDataForecast } from './fetch.js';
-import { renderNow } from './renderNow.js';
-import { renderDetails } from './renderDetails.js';
-import { renderForecast } from './renderForecast.js';
+import { getCurrentCity } from './src/js/localStorage.js';
+import { getData, getDataForecast } from './src/js/fetch.js';
+import { renderNow } from './src/js/renderNow.js';
+import { renderDetails } from './src/js/renderDetails.js';
+import { renderForecast } from './src/js/renderForecast.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const currentCity = getCurrentCity();

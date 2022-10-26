@@ -12,7 +12,8 @@ body {
 	font-family: 'Roboto';
 }
 
-ul, li {
+ul,
+li {
 	list-style: none;
 }
 
@@ -20,8 +21,8 @@ ul, li {
 /* a.text:hover,  при наведении */
 a.text,
 a {
-  text-decoration: none;
-  color: rgb(0, 0, 0);
+	text-decoration: none;
+	color: rgb(0, 0, 0);
 }
 
 h1 {
@@ -53,7 +54,6 @@ input {
 	margin: 20px auto 0 auto;
 
 	border: 1px solid black;
-
 }
 
 .nav_search__input {
@@ -79,7 +79,7 @@ input {
 
 	margin: 0 auto 0 auto;
 	width: 600px;
-	height:  389px;
+	height: 389px;
 
 	border: 1px solid;
 	border-top: none;
@@ -100,9 +100,8 @@ input {
 	padding: 0;
 	margin: 0;
 	height: 345px;
-	
 
-	overflow: scroll;
+	overflow: auto;
 }
 
 .image_cloud {
@@ -131,12 +130,14 @@ input {
 	display: flex;
 	justify-content: space-between;
 
-	margin-top: 0;	
+	margin-top: 0;
 
 	outline: 1px solid;
 }
 
-.nav_now, .nav_details, .nav_forecast {
+.nav_now,
+.nav_details,
+.nav_forecast {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -149,8 +150,7 @@ input {
 }
 
 .nav_forecast {
- border-right: none;
-
+	border-right: none;
 }
 
 .location {
@@ -269,14 +269,14 @@ input {
 .forecast_tab:hover,
 .nav_now:hover,
 .nav_details:hover,
-.nav_forecast:hover	{ 
+.nav_forecast:hover {
 	color: white;
 }
 
-.nav_now:hover, 
+.nav_now:hover,
 .nav_details:hover,
 .nav_forecast:hover,
-.nav_now:focus, 
+.nav_now:focus,
 .nav_details:focus,
 .nav_forecast:focus {
 	background-color: black;
