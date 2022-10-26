@@ -4,9 +4,9 @@ import {
   renderDetailsTab,
   renderForecastTab,
   UI_DETAILS, UI,
-} from './UI.js';
-import { setCurrentCityLocalStorage } from './localStorage.js';
-import { openPopup } from './popup.js';
+} from './UI';
+import { setCurrentCityLocalStorage } from './localStorage';
+import { openPopup } from './popup';
 
 export const SERVERS_URL = {
   CURRENT_WEATHER: 'http://api.openweathermap.org/data/2.5/weather',

@@ -1,6 +1,6 @@
-import { renderFavoriteCities, UI } from './UI.js';
-import { updateCityLocalStorage } from './localStorage.js';
-import { openPopup } from './popup.js';
+import { renderFavoriteCities, UI } from './UI';
+import { updateCityLocalStorage } from './localStorage';
+import { openPopup } from './popup';
 
 export const favoriteCities = new Set();
 

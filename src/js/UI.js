@@ -1,5 +1,6 @@
-import {getConvertDate, getConvertTime, getNowDate} from './hepls.js';
-import { closePopup } from './popup.js';
+import { getConvertDate, getConvertTime, getNowDate } from './hepls';
+import { closePopup } from './popup';
+import deleteImage from '../image/delete-icon.png';
 
 export const UI = {
   FORM: document.querySelector('.weather__form'),
@@ -40,34 +41,36 @@ function getImageLink(imageNumber) {
   return `${SERVER_URL}${imageNumber}${IMAGE_FORMAT}`;
 }
 
-export function renderNowTab(jsonWeatherCity, place) {
-  place.TEMPERATURE.textContent = `${Math.trunc(jsonWeatherCity.main.temp)}°`;
-  place.CITY_NAME.textContent = jsonWeatherCity.name;
-  place.IMAGE.src = getImageLink(jsonWeatherCity.weather[0].icon);
+export function renderNowTab(jsonWeatherCity) {
+  UI_NOW.TEMPERATURE.textContent = `${Math.trunc(jsonWeatherCity.main.temp)}°`;
+  UI_NOW.CITY_NAME.textContent = jsonWeatherCity.name;
+  UI_NOW.IMAGE.src = getImageLink(jsonWeatherCity.weather[0].icon);
   const nowDate = getNowDate();
-  place.DAY.textContent = nowDate[0];
-  place.TIME.textContent =  nowDate[1];
+  const [data, time] = nowDate;
+  UI_NOW.DAY.textContent = data;
+  UI_NOW.TIME.textContent = time;
 }
 
-function renderSeconds(){
+function renderSeconds() {
   const nowDate = getNowDate();
-  UI_NOW.TIME.textContent =  nowDate[1];
+  const [, time] = nowDate;
+  UI_NOW.TIME.textContent = time;
 }
 
-const seconds = setInterval(renderSeconds,1000)
+setInterval(renderSeconds, 1000);
 
-export function renderDetailsTab(jsonWeatherCity, place) {
-  place.CITY_NAME.textContent = jsonWeatherCity.name;
-  place.TEMPERATURE.textContent = `${Math.trunc(jsonWeatherCity.main.temp)}°`;
-  place.FEELS_LIKE.textContent = jsonWeatherCity.main.feels_like;
-  place.WEATHER.textContent = jsonWeatherCity.weather[0].main;
-  place.SUNRISE.textContent = getConvertTime(jsonWeatherCity.sys.sunrise);
-  place.SUNSET.textContent = getConvertTime(jsonWeatherCity.sys.sunset);
+export function renderDetailsTab(jsonWeatherCity) {
+  UI_DETAILS.CITY_NAME.textContent = jsonWeatherCity.name;
+  UI_DETAILS.TEMPERATURE.textContent = `${Math.trunc(jsonWeatherCity.main.temp)}°`;
+  UI_DETAILS.FEELS_LIKE.textContent = jsonWeatherCity.main.feels_like;
+  UI_DETAILS.WEATHER.textContent = jsonWeatherCity.weather[0].main;
+  UI_DETAILS.SUNRISE.textContent = getConvertTime(jsonWeatherCity.sys.sunrise);
+  UI_DETAILS.SUNSET.textContent = getConvertTime(jsonWeatherCity.sys.sunset);
 }
 
 export function addFavoriteCityUI(city, place) {
   const delImage = document.createElement('img');
-  delImage.src = 'image/delete-icon.png';
+  delImage.src = deleteImage;
   delImage.alt = 'delete icon';
   delImage.classList.add('favorites__delete');
   const liCity = document.createElement('li');
@@ -123,7 +126,8 @@ export function addForecastWeatherUI(data, place) {
   place.append(box);
 }
 
-export function renderForecastTab(dataWeather, forecastList = UI_FORECAST.FORECAST__LIST) {
+export function renderForecastTab(dataWeather) {
+  const forecastList = UI_FORECAST.FORECAST__LIST;
   while (forecastList.firstChild) {
     forecastList.firstChild.remove();
   }

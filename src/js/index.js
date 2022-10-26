@@ -1,15 +1,15 @@
-import { UI, UI_NOW, renderFavoriteCities } from './UI.js';
+import { UI, UI_NOW, renderFavoriteCities } from './UI';
 import {
   getCityWeather,
   getWeatherFavoriteList,
-} from './requests.js';
-import { checkInput } from './hepls.js';
+} from './requests';
+import { checkInput } from './hepls';
 import {
   favoriteCities,
   addFavoriteCitDatabase,
   deleteCitiDatabase,
-} from './favorite-cities-db.js';
-import { getCurrentCityLocalStorage, renderLocalStorage } from './localStorage.js';
+} from './favorite-cities-db';
+import { getCurrentCityLocalStorage, renderLocalStorage } from './localStorage';
 
 function getCityName(event) {
   event.preventDefault();
