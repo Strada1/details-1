@@ -532,9 +532,9 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"bDbGG":[function(require,module,exports) {
+/* eslint-disable no-shadow */ /* eslint-disable arrow-parens */ /* eslint-disable no-param-reassign */ /* eslint-disable default-case */ /* eslint-disable import/extensions */ /* eslint-disable no-use-before-define */ var _dateFns = require("date-fns");
 var _viewJs = require("./view.js");
 var _storageJs = require("./storage.js");
-var _dateFns = require("date-fns");
 // проверка на доступность слушателей событий форм инпутов
 try {
     (0, _viewJs.ELEMENTS).taskFormHigh.addEventListener("submit", (event)=>addTask(event, (0, _viewJs.PRIORITY).HIGH));
@@ -560,7 +560,7 @@ function addDarkTheme() {
 }
 showTasks();
 addDarkTheme();
-// showTasks головная фукция запуска показа списка задач: 
+// showTasks головная фукция запуска показа списка задач:
 // очищает окно браузера перед новым рендерингом, сортирует задачи из списка
 // по приоритету и для каждой задачи запускает publishTask
 function showTasks() {
@@ -586,13 +586,13 @@ function clearParentDOM(element) {
         element.removeChild(element.firstChild);
         clearParentDOM(element);
     }
-    return;
 }
 // publishTask публикует задачи из списка tasks в окне браузера
 function publishTask(task) {
-    // переводит задачу в статус Done 
+    // переводит задачу в статус Done
     const handlerAddDone = (event)=>{
         event.preventDefault();
+        // eslint-disable-next-line no-param-reassign
         task.status = (0, _viewJs.STATUS).DONE;
         task.timeFinish = new Date();
         (0, _storageJs.recordToStorage)((0, _storageJs.tasks));
@@ -627,7 +627,6 @@ function publishTask(task) {
     if (task.timeFinish !== "in progress") {
         (0, _viewJs.DATE).FINISH = (0, _dateFns.format)(new Date(task.timeFinish), "hh:mm eee dd MMM");
         (0, _viewJs.DATE).LEAD_TIME = (0, _dateFns.formatDistanceStrict)(new Date(task.timeFinish), new Date(task.id));
-        console.log((0, _viewJs.DATE).LEAD_TIME);
     } else {
         (0, _viewJs.DATE).FINISH = "in progress";
         (0, _viewJs.DATE).LEAD_TIME = "";
@@ -699,101 +698,9 @@ function addTask(event, priority) {
     (0, _storageJs.recordToStorage)((0, _storageJs.tasks));
     showTasks();
 }
+(0, _viewJs.ELEMENTS).themeToggle.click();
 
-},{"./view.js":"2GA9o","./storage.js":"j1l1C","date-fns":"9yHCA"}],"2GA9o":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ELEMENTS", ()=>ELEMENTS);
-parcelHelpers.export(exports, "PRIORITY", ()=>PRIORITY);
-parcelHelpers.export(exports, "STATUS", ()=>STATUS);
-parcelHelpers.export(exports, "ERROR_LIST", ()=>ERROR_LIST);
-parcelHelpers.export(exports, "DATE", ()=>DATE);
-const ELEMENTS = {
-    themeToggle: document.querySelector(".theme-toggle"),
-    iconThemeToggle: document.querySelector(".material-symbols-outlined"),
-    taskFormHigh: document.querySelector(".task-high"),
-    taskFormLow: document.querySelector(".task-low"),
-    taskInputHigth: document.querySelector(".task-input-higth"),
-    taskInputLow: document.querySelector(".task-input-low"),
-    taskDivHigh: document.querySelector(".task-list-high"),
-    taskDivLow: document.querySelector(".task-list-low"),
-    taskDiv: undefined
-};
-const DATE = {
-    START: "",
-    FINISH: "in progress",
-    LEAD_TIME: ""
-};
-const PRIORITY = {
-    HIGH: "high",
-    LOW: "low"
-};
-const STATUS = {
-    TO_DO: "To Do",
-    DONE: "Done"
-};
-const ERROR_LIST = {
-    ERROR_LISTENER_NOT_FOUND (error) {
-        alert("Ошибка: " + error);
-    },
-    ERROR_EMPTY_ENTER () {
-        alert("Пустое поле ввода задачи!");
-        ELEMENTS.taskInputHigth.value = "";
-        ELEMENTS.taskInputLow.value = "";
-        ELEMENTS.taskInputHigth.focus();
-    }
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"j1l1C":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "tasks", ()=>tasks);
-parcelHelpers.export(exports, "recordToStorage", ()=>recordToStorage);
-parcelHelpers.export(exports, "getFromStorage", ()=>getFromStorage);
-let tasks = [];
-// запись списка задач в localStorage
-function recordToStorage(tasks) {
-    const tasksStorage = JSON.stringify(tasks);
-    localStorage.setItem("list", tasksStorage);
-}
-// извлечение списка задач из localStorage
-function getFromStorage() {
-    tasks = JSON.parse(localStorage.getItem("list"));
-    if (!tasks) tasks = [];
-    return tasks;
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
+},{"date-fns":"9yHCA","./view.js":"2GA9o","./storage.js":"j1l1C"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.
@@ -1545,7 +1452,37 @@ function toInteger(dirtyNumber) {
 }
 exports.default = toInteger;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fsust":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"fsust":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../_lib/requiredArgs/index.js");
@@ -3739,6 +3676,69 @@ var secondsInWeek = secondsInDay * 7;
 var secondsInYear = secondsInDay * daysInYear;
 var secondsInMonth = secondsInYear / 12;
 var secondsInQuarter = secondsInMonth * 3;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2GA9o":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+/* eslint-disable no-alert */ /* eslint-disable no-use-before-define */ parcelHelpers.export(exports, "ELEMENTS", ()=>ELEMENTS);
+parcelHelpers.export(exports, "PRIORITY", ()=>PRIORITY);
+parcelHelpers.export(exports, "STATUS", ()=>STATUS);
+parcelHelpers.export(exports, "ERROR_LIST", ()=>ERROR_LIST);
+parcelHelpers.export(exports, "DATE", ()=>DATE);
+const ELEMENTS = {
+    themeToggle: document.querySelector(".theme-toggle"),
+    iconThemeToggle: document.querySelector(".material-symbols-outlined"),
+    taskFormHigh: document.querySelector(".task-high"),
+    taskFormLow: document.querySelector(".task-low"),
+    taskInputHigth: document.querySelector(".task-input-higth"),
+    taskInputLow: document.querySelector(".task-input-low"),
+    taskDivHigh: document.querySelector(".task-list-high"),
+    taskDivLow: document.querySelector(".task-list-low"),
+    taskDiv: undefined
+};
+const DATE = {
+    START: "",
+    FINISH: "in progress",
+    LEAD_TIME: ""
+};
+const PRIORITY = {
+    HIGH: "high",
+    LOW: "low"
+};
+const STATUS = {
+    TO_DO: "To Do",
+    DONE: "Done"
+};
+const ERROR_LIST = {
+    ERROR_LISTENER_NOT_FOUND (error) {
+        alert(`Ошибка: ${error}`);
+    },
+    ERROR_EMPTY_ENTER () {
+        alert("Пустое поле ввода задачи!");
+        ELEMENTS.taskInputHigth.value = "";
+        ELEMENTS.taskInputLow.value = "";
+        ELEMENTS.taskInputHigth.focus();
+    }
+};
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"j1l1C":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "tasks", ()=>tasks);
+parcelHelpers.export(exports, "recordToStorage", ()=>recordToStorage);
+parcelHelpers.export(exports, "getFromStorage", ()=>getFromStorage);
+let tasks = [];
+// запись списка задач в localStorage
+function recordToStorage(tasks) {
+    const tasksStorage = JSON.stringify(tasks);
+    localStorage.setItem("list", tasksStorage);
+}
+// извлечение списка задач из localStorage
+function getFromStorage() {
+    tasks = JSON.parse(localStorage.getItem("list"));
+    if (!tasks) tasks = [];
+    return tasks;
+}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["3Unyy","bDbGG"], "bDbGG", "parcelRequireb808")
 
