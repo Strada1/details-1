@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-plugin-react": "^7.31.10",
     "parcel": "^2.7.0"
   },
-  "devDependencies": {},
   "author": "Jarvis De-Nero",
   "license": "ISC"
 }

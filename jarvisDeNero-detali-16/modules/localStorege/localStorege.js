@@ -1,6 +1,6 @@
 const STOREGE = {
-   STORAGE_KEY: 'arrWeatherLocations',
-   SELECTED_CITY_KEY: 'weatherSelectedLocations',
+   STORAGE_KEY: "arrWeatherLocations",
+   SELECTED_CITY_KEY: "weatherSelectedLocations",
    pullLocalStoregeArr(decodeArray = false) {
       if (decodeArray) {
          return JSON.parse(localStorage.getItem(this.STORAGE_KEY));
@@ -18,9 +18,9 @@ const STOREGE = {
          return JSON.parse(localStorage.getItem(this.SELECTED_CITY_KEY));
       } else {
          // здесь можно определить геолокацию и передать горрод пользователя )
-         return 'Киев';
+         return "Киев";
       }
    },
-}
+};
 
-export { STOREGE }
+export { STOREGE };
