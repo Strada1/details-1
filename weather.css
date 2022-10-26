@@ -210,16 +210,16 @@ li {
 }
 
 .forecast-icons {
-  background: url(/details-1/img/Cloud-rain.svg);
   background-repeat: no-repeat;
   background-size: auto;
-  width: 31px;
-  height: 31px;
+  width: 45px;
+  height: 45px;
 }
 
 .weather-icon {
   display: flex;
   flex-direction: column;
+  padding-left: 60px;
 }
 
 .forecast-weather {
