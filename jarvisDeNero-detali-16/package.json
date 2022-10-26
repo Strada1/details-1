@@ -1,0 +1,13 @@
+{
+  "name": "pogoda-detalis-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "parcel": "^2.7.0"
+  },
+  "devDependencies": {},
+  "author": "Jarvis De-Nero",
+  "license": "ISC"
+}
