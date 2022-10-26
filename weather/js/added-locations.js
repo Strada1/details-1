@@ -23,9 +23,7 @@ const addLocation = (name) => {
 };
 
 
-const getLocationsList = () => {
-  return storage.getFavouriteLocations();
-};
+const getLocationsList = () => storage.getFavouriteLocations();
 
 
 export { addLocation, deleteLocation, getLocationsList, findLocation };

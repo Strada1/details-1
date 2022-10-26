@@ -12,7 +12,7 @@ class MyError extends Error {
     super (message);
     this.name = this.constructor.name;
   }
-};
+}
 
 
 class ReadError extends MyError {
@@ -21,7 +21,7 @@ class ReadError extends MyError {
 
     this.cause = cause;
   }
-};
+}
 
 
 class GetDataError extends MyError {
@@ -29,7 +29,7 @@ class GetDataError extends MyError {
     super('Нет поля ' + field);
     this.field = field;
   }
-};
+}
 
 
 class ConnectionError extends MyError {
@@ -40,7 +40,7 @@ class ConnectionError extends MyError {
     this.connectionIsOk = connectionIsOk;
     this.service = service;
   }
-};
+}
 
 
 // Вывод ошибки
@@ -68,6 +68,6 @@ const showError = (message) => {
   setTimeout(() => {
     alertContainer.remove();
   }, ALERT_SHOW_TIME);
-}
+};
 
 export { showError, ErrorList, ReadError, ConnectionError, GetDataError };

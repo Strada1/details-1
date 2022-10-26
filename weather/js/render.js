@@ -240,7 +240,7 @@ const renderDetailsBlock = ({
 
 
 // Хэндлер нажатия на кнопку "Добавить в избранное"
-const onAddButtonClick = (name) => function (e) {
+const onAddButtonClick = (name) => function () {
   const buttonElement = this;
 
   if (!buttonElement.classList.contains(ADD_LOCATION_ACTIVE_BUTTON_CLASS_NAME)) {
