@@ -1,0 +1,18 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "js-cookie": "^3.0.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.7.0"
+  }
+}
