@@ -6,7 +6,7 @@
 	position: relative;
 	box-sizing: border-box;
 	width: 700px;
-	height: 535px;
+	height: 455px;
 	margin: 0 auto;
 	margin-top: 100px;
 	background-color: rgba(255, 255, 255, 0.911);
@@ -27,13 +27,19 @@
 	border-left: none;
 }
 
+
 .content {
 	max-width: 621px;
 	margin: 0px auto;
 }
 
 /* ТАБЫ ------------------------------------------------------------------------------ */
-.tabs__items {
+
+.tabs {
+	width: 100%;
+}
+
+.tabs__items {	
 	margin-top: 393px;
 	margin-left: 50px;
 	width: 310px;
@@ -66,6 +72,7 @@
 	border: 1px solid #000000;
 	border-top: none;
 	border-bottom: none;
+
 }
 
 .tabs__block {
@@ -99,9 +106,8 @@
 	position: relative;
 	box-sizing: border-box;
 	float: right;
-	width: 35px;
+	width: 37px;
 	height:40px;
-	padding: 10px;
 	background-color: white;
 	color: white;
 	font-size: 17px;
@@ -111,7 +117,7 @@
 }
 
 .img_search {
-
+	margin-right: 10px;
 	width: 40px;
 	height: 44px;
 }

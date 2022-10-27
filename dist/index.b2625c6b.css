@@ -5,7 +5,7 @@
 .container {
   box-sizing: border-box;
   width: 700px;
-  height: 535px;
+  height: 455px;
   background-color: #ffffffe8;
   margin: 100px auto 0;
   position: relative;
@@ -24,6 +24,10 @@
 .content {
   max-width: 621px;
   margin: 0 auto;
+}
+
+.tabs {
+  width: 100%;
 }
 
 .tabs__items {
@@ -77,14 +81,13 @@
 .button_search {
   box-sizing: border-box;
   float: right;
-  width: 35px;
+  width: 37px;
   height: 40px;
   color: #fff;
   cursor: pointer;
   background-color: #fff;
   border: 1px solid gray;
   border-left: none;
-  padding: 10px;
   font-size: 17px;
   position: relative;
 }
@@ -92,6 +95,7 @@
 .img_search {
   width: 40px;
   height: 44px;
+  margin-right: 10px;
 }
 
 .container_article_1 {
