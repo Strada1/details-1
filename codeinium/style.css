@@ -32,7 +32,7 @@ li {
     outline: 1px solid #000;
     height: 45px;
     display: flex;
-    text-align: center;
+    text-align: center; 
 }
 
 #find-form, #find-input {
@@ -55,12 +55,19 @@ li {
     display: flex;
 }
 .tabs-body {
+    position: relative;
+    top: 0px;
+    display: flex;
     width: 300px;
-    height: 310px;
+    flex-direction: column;
+    height: 100%;
 }
 
 .tabs-items {
     display: flex;
+    position: absolute;
+    width: 300px;
+    bottom: 0px;
 }
 
 .tabs-item {
@@ -75,18 +82,19 @@ li {
     text-decoration: none;
 }
 
-
 .tabs-items:before {
     position: relative;
     z-index: 2;
 }
 
 .tabs-block {
+    flex: 1 0 auto;
     position: relative;
     padding: 20px;
+    margin-bottom: 45px;
     display: none;
     box-sizing: border-box;
-    height: 310px;
+    height: 265px;
 }
 
 .tabs-block:target {
