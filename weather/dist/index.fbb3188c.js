@@ -547,6 +547,7 @@ parcelHelpers.export(exports, "setElement", ()=>setElement);
 var _utilJs = require("./util.js");
 var _localStorageJs = require("./local-storage.js");
 var _forecastJs = require("./forecast.js");
+var _cookiesJs = require("./cookies.js");
 var _errorJs = require("./error.js");
 var _templatesJs = require("./templates.js");
 var _getDataJs = require("./get-data.js");
@@ -686,7 +687,7 @@ const renderDetailsBlock = ({ name , temperature , feelsLike , description , sun
     blockDetailsElement.querySelector(".details-block__wrapper").replaceWith(wrapperElement);
 };
 // Хэндлер нажатия на кнопку "Добавить в избранное"
-const onAddButtonClick = (name)=>function(e) {
+const onAddButtonClick = (name)=>function() {
         const buttonElement = this;
         if (!buttonElement.classList.contains(ADD_LOCATION_ACTIVE_BUTTON_CLASS_NAME)) {
             setActiveClassToAddButton(buttonElement);
@@ -740,6 +741,7 @@ const onSuccessGetData = (data)=>{
         renderDetailsBlock(locationData);
         STORE.currentLocationName = locationName;
         (0, _localStorageJs.storage).saveCurrentLocation(locationName);
+        (0, _cookiesJs.setCurrentLocationToCookie)(locationName);
     } catch (error) {
         let readError;
         if (error instanceof (0, _errorJs.GetDataError)) readError = new (0, _errorJs.ReadError)((0, _errorJs.ErrorList).GET_DATA_ERROR, error);
@@ -769,7 +771,7 @@ const initialRender = ()=>{
     setTabs();
     setSearchForm();
     renderLocations();
-    const currentLocationName = (0, _localStorageJs.storage).getCurrentLocation();
+    const currentLocationName = (0, _cookiesJs.getCurrentLocationFromCookie)();
     if (currentLocationName) {
         STORE.currentLocationName = currentLocationName;
         (0, _getDataJs.getData)((0, _getDataJs.SERVICE).WEATHER, onSuccessGetData, (0, _errorJs.showError), currentLocationName);
@@ -777,7 +779,7 @@ const initialRender = ()=>{
     }
 };
 
-},{"./util.js":"jQrIY","./local-storage.js":"3zzk0","./forecast.js":"jReL4","./error.js":"9ndDx","./templates.js":"hBA0A","./get-data.js":"i3vRI","./added-locations.js":"aFzEi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jQrIY":[function(require,module,exports) {
+},{"./util.js":"jQrIY","./local-storage.js":"3zzk0","./forecast.js":"jReL4","./error.js":"9ndDx","./templates.js":"hBA0A","./get-data.js":"i3vRI","./added-locations.js":"aFzEi","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./cookies.js":"4OUD6"}],"jQrIY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getTimeFromSeconds", ()=>getTimeFromSeconds);
@@ -3913,10 +3915,41 @@ const addLocation = (name)=>{
         ...locationsSet
     ]);
 };
-const getLocationsList = ()=>{
-    return (0, _localStorageJs.storage).getFavouriteLocations();
+const getLocationsList = ()=>(0, _localStorageJs.storage).getFavouriteLocations();
+
+},{"./local-storage.js":"3zzk0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4OUD6":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "setCurrentLocationToCookie", ()=>setCurrentLocationToCookie);
+parcelHelpers.export(exports, "getCurrentLocationFromCookie", ()=>getCurrentLocationFromCookie);
+const CURRENT_LOCATION_COOKIE_NAME = "currentLocation";
+const LOCATION_MAX_AGE = 3600;
+const getCurrentLocationFromCookie = ()=>getCookie(CURRENT_LOCATION_COOKIE_NAME);
+const setCurrentLocationToCookie = (locationName)=>{
+    setCookie(CURRENT_LOCATION_COOKIE_NAME, locationName, {
+        "max-age": LOCATION_MAX_AGE,
+        samesite: "lax"
+    });
+};
+const setCookie = (name, value, options = {})=>{
+    options = {
+        path: "/",
+        ...options
+    };
+    let cookieString = `${encodeURIComponent(name)}=${encodeURIComponent(value)}`;
+    for (const optionName of Object.keys(options)){
+        cookieString += `; ${optionName}`;
+        const optionValue = options[optionName];
+        if (optionValue !== true) cookieString += `=${optionValue}`;
+    }
+    document.cookie = cookieString;
+};
+const getCookie = (name)=>{
+    const cookies = document.cookie.split(";");
+    const cookie = cookies.find((cookie)=>cookie.includes(encodeURIComponent(name)));
+    return cookie ? cookie.split("=")[1] : "";
 };
 
-},{"./local-storage.js":"3zzk0","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["3Unyy","bDbGG"], "bDbGG", "parcelRequire8fb7")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["3Unyy","bDbGG"], "bDbGG", "parcelRequire8fb7")
 
 //# sourceMappingURL=index.fbb3188c.js.map

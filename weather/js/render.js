@@ -1,6 +1,7 @@
 import { getTimeStringWithoutSeconds } from './util.js';
 import { storage } from './local-storage.js';
 import { onSuccessGetForecast } from './forecast.js';
+import { setCurrentLocationToCookie, getCurrentLocationFromCookie } from './cookies.js';
 
 import {
   ReadError,
@@ -311,6 +312,7 @@ const onSuccessGetData = (data) => {
     renderDetailsBlock(locationData);
     STORE.currentLocationName = locationName;
     storage.saveCurrentLocation(locationName);
+    setCurrentLocationToCookie(locationName);
   } catch (error) {
     let readError;
 
@@ -354,7 +356,7 @@ const initialRender = () => {
   setSearchForm();
   renderLocations();
 
-  const currentLocationName = storage.getCurrentLocation();
+  const currentLocationName = getCurrentLocationFromCookie();
 
   if (currentLocationName) {
     STORE.currentLocationName = currentLocationName;
