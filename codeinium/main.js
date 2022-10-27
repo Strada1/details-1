@@ -1,7 +1,7 @@
-import { getCurrentCity, setCurrentCity, setFavoriteCities, getFavoriteCities} from "./localstorage.js";
-import { ELEMENTS, API, TEMPERATURE_WORDS, MONTHES} from "./items.js";
+import { setFavoriteCities, getFavoriteCities, setCookieCurrentCity, getCookieCurrentCity} from "./localstorage.js";
+import { ELEMENTS, API, TEMPERATURE_WORDS} from "./items.js";
 import { format } from "date-fns";
-
+import closeImg from "./icons/close-icon.svg";  
 
 const favoriteCities = new Set(JSON.parse(getFavoriteCities()));
 
@@ -32,7 +32,7 @@ async function weatherResponse(cityName) {
         ELEMENTS.LOCATION.textContent = data1.name;
         ELEMENTS.ADDBUTTON.hidden = false;
         ELEMENTS.ADDBUTTONICON.hidden = false;
-        setCurrentCity(data1.name);
+        setCookieCurrentCity(data1.name, 3600);
         ELEMENTS.DETAILS_LOCATION.textContent = data1.name;
         ELEMENTS.DETAILS_TEMPERATURE.textContent = TEMPERATURE_WORDS.TEMPERATURE + `${ Number(data1.main.temp).toFixed(2) }°`;
         ELEMENTS.DETAILS_FEEL.textContent = TEMPERATURE_WORDS.FEELS_LIKE + `${ Number(data1.main.feels_like).toFixed(2) }°`
@@ -62,8 +62,8 @@ async function weatherResponse(cityName) {
                 const time = ELEMENTS.FORECASTS[i].querySelector('.timee');
                 const monthNumber = format(new Date( date ), 'MMM')
                 temperature.textContent = TEMPERATURE_WORDS.TEMPERATURE + data2.list[i].main.temp.toFixed(0);
-                feels_like.textContent = 'Feels like: ' + data2.list[i].main.feels_like.toFixed(0);
-                day.textContent = format(new Date( date ), 'd');
+                feels_like.textContent = TEMPERATURE_WORDS.FEELS_LIKE + data2.list[i].main.feels_like.toFixed(0);
+                day.textContent = `${format(new Date( date ), 'd')} ${monthNumber}`;
                 time.textContent = format(new Date( date ), 'HH:mm');
                 iconStatus.src = API.IMG + `${ data2.list[i].weather[0].icon }@2x.png`;
                 weatherStatus.textContent = data2.list[i].weather[0].main;
@@ -94,7 +94,11 @@ function addLocationToNow(value) {
 }
 
 function addLocationToNowFromLocal() {
-    weatherResponse(getCurrentCity());
+    if (!getCookieCurrentCity()) {
+        return;
+    } else {
+        weatherResponse(getCookieCurrentCity());
+    }
 }
 
 function submitHandler(event) {
@@ -140,7 +144,7 @@ function renderFavoriteCities() {
             const button = document.createElement('button');
             const closeButton = document.createElement('button');
             const closeIcon = document.createElement('img');
-            closeIcon.src = './icons/close-icon.svg';
+            closeIcon.src = closeImg;
             element.id = value;
             element.className = 'item';
             element.prepend(button);
@@ -162,7 +166,7 @@ function render() {
     const deleteFavotiteCities = document.querySelectorAll('.item')
     removingCities(deleteFavotiteCities);
     renderFavoriteCities();
-};
+}
 
-addLocationToNowFromLocal();
+addLocationToNowFromLocal(); // body onload ?
 render()

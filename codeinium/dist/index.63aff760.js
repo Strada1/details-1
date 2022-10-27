@@ -532,9 +532,12 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"adjPd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _localstorageJs = require("./localstorage.js");
 var _itemsJs = require("./items.js");
 var _dateFns = require("date-fns");
+var _closeIconSvg = require("./icons/close-icon.svg");
+var _closeIconSvgDefault = parcelHelpers.interopDefault(_closeIconSvg);
 const favoriteCities = new Set(JSON.parse((0, _localstorageJs.getFavoriteCities)()));
 class NameError extends Error {
     constructor(message){
@@ -558,7 +561,7 @@ async function weatherResponse(cityName) {
         (0, _itemsJs.ELEMENTS).LOCATION.textContent = data1.name;
         (0, _itemsJs.ELEMENTS).ADDBUTTON.hidden = false;
         (0, _itemsJs.ELEMENTS).ADDBUTTONICON.hidden = false;
-        (0, _localstorageJs.setCurrentCity)(data1.name);
+        (0, _localstorageJs.setCookieCurrentCity)(data1.name, 3600);
         (0, _itemsJs.ELEMENTS).DETAILS_LOCATION.textContent = data1.name;
         (0, _itemsJs.ELEMENTS).DETAILS_TEMPERATURE.textContent = (0, _itemsJs.TEMPERATURE_WORDS).TEMPERATURE + `${Number(data1.main.temp).toFixed(2)}°`;
         (0, _itemsJs.ELEMENTS).DETAILS_FEEL.textContent = (0, _itemsJs.TEMPERATURE_WORDS).FEELS_LIKE + `${Number(data1.main.feels_like).toFixed(2)}°`;
@@ -582,8 +585,8 @@ async function weatherResponse(cityName) {
                 const time = (0, _itemsJs.ELEMENTS).FORECASTS[i].querySelector(".timee");
                 const monthNumber = (0, _dateFns.format)(new Date(date), "MMM");
                 temperature.textContent = (0, _itemsJs.TEMPERATURE_WORDS).TEMPERATURE + data2.list[i].main.temp.toFixed(0);
-                feels_like.textContent = "Feels like: " + data2.list[i].main.feels_like.toFixed(0);
-                day.textContent = (0, _dateFns.format)(new Date(date), "d");
+                feels_like.textContent = (0, _itemsJs.TEMPERATURE_WORDS).FEELS_LIKE + data2.list[i].main.feels_like.toFixed(0);
+                day.textContent = `${(0, _dateFns.format)(new Date(date), "d")} ${monthNumber}`;
                 time.textContent = (0, _dateFns.format)(new Date(date), "HH:mm");
                 iconStatus.src = (0, _itemsJs.API).IMG + `${data2.list[i].weather[0].icon}@2x.png`;
                 weatherStatus.textContent = data2.list[i].weather[0].main;
@@ -607,7 +610,8 @@ function addLocationToNow(value) {
     else weatherResponse(value);
 }
 function addLocationToNowFromLocal() {
-    weatherResponse((0, _localstorageJs.getCurrentCity)());
+    if (!(0, _localstorageJs.getCookieCurrentCity)()) return;
+    else weatherResponse((0, _localstorageJs.getCookieCurrentCity)());
 }
 function submitHandler(event) {
     event.preventDefault();
@@ -646,7 +650,7 @@ function renderFavoriteCities() {
         const button = document.createElement("button");
         const closeButton = document.createElement("button");
         const closeIcon = document.createElement("img");
-        closeIcon.src = "./icons/close-icon.svg";
+        closeIcon.src = (0, _closeIconSvgDefault.default);
         element.id = value;
         element.className = "item";
         element.prepend(button);
@@ -667,27 +671,35 @@ function render() {
     removingCities(deleteFavotiteCities);
     renderFavoriteCities();
 }
-addLocationToNowFromLocal();
+addLocationToNowFromLocal(); // body onload ?
 render();
 
-},{"./localstorage.js":"gMM27","./items.js":"kfd8X","date-fns":"9yHCA"}],"gMM27":[function(require,module,exports) {
+},{"./localstorage.js":"gMM27","./items.js":"kfd8X","date-fns":"9yHCA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./icons/close-icon.svg":"8LRJs"}],"gMM27":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "setCurrentCity", ()=>setCurrentCity);
-parcelHelpers.export(exports, "getCurrentCity", ()=>getCurrentCity);
+// export function setCurrentCity(value) {
+//     return localStorage.setItem('currentCity', value);
+// }
+// export function getCurrentCity() {
+//     return localStorage.getItem('currentCity');
+// }
 parcelHelpers.export(exports, "setFavoriteCities", ()=>setFavoriteCities);
 parcelHelpers.export(exports, "getFavoriteCities", ()=>getFavoriteCities);
-function setCurrentCity(value) {
-    return localStorage.setItem("currentCity", value);
-}
-function getCurrentCity() {
-    return localStorage.getItem("currentCity");
-}
+parcelHelpers.export(exports, "setCookieCurrentCity", ()=>setCookieCurrentCity);
+parcelHelpers.export(exports, "getCookieCurrentCity", ()=>getCookieCurrentCity);
 function setFavoriteCities(value) {
-    return localStorage.setItem("favoriteCities", value);
+    localStorage.setItem("favoriteCities", value);
 }
 function getFavoriteCities() {
     return localStorage.getItem("favoriteCities");
+}
+function setCookieCurrentCity(value, time = 3600) {
+    document.cookie = encodeURIComponent(`currentCity`) + "=" + encodeURIComponent(`${value}`) + `; max-age=${time}`;
+}
+function getCookieCurrentCity() {
+    const city = decodeURIComponent(document.cookie.slice(document.cookie.indexOf("currentCity") + 12));
+    if (!city) return undefined;
+    else return city;
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -726,7 +738,6 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ELEMENTS", ()=>ELEMENTS);
 parcelHelpers.export(exports, "API", ()=>API);
 parcelHelpers.export(exports, "TEMPERATURE_WORDS", ()=>TEMPERATURE_WORDS);
-parcelHelpers.export(exports, "MONTHES", ()=>MONTHES);
 const ELEMENTS = {
     FINDINPUT: document.querySelector("#find-input"),
     FORM: document.querySelector("#find-form"),
@@ -758,21 +769,21 @@ const TEMPERATURE_WORDS = {
     WEATHER: "Weather: ",
     SUNRISE: "Sunrise: ",
     SUNSET: "Sunset: "
-};
-const MONTHES = {
-    0: "Jan",
-    1: "Feb",
-    2: "Mar",
-    3: "Apr",
-    4: "May",
-    5: "Jun",
-    6: "Jul",
-    7: "Aug",
-    8: "Sen",
-    9: "Oct",
-    10: "Nov",
-    11: "Dec"
-};
+} // export const MONTHES = {
+ //     0: 'Jan',
+ //     1: 'Feb',
+ //     2: 'Mar',
+ //     3: 'Apr',
+ //     4: 'May',
+ //     5: 'Jun',
+ //     6: 'Jul',
+ //     7: 'Aug',
+ //     8: 'Sen',
+ //     9: 'Oct',
+ //     10: 'Nov',
+ //     11: 'Dec',
+ // }
+;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -3595,6 +3606,43 @@ var secondsInYear = secondsInDay * daysInYear;
 var secondsInMonth = secondsInYear / 12;
 var secondsInQuarter = secondsInMonth * 3;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["1JEHZ","adjPd"], "adjPd", "parcelRequiree8a6")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8LRJs":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("3gKDs") + "close-icon.618b4337.svg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}]},["1JEHZ","adjPd"], "adjPd", "parcelRequiree8a6")
 
 //# sourceMappingURL=index.63aff760.js.map
