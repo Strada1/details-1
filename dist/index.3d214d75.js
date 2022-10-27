@@ -672,7 +672,7 @@ parcelHelpers.export(exports, "renderDetails", ()=>(0, _renderDetailsJs.renderDe
 parcelHelpers.export(exports, "addClassHide", ()=>addClassHide);
 parcelHelpers.export(exports, "removeClassActive", ()=>removeClassActive);
 parcelHelpers.export(exports, "getCurrentCityName", ()=>getCurrentCityName);
-var _fetchJs = require("./fetch.js");
+var _fetch = require("./fetch");
 var _constJs = require("./const/const.js");
 var _localStorageJs = require("./localStorage.js");
 var _renderNowJs = require("./renderNow.js");
@@ -680,19 +680,11 @@ var _renderDetailsJs = require("./renderDetails.js");
 function addClassHide() {
     document.querySelectorAll(".main_weather__city").forEach((element)=>element.classList.add("hide"));
 }
-function removeClassName(arr, i) {
-    arr[i].classList.remove("active");
-    i++;
-    if (i >= arr.length) return;
-    removeClassName(arr, i);
-}
 function removeClassActive() {
     const tabs = document.querySelectorAll(".navigation");
-    let i = 0;
-    removeClassName(tabs, i);
-// tabs.forEach(tab => {
-// 	tab.classList.remove('active');
-// });
+    tabs.forEach((tab)=>{
+        tab.classList.remove("active");
+    });
 }
 function render() {
     let favoriteCityList = Array.from(new Set((0, _localStorageJs.getFavoriteCities)()));
@@ -711,7 +703,7 @@ function createCityItem(name) {
 	</div>`);
 }
 function addToFavorite(city, arr) {
-    const item = (0, _fetchJs.getData)(city);
+    const item = (0, _fetch.getData)(city);
     item.then((data)=>{
         Array.from(arr.add(data));
         (0, _localStorageJs.saveFavoriteCity)(data);
@@ -720,7 +712,7 @@ function addToFavorite(city, arr) {
 function showDetails(nodeList) {
     return nodeList.forEach((item)=>{
         item.addEventListener("click", ()=>{
-            const details = (0, _fetchJs.getData)(item.textContent);
+            const details = (0, _fetch.getData)(item.textContent);
             if (!(0, _constJs.navNow).classList.contains("active") || (0, _constJs.navNow).classList.contains("active")) {
                 (0, _renderDetailsJs.renderDetails)(details);
                 details.then((data)=>(0, _localStorageJs.addCurrentCity)(data.name));
@@ -754,7 +746,7 @@ function deleteFavorite(item, city) {
 function submit(evt) {
     evt.preventDefault();
     const cityName = (0, _constJs.inputSearch).value;
-    const data = (0, _fetchJs.getData)(cityName);
+    const data = (0, _fetch.getData)(cityName);
     (0, _renderNowJs.renderNow)(data);
     (0, _localStorageJs.addCurrentCity)((0, _constJs.favoriteCity).textContent);
     (0, _constJs.inputSearch).value = "";
@@ -762,38 +754,11 @@ function submit(evt) {
 function getCurrentCityName(element) {
     (0, _localStorageJs.addCurrentCity)(element.textContent);
     const currentCity = (0, _localStorageJs.getCurrentCity)();
-    const name = (0, _fetchJs.getData)(currentCity);
+    const name = (0, _fetch.getData)(currentCity);
     return name;
 }
 
-},{"./fetch.js":"3MHo1","./const/const.js":"6OIJb","./localStorage.js":"45bAM","./renderNow.js":"1vjOi","./renderDetails.js":"dhNkb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3MHo1":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getData", ()=>getData);
-parcelHelpers.export(exports, "getDataForecast", ()=>getDataForecast);
-const serverUrl = "http://api.openweathermap.org/data/2.5/weather";
-const serverForecastUrl = "http://api.openweathermap.org/data/2.5/forecast";
-const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
-async function getData(cityName) {
-    try {
-        const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
-        const data = await fetch(url);
-        return data.json();
-    } catch (error) {
-        alert(error.name, error.message);
-    }
-}
-async function getDataForecast(cityName) {
-    try {
-        const url = `${serverForecastUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
-        const data = await fetch(url);
-        return data.json();
-    } catch (error) {
-        alert(`${error.name}: ${error.message}`);
-    }
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"45bAM":[function(require,module,exports) {
+},{"./const/const.js":"6OIJb","./localStorage.js":"45bAM","./renderNow.js":"1vjOi","./renderDetails.js":"dhNkb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./fetch":"3MHo1"}],"45bAM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "saveFavoriteCity", ()=>saveFavoriteCity);
@@ -895,7 +860,7 @@ function calcTimeSun(time) {
     return (0, _dateFns.format)(new Date(time * 1000), "HH:MM");
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","date-fns":"9yHCA"}],"9yHCA":[function(require,module,exports) {
+},{"date-fns":"9yHCA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 // This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.
@@ -3715,6 +3680,33 @@ var secondsInWeek = secondsInDay * 7;
 var secondsInYear = secondsInDay * daysInYear;
 var secondsInMonth = secondsInYear / 12;
 var secondsInQuarter = secondsInMonth * 3;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3MHo1":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getData", ()=>getData);
+parcelHelpers.export(exports, "getDataForecast", ()=>getDataForecast);
+const serverUrl = "http://api.openweathermap.org/data/2.5/weather";
+const serverForecastUrl = "http://api.openweathermap.org/data/2.5/forecast";
+const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
+async function getData(cityName) {
+    try {
+        const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+        const data = await fetch(url);
+        return data.json();
+    } catch (error) {
+        alert(error.name, error.message);
+    }
+}
+async function getDataForecast(cityName) {
+    try {
+        const url = `${serverForecastUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+        const data = await fetch(url);
+        return data.json();
+    } catch (error) {
+        alert(`${error.name}: ${error.message}`);
+    }
+}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7o9nm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

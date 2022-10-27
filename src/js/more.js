@@ -1,4 +1,4 @@
-import { getData } from './fetch.js';
+import { getData } from './fetch';
 
 import { inputSearch, list, favoriteCity, favoirtesCities, navNow } from './const/const.js';
 
@@ -19,23 +19,12 @@ function addClassHide() {
 		.forEach(element => element.classList.add('hide'));
 }
 
-function removeClassName(arr, i) {
-	arr[i].classList.remove('active');
-	i++;
-
-	if (i >= arr.length) return;
-	removeClassName(arr, i);
-}
-
 function removeClassActive() {
 	const tabs = document.querySelectorAll('.navigation');
 
-	let i = 0;
-	removeClassName(tabs, i);
-
-	// tabs.forEach(tab => {
-	// 	tab.classList.remove('active');
-	// });
+	tabs.forEach(tab => {
+		tab.classList.remove('active');
+	});
 }
 
 function render() {

@@ -7,7 +7,8 @@
 		"start": "parcel src/index.html -p 3002 --open",
 		"build:parcel": "parcel build ./src/index.html --public-url ./ --no-source-maps",
 		"build": "npm run clean && npm run build:parcel",
-		"clean": "rm -rf dist/*"
+		"clean": "rm -rf dist/*",
+		"lint": "eslint index.js"
 	},
 	"repository": {
 		"type": "git",
@@ -20,7 +21,9 @@
 	},
 	"homepage": "https://github.com/Strada1/details-1#readme",
 	"devDependencies": {
-		"parcel": "^2.7.0"
+		"eslint": "^8.26.0",
+		"parcel": "^2.7.0",
+		"prettier": "^2.7.1"
 	},
 	"dependencies": {
 		"date-fns": "^2.29.3"
