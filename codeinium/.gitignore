@@ -1,0 +1,5 @@
+.DS_Store
+.fleet
+.vscode
+node_modules
+.parcel_cache
