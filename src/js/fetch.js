@@ -1,6 +1,6 @@
 const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
 const serverForecastUrl = 'http://api.openweathermap.org/data/2.5/forecast';
-const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
+const apiKey = '7241b7709d450b31ffd537fc2363b110';
 
 export async function getData(cityName) {
 	try {

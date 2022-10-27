@@ -2,6 +2,8 @@ import { getData } from './fetch';
 
 import { inputSearch, list, favoriteCity, favoirtesCities, navNow } from './const/const.js';
 
+import deleteIcon from '../css/img/delete.png';
+
 import {
 	addCurrentCity,
 	saveFavoriteCity,
@@ -9,6 +11,8 @@ import {
 	deleteCity,
 	getCurrentCity,
 } from './localStorage.js';
+
+import { setCookie } from './cookie';
 
 import { renderNow } from './renderNow.js';
 import { renderDetails } from './renderDetails.js';
@@ -47,9 +51,9 @@ function createCityItem(name) {
 	return favoirtesCities.insertAdjacentHTML(
 		'afterbegin',
 		`<div class="item">
-		<li class="add__city">${name}</li>
-		<img class="delete" src="./css/img/delete.png" alt="Delete" width="20" height="20">
-	</div>`,
+			<li class="add__city">${name}</li>
+			<img class="delete" src="${deleteIcon}" alt="Delete" width="20" height="20">
+		</div>`,
 	);
 }
 
@@ -75,19 +79,6 @@ function showDetails(nodeList) {
 	});
 }
 
-let i = 0;
-
-function deleteObjectRecursion(arr, func, evt) {
-	if (arr[i].name === evt) {
-		list.delete(arr[i]);
-		func();
-	}
-	i++;
-
-	if (i >= arr.length) return;
-	deleteObjectRecursion(arr, func, evt);
-}
-
 function removeElement(evt, city) {
 	evt.target.parentElement.remove();
 	deleteCity(city);
@@ -97,13 +88,13 @@ function deleteFavorite(item, city) {
 	item.addEventListener('click', evt => {
 		if (!list.length) {
 			let favoriteCityList = Array.from(new Set(getFavoriteCities()));
-			removeElement(evt, city);
 
-			deleteObjectRecursion(
-				favoriteCityList,
-				removeElement,
-				evt.target.previousElementSibling.innerText,
-			);
+			favoriteCityList.forEach(obj => {
+				if (obj.name === evt.target.previousElementSibling.innerText) {
+					list.delete(obj);
+					removeElement(evt, city);
+				}
+			});
 		}
 	});
 }
@@ -122,6 +113,7 @@ function getCurrentCityName(element) {
 	addCurrentCity(element.textContent);
 
 	const currentCity = getCurrentCity();
+	setCookie(currentCity);
 	const name = getData(currentCity);
 
 	return name;

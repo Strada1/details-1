@@ -674,7 +674,10 @@ parcelHelpers.export(exports, "removeClassActive", ()=>removeClassActive);
 parcelHelpers.export(exports, "getCurrentCityName", ()=>getCurrentCityName);
 var _fetch = require("./fetch");
 var _constJs = require("./const/const.js");
+var _deletePng = require("../css/img/delete.png");
+var _deletePngDefault = parcelHelpers.interopDefault(_deletePng);
 var _localStorageJs = require("./localStorage.js");
+var _cookie = require("./cookie");
 var _renderNowJs = require("./renderNow.js");
 var _renderDetailsJs = require("./renderDetails.js");
 function addClassHide() {
@@ -698,9 +701,9 @@ function render() {
 }
 function createCityItem(name) {
     return (0, _constJs.favoirtesCities).insertAdjacentHTML("afterbegin", `<div class="item">
-		<li class="add__city">${name}</li>
-		<img class="delete" src="./css/img/delete.png" alt="Delete" width="20" height="20">
-	</div>`);
+			<li class="add__city">${name}</li>
+			<img class="delete" src="${(0, _deletePngDefault.default)}" alt="Delete" width="20" height="20">
+		</div>`);
 }
 function addToFavorite(city, arr) {
     const item = (0, _fetch.getData)(city);
@@ -720,16 +723,6 @@ function showDetails(nodeList) {
         });
     });
 }
-let i = 0;
-function deleteObjectRecursion(arr, func, evt) {
-    if (arr[i].name === evt) {
-        (0, _constJs.list).delete(arr[i]);
-        func();
-    }
-    i++;
-    if (i >= arr.length) return;
-    deleteObjectRecursion(arr, func, evt);
-}
 function removeElement(evt, city) {
     evt.target.parentElement.remove();
     (0, _localStorageJs.deleteCity)(city);
@@ -738,8 +731,12 @@ function deleteFavorite(item, city) {
     item.addEventListener("click", (evt)=>{
         if (!(0, _constJs.list).length) {
             let favoriteCityList = Array.from(new Set((0, _localStorageJs.getFavoriteCities)()));
-            removeElement(evt, city);
-            deleteObjectRecursion(favoriteCityList, removeElement, evt.target.previousElementSibling.innerText);
+            favoriteCityList.forEach((obj)=>{
+                if (obj.name === evt.target.previousElementSibling.innerText) {
+                    (0, _constJs.list).delete(obj);
+                    removeElement(evt, city);
+                }
+            });
         }
     });
 }
@@ -754,11 +751,12 @@ function submit(evt) {
 function getCurrentCityName(element) {
     (0, _localStorageJs.addCurrentCity)(element.textContent);
     const currentCity = (0, _localStorageJs.getCurrentCity)();
+    (0, _cookie.setCookie)(currentCity);
     const name = (0, _fetch.getData)(currentCity);
     return name;
 }
 
-},{"./const/const.js":"6OIJb","./localStorage.js":"45bAM","./renderNow.js":"1vjOi","./renderDetails.js":"dhNkb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./fetch":"3MHo1"}],"45bAM":[function(require,module,exports) {
+},{"./const/const.js":"6OIJb","./localStorage.js":"45bAM","./renderNow.js":"1vjOi","./renderDetails.js":"dhNkb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./fetch":"3MHo1","../css/img/delete.png":"hejGR","./cookie":"4b24M"}],"45bAM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "saveFavoriteCity", ()=>saveFavoriteCity);
@@ -3688,7 +3686,7 @@ parcelHelpers.export(exports, "getData", ()=>getData);
 parcelHelpers.export(exports, "getDataForecast", ()=>getDataForecast);
 const serverUrl = "http://api.openweathermap.org/data/2.5/weather";
 const serverForecastUrl = "http://api.openweathermap.org/data/2.5/forecast";
-const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
+const apiKey = "7241b7709d450b31ffd537fc2363b110";
 async function getData(cityName) {
     try {
         const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
@@ -3706,6 +3704,56 @@ async function getDataForecast(cityName) {
     } catch (error) {
         alert(`${error.name}: ${error.message}`);
     }
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hejGR":[function(require,module,exports) {
+module.exports = require("./helpers/bundle-url").getBundleURL("UckoE") + "delete.a11aa452.png" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ("" + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return "/";
+}
+function getBaseURL(url) {
+    return ("" + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, "$1") + "/";
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ("" + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error("Origin not found");
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"4b24M":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "setCookie", ()=>setCookie);
+function setCookie(cityName) {
+    document.cookie = `town=${encodeURIComponent(cityName)}; path=/; max-age=10`;
+}
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
 }
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7o9nm":[function(require,module,exports) {
