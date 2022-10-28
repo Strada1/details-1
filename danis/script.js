@@ -18,7 +18,7 @@ import {
     sunsetValue,
     list
 } from "./value.js";
-let result = "";
+let result = ""; 
 
 tabs.forEach(function (item, index) {
     tabs[0].classList.add('active');
