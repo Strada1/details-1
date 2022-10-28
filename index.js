@@ -16,6 +16,14 @@ const TIME_UNITS = {
     hours: {
         singular: " hour",
         plural: " hours"
+    },
+    minutes: {
+        singular: " minute",
+        plural: " minutes"
+    },
+    seconds: {
+        singular: " second",
+        plural: " seconds"
     }
 };
 
@@ -60,7 +68,9 @@ function getInterval(futureDate, currentDate) {
         years: time.years,
         months: time.months,
         days: time.days,
-        hours: time.hours
+        hours: time.hours,
+        minutes: time.minutes,
+        seconds: time.seconds
     };
     return duration;
 }
@@ -112,5 +122,5 @@ function createElement(tagName, className = "") {
 
 ELEMENT.FORM.addEventListener("submit", event => {
     event.preventDefault();
-    calcTime();
+    setInterval(() => calcTime(), 1000);
 });
