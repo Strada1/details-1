@@ -12,7 +12,7 @@ date.addEventListener('change', function () {
     if (new Date() < new Date(date.value)) {
         hiddenInput.value = `Осталось ${afterDate.years} лет, ${afterDate.days} дня и ${afterDate.hours} часов`;
     } else { 
-        hiddenInput.value = 'Дата прошла уже';
+        hiddenInput.value = 'Дата прошла уже ';
     }
 
 });
