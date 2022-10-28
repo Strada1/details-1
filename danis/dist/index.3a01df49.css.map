@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;;AAKA","sources":["style.css"],"sourcesContent":[".hidden {\r\n    border: none;\r\n    width: 50rem;\r\n}\r\n\r\n.date__block {\r\n    display: flex;\r\n    gap: 1rem;\r\n}"],"names":[],"version":3,"file":"index.3a01df49.css.map","sourceRoot":"/__parcel_source_root/"}
