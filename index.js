@@ -14,7 +14,7 @@ ITEMS_TAB.formSumbitDetalis.addEventListener('submit', addTown)
 async function getItem () {
   let cityName = ITEMS_TAB.Town.value
   if (!cityName) {
-    cityName = localStorage.getItem('lastCity')
+    cityName = getCookie('lastCity')
   }
   cityName = cityName.trim()
 
@@ -87,9 +87,41 @@ function toStorage (list) {
   localStorage.setItem('citiesArray', citiesArray)
 }
 
+function getCookie(name) {
+  let matches = document.cookie.match(new RegExp(
+    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function setCookie(name, value, options = {}) {
+
+  options = {
+    path: '/',
+    ...options
+  };
+
+  if (options.expires instanceof Date) {
+    options.expires = options.expires.toUTCString();
+  }
+
+  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+
+  for (let optionKey in options) {
+    updatedCookie += "; " + optionKey;
+    let optionValue = options[optionKey];
+    if (optionValue !== true) {
+      updatedCookie += "=" + optionValue;
+    }
+  }
+
+  document.cookie = updatedCookie;
+}
+
 function lastFavoriteViewed (cityName) {
-  const lastCity = cityName
-  localStorage.setItem('lastCity', lastCity)
+  const lastCity = cityName;
+  // setCookie('lastCity', `${lastCity}`, {'max-age': 3600})
+    document.cookie = `lastCity=${lastCity}; max-age=3600`
 }
 
 function addLocation () {
@@ -157,11 +189,11 @@ async function showNowTab (event) {
 }
 
 async function showlastCity () {
-  let cityName = localStorage.getItem('lastCity')
-
+  let cityName = getCookie('lastCity')
   if (!cityName) {
     cityName = 'Варшава'
   }
+  toStorage(list)
 
   getItem()
 }

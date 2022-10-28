@@ -543,7 +543,7 @@ let list = [];
 (0, _viewJs.ITEMS_TAB).formSumbitDetalis.addEventListener("submit", addTown);
 async function getItem() {
     let cityName = (0, _viewJs.ITEMS_TAB).Town.value;
-    if (!cityName) cityName = localStorage.getItem("lastCity");
+    if (!cityName) cityName = getCookie("lastCity");
     cityName = cityName.trim();
     const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
     const serverUrl = "//api.openweathermap.org/data/2.5/weather";
@@ -596,9 +596,28 @@ function toStorage(list) {
     const citiesArray = JSON.stringify(list);
     localStorage.setItem("citiesArray", citiesArray);
 }
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+function setCookie(name, value, options = {}) {
+    options = {
+        path: "/",
+        ...options
+    };
+    if (options.expires instanceof Date) options.expires = options.expires.toUTCString();
+    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    for(let optionKey in options){
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) updatedCookie += "=" + optionValue;
+    }
+    document.cookie = updatedCookie;
+}
 function lastFavoriteViewed(cityName) {
     const lastCity = cityName;
-    localStorage.setItem("lastCity", lastCity);
+    // setCookie('lastCity', `${lastCity}`, {'max-age': 3600})
+    document.cookie = `lastCity=${lastCity}; max-age=3600`;
 }
 function addLocation() {
     const cityValue = document.getElementById("cityName");
@@ -650,8 +669,9 @@ async function showNowTab(event) {
     setTimeout(()=>event.target.className = "delete__class", 350);
 }
 async function showlastCity() {
-    let cityName = localStorage.getItem("lastCity");
+    let cityName = getCookie("lastCity");
     if (!cityName) cityName = "Варшава";
+    toStorage(list);
     getItem();
 }
 
