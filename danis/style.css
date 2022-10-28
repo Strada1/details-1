@@ -1,0 +1,9 @@
+.hidden {
+    border: none;
+    width: 50rem;
+}
+
+.date__block {
+    display: flex;
+    gap: 1rem;
+}
