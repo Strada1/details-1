@@ -550,8 +550,8 @@ let result = "";
     showThisCity((0, _valueJs.input).value);
 });
 (0, _valueJs.addedButton).addEventListener("click", function() {
-    addedFavoriteCity((0, _valueJs.nowNameCity).innerHTML);
-    addedCityToLocalStorage((0, _valueJs.nowNameCity).innerHTML);
+    addedFavoriteCity((0, _valueJs.nowNameCity).textContent);
+    addedCityToLocalStorage((0, _valueJs.nowNameCity).textContent);
 });
 function addedCityToLocalStorage(nameCity) {
     (0, _valueJs.list).push({

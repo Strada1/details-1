@@ -38,8 +38,8 @@ form.addEventListener("submit", function () {
 });
 
 addedButton.addEventListener("click", function () {
-    addedFavoriteCity(nowNameCity.innerHTML);
-    addedCityToLocalStorage(nowNameCity.innerHTML);
+    addedFavoriteCity(nowNameCity.textContent);
+    addedCityToLocalStorage(nowNameCity.textContent);
 });
 
 function addedCityToLocalStorage(nameCity) {
