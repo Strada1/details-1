@@ -1,0 +1,159 @@
+/* Reset and base styles  */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto Mono", monospace;
+  color: #ffffff;
+  background-color: #01131e;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+  padding: 0;
+}
+
+label {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+body {
+  margin: 100px 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 431px;
+  padding: 18px 0 52px;
+  border-radius: 4px;
+  background-color: #011c2c;
+  text-align: center;
+}
+
+.date-header {
+  margin: 0 0 35px;
+  font-weight: 400;
+  font-size: 22px;
+}
+
+.date-wrapper {
+  width: 387px;
+  margin: 0 auto;
+}
+
+.date-row {
+  margin: 0 0 44px;
+}
+
+.date {
+  width: 115px;
+  margin: 0 0 12px;
+  padding: 0 20px;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 40px;
+  
+  overflow: hidden;
+  white-space: nowrap; 
+}
+.date p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.date-distance {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  padding: 8px;
+  width: 253px;
+  margin-right: 16px;
+  background: transparent;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  font-family: "Roboto Mono";
+  font-weight: 400;
+  font-size: 18px;
+  color: #ffffff;
+}
+
+::-webkit-calendar-picker-indicator {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.date-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  display: inline-block;
+  padding: 0 31px;
+  height: 46px;
+  border: none;
+  border-radius: 3px;
+  font-size: 18px;
+  line-height: 46px;
+  background: #03ae85;
+  color: #fff;
+  transition: 0.2s ease-in;
+}
+
+.button:hover {
+  background: #FD6259;
+}
+
+.button:active {
+  position: relative;
+  top: 1px;
+  background: #FD6259;
+}
