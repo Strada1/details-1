@@ -46,8 +46,11 @@ function createElementWithClass(el, elCLassName) {
 
 function readyPage() {
   if (localStorage.getItem(FAVORITE_CITIES)) {
+    let lcst = JSON.parse(localStorage.getItem(FAVORITE_CITIES));
     locations = getToLocalStorage(FAVORITE_CITIES);
-    currentCity = locations[0].name;
+    if (lcst.length !== 0) {
+      currentCity = locations[0].name;
+    }
 
     renderAddedLocations(locations);
   } else {
