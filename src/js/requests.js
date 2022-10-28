@@ -5,8 +5,8 @@ import {
   renderForecastTab,
   UI_DETAILS, UI,
 } from './UI';
-import { setCurrentCityLocalStorage } from './localStorage';
 import { openPopup } from './popup';
+import { setCookie } from './cookie';
 
 export const SERVERS_URL = {
   CURRENT_WEATHER: 'http://api.openweathermap.org/data/2.5/weather',
@@ -22,7 +22,7 @@ export async function getCityWeather(cityName) {
       const weatherJSON = await responseNow.json();
       renderNowTab(weatherJSON, UI_NOW);
       renderDetailsTab(weatherJSON, UI_DETAILS);
-      setCurrentCityLocalStorage(weatherJSON.name);
+      setCookie('currentCity', weatherJSON.name, { secure: true, 'max-age': 3600 });
     } else {
       throw new Error(`Ошибка HTTP:  ${responseNow.status}`);
     }

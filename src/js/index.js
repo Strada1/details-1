@@ -9,7 +9,8 @@ import {
   addFavoriteCitDatabase,
   deleteCitiDatabase,
 } from './favorite-cities-db';
-import { getCurrentCityLocalStorage, renderLocalStorage } from './localStorage';
+import { renderLocalStorage } from './localStorage';
+import { getCurrentCityCookie } from './cookie';
 
 function getCityName(event) {
   event.preventDefault();
@@ -31,7 +32,6 @@ UI_NOW.ADD_FAVORITE_ICON.addEventListener('click', () => {
 
 UI.FAVORITE_CITIES_LIST.addEventListener('click', (event) => deleteCitiDatabase(event));
 UI.FAVORITE_CITIES_LIST.addEventListener('click', (event) => getWeatherFavoriteList(event));
-
-getCurrentCityLocalStorage(getCityWeather);
+getCurrentCityCookie(getCityWeather);
 renderLocalStorage(addFavoriteCitDatabase);
 renderFavoriteCities(favoriteCities);
