@@ -556,14 +556,21 @@ let list = new Set([
 ]);
 let cityName;
 if (0, _storageJs.storageList) list = new Set(JSON.parse((0, _storageJs.storageList)));
-if (0, _storageJs.storageCity) {
-    cityName = (0, _storageJs.storageCity);
+if (0, _storageJs.cookieCity) {
+    cityName = (0, _storageJs.cookieCity);
+    showForecast(cityName);
+} else {
+    const newList = list.values();
+    cityName = newList.next().value;
     showForecast(cityName);
 }
 function showForecast(city) {
-    if (!city) cityName = (0, _elementsJs.ELEMENTS).cityInput.value;
-    const lowerCity = city.trim().toLowerCase();
-    const upperCity = lowerCity[0].toUpperCase() + lowerCity.slice(1);
+    function camelize(str) {
+        return str.split("-").map((word)=>word[0].toUpperCase() + word.slice(1)).join("-");
+    }
+    if ((0, _elementsJs.ELEMENTS).cityInput.value) city = (0, _elementsJs.ELEMENTS).cityInput.value;
+    const lowerCity = city.trim();
+    const upperCity = camelize(lowerCity);
     if (list.has(upperCity)) document.querySelector(".like svg").classList.add("heart");
     else document.querySelector(".like svg").classList.remove("heart");
     const url = `${SERVER.serverUrl}?q=${city}&appid=${SERVER.apiKey}&units=metric`;
@@ -578,13 +585,14 @@ function showForecast(city) {
     showForecast();
 });
 function addFavoriteLocation() {
-    if (list.delete((0, _elementsJs.ELEMENTS).forecastCity.textContent)) document.querySelector(".like svg").classList.remove("heart");
-    else {
+    if (list.delete((0, _elementsJs.ELEMENTS).forecastCity.textContent)) {
+        document.querySelector(".like svg").classList.remove("heart");
+        (0, _storageJs.setLocal)(cityName);
+    } else {
         list.add((0, _elementsJs.ELEMENTS).forecastCity.textContent);
         document.querySelector(".like svg").classList.add("heart");
     }
     (0, _storageJs.setLocal)(list);
-    (0, _storageJs.setLocal)(cityName);
     (0, _vueJs.render)();
 }
 function deleteFavoriteLocation(city) {
@@ -661,16 +669,40 @@ exports.export = function(dest, destName, get) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "storageList", ()=>storageList);
-parcelHelpers.export(exports, "storageCity", ()=>storageCity);
+parcelHelpers.export(exports, "cookieCity", ()=>cookieCity);
 parcelHelpers.export(exports, "setLocal", ()=>setLocal);
 const storageList = localStorage.getItem("newList");
-const storageCity = localStorage.getItem("cityName");
+const cookieCity = getCookie("cityName");
 function setLocal(item) {
     if (item instanceof Set) localStorage.setItem("newList", JSON.stringify([
         ...item
     ]));
-    else localStorage.setItem("cityName", item);
+    else // localStorage.setItem("cityName", item);
+    setCookie("cityName", item, {
+        secure: true,
+        "max-age": 3600
+    });
 }
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+function setCookie(name, value, options = {}) {
+    options = {
+        path: "/",
+        // при необходимости добавьте другие значения по умолчанию
+        ...options
+    };
+    if (options.expires instanceof Date) options.expires = options.expires.toUTCString();
+    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    for(let optionKey in options){
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) updatedCookie += "=" + optionValue;
+    }
+    document.cookie = updatedCookie;
+}
+console.log(cookieCity);
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8BdP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");

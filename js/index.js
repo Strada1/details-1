@@ -1,5 +1,5 @@
 import { ELEMENTS } from "./elements.js";
-import { storageList, storageCity, setLocal } from "./storage.js";
+import { storageList, cookieCity, setLocal } from "./storage.js";
 import { render } from "./vue.js";
 import { loadWeather, loadForecast } from "./load-forecast.js";
 
@@ -24,18 +24,28 @@ if (storageList) {
   list = new Set(JSON.parse(storageList));
 }
 
-if (storageCity) {
-  cityName = storageCity;
+if (cookieCity) {
+  cityName = cookieCity;
   showForecast(cityName);
+} else {
+  const newList = list.values();
+      cityName = newList.next().value;
+      showForecast(cityName);
 }
 
 export function showForecast(city) {
-  if (!city) {
-    cityName = ELEMENTS.cityInput.value;
+  function camelize(str) {
+    return str
+      .split("-")
+      .map((word) => word[0].toUpperCase() + word.slice(1))
+      .join("-");
   }
 
-  const lowerCity = city.trim().toLowerCase();
-  const upperCity = lowerCity[0].toUpperCase() + lowerCity.slice(1);
+  if (ELEMENTS.cityInput.value) {
+    city = ELEMENTS.cityInput.value;
+  }
+  const lowerCity = city.trim();
+  const upperCity = camelize(lowerCity);
 
   if (list.has(upperCity)) {
     document.querySelector(".like svg").classList.add("heart");
@@ -61,12 +71,13 @@ ELEMENTS.citySearch.addEventListener("submit", (event) => {
 function addFavoriteLocation() {
   if (list.delete(ELEMENTS.forecastCity.textContent)) {
     document.querySelector(".like svg").classList.remove("heart");
+    setLocal(cityName);
   } else {
     list.add(ELEMENTS.forecastCity.textContent);
     document.querySelector(".like svg").classList.add("heart");
   }
   setLocal(list);
-  setLocal(cityName);
+
   render();
 }
 
