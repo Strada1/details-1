@@ -6,5 +6,5 @@
 # Игнорировать файл doc/notes.txt, но не файл doc/server/arch.txt (doc/*.txt)
 # Игнорировать все .txt файлы в каталоге doc/ (doc/**/*.txt)
 /node_modules
-.parcel-cache
 /dist
+.parcel-cache
