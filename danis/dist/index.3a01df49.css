@@ -1,0 +1,104 @@
+.weather__forecast {
+  max-width: 39rem;
+  background-color: #fff;
+}
+
+.weather__forecast-block {
+  border: 1px solid #000;
+  padding: 1rem;
+}
+
+.search__city {
+  width: 100%;
+  border: none;
+}
+
+.search__block {
+  border: 1px solid #000;
+  padding: .5rem;
+  display: flex;
+}
+
+.weather__forecast-data {
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
+  display: grid;
+}
+
+.weather__forecast-main {
+  border: 1px solid #000;
+  flex-direction: column;
+  grid-area: 1 / 1 / 5 / 4;
+  justify-content: space-around;
+  padding: .5rem;
+  display: none;
+  position: relative;
+}
+
+.weather__forecast-main.active {
+  display: flex;
+}
+
+.weather__forecast-added-locations {
+  grid-area: 1 / 4 / 2 / 7;
+  padding: 1rem;
+}
+
+.weather__forecast-list {
+  max-height: 174px;
+  flex-direction: column;
+  grid-area: 2 / 4 / 6 / 7;
+  gap: 1rem;
+  padding: 1rem;
+  display: flex;
+  overflow: auto;
+}
+
+.count-temperature {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.weather__forecast-added-locations, .weather__forecast-list {
+  border: 1px solid #000;
+}
+
+.tab_item {
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid #000;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.tabs {
+  grid-area: 5 / 1 / 6 / 4;
+  display: flex;
+}
+
+.tab_item.active {
+  color: #fff;
+  background-color: #000;
+}
+
+form {
+  width: 100%;
+  border: none;
+  display: flex;
+}
+
+.image__wather img {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+}
+
+.container__name_city__add_favorites, .weather__forecast-list div {
+  justify-content: space-between;
+  display: flex;
+}
+
+/*# sourceMappingURL=index.3a01df49.css.map */
