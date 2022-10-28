@@ -6,4 +6,5 @@ export const UIELEMENTS = {
   icon_weather: document.querySelector('.icon-cloud'),
   city_name: document.querySelector('.city-name'),
   likeCity: document.querySelector('.like'),
+  nowIdCity: document.querySelector("#nowIdCity"),
 };

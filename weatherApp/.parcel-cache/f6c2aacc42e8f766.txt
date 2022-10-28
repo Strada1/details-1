@@ -1,4 +1,4 @@
-16268
+16269
 90F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\fp\subYears\index.js133111541392574643 0
 56F:\strada\details-1NPM\details-1\weatherApp\package.json133112425534894338 0
 89F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\ro\_lib\localize133111541487900678 1
@@ -21,7 +21,7 @@
 75F:\strada\details-1NPM\details-1\weatherApp\node_modules\.package-lock.json133112425535544084 0
 106F:\strada\details-1NPM\details-1\weatherApp\node_modules\lmdb\dependencies\lmdb\libraries\liblmdb\Makefile133111542187890807 0
 77F:\strada\details-1NPM\details-1\weatherApp\node_modules\posthtml-render\dist133111542171710521 1
-48F:\strada\details-1NPM\details-1\weatherApp\dist133112490772796806 1
+48F:\strada\details-1NPM\details-1\weatherApp\dist133113456973504968 1
 95F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\closestIndexTo\index.d.ts133111541558857091 0
 81F:\strada\details-1NPM\details-1\weatherApp\node_modules\weak-lru-cache\README.md133111542179054401 0
 81F:\strada\details-1NPM\details-1\weatherApp\node_modules\safe-buffer\package.json133111542157043422 0
@@ -67,7 +67,7 @@
 82F:\strada\details-1NPM\details-1\weatherApp\node_modules\resolve\test\mock_sync.js133112425501529329 0
 97F:\strada\details-1NPM\details-1\weatherApp\node_modules\source-map-support\source-map-support.js133111542166825369 0
 112F:\strada\details-1NPM\details-1\weatherApp\node_modules\js-sdsl\dist\esm\container\SequentialContainer\Deque.js133112418157208576 0
-54F:\strada\details-1NPM\details-1\weatherApp\index.html133110719955335441 0
+54F:\strada\details-1NPM\details-1\weatherApp\index.html133112530468270648 0
 84F:\strada\details-1NPM\details-1\weatherApp\node_modules\minimist\test\whitespace.js133112425497379475 0
 56F:\strada\details-1NPM\details-1\weatherApp\node_modules133112425533847754 1
 78F:\strada\details-1NPM\details-1\weatherApp\node_modules\prelude-ls\lib\Obj.js133112418142862112 0
@@ -124,7 +124,7 @@
 79F:\strada\details-1NPM\details-1\weatherApp\node_modules\lightningcss\README.md133111542171700603 0
 99F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\eachMonthOfInterval\index.d.ts133111541574793877 0
 79F:\strada\details-1NPM\details-1\weatherApp\node_modules\is-bigint\package.json133112425490578008 0
-47F:\strada\details-1NPM\details-1\weatherApp\src133112490769892684 1
+47F:\strada\details-1NPM\details-1\weatherApp\src133113456971300898 1
 99F:\strada\details-1NPM\details-1\weatherApp\node_modules\@parcel\transformer-babel\lib\constants.js133111542180616774 0
 92F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\startOfQuarter\index.js133111541435830949 0
 93F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\nb\_lib\localize133111541411931058 1
@@ -169,13 +169,31 @@
 92F:\strada\details-1NPM\details-1\weatherApp\node_modules\eslint-config-airbnb-base\README.md133112425497895312 0
 91F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\daysToWeeks\index.js.flow133111541313584934 0
 68F:\strada\details-1NPM\details-1\weatherApp\src\getWeatherPromise.js133112488387181231 0
-55F:\strada\details-1NPM\details-1\weatherApp\src\main.js133112490769413443 0
+55F:\strada\details-1NPM\details-1\weatherApp\src\main.js133113456971290965 0
 93F:\strada\details-1NPM\details-1\weatherApp\node_modules\uri-js\dist\esnext\schemes\http.d.ts133112418155488195 0
 82F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\en-IE133111541569009273 1
 64F:\strada\details-1NPM\details-1\weatherApp\src\renderDetails.js133112489365650074 0
 88F:\strada\details-1NPM\details-1\weatherApp\node_modules\svgo\plugins\convertPathData.js133111542192236260 0
 92F:\strada\details-1NPM\details-1\weatherApp\node_modules\eslint\lib\rules\no-self-compare.js133112418167043650 0
 57F:\strada\details-1NPM\details-1\weatherApp\src\style.css133110719955502227 0
+65F:\strada\details-1NPM\details-1\weatherApp\node_modules\css-what133111542192032907 1
+75F:\strada\details-1NPM\details-1\weatherApp\node_modules\inflight\README.md133112418135768286 0
+82F:\strada\details-1NPM\details-1\weatherApp\node_modules\lmdb\src\v8-functions.cpp133111542232378052 0
+95F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2015\InstanceofOperator.js133112425514215014 0
+99F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\af\_lib\match\index.js133111541395629233 0
+93F:\strada\details-1NPM\details-1\weatherApp\node_modules\htmlnano\docs\docs\060-contribute.md133111542226243740 0
+73F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2021133112425533247598 1
+76F:\strada\details-1NPM\details-1\weatherApp\node_modules\eslint-module-utils133112425497126517 1
+83F:\strada\details-1NPM\details-1\weatherApp\node_modules\utility-types\package.json133111542172236276 0
+95F:\strada\details-1NPM\details-1\weatherApp\node_modules\eslint\lib\rules\default-param-last.js133112418157263117 0
+90F:\strada\details-1NPM\details-1\weatherApp\node_modules\tsconfig-paths\lib\__tests__\data133112425501618614 1
+67F:\strada\details-1NPM\details-1\weatherApp\node_modules\is-weakref133112425492442971 1
+86F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\getDate\package.json133111541549154322 0
+52F:\strada\details-1NPM\details-1\weatherApp\src\TODO133113339039130320 0
+77F:\strada\details-1NPM\details-1\weatherApp\node_modules\which\bin\node-which133112418135163155 0
+102F:\strada\details-1NPM\details-1\weatherApp\node_modules\@parcel\transformer-raw\lib\RawTransformer.js133111542155414799 0
+92F:\strada\details-1NPM\details-1\weatherApp\node_modules\get-symbol-description\package.json133112425492056092 0
+98F:\strada\details-1NPM\details-1\weatherApp\node_modules\which-boxed-primitive\.github\FUNDING.yml133112425493582058 0
 94F:\strada\details-1NPM\details-1\weatherApp\node_modules\@parcel\transformer-html\package.json133111542179545411 0
 87F:\strada\details-1NPM\details-1\weatherApp\node_modules\is-weakref\.github\FUNDING.yml133112425493453117 0
 87F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\sub\index.js.flow133111541338682184 0
@@ -198,7 +216,7 @@
 101F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\ar-SA\_lib\localize\index.js133111541446484158 0
 79F:\strada\details-1NPM\details-1\weatherApp\node_modules\ajv\lib\dotjs\anyOf.js133112418151322564 0
 98F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\fp\startOfMonth\package.json133111541520392975 0
-61F:\strada\details-1NPM\details-1\weatherApp\src\uielements.js133112490769887668 0
+61F:\strada\details-1NPM\details-1\weatherApp\src\uielements.js133113362591714798 0
 82F:\strada\details-1NPM\details-1\weatherApp\node_modules\@parcel\types\build-ts.js133111542155186635 0
 78F:\strada\details-1NPM\details-1\weatherApp\node_modules\function-bind\LICENSE133112425488137694 0
 75F:\strada\details-1NPM\details-1\weatherApp\node_modules\node-releases\data133111542166651769 1
@@ -229,14 +247,6 @@
 89F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\fy\_lib\localize133111541472130852 1
 63F:\strada\details-1NPM\details-1\weatherApp\node_modules\@babel133111542137411197 1
 100F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\th\_lib\formatLong\index.js133111541490546020 0
-107F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\ar-SA\_lib\formatLong\index.js133111541396530437 0
-102F:\strada\details-1NPM\details-1\weatherApp\node_modules\js-sdsl\dist\cjs\container\TreeContainer\Base133112418158466488 1
-77F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\setHours133111541578725538 1
-100F:\strada\details-1NPM\details-1\weatherApp\node_modules\caniuse-lite\data\features\pad-start-end.js133111542302553661 0
-110F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\getOverlappingDaysInIntervals\index.d.ts133111541566967107 0
-71F:\strada\details-1NPM\details-1\weatherApp\node_modules\type-fest\ts41133111542205984060 1
-64F:\strada\details-1NPM\details-1\weatherApp\node_modules\deep-is133112418143581309 1
-89F:\strada\details-1NPM\details-1\weatherApp\node_modules\picocolors\picocolors.browser.js133111542155042800 0
 79F:\strada\details-1NPM\details-1\weatherApp\node_modules\is-bigint\CHANGELOG.md133112425491450965 0
 81F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2018\Type.js133112425531461166 0
 93F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\_lib\buildLocalizeFn133111541441619275 1
@@ -506,20 +516,20 @@
 79F:\strada\details-1NPM\details-1\weatherApp\node_modules\yaml\dist\parse-cst.js133111542194577541 0
 89F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\isThisHour\package.json133111541550880896 0
 65F:\strada\details-1NPM\details-1\weatherApp\node_modules\css-tree133111542244309838 1
-65F:\strada\details-1NPM\details-1\weatherApp\node_modules\css-what133111542192032907 1
-75F:\strada\details-1NPM\details-1\weatherApp\node_modules\inflight\README.md133112418135768286 0
-82F:\strada\details-1NPM\details-1\weatherApp\node_modules\lmdb\src\v8-functions.cpp133111542232378052 0
-95F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2015\InstanceofOperator.js133112425514215014 0
-99F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\af\_lib\match\index.js133111541395629233 0
-93F:\strada\details-1NPM\details-1\weatherApp\node_modules\htmlnano\docs\docs\060-contribute.md133111542226243740 0
-73F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2021133112425533247598 1
-76F:\strada\details-1NPM\details-1\weatherApp\node_modules\eslint-module-utils133112425497126517 1
 83F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2021\modulo.js133112425519885241 0
 75F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\el133111541582324041 1
 70F:\strada\details-1NPM\details-1\weatherApp\node_modules\isexe\LICENSE133112418137018213 0
 62F:\strada\details-1NPM\details-1\weatherApp\node_modules\debug133112418142341340 1
 80F:\strada\details-1NPM\details-1\weatherApp\node_modules\node-addon-api\index.js133111542186065681 0
 73F:\strada\details-1NPM\details-1\weatherApp\node_modules\wrappy\wrappy.js133112418137806837 0
+107F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\ar-SA\_lib\formatLong\index.js133111541396530437 0
+102F:\strada\details-1NPM\details-1\weatherApp\node_modules\js-sdsl\dist\cjs\container\TreeContainer\Base133112418158466488 1
+77F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\setHours133111541578725538 1
+100F:\strada\details-1NPM\details-1\weatherApp\node_modules\caniuse-lite\data\features\pad-start-end.js133111542302553661 0
+110F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\getOverlappingDaysInIntervals\index.d.ts133111541566967107 0
+71F:\strada\details-1NPM\details-1\weatherApp\node_modules\type-fest\ts41133111542205984060 1
+64F:\strada\details-1NPM\details-1\weatherApp\node_modules\deep-is133112418143581309 1
+89F:\strada\details-1NPM\details-1\weatherApp\node_modules\picocolors\picocolors.browser.js133111542155042800 0
 84F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-shim-unscopables\LICENSE133112425487532567 0
 72F:\strada\details-1NPM\details-1\weatherApp\node_modules\queue-microtask133112418139900993 1
 83F:\strada\details-1NPM\details-1\weatherApp\node_modules\@parcel\graph\lib\index.js133111542184597499 0
@@ -1055,15 +1065,6 @@
 91F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2020\PromiseResolve.js133112425522127780 0
 115F:\strada\details-1NPM\details-1\weatherApp\node_modules\eslint-plugin-import\node_modules\doctrine\lib\doctrine.js133112425493418384 0
 66F:\strada\details-1NPM\details-1\weatherApp\node_modules\is-symbol133112425493785422 1
-83F:\strada\details-1NPM\details-1\weatherApp\node_modules\utility-types\package.json133111542172236276 0
-95F:\strada\details-1NPM\details-1\weatherApp\node_modules\eslint\lib\rules\default-param-last.js133112418157263117 0
-90F:\strada\details-1NPM\details-1\weatherApp\node_modules\tsconfig-paths\lib\__tests__\data133112425501618614 1
-67F:\strada\details-1NPM\details-1\weatherApp\node_modules\is-weakref133112425492442971 1
-86F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\getDate\package.json133111541549154322 0
-77F:\strada\details-1NPM\details-1\weatherApp\node_modules\which\bin\node-which133112418135163155 0
-102F:\strada\details-1NPM\details-1\weatherApp\node_modules\@parcel\transformer-raw\lib\RawTransformer.js133111542155414799 0
-92F:\strada\details-1NPM\details-1\weatherApp\node_modules\get-symbol-description\package.json133112425492056092 0
-98F:\strada\details-1NPM\details-1\weatherApp\node_modules\which-boxed-primitive\.github\FUNDING.yml133112425493582058 0
 64F:\strada\details-1NPM\details-1\weatherApp\node_modules\js-yaml133112418152956863 1
 91F:\strada\details-1NPM\details-1\weatherApp\node_modules\fast-json-stable-stringify\.github133112418148143060 1
 86F:\strada\details-1NPM\details-1\weatherApp\node_modules\json-parse-even-better-errors133111542166612094 1
@@ -1238,10 +1239,10 @@
 85F:\strada\details-1NPM\details-1\weatherApp\node_modules\eslint\lib\rules\no-empty.js133112418164060230 0
 94F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\subISOWeekYears\index.js133111541422438549 0
 71F:\strada\details-1NPM\details-1\weatherApp\node_modules\object.entries133112425497310031 1
-80F:\strada\details-1NPM\details-1\weatherApp\node_modules\@types\json5\index.d.ts133112425485365059 0
-67F:\strada\details-1NPM\details-1\weatherApp\node_modules\prelude-ls133112418144736998 1
 85F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\fp\add\index.js133111541387628223 0
 111F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2020\ValidateAndApplyPropertyDescriptor.js133112425532974812 0
+80F:\strada\details-1NPM\details-1\weatherApp\node_modules\@types\json5\index.d.ts133112425485365059 0
+67F:\strada\details-1NPM\details-1\weatherApp\node_modules\prelude-ls133112418144736998 1
 72F:\strada\details-1NPM\details-1\weatherApp\node_modules\cross-spawn\lib133112418139633154 1
 70F:\strada\details-1NPM\details-1\weatherApp\node_modules\object.values133112425497364592 1
 74F:\strada\details-1NPM\details-1\weatherApp\node_modules\yaml\browser\dist133111542220649053 1
@@ -1699,13 +1700,13 @@
 103F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\ar-MA\_lib\formatLong\index.js133111541445036177 0
 101F:\strada\details-1NPM\details-1\weatherApp\node_modules\caniuse-lite\data\features\feature-policy.js133111542260291119 0
 92F:\strada\details-1NPM\details-1\weatherApp\node_modules\type-fest\source\literal-union.d.ts133111542192201515 0
-91F:\strada\details-1NPM\details-1\weatherApp\node_modules\which-boxed-primitive\package.json133112425491346811 0
-75F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\isSameDay133111541580921225 1
-77F:\strada\details-1NPM\details-1\weatherApp\node_modules\type-check\README.md133112418142480197 0
 91F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\helpers\isByteValue.js133112425516090814 0
 100F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2018\SymbolDescriptiveString.js133112425526418071 0
 114F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\parse\_lib\parsers\ISOTimezoneWithZParser.js133111541497984805 0
 85F:\strada\details-1NPM\details-1\weatherApp\node_modules\type-fest\source\except.d.ts133111542184691747 0
+77F:\strada\details-1NPM\details-1\weatherApp\node_modules\type-check\README.md133112418142480197 0
+91F:\strada\details-1NPM\details-1\weatherApp\node_modules\which-boxed-primitive\package.json133112425491346811 0
+75F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\isSameDay133111541580921225 1
 69F:\strada\details-1NPM\details-1\weatherApp\node_modules\yaml\LICENSE133111542154036696 0
 124F:\strada\details-1NPM\details-1\weatherApp\node_modules\caniuse-lite\data\features\mdn-css-unicode-bidi-isolate-override.js133111542301017282 0
 69F:\strada\details-1NPM\details-1\weatherApp\node_modules\yaml\pair.js133111542188208241 0
@@ -2136,8 +2137,8 @@
 58F:\strada\details-1NPM\details-1\weatherApp\img\remove.png133110719955325545 0
 97F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\startOfQuarter\package.json133111541541951877 0
 86F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\subMonths\index.d.ts133111541587008535 0
-94F:\strada\details-1NPM\details-1\weatherApp\node_modules\string.prototype.trimend\package.json133112425495828728 0
 74F:\strada\details-1NPM\details-1\weatherApp\node_modules\is-symbol\.github133112425494028460 1
+94F:\strada\details-1NPM\details-1\weatherApp\node_modules\string.prototype.trimend\package.json133112425495828728 0
 85F:\strada\details-1NPM\details-1\weatherApp\node_modules\type-fest\source\opaque.d.ts133111542194825542 0
 97F:\strada\details-1NPM\details-1\weatherApp\node_modules\utility-types\dist\aliases-and-guards.js133111542155375118 0
 88F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\bn\index.js133111541398534718 0
@@ -2983,7 +2984,7 @@
 83F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\isThisISOWeek133111541567924390 1
 79F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\getISODay133111541566802446 1
 73F:\strada\details-1NPM\details-1\weatherApp\node_modules\object-keys\test133112425494152461 1
-79F:\strada\details-1NPM\details-1\weatherApp\dist\icons8-cloud-96 1.c7c7aa33.png133112483545314112 0
+79F:\strada\details-1NPM\details-1\weatherApp\dist\icons8-cloud-96 1.c7c7aa33.png133113456674659566 0
 75F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\nn133111541584416999 1
 86F:\strada\details-1NPM\details-1\weatherApp\node_modules\terser\lib\compress\inline.js133111542212343472 0
 94F:\strada\details-1NPM\details-1\weatherApp\node_modules\terser\lib\compress\native-objects.js133111542214988852 0
@@ -5892,7 +5893,6 @@
 77F:\strada\details-1NPM\details-1\weatherApp\node_modules\get-intrinsic\.nycrc133112425486828248 0
 79F:\strada\details-1NPM\details-1\weatherApp\node_modules\ajv\lib\dot\custom.jst133112418157542157 0
 78F:\strada\details-1NPM\details-1\weatherApp\node_modules\get-intrinsic\LICENSE133112425487641691 0
-90F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\intlFormat\index.d.ts133111541576539188 0
 80F:\strada\details-1NPM\details-1\weatherApp\node_modules\get-intrinsic\README.md133112425492482652 0
 85F:\strada\details-1NPM\details-1\weatherApp\node_modules\@swc\helpers\src\_update.mjs133111542247849695 0
 96F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\isLastDayOfMonth\index.d.ts133111541576792482 0
@@ -7712,7 +7712,7 @@
 86F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2020\BinaryAnd.js133112425503706239 0
 95F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\fp\addQuarters\index.d.ts133111541560618079 0
 85F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2020\BinaryOr.js133112425504098792 0
-66F:\strada\details-1NPM\details-1\weatherApp\dist\like.59467717.png133112483545314112 0
+66F:\strada\details-1NPM\details-1\weatherApp\dist\like.59467717.png133113456674669489 0
 94F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\isFirstDayOfMonth\index.d.ts133111541580716015 0
 104F:\strada\details-1NPM\details-1\weatherApp\node_modules\es-abstract\2020\CanonicalNumericIndexString.js133112425505329696 0
 95F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\gd\_lib\formatRelative133111541474774532 1
@@ -8639,7 +8639,7 @@
 86F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\isYesterday\index.js133111541441262161 0
 84F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\ar\index.js133111541447544821 0
 81F:\strada\details-1NPM\details-1\weatherApp\node_modules\dotenv-expand\index.d.ts133111542157073187 0
-68F:\strada\details-1NPM\details-1\weatherApp\dist\remove.16d758b6.png133112483545314112 0
+68F:\strada\details-1NPM\details-1\weatherApp\dist\remove.16d758b6.png133113456674664534 0
 74F:\strada\details-1NPM\details-1\weatherApp\node_modules\dotenv-expand\lib133111542169930498 1
 89F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\sr\index.js.flow133111541369420055 0
 89F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\hi\index.js.flow133111541366716853 0
@@ -9826,7 +9826,7 @@
 85F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\isAfter\index.js133111541430290788 0
 74F:\strada\details-1NPM\details-1\weatherApp\node_modules\callsites\license133111542164089203 0
 104F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\mn\_lib\formatRelative\index.js133111541485021102 0
-66F:\strada\details-1NPM\details-1\weatherApp\dist\index.4d6bcbeb.js133112490772757462 0
+66F:\strada\details-1NPM\details-1\weatherApp\dist\index.4d6bcbeb.js133113456973455385 0
 95F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\fp\formatRFC7231\index.js133111541389424446 0
 95F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\gl\_lib\formatLong133111541405013754 1
 86F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\pt\index.d.ts133111541584531089 0
@@ -10378,7 +10378,7 @@
 95F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\de\_lib\formatDistance133111541459002429 1
 100F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\endOfISOWeekYear\index.js.flow133111541317272686 0
 91F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\de\_lib\formatLong133111541459052046 1
-70F:\strada\details-1NPM\details-1\weatherApp\dist\index.4d6bcbeb.js.map133112490772791854 0
+70F:\strada\details-1NPM\details-1\weatherApp\dist\index.4d6bcbeb.js.map133113456973495056 0
 86F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\compareDesc\index.js133111541382593818 0
 97F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\startOfYesterday\index.d.ts133111541572812740 0
 98F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\locale\de\_lib\localize\index.js133111541459220672 0
@@ -11330,6 +11330,7 @@
 97F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\fp\subQuarters\package.json133111541520829450 0
 108F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\lb\_lib\formatDistance\index.js133111541409850693 0
 101F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\intlFormatDistance\index.js.flow133111541346086138 0
+90F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\intlFormat\index.d.ts133111541576539188 0
 88F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\fp\intlFormat\index.js133111541430146802 0
 82F:\strada\details-1NPM\details-1\weatherApp\node_modules\@parcel\optimizer-css\lib133111542155216407 1
 84F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\pt\_lib133111541413794901 1
@@ -12081,7 +12082,7 @@
 94F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\subMilliseconds\index.js133111541422471435 0
 99F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\locale\bn\_lib\formatRelative133111541398420401 1
 99F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\subMilliseconds\index.js.flow133111541338876045 0
-67F:\strada\details-1NPM\details-1\weatherApp\dist\index.2cdaf7bc.css133112483545314112 0
+67F:\strada\details-1NPM\details-1\weatherApp\dist\index.2cdaf7bc.css133113456674654606 0
 98F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\subMilliseconds\package.json133111541542432986 0
 96F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\subISOWeekYears\index.d.ts133111541572956840 0
 98F:\strada\details-1NPM\details-1\weatherApp\node_modules\date-fns\esm\subISOWeekYears\package.json133111541542393314 0
@@ -15495,7 +15496,7 @@
 89F:\strada\details-1NPM\details-1\weatherApp\node_modules\@types\json5\types-metadata.json133112425487512723 0
 70F:\strada\details-1NPM\details-1\weatherApp\node_modules\@trysound\sax133111542166180742 1
 74F:\strada\details-1NPM\details-1\weatherApp\node_modules\@trysound\sax\lib133111542155052733 1
-59F:\strada\details-1NPM\details-1\weatherApp\dist\index.html133112483545956596 0
+59F:\strada\details-1NPM\details-1\weatherApp\dist\index.html133113367811301958 0
 105F:\strada\details-1NPM\details-1\weatherApp\node_modules\@swc\helpers\src\_apply_decorated_descriptor.mjs133111542231172832 0
 95F:\strada\details-1NPM\details-1\weatherApp\node_modules\@swc\helpers\src\_array_with_holes.mjs133111542231782869 0
 94F:\strada\details-1NPM\details-1\weatherApp\node_modules\@swc\helpers\src\_async_generator.mjs133111542232363178 0
@@ -16264,6 +16265,6 @@
 72F:\strada\details-1NPM\details-1\weatherApp\node_modules\.bin\semver.cmd133111542307998040 0
 72F:\strada\details-1NPM\details-1\weatherApp\node_modules\.bin\terser.ps1133111542307998040 0
 56F:\strada\details-1NPM\details-1\weatherApp\img\mask.png133110719955289634 0
-71F:\strada\details-1NPM\details-1\weatherApp\dist\index.2cdaf7bc.css.map133112483545991329 0
+71F:\strada\details-1NPM\details-1\weatherApp\dist\index.2cdaf7bc.css.map133113456674738925 0
 66F:\strada\details-1NPM\details-1\weatherApp\dist\like.34ec776d.png133111581625780188 0
-67F:\strada\details-1NPM\details-1\weatherApp\dist\Shape.8f665fa3.png133112483545314112 0
+67F:\strada\details-1NPM\details-1\weatherApp\dist\Shape.8f665fa3.png133113456674669489 0

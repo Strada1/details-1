@@ -86,7 +86,9 @@ UIELEMENTS.form_input.addEventListener('submit', (event) => {
   UIELEMENTS.form_input.reset();
   renderNow(inputCity);
   renderDetails(inputCity);
+ // divRemove.innerHTML = '';
   divRemove.innerHTML = '';
+
 });
 
 function renderLikeList() {
@@ -120,11 +122,45 @@ function renderLikeList() {
     div.addEventListener('click', () => {
       const divRemove = document.querySelector('#divRemove');
       const inputCity = getWeatherPromise(el.cityName);
+      setLastCity(el.cityName);
+
       divRemove.innerHTML = '';
       renderNow(inputCity);
       renderDetails(inputCity);
+
     });
   });
 }
 
+function setLastCity(lastCity) {
+  // return  localStorage.setItem('lastCity', lastCity);
+  let date = new Date(Date.now() + 60 * 1000);
+  date = date.toUTCString();
+  document.cookie = `lastCity=${lastCity};expires=${date}`;
+  return lastCity;
+}
+
+function getLastCity() {
+  // return localStorage.getItem('lastCity');
+  return document.cookie;
+}
+
+function renderLastCity() {
+  const lastCity = getLastCity();
+  const re = /=/;
+  const nameLastCity = lastCity.split(re);
+  const lastCityName = getWeatherPromise(nameLastCity[1]);
+
+  renderNow(lastCityName);
+}
+
+function checkCookies() {
+  const lastCity = getLastCity();
+
+  if (lastCity.length > 0) {
+    renderLastCity();
+  }
+}
+
+checkCookies();
 renderLikeList();

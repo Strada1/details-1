@@ -605,6 +605,7 @@ function renderNow(inputCity) {
     (0, _uielements.UIELEMENTS).form_input.reset();
     renderNow(inputCity);
     (0, _renderDetails.renderDetails)(inputCity);
+    // divRemove.innerHTML = '';
     divRemove.innerHTML = "";
 });
 function renderLikeList() {
@@ -633,12 +634,36 @@ function renderLikeList() {
         div.addEventListener("click", ()=>{
             const divRemove = document.querySelector("#divRemove");
             const inputCity = (0, _getWeatherPromise.getWeatherPromise)(el.cityName);
+            setLastCity(el.cityName);
             divRemove.innerHTML = "";
             renderNow(inputCity);
             (0, _renderDetails.renderDetails)(inputCity);
         });
     });
 }
+function setLastCity(lastCity) {
+    // return  localStorage.setItem('lastCity', lastCity);
+    let date = new Date(Date.now() + 60000);
+    date = date.toUTCString();
+    document.cookie = `lastCity=${lastCity};expires=${date}`;
+    return lastCity;
+}
+function getLastCity() {
+    // return localStorage.getItem('lastCity');
+    return document.cookie;
+}
+function renderLastCity() {
+    const lastCity = getLastCity();
+    const re = /=/;
+    const nameLastCity = lastCity.split(re);
+    const lastCityName = (0, _getWeatherPromise.getWeatherPromise)(nameLastCity[1]);
+    renderNow(lastCityName);
+}
+function checkCookies() {
+    const lastCity = getLastCity();
+    if (lastCity.length > 0) renderLastCity();
+}
+checkCookies();
 renderLikeList();
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../img/like.png":"hs3oA","../img/remove.png":"2vKeY","date-fns":"9yHCA","./uielements":"15zUb","./localstorage":"482oC","./getWeatherPromise":"jLWjA","./renderDetails":"eY3XV","./customError":"28NMD"}],"gkKU3":[function(require,module,exports) {
@@ -3543,7 +3568,8 @@ const UIELEMENTS = {
     countTemp: document.querySelector(".count"),
     icon_weather: document.querySelector(".icon-cloud"),
     city_name: document.querySelector(".city-name"),
-    likeCity: document.querySelector(".like")
+    likeCity: document.querySelector(".like"),
+    nowIdCity: document.querySelector("#nowIdCity")
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"482oC":[function(require,module,exports) {
