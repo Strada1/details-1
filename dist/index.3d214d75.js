@@ -534,6 +534,7 @@ function hmrAcceptRun(bundle, id) {
 },{}],"bB7Pu":[function(require,module,exports) {
 var _viewJs = require("./view.js");
 var _dateFns = require("date-fns");
+var _jsCookieMjs = require("/path/to/js.cookie.mjs");
 window.addEventListener("unhandledrejection", function(event) {
     console.log(event.promise);
     console.log(event.reason);
@@ -600,24 +601,11 @@ function getCookie(name) {
     let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
-function setCookie(name, value, options = {}) {
-    options = {
-        path: "/",
-        ...options
-    };
-    if (options.expires instanceof Date) options.expires = options.expires.toUTCString();
-    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-    for(let optionKey in options){
-        updatedCookie += "; " + optionKey;
-        let optionValue = options[optionKey];
-        if (optionValue !== true) updatedCookie += "=" + optionValue;
-    }
-    document.cookie = updatedCookie;
-}
 function lastFavoriteViewed(cityName) {
     const lastCity = cityName;
-    // setCookie('lastCity', `${lastCity}`, {'max-age': 3600})
-    document.cookie = `lastCity=${lastCity}; max-age=3600`;
+    (0, _jsCookieMjs.Cookies).set("lastCity", `${lastCity}`);
+    // document.cookie = `lastCity=${lastCity}; max-age=3600`
+    console.log("coockie: ", document.cookie);
 }
 function addLocation() {
     const cityValue = document.getElementById("cityName");
@@ -674,7 +662,7 @@ async function showlastCity() {
     getItem();
 }
 
-},{"./view.js":"de63B","date-fns":"9yHCA"}],"de63B":[function(require,module,exports) {
+},{"./view.js":"de63B","date-fns":"9yHCA","/path/to/js.cookie.mjs":"5HxqD"}],"de63B":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ITEMS_TAB", ()=>ITEMS_TAB);
@@ -3617,6 +3605,8 @@ var secondsInYear = secondsInDay * daysInYear;
 var secondsInMonth = secondsInYear / 12;
 var secondsInQuarter = secondsInMonth * 3;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire0c95")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5HxqD":[function(require,module,exports) {
+
+},{}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire0c95")
 
 //# sourceMappingURL=index.3d214d75.js.map

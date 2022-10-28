@@ -1,5 +1,6 @@
 import { ITEMS_TAB, renderNowHTML, renderDetailsHTML, renderAddedLocationHTML } from './view.js'
 import { format } from 'date-fns'
+import { Cookies } from '/path/to/js.cookie.mjs'
 
 window.addEventListener('unhandledrejection', function (event) {
   console.log(event.promise)
@@ -94,34 +95,12 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-function setCookie(name, value, options = {}) {
-
-  options = {
-    path: '/',
-    ...options
-  };
-
-  if (options.expires instanceof Date) {
-    options.expires = options.expires.toUTCString();
-  }
-
-  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-
-  for (let optionKey in options) {
-    updatedCookie += "; " + optionKey;
-    let optionValue = options[optionKey];
-    if (optionValue !== true) {
-      updatedCookie += "=" + optionValue;
-    }
-  }
-
-  document.cookie = updatedCookie;
-}
 
 function lastFavoriteViewed (cityName) {
   const lastCity = cityName;
-  // setCookie('lastCity', `${lastCity}`, {'max-age': 3600})
-    document.cookie = `lastCity=${lastCity}; max-age=3600`
+  Cookies.set('lastCity', `${lastCity}`)
+  // document.cookie = `lastCity=${lastCity}; max-age=3600`
+  console.log('coockie: ', document.cookie)
 }
 
 function addLocation () {
@@ -164,7 +143,6 @@ function renderAddedLocation () {
   if (!listLocal) {
     listLocal = ['Варшава']
   }
-
   renderAddedLocationHTML(listLocal, showNowTab, deleteTown)
   showlastCity()
 }
