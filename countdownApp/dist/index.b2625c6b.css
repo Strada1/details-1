@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.display {
+  margin: 0 auto;
+}
+
+.display_wrapper {
+  max-width: 200px;
+  border: 2px solid #000;
+  margin: 10px auto 0;
+}
+
+/*# sourceMappingURL=index.b2625c6b.css.map */
