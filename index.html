@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Just Weather</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="weather--wrapper">
+        <div class="weather--box">
+          <div class="weather--searchbar">
+            <form action="" class="weather--searchform" id="searchCity">
+              <input
+                type="text"
+                class="weather--searchinput"
+                placeholder="New York"
+                id="searchField"
+              />
+              <input type="submit" class="weather--searchbtn" value="" />
+            </form>
+          </div>
+          <div class="weather--main">
+            <div class="weather--tabsbar column">
+              <div class="weather--screens">
+                <div class="weather--now"></div>
+                <div class="weather--details"></div>
+                <div class="weather--forecast"></div>
+              </div>
+              <div class="weather--tabs">
+                <button class="tabs--btn tabs--active" data-tab="now">
+                  Now</button
+                ><button class="tabs--btn" data-tab="details">Details</button
+                ><button class="tabs--btn" data-tab="forecast">Forecast</button>
+              </div>
+            </div>
+            <div class="weather--locatiosnbar column">
+              <div class="weather--headerbox">
+                <div class="location-headerbox">
+                  <h3 class="weather--header location-header">
+                    Added Locations:
+                  </h3>
+                </div>
+
+                <div class="weather--locations">
+                  <div class="weather--locationslist" id="locationslist">
+                    <!-- <li class="locations--item">
+                      <span class="locations--text">Amur</span
+                      ><button class="locations-btn"></button>
+                    </li>
+                    <li class="locations--item">
+                      <span class="locations--text">Samara</span
+                      ><button class="locations-btn"></button>
+                    </li>
+                    <li class="locations--item">
+                      <span class="locations--text">Bali</span
+                      ><button class="locations-btn"></button>
+                    </li>
+                    <li class="locations--item">
+                      <span class="locations--text">Dane</span
+                      ><button class="locations-btn"></button>
+                    </li>
+                    <li class="locations--item">
+                      <span class="locations--text">Kilo</span
+                      ><button class="locations-btn"></button>
+                    </li>
+                    <li class="locations--item">
+                      <span class="locations--text">Astana</span
+                      ><button class="locations-btn"></button>
+                    </li> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="js/main.js"></script>
+  </body>
+</html>

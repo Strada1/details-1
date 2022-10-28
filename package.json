@@ -1,0 +1,28 @@
+{
+  "name": "just-weather",
+  "version": "1.0.0",
+  "description": "my student app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Strada1/details-16.git"
+  },
+  "author": "Kai az",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Strada1/details-16/issues"
+  },
+  "homepage": "https://github.com/Strada1/details-16#readme",
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "@typescript-eslint/parser": "^5.41.0",
+    "eslint": "^8.26.0",
+    "parcel": "^2.7.0"
+  }
+}
