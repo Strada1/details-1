@@ -1,6 +1,6 @@
 import { ITEMS_TAB, renderNowHTML, renderDetailsHTML, renderAddedLocationHTML } from './view.js'
-import { format } from 'date-fns'
-
+import { format } from 'date-fns';
+import Cookies from 'js-cookie'
 window.addEventListener('unhandledrejection', function (event) {
   console.log(event.promise)
   console.log(event.reason)
@@ -14,7 +14,7 @@ ITEMS_TAB.formSumbitDetalis.addEventListener('submit', addTown)
 async function getItem () {
   let cityName = ITEMS_TAB.Town.value
   if (!cityName) {
-    cityName = getCookie('lastCity')
+    cityName = Cookies.get('lastCity')
   }
   cityName = cityName.trim()
 
@@ -87,41 +87,9 @@ function toStorage (list) {
   localStorage.setItem('citiesArray', citiesArray)
 }
 
-function getCookie(name) {
-  let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-  ));
-  return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-
-function setCookie(name, value, options = {}) {
-
-  options = {
-    path: '/',
-    ...options
-  };
-
-  if (options.expires instanceof Date) {
-    options.expires = options.expires.toUTCString();
-  }
-
-  let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-
-  for (let optionKey in options) {
-    updatedCookie += "; " + optionKey;
-    let optionValue = options[optionKey];
-    if (optionValue !== true) {
-      updatedCookie += "=" + optionValue;
-    }
-  }
-
-  document.cookie = updatedCookie;
-}
-
 function lastFavoriteViewed (cityName) {
   const lastCity = cityName;
-  // setCookie('lastCity', `${lastCity}`, {'max-age': 3600})
-    document.cookie = `lastCity=${lastCity}; max-age=3600`
+  Cookies.set('lastCity', `${lastCity}`, {expires: 1/24})
 }
 
 function addLocation () {
@@ -189,7 +157,7 @@ async function showNowTab (event) {
 }
 
 async function showlastCity () {
-  let cityName = getCookie('lastCity')
+  cityName = Cookies.get('lastCity')
   if (!cityName) {
     cityName = 'Варшава'
   }

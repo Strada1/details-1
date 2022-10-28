@@ -532,9 +532,11 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"bB7Pu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _viewJs = require("./view.js");
 var _dateFns = require("date-fns");
-var _jsCookieMjs = require("/path/to/js.cookie.mjs");
+var _jsCookie = require("js-cookie");
+var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
 window.addEventListener("unhandledrejection", function(event) {
     console.log(event.promise);
     console.log(event.reason);
@@ -543,19 +545,19 @@ let list = [];
 (0, _viewJs.ITEMS_TAB).formSumbitNow.addEventListener("submit", addTown);
 (0, _viewJs.ITEMS_TAB).formSumbitDetalis.addEventListener("submit", addTown);
 async function getItem() {
-    let cityName = (0, _viewJs.ITEMS_TAB).Town.value;
-    if (!cityName) cityName = getCookie("lastCity");
-    cityName = cityName.trim();
+    let cityName1 = (0, _viewJs.ITEMS_TAB).Town.value;
+    if (!cityName1) cityName1 = (0, _jsCookieDefault.default).get("lastCity");
+    cityName1 = cityName1.trim();
     const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
     const serverUrl = "//api.openweathermap.org/data/2.5/weather";
-    const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+    const url = `${serverUrl}?q=${cityName1}&appid=${apiKey}&units=metric`;
     const response = await fetch(url);
     if (response.ok) {
         const json = await response.json();
-        createItems(json, cityName);
+        createItems(json, cityName1);
     } else alert("Ошибка HTTP: " + response.status);
 }
-function createItems(json, cityName) {
+function createItems(json, cityName1) {
     let temperature = json.main.temp;
     temperature = Math.round(temperature);
     let feelsLike = json.main.feels_like;
@@ -568,8 +570,8 @@ function createItems(json, cityName) {
     Sunset = new Date(Sunset * 1000);
     Sunset = (0, _dateFns.format)(Sunset, "H':'mm':'ss");
     const icon = json.weather[0].icon;
-    renderNow(temperature, cityName, icon);
-    renderDetalis(temperature, cityName, feelsLike, WeatherStatus, Sunrise, Sunset);
+    renderNow(temperature, cityName1, icon);
+    renderDetalis(temperature, cityName1, feelsLike, WeatherStatus, Sunrise, Sunset);
     (0, _viewJs.ITEMS_TAB).formSumbitNow.reset();
     (0, _viewJs.ITEMS_TAB).formSumbitDetalis.reset();
 }
@@ -577,51 +579,47 @@ async function addTown(event) {
     event.preventDefault();
     getItem();
 }
-function renderNow(temperature, cityName, icon) {
+function renderNow(temperature, cityName1, icon) {
     const temperatureNow = document.getElementById("temperatureNow");
     const loveButton = document.getElementById("loveButton");
     temperatureNow.textContent = "";
-    (0, _viewJs.renderNowHTML)(temperature, cityName, icon);
+    (0, _viewJs.renderNowHTML)(temperature, cityName1, icon);
     // loveButton
     loveButton.classList.add("after__render");
     loveButton.addEventListener("click", addLocation);
 }
-function renderDetalis(temperature, cityName, feelsLike, WeatherStatus, Sunrise, Sunset) {
+function renderDetalis(temperature, cityName1, feelsLike, WeatherStatus, Sunrise, Sunset) {
     const DetalisTab = document.getElementById("DetalisTab");
     const dataWether = document.getElementById("dataWether");
     DetalisTab.textContent = "";
     dataWether.textContent = "";
-    (0, _viewJs.renderDetailsHTML)(temperature, cityName, feelsLike, WeatherStatus, Sunrise, Sunset);
+    (0, _viewJs.renderDetailsHTML)(temperature, cityName1, feelsLike, WeatherStatus, Sunrise, Sunset);
 }
 function toStorage(list) {
     const citiesArray = JSON.stringify(list);
     localStorage.setItem("citiesArray", citiesArray);
 }
-function getCookie(name) {
-    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-function lastFavoriteViewed(cityName) {
-    const lastCity = cityName;
-    (0, _jsCookieMjs.Cookies).set("lastCity", `${lastCity}`);
-    // document.cookie = `lastCity=${lastCity}; max-age=3600`
-    console.log("coockie: ", document.cookie);
+function lastFavoriteViewed(cityName1) {
+    const lastCity = cityName1;
+    (0, _jsCookieDefault.default).set("lastCity", `${lastCity}`, {
+        expires: 1 / 24
+    });
 }
 function addLocation() {
     const cityValue = document.getElementById("cityName");
-    const cityName = cityValue.textContent;
+    const cityName1 = cityValue.textContent;
     if (!list) list = [
         "Варшава"
     ];
-    lastFavoriteViewed(cityName);
+    lastFavoriteViewed(cityName1);
     const indexObj = list.findIndex(function(item) {
-        return item === cityName;
+        return item === cityName1;
     });
     if (indexObj === -1 && localStorage.length) {
         toStorage(list);
         const cityInLs = JSON.parse(localStorage.getItem("citiesArray"));
         list = cityInLs;
-        list.push(cityName) // (заменить на concat или оператор расширения)
+        list.push(cityName1) // (заменить на concat или оператор расширения)
         ;
         toStorage(list);
         renderAddedLocation();
@@ -649,20 +647,21 @@ function deleteTown(event) {
     renderAddedLocation();
 }
 async function showNowTab(event) {
-    const cityName = event.target.textContent;
-    lastFavoriteViewed(cityName);
+    const cityName1 = event.target.textContent;
+    lastFavoriteViewed(cityName1);
     getItem();
     // меняю цвет города по которому кликнул
     event.target.classList = "showTown";
     setTimeout(()=>event.target.className = "delete__class", 350);
 }
 async function showlastCity() {
-    let cityName = getCookie("lastCity");
+    cityName = (0, _jsCookieDefault.default).get("lastCity");
     if (!cityName) cityName = "Варшава";
+    toStorage(list);
     getItem();
 }
 
-},{"./view.js":"de63B","date-fns":"9yHCA","/path/to/js.cookie.mjs":"5HxqD"}],"de63B":[function(require,module,exports) {
+},{"./view.js":"de63B","date-fns":"9yHCA","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"de63B":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ITEMS_TAB", ()=>ITEMS_TAB);
@@ -3605,7 +3604,95 @@ var secondsInYear = secondsInDay * daysInYear;
 var secondsInMonth = secondsInYear / 12;
 var secondsInQuarter = secondsInMonth * 3;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5HxqD":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
+(function(global, factory) {
+    module.exports = factory();
+})(this, function() {
+    "use strict";
+    /* eslint-disable no-var */ function assign(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)target[key] = source[key];
+        }
+        return target;
+    }
+    /* eslint-enable no-var */ /* eslint-disable no-var */ var defaultConverter = {
+        read: function(value) {
+            if (value[0] === '"') value = value.slice(1, -1);
+            return value.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent);
+        },
+        write: function(value) {
+            return encodeURIComponent(value).replace(/%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g, decodeURIComponent);
+        }
+    };
+    /* eslint-enable no-var */ /* eslint-disable no-var */ function init(converter, defaultAttributes) {
+        function set(key, value, attributes) {
+            if (typeof document === "undefined") return;
+            attributes = assign({}, defaultAttributes, attributes);
+            if (typeof attributes.expires === "number") attributes.expires = new Date(Date.now() + attributes.expires * 864e5);
+            if (attributes.expires) attributes.expires = attributes.expires.toUTCString();
+            key = encodeURIComponent(key).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
+            var stringifiedAttributes = "";
+            for(var attributeName in attributes){
+                if (!attributes[attributeName]) continue;
+                stringifiedAttributes += "; " + attributeName;
+                if (attributes[attributeName] === true) continue;
+                // Considers RFC 6265 section 5.2:
+                // ...
+                // 3.  If the remaining unparsed-attributes contains a %x3B (";")
+                //     character:
+                // Consume the characters of the unparsed-attributes up to,
+                // not including, the first %x3B (";") character.
+                // ...
+                stringifiedAttributes += "=" + attributes[attributeName].split(";")[0];
+            }
+            return document.cookie = key + "=" + converter.write(value, key) + stringifiedAttributes;
+        }
+        function get(key) {
+            if (typeof document === "undefined" || arguments.length && !key) return;
+            // To prevent the for loop in the first place assign an empty array
+            // in case there are no cookies at all.
+            var cookies = document.cookie ? document.cookie.split("; ") : [];
+            var jar = {};
+            for(var i = 0; i < cookies.length; i++){
+                var parts = cookies[i].split("=");
+                var value = parts.slice(1).join("=");
+                try {
+                    var foundKey = decodeURIComponent(parts[0]);
+                    jar[foundKey] = converter.read(value, foundKey);
+                    if (key === foundKey) break;
+                } catch (e) {}
+            }
+            return key ? jar[key] : jar;
+        }
+        return Object.create({
+            set: set,
+            get: get,
+            remove: function(key, attributes) {
+                set(key, "", assign({}, attributes, {
+                    expires: -1
+                }));
+            },
+            withAttributes: function(attributes) {
+                return init(this.converter, assign({}, this.attributes, attributes));
+            },
+            withConverter: function(converter) {
+                return init(assign({}, this.converter, converter), this.attributes);
+            }
+        }, {
+            attributes: {
+                value: Object.freeze(defaultAttributes)
+            },
+            converter: {
+                value: Object.freeze(converter)
+            }
+        });
+    }
+    var api = init(defaultConverter, {
+        path: "/"
+    });
+    /* eslint-enable no-var */ return api;
+});
 
 },{}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire0c95")
 
