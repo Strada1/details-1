@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+html, body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url('../images/background_lines.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(151, 206, 232);
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 500px;
+    height: 400px;
+    box-shadow: 0 0 15px rgba(16, 96, 133, 0.9), 0 0 25px rgba(151, 206, 232,0.9);
+    border-radius: 5px;
+}
+.enter-date {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+    margin-top: 130px;
+    background-color: inherit;
+}
+.enter-date:focus {
+    outline: 0;
+    outline-offset: 0;
+    background-color: transparent;
+}
+.from-date {
+    text-align: start;
+    width: 175px;
+    height: 30px;
+    color: rgb(4, 52, 74);
+    padding: 0 20px 0 20px;
+    font-size: 18px;
+    border: none; 
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgb(113, 193, 230) radial-gradient(circle at 0 0, rgba(151, 206, 232, 0.55), rgba(151, 206, 232,.35));
+    box-shadow:
+    inset rgba(0, 98, 163,.5) -3px -3px 8px,
+    inset rgba(255,255,255,.9) 3px 3px 8px,
+    rgba(0, 98, 163,.8) 3px 3px 8px -3px;
+}
+.btn-start {
+    width: 80px;
+    height: 30px;
+    color: rgb(4, 52, 74);
+    font-weight: 700;
+    padding: 0;
+    border: none; 
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    background: rgb(113, 193, 230) radial-gradient(circle at 0 0, rgba(151, 206, 232, 0.55), rgba(151, 206, 232,.35));
+    box-shadow:
+    inset rgba(0, 98, 163,.5) -3px -3px 8px,
+    inset rgba(255,255,255,.9) 3px 3px 8px,
+    rgba(0, 98, 163,.8) 3px 3px 8px -3px;
+}
+.btn-start:hover {
+    background: rgb(113, 193, 230) radial-gradient(circle at 0 0, rgba(151, 206, 232, 0.55), rgba(151, 206, 232,.35));
+    box-shadow:
+    inset rgba(0, 98, 163,.5) -3px -3px 8px,
+    inset rgba(255,255,255,.9) 3px 3px 8px,
+    0 0 5px #A42FED,
+    0 0 25px #A42FED,
+    0 0 50px #A42FED,
+    0 0 100px #E024ED;
+}
+.btn-start:active {
+    scale: .95;
+}
+.count-down {
+    width: 450px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 35px;
+}
+.text-inform {
+    font-size: 21px;
+    color: rgb(4, 67, 96);
+}
+.date-count-down {
+    min-width: 475px;
+    height: 22px;
+    text-align: center;
+    margin-top: 30px;
+    padding: 0;
+    font-size: 17px;
+    color: rgb(45, 5, 64);
+    background-color: transparent;
+    box-shadow: 0 0 15px rgba(2, 68, 115, 0.4), 0 0 25px rgba(0, 98, 163,0.9);
+    border-radius: 5px;
+    height: 23px;
+    padding: 0;
+    border: none; 
+    outline: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    background: rgb(0, 166, 255) radial-gradient(circle at 0 0, rgba(0, 166, 255, 0.55), rgba(0, 166, 255,.35));
+    box-shadow:
+    inset rgba(0, 98, 163,.5) -3px -3px 8px,
+    inset rgba(255,255,255,.9) 3px 3px 8px,
+    rgba(0, 98, 163,.8) 3px 3px 8px -3px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+.date-count-down.active {
+    opacity: 1;
+}
