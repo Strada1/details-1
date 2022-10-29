@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang = "ru">
+<head>
+    <meta charset = "UTF-8">
+    <title>Обратный отчет</title>
+    <link href="css/main.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <script type="module" src="js/index.js"></script>
+</head>
+<body>
+    <section class="countdown">
+
+        <div class="countdown__set-time countdown__box">
+            <span>задайте <br> время</span>
+        </div>
+
+        <div class="countdown__box">
+           <form class="countdown__form">
+               <label>
+                   <input id="date" type="datetime-local">
+               </label>
+
+               <div class="countdown__button">
+                   <div class="countdown__start">
+                       <img alt="start" id="start" src="icon/start.png">
+                   </div>
+                   <div class="countdown__stop">
+                       <img alt="stop" id="stop" src="icon/stop.png">
+                   </div>
+               </div>
+           </form>
+        </div>
+
+        <div class="countdown__result countdown__box">
+
+            <div class="countdown__result-box">
+                <div id="day" >00</div>
+                <div class="countdown__result-text">d</div>
+            </div>
+
+            <div class="countdown__result-box">
+                <div id="hours" >00</div>
+                <div class="countdown__result-text">h</div>
+            </div>
+
+            <div class="countdown__result-box">
+                <label></label>
+                <div id="minutes">00</div>
+                <div class="countdown__result-text">m</div>
+            </div>
+
+            <div class="countdown__result-box">
+                <div id="seconds" class="countdown__-result">00</div>
+                <div class="countdown__result-text">s</div>
+            </div>
+        </div>
+
+        <div class="countdown__time-left countdown__box">
+            <span>осталось <br> времени</span>
+        </div>
+    </section>
+</body>
+</html>
