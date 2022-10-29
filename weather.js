@@ -2,8 +2,9 @@ const searchForm = document.querySelector(".forecast-form");
 const searchInput = document.querySelector(".inputForm");
 
 import { ELEMENTS } from "./elements.js";
-import { city, localSet, CITYNAME } from "./storage.js";
+import { cityAll, localSet, CookieSet, CookieSet2,CITYNAME } from "./storage.js";
 import { format } from 'date-fns';
+
 
 const serverUrlWeather = "http://api.openweathermap.org/data/2.5/weather";
 const serverUrlForecast = "http://api.openweathermap.org/data/2.5/forecast";
@@ -52,7 +53,7 @@ function renderLeftNow(item) {
   ELEMENTS.DEGREES_NUMBER.prepend(ELEMENTS.NEW_TEMP);
   CITYNAME.infoNow = item;
 
-  localSet();
+CookieSet();
 }
 
 ELEMENTS.HEART.addEventListener("click", function () {
@@ -60,14 +61,15 @@ ELEMENTS.HEART.addEventListener("click", function () {
 });
 
 function SaveCity(name) {
-  if (city.has(name)) {
+  if (cityAll.has(name)) {
     alert("This city has already been saved");
-  } else if (city !== "") {
-    city.add(name);
+  } else if (cityAll !== "") {
+    cityAll.add(name);
     renderRight();
     localSet();
   }
 }
+
 
 // //конструктор
 // ELEMENTS.HEART.addEventListener("click", function () {
@@ -87,7 +89,7 @@ function SaveCity(name) {
 function renderRight() {
   ELEMENTS.SAVE_CITY_FORM.textContent = "";
 
-  for (let item of city) {
+  for (let item of cityAll) {
     let SAVED_CITY = document.createElement("li");
     SAVED_CITY.textContent = item;
     ELEMENTS.SAVE_CITY_FORM.prepend(SAVED_CITY);
@@ -104,7 +106,7 @@ function renderRight() {
 }
 
 function deleteCity(name) {
-  city.delete(name);
+  cityAll.delete(name);
   localSet();
   renderRight();
 }
@@ -127,14 +129,14 @@ function renderDetails(item) {
 
   CITYNAME.infoDetails = item;
 
-  localSet();
+  CookieSet();
 }
 
 function renderForecast12h(item) {
-  ELEMENTS.FORECAST_CITY.textContent = item.city.name;
   let DateToday = format(new Date(), 'd MMM')
 
 
+  ELEMENTS.FORECAST_CITY.textContent = item.city.name
   ELEMENTS.FORECAST_DATE_TODAY1.textContent = DateToday;
   ELEMENTS.FORECAST_DATE_TODAY2.textContent = DateToday;
   ELEMENTS.FORECAST_DATE_TODAY3.textContent = DateToday;
@@ -150,8 +152,8 @@ function renderForecast12h(item) {
   icon.src = `${iconUrl}${item.list[3].weather[0].icon}@2x.png`;
 
   CITYNAME.date = DateToday;
-  CITYNAME.info12Forecast = item;
-  localSet();
+  CITYNAME.info12Forecast = item
+  CookieSet();
 }
 
 function renderForecast15h(item) {
@@ -166,7 +168,7 @@ function renderForecast15h(item) {
   icon.src = `${iconUrl}${item.list[4].weather[0].icon}@2x.png`;
 
   CITYNAME.info15Forecast = item;
-  localSet();
+  CookieSet2()
 }
 
 function renderForecast18h(item) {
@@ -181,7 +183,7 @@ function renderForecast18h(item) {
   icon.src = `${iconUrl}${item.list[5].weather[0].icon}@2x.png`;
 
   CITYNAME.info18Forecast = item;
-  localSet();
+ CookieSet2();
 }
 
 renderRight();

@@ -27,9 +27,5 @@ export const ELEMENTS = {
   FORECAST_FEEL_18_HOUR: document.querySelector('.feels-18hour'),
   FORECAST_WEATHER_18_HOUR: document.querySelector('.weather-18hour'),
   FORECAST_ICON_18_HOUR: document.querySelector('.forecast-icon18h'),
-
-
-
-
-
 };
+

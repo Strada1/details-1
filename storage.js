@@ -1,24 +1,34 @@
+import Cookies from "js-cookie";
+// new Set(localGet());
 
-let city = new Set(localGet());
+let cityAll = new Set(localGet());
 let CITYNAME = localGetNow();
 
+function localSet() {
+  localStorage.setItem("likedCity", JSON.stringify([...cityAll]));
+   localStorage.setItem("CityNow", JSON.stringify(CITYNAME));
+}
 
-  function localSet() {
-    localStorage.setItem("likedCity", JSON.stringify([...city]));
-    localStorage.setItem("CityNow", JSON.stringify(CITYNAME));
-  }
-
-  function localGet() {
+function localGet() {
+  if (localStorage.getItem("likedCity") !== null) {
     return JSON.parse(localStorage.getItem("likedCity"));
-    }
-        
-
-  function localGetNow() {
-    if (localStorage.getItem("CityNow") !== null) {
-      return JSON.parse(localStorage.getItem("CityNow"));
-    } else {
-      return {};
-    }
+  } else {
+    return {};
   }
+}
 
-  export {city, localSet, CITYNAME}
+function CookieSet() {
+    Cookies.set("CityNow", JSON.stringify(CITYNAME));
+}
+
+
+function CookieSet2() {
+  Cookies.set("forecastNow", JSON.stringify(CITYNAME));
+}
+
+
+function localGetNow() {
+    return JSON.parse(Cookies.get("CityNow"));
+}
+
+export { cityAll, localSet,CookieSet,CookieSet2, CITYNAME };
