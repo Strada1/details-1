@@ -9,7 +9,18 @@
   </head>
   <body>
     <h1>#19 Обратный отсчет</h1>
-    <div class="timer"></div>
-    <script src="js/index.js"></script>
+    <div class="timer">
+      <form>
+        <p>
+          <label for="date">Введите дату:</label>
+          <input type="datetime-local" id="date" name="date" />
+        </p>
+        <p>
+          <button type="submit" id="submitDateBtn">Отправить</button>
+        </p>
+        <ul id="result"></ul>
+      </form>
+    </div>
+    <script type="module" src="js/index.js"></script>
   </body>
 </html>
