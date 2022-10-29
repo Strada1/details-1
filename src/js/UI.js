@@ -136,7 +136,8 @@ export function renderForecastTab(dataWeather) {
   cityName.textContent = dataWeather.city.name;
   forecastList.prepend(cityName);
   forecastList.textContent = dataWeather.city.name;
-  for (let i = 6; i <= 22; i += 8) {
+  const stepHours = 8;
+  for (let i = 6; i <= 22; i += stepHours) {
     addForecastWeatherUI(dataWeather.list[i], forecastList);
   }
 }

@@ -14,9 +14,13 @@ export const SERVERS_URL = {
   API_KEY: '358eaa62b262b36cac42f77b107308e8',
 };
 
+function getURL(serverURL, cityName, keysAPI) {
+  return `${serverURL}?q=${cityName}&appid=${keysAPI}&units=metric`;
+}
+
 export async function getCityWeather(cityName) {
   try {
-    const urlNow = `${SERVERS_URL.CURRENT_WEATHER}?q=${cityName}&appid=${SERVERS_URL.API_KEY}&units=metric`;
+    const urlNow = getURL(SERVERS_URL.CURRENT_WEATHER, cityName, SERVERS_URL.API_KEY);
     const responseNow = await fetch(urlNow);
     if (responseNow.ok) {
       const weatherJSON = await responseNow.json();
@@ -26,7 +30,7 @@ export async function getCityWeather(cityName) {
     } else {
       throw new Error(`Ошибка HTTP:  ${responseNow.status}`);
     }
-    const urlForecast = `${SERVERS_URL.FORECAST_WEATHER}?q=${cityName}&appid=${SERVERS_URL.API_KEY}&units=metric`;
+    const urlForecast = getURL(SERVERS_URL.FORECAST_WEATHER, cityName, SERVERS_URL.API_KEY);
     const responseForecast = await fetch(urlForecast);
     if (responseForecast.ok) {
       const weatherJSON = await responseForecast.json();

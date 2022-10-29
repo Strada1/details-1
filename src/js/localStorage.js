@@ -1,9 +1,11 @@
 export function updateCityLocalStorage(db) {
-  localStorage.setItem('cityName', db);
+  const citiName = 'cityName';
+  localStorage.setItem(citiName, db);
 }
 
 export function renderLocalStorage(addDatabase) {
-  const checkOldLs = localStorage.getItem('cityName');
+  const citiName = 'cityName';
+  const checkOldLs = localStorage.getItem(citiName);
   if (checkOldLs) {
     const oldArr = checkOldLs.split(',');
     oldArr.forEach((item) => addDatabase(item));
@@ -11,5 +13,6 @@ export function renderLocalStorage(addDatabase) {
 }
 
 export function setCurrentCityLocalStorage(cityName) {
-  localStorage.setItem('currentCity', cityName);
+  const currentCity = 'currentCity';
+  localStorage.setItem(currentCity, cityName);
 }
