@@ -1,0 +1,47 @@
+@import url(./reset.css);
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+body {
+  font-family: 'Roboto';
+  font-weight: 400;
+  background-color: #e5e5e5;
+  font-size: 24px;
+  color: #000000;
+}
+.container {
+  width: 621px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 250px 10px;
+}
+
+.input {
+  border-radius: 5px;
+  padding: 5px;
+}
+.btn {
+  background-color: rgb(165, 228, 151);
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.timer {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  display: flex;
+  column-gap: 20px;
+}
+.timer__item {
+  background-color: rgb(165, 228, 151);
+  padding: 5px;
+  border-radius: 10px;
+}
+.timer__item h1 {
+  font-size: 40px;
+  text-align: center;
+}
+.timer__item p {
+  font-size: 15px;
+  text-align: center;
+}
