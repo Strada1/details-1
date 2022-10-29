@@ -554,7 +554,7 @@ const sunsetTime = document.querySelector(".sunset_block");
 const sunriseTime = document.querySelector(".sunrise_block");
 const listOfСities = new Set();
 function exampleList(task) {
-    for (let i of listOfСities){
+    for (const i of listOfСities){
         if (i === task) return task;
     }
     return false;
@@ -564,64 +564,17 @@ function getInfoStorage(value) {
         const task = JSON.parse(localStorage.getItem(value));
         return task;
     }
-    return;
 }
 function recordToStorage(tasks, nameOfTask) {
     const tasksStorage = JSON.stringify(tasks);
     localStorage.setItem(nameOfTask, tasksStorage);
 }
-function addCity(value) {
-    if (value) {
-        const url = `${SERVER_URL}?q=${value}&appid=${API_KEY}&units=metric`;
-        fetch(url).then((response)=>{
-            if (response.status === 200) return response.json();
-        }).then((data)=>{
-            createTabOne(data.name, data.main.temp, data.weather[0].icon);
-            createTabTwo(data.main.feels_like, data.main.temp, data.weather[0].main, new Date(data.sys.sunset * 1000), new Date(data.sys.sunrise * 1000));
-            recordToStorage(value, "lastItem");
-        }).catch(()=>console.log("Unknown error"));
-    }
-}
-function addFavoriteCity() {
-    if (exampleList(currentCityElement.textContent) === false) {
-        listOfСities.add(currentCityElement.textContent);
-        recordToStorage([
-            ...listOfСities
-        ], "Task");
-        recordToStorage(currentCityElement.textContent, "lastItem");
-        addFavoriteCityinHtml(currentCityElement.textContent);
-    } else alert("Такой элемент уже добавлен в избранное");
-}
-console.log(close);
-function addFavoriteCityinHtml(currentCityEl) {
-    const locationList = document.querySelector(".location-list");
-    const item = document.createElement("li");
-    const close1 = document.createElement("img");
-    const cityLi = document.createElement("span");
-    cityLi.textContent = currentCityEl;
-    close1.src = (0, _closeSvgDefault.default);
-    close1.classList.add("close-city");
-    close1.addEventListener("click", ()=>{
-        let index = exampleList(currentCityEl);
-        if (index !== false) {
-            listOfСities.delete(currentCityEl);
-            item.remove();
-            recordToStorage([
-                ...listOfСities
-            ], "Task");
-        }
-    });
-    cityLi.addEventListener("click", ()=>{
-        addCity(currentCityEl);
-        recordToStorage(currentCityEl, "lastItem");
-    });
-    item.append(cityLi);
-    item.append(close1);
-    locationList.append(item);
+function convertTime(value) {
+    return (0, _dateFns.format)(value, "kk:mm");
 }
 function createTabOne(nameOfCity, degrees, iconWeather) {
-    currentCity.forEach((item)=>{
-        item.textContent = nameOfCity;
+    currentCity.forEach((itemCity)=>{
+        itemCity.textContent = nameOfCity;
     });
     const parentImages = Array.from(ParentImagesCurrentWeather.children);
     const imagesIcon = document.createElement("img");
@@ -639,8 +592,55 @@ function createTabTwo(feelsLikeValue, degrees, weatherValue, sunsetValue, sunris
     sunsetTime.textContent = `Sunset: ${convertTime(sunsetValue)}`;
     sunriseTime.textContent = `Sunrise: ${convertTime(sunriseValue)}`;
 }
-function convertTime(value) {
-    return (0, _dateFns.format)(value, "kk:mm");
+function addCity(value) {
+    if (value) {
+        const url = `${SERVER_URL}?q=${value}&appid=${API_KEY}&units=metric`;
+        fetch(url).then((response)=>{
+            if (response.status === 200) return response.json();
+        }).then((data)=>{
+            createTabOne(data.name, data.main.temp, data.weather[0].icon);
+            createTabTwo(data.main.feels_like, data.main.temp, data.weather[0].main, new Date(data.sys.sunset * 1000), new Date(data.sys.sunrise * 1000));
+            setCookie("lastItem", value, {
+                "max-age": 3600
+            });
+        }).catch(()=>console.log("Unknown error"));
+    }
+}
+function addFavoriteCityinHtml(currentCityEl) {
+    const locationList = document.querySelector(".location-list");
+    const item = document.createElement("li");
+    const close = document.createElement("img");
+    const cityLi = document.createElement("span");
+    cityLi.textContent = currentCityEl;
+    close.src = (0, _closeSvgDefault.default);
+    close.classList.add("close-city");
+    close.addEventListener("click", ()=>{
+        const index = exampleList(currentCityEl);
+        if (index !== false) {
+            listOfСities.delete(currentCityEl);
+            item.remove();
+            recordToStorage([
+                ...listOfСities
+            ], "Task");
+        }
+    });
+    cityLi.addEventListener("click", ()=>{
+        addCity(currentCityEl);
+        setCookie("lastItem", currentCity);
+    });
+    item.append(cityLi);
+    item.append(close);
+    locationList.append(item);
+}
+function addFavoriteCity() {
+    if (exampleList(currentCityElement.textContent) === false) {
+        listOfСities.add(currentCityElement.textContent);
+        recordToStorage([
+            ...listOfСities
+        ], "Task");
+        setCookie("lastItem", currentCityElement.textContent);
+        addFavoriteCityinHtml(currentCityElement.textContent);
+    } else alert("Такой элемент уже добавлен в избранное");
 }
 changeColorTabs.addEventListener("click", (e)=>{
     btnCurrent.forEach((item)=>{
@@ -655,20 +655,38 @@ changeColorTabs.addEventListener("click", (e)=>{
         }
     });
 });
-if (localStorage.length) {
+if (localStorage.length || document.cookie.length) {
     if (getInfoStorage("Task")) {
-        for (let item of getInfoStorage("Task"))listOfСities.add(item);
+        for (const item of getInfoStorage("Task"))listOfСities.add(item);
         listOfСities.forEach((item)=>{
             addFavoriteCityinHtml(item);
         });
     }
-    addCity(getInfoStorage("lastItem"));
+    addCity(getCookie("lastItem"));
 } else addCity("Aktobe");
 FORM.addEventListener("submit", (e)=>{
     e.preventDefault();
     addCity(cityName.value);
     cityName.value = "";
 });
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+function setCookie(name, value, options = {}) {
+    options = {
+        path: "/",
+        ...options
+    };
+    if (options.expires instanceof Date) options.expires = options.expires.toUTCString();
+    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    for(let optionKey in options){
+        updatedCookie += "; " + optionKey;
+        let optionValue = options[optionKey];
+        if (optionValue !== true) updatedCookie += "=" + optionValue;
+    }
+    document.cookie = updatedCookie;
+}
 favoriteBtn.addEventListener("click", addFavoriteCity);
 
 },{"date-fns":"9yHCA","../images/close.svg":"dbUtr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
