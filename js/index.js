@@ -8,12 +8,6 @@ console.log(chosenDateEl.value);
 
 chosenDateBtn.addEventListener('click', (e) => startTimerFrom(e));
 
-function getDateFromUser() {
-  console.log(chosenDate);
-
-  console.log(interval);
-}
-
 function startTimerFrom(e) {
   e.preventDefault();
   const chosenDate = Date.parse(chosenDateEl.value);
@@ -31,5 +25,3 @@ function startTimerFrom(e) {
     resultEl.innerHTML = formatDuration(interval);
   }, 1000);
 }
-
-function renderLeftTime() {}
