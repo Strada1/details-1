@@ -110,5 +110,4 @@ ELEMENTS.FORM.addEventListener('submit', (e) => {
   ELEMENTS.cityName.value = '';
 });
 
-
 ELEMENTS.favoriteBtn.addEventListener('click', addFavoriteCity);
