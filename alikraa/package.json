@@ -1,0 +1,28 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "description": "Timer App",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Strada1/details-1.git"
+  },
+  "keywords": [
+    "timer",
+    "counter",
+    "date"
+  ],
+  "author": "alina.krakhma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Strada1/details-1/issues"
+  },
+  "homepage": "https://github.com/Strada1/details-1#readme",
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  }
+}

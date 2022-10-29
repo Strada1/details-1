@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu&display=swap" rel="stylesheet">
+    <title>Timer</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Обратный отсчет</h1>
+        <div class="wrapper">
+            <form>
+                <input type="datetime-local">
+                <button>Посчитать!</button>
+            </form>
+            <div class="name">
+                <span class="year">Лет</span>
+                <span class="day">Дней</span>
+                <span class="hour">Часов</span>
+                <span class="minute">Минут</span>
+            </div>
+            <div class="total">
+                <p class="years">0</p>
+                <p class="days">0</p>
+                <p class="hours">0</p>
+                <p class="minutes">0</p>
+            </div>
+        </div>
+    </div>
+    <script src="main.js" type="module"></script>
+</body>
+</html>
