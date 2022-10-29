@@ -1,4 +1,4 @@
-import { differenceInHours, differenceInCalendarDays, differenceInCalendarMonths, differenceInCalendarYears, endOfDay, } from 'date-fns';
+import { intervalToDuration, formatDuration, differenceInCalendarDays } from 'date-fns';
 
 const ELEMENTS = {
   form: document.querySelector('.field'),
@@ -7,28 +7,37 @@ const ELEMENTS = {
   output: document.querySelector('.output'),
 };
 
-function getDate() {
+function startInterval() {
+  setInterval(changeDate, 1000)
+}
+
+function changeDate() {
   const date = ELEMENTS.input.value;
-  ELEMENTS.input.value = '';
-  changeDate(date);
-}
 
-function changeDate(date) {
-  const hours = (differenceInHours(endOfDay(new Date()), new Date()));
+  let newDate = intervalToDuration({
+    start: new Date(),
+    end: new Date(date)
+  });
 
-  let days = (differenceInCalendarDays(new Date(date), new Date())) - 1;
+  let output = formatDuration(
+    {
+      years: newDate.years,
+      months: newDate.months,
+      days: (newDate.years) ? ((differenceInCalendarDays(new Date(date), new Date())) - (365 * newDate.years) - 1) : (differenceInCalendarDays(new Date(date), new Date()) - 1),
+      hours: newDate.hours,
+      minutes: newDate.minutes,
+      seconds: newDate.seconds,
+    },
+    { format: ['years', 'days', 'hours', 'minutes', 'seconds'] }
+  )
 
-  const years = differenceInCalendarYears(new Date(date), new Date());
+  ELEMENTS.output.textContent = output;
 
-  if (years) {
-    days = (differenceInCalendarDays(new Date(date), new Date())) - (365 * years) - 1;
-  }
-
-  ELEMENTS.output.textContent = `Left: ${years} years, ${days} дней, ${hours} часов`;
-}
+};
 
 ELEMENTS.form.addEventListener('submit', (e) => {
   e.preventDefault();
-  getDate()
+  clearInterval(startInterval)
+  startInterval()
 });
 

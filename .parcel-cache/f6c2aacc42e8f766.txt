@@ -51,7 +51,7 @@
 90C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\fp\index.js.flow133114343182375959 0
 98C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\posthtml\node_modules\posthtml-parser133114307352441150 1
 90C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\regenerator-runtime\README.md133114307353080247 0
-52C:\Users\croco\Desktop\coding\basic 2\details-1\dist133115147343124049 1
+52C:\Users\croco\Desktop\coding\basic 2\details-1\dist133115212486002452 1
 70C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\@mischnic133114305073850429 1
 93C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\es-abstract\2016\ObjectCreate.js133114307296473476 0
 80C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\isSameWeek133114343438212791 1
@@ -151,7 +151,7 @@
 100C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\fp\quartersToMonths\index.d.ts133114343431972136 0
 91C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\source-map-support\register.js133114307357036840 0
 106C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\es-abstract\2022\BigInt\unsignedRightShift.js133114307311980996 0
-57C:\Users\croco\Desktop\coding\basic 2\details-1\script.js133115147340639255 0
+57C:\Users\croco\Desktop\coding\basic 2\details-1\script.js133115212483788861 0
 90C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\locale\gl\index.d.ts133114343441812241 0
 92C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\isBefore\index.js.flow133114343210154682 0
 97C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\locale\ka\_lib\localize133114343260166076 1
@@ -699,7 +699,7 @@
 98C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\fp\milliseconds\index.js133114343236868431 0
 81C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\terser\dist\.gitkeep133114307360366550 0
 100C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\es-abstract\2016\OrdinaryHasInstance.js133114307296561537 0
-70C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.8cfc62b9.js133115147343029435 0
+70C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.8cfc62b9.js133115212485917547 0
 111C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\differenceInISOWeekYears\package.json133114343336140415 0
 72C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\htmlparser2133114307333820222 1
 101C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\@humanwhocodes\module-importer\README.md133114307219932309 0
@@ -6449,7 +6449,7 @@
 92C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\formatRFC7231\index.js133114343277581783 0
 96C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\eslint-import-resolver-node\LICENSE133114307317848620 0
 99C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\es-abstract\2016\SpeciesConstructor.js133114307296792108 0
-63C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.html133115118597447835 0
+63C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.html133115199775922818 0
 101C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\eslint-import-resolver-node\node_modules133114305074045051 1
 101C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\eslint-import-resolver-node\package.json133114307318007566 0
 98C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\eslint-import-resolver-node\README.md133114307317858148 0
@@ -12595,7 +12595,7 @@
 94C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\locale\nn\index.d.ts133114343416734285 0
 103C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\locale\ta\_lib\formatDistance133114343269030225 1
 99C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\locale\ta\_lib\formatLong133114343269068370 1
-75C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.3a01df49.css.map133115118597072383 0
+75C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.3a01df49.css.map133115199775987828 0
 94C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\locale\ta\_lib\match133114343269225428 1
 103C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\date-fns\esm\locale\ta\_lib\match\index.js133114343269230551 0
 92C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\caniuse-lite\data\regions\ZM.js133114307285229335 0
@@ -16253,7 +16253,7 @@
 76C:\Users\croco\Desktop\coding\basic 2\details-1\node_modules\.bin\terser.cmd133114307218137559 0
 74C:\Users\croco\Desktop\coding\basic 2\details-1\dist\details-1.3464ddca.js133114332329738565 0
 78C:\Users\croco\Desktop\coding\basic 2\details-1\dist\details-1.3464ddca.js.map133114332329888689 0
-71C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.3a01df49.css133115118597010813 0
-74C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.8cfc62b9.js.map133115147343099286 0
+71C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.3a01df49.css133115199775912788 0
+74C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.8cfc62b9.js.map133115212485976818 0
 70C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.c36f364e.js133114307216941839 0
 74C:\Users\croco\Desktop\coding\basic 2\details-1\dist\index.c36f364e.js.map133114307217021858 0
