@@ -1,0 +1,100 @@
+* {
+    margin: auto;
+    box-sizing: border-box;
+    font-family: 'Ubuntu', sans-serif;
+
+}
+
+.container {
+    margin: 100px auto;
+    padding-top: 35px;
+    width: 500px;
+    height: 500px;
+    text-align: center;
+    background-color: rgb(236, 219, 250);
+    border-radius: 35px;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+form {
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 90px;
+}
+
+input,
+button {
+    margin-bottom: 12px;
+    width: 400px;
+    height: 40px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+button {
+    background-color: rgb(141, 151, 194);
+    font-size: 22px;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: rgb(184, 196, 248);
+}
+
+button:active {
+    background-color: rgb(27, 233, 44);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.total {
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    font-size: 54px;
+}
+
+p {
+    width: 90px;
+    height: 90px;
+    padding-top: 12px;
+    background-color: rgb(206, 188, 221);
+}
+
+.name {
+    display: flex;
+    flex-direction: row;
+    font-size: 25px;
+    margin-top: 10px;
+}
+
+.year {
+    position: relative;
+    right: 70px;
+}
+
+.day {
+    position: relative;
+    right: 5px;
+}
+
+.hour {
+    position: relative;
+    left: 40px;
+}
+
+.minute {
+    position: relative;
+    left: 85px;
+}
