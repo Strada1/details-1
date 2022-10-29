@@ -1,0 +1,17 @@
+.container {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+  padding-top: 200px;
+}
+
+.output {
+  color: red;
+  padding-top: 50px;
+}
+
+.field__input {
+  border: 1px solid #000;
+}
+
+/*# sourceMappingURL=index.3a01df49.css.map */

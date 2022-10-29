@@ -1,0 +1,17 @@
+
+
+.container {
+  text-align: center;
+  max-width: 500px;
+  padding-top: 200px;
+  margin: 0 auto;
+}
+
+.output {
+  padding-top: 50px;
+  color: red;
+}
+
+.field__input{
+  border: 1px solid #000;
+}
