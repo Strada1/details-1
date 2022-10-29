@@ -537,33 +537,33 @@ var _viewJs = require("./view.js");
 var _dateFns = require("date-fns");
 var _jsCookie = require("js-cookie");
 var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
+var _domSerializer = require("dom-serializer");
+var _domSerializerDefault = parcelHelpers.interopDefault(_domSerializer);
 (0, _viewJs.ELEMENT_UI).submitFutureDate.addEventListener("submit", getFutureDate);
 function getFutureDate() {
     event.preventDefault();
     const enteredDate = (0, _viewJs.ELEMENT_UI).inputDate.value;
     DistanceToNow(enteredDate);
 }
-function getNowDate() {
-    let dateNow = new Date();
-    dateNow = (0, _dateFns.format)(dateNow, "Y DD HH", {
-        useAdditionalDayOfYearTokens: true
-    });
-    return dateNow;
-}
 function DistanceToNow(enteredDate) {
-    const dateNow = getNowDate();
-    const distnaceDate = (0, _dateFns.formatDistanceToNow)(enteredDate);
-    console.log("distnaceDate: ", distnaceDate);
-} // function timeLeft() {
- // }
+    let distnaceDate = (0, _dateFns.intervalToDuration)({
+        start: new Date(),
+        end: new Date(enteredDate)
+    });
+    distnaceDate = (0, _dateFns.formatDuration)(distnaceDate);
+    console.log(" distnaceDate: ", distnaceDate);
+    (0, _viewJs.ELEMENT_UI).result.textContent = "";
+    (0, _viewJs.ELEMENT_UI).result.textContent = distnaceDate;
+}
 
-},{"./view.js":"de63B","date-fns":"9yHCA","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"de63B":[function(require,module,exports) {
+},{"./view.js":"de63B","date-fns":"9yHCA","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","dom-serializer":"59L3s"}],"de63B":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ELEMENT_UI", ()=>ELEMENT_UI);
 const ELEMENT_UI = {
     inputDate: document.getElementById("inputDate"),
-    submitFutureDate: document.getElementById("submitFutureDate")
+    submitFutureDate: document.getElementById("submitFutureDate"),
+    result: document.getElementById("result")
 };
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
@@ -1320,7 +1320,51 @@ var _indexJsDefault238 = parcelHelpers.interopDefault(_indexJs238);
 var _indexJs239 = require("./constants/index.js");
 parcelHelpers.exportAll(_indexJs239, exports);
 
-},{"./add/index.js":false,"./addBusinessDays/index.js":false,"./addDays/index.js":false,"./addHours/index.js":false,"./addISOWeekYears/index.js":false,"./addMilliseconds/index.js":"7Tp9s","./addMinutes/index.js":false,"./addMonths/index.js":false,"./addQuarters/index.js":false,"./addSeconds/index.js":false,"./addWeeks/index.js":false,"./addYears/index.js":false,"./areIntervalsOverlapping/index.js":false,"./clamp/index.js":false,"./closestIndexTo/index.js":false,"./closestTo/index.js":false,"./compareAsc/index.js":"h01l4","./compareDesc/index.js":false,"./daysToWeeks/index.js":false,"./differenceInBusinessDays/index.js":false,"./differenceInCalendarDays/index.js":false,"./differenceInCalendarISOWeekYears/index.js":false,"./differenceInCalendarISOWeeks/index.js":false,"./differenceInCalendarMonths/index.js":"8oypH","./differenceInCalendarQuarters/index.js":false,"./differenceInCalendarWeeks/index.js":false,"./differenceInCalendarYears/index.js":false,"./differenceInDays/index.js":false,"./differenceInHours/index.js":false,"./differenceInISOWeekYears/index.js":false,"./differenceInMilliseconds/index.js":"Eb6qZ","./differenceInMinutes/index.js":false,"./differenceInMonths/index.js":"8lj6Z","./differenceInQuarters/index.js":false,"./differenceInSeconds/index.js":"5uZgU","./differenceInWeeks/index.js":false,"./differenceInYears/index.js":false,"./eachDayOfInterval/index.js":false,"./eachHourOfInterval/index.js":false,"./eachMinuteOfInterval/index.js":false,"./eachMonthOfInterval/index.js":false,"./eachQuarterOfInterval/index.js":false,"./eachWeekOfInterval/index.js":false,"./eachWeekendOfInterval/index.js":false,"./eachWeekendOfMonth/index.js":false,"./eachWeekendOfYear/index.js":false,"./eachYearOfInterval/index.js":false,"./endOfDay/index.js":"kLkh7","./endOfDecade/index.js":false,"./endOfHour/index.js":false,"./endOfISOWeek/index.js":false,"./endOfISOWeekYear/index.js":false,"./endOfMinute/index.js":false,"./endOfMonth/index.js":"4tHlS","./endOfQuarter/index.js":false,"./endOfSecond/index.js":false,"./endOfToday/index.js":false,"./endOfTomorrow/index.js":false,"./endOfWeek/index.js":false,"./endOfYear/index.js":false,"./endOfYesterday/index.js":false,"./format/index.js":"lnm6V","./formatDistance/index.js":"lPnhm","./formatDistanceStrict/index.js":false,"./formatDistanceToNow/index.js":"kV5oc","./formatDistanceToNowStrict/index.js":false,"./formatDuration/index.js":false,"./formatISO/index.js":false,"./formatISO9075/index.js":false,"./formatISODuration/index.js":false,"./formatRFC3339/index.js":false,"./formatRFC7231/index.js":false,"./formatRelative/index.js":false,"./fromUnixTime/index.js":false,"./getDate/index.js":false,"./getDay/index.js":false,"./getDayOfYear/index.js":false,"./getDaysInMonth/index.js":false,"./getDaysInYear/index.js":false,"./getDecade/index.js":false,"./getDefaultOptions/index.js":false,"./getHours/index.js":false,"./getISODay/index.js":false,"./getISOWeek/index.js":false,"./getISOWeekYear/index.js":false,"./getISOWeeksInYear/index.js":false,"./getMilliseconds/index.js":false,"./getMinutes/index.js":false,"./getMonth/index.js":false,"./getOverlappingDaysInIntervals/index.js":false,"./getQuarter/index.js":false,"./getSeconds/index.js":false,"./getTime/index.js":false,"./getUnixTime/index.js":false,"./getWeek/index.js":false,"./getWeekOfMonth/index.js":false,"./getWeekYear/index.js":false,"./getWeeksInMonth/index.js":false,"./getYear/index.js":false,"./hoursToMilliseconds/index.js":false,"./hoursToMinutes/index.js":false,"./hoursToSeconds/index.js":false,"./intervalToDuration/index.js":false,"./intlFormat/index.js":false,"./intlFormatDistance/index.js":false,"./isAfter/index.js":false,"./isBefore/index.js":false,"./isDate/index.js":"kqNhT","./isEqual/index.js":false,"./isExists/index.js":false,"./isFirstDayOfMonth/index.js":false,"./isFriday/index.js":false,"./isFuture/index.js":false,"./isLastDayOfMonth/index.js":"1as6x","./isLeapYear/index.js":false,"./isMatch/index.js":false,"./isMonday/index.js":false,"./isPast/index.js":false,"./isSameDay/index.js":false,"./isSameHour/index.js":false,"./isSameISOWeek/index.js":false,"./isSameISOWeekYear/index.js":false,"./isSameMinute/index.js":false,"./isSameMonth/index.js":false,"./isSameQuarter/index.js":false,"./isSameSecond/index.js":false,"./isSameWeek/index.js":false,"./isSameYear/index.js":false,"./isSaturday/index.js":false,"./isSunday/index.js":false,"./isThisHour/index.js":false,"./isThisISOWeek/index.js":false,"./isThisMinute/index.js":false,"./isThisMonth/index.js":false,"./isThisQuarter/index.js":false,"./isThisSecond/index.js":false,"./isThisWeek/index.js":false,"./isThisYear/index.js":false,"./isThursday/index.js":false,"./isToday/index.js":false,"./isTomorrow/index.js":false,"./isTuesday/index.js":false,"./isValid/index.js":"eXoMl","./isWednesday/index.js":false,"./isWeekend/index.js":false,"./isWithinInterval/index.js":false,"./isYesterday/index.js":false,"./lastDayOfDecade/index.js":false,"./lastDayOfISOWeek/index.js":false,"./lastDayOfISOWeekYear/index.js":false,"./lastDayOfMonth/index.js":false,"./lastDayOfQuarter/index.js":false,"./lastDayOfWeek/index.js":false,"./lastDayOfYear/index.js":false,"./lightFormat/index.js":false,"./max/index.js":false,"./milliseconds/index.js":false,"./millisecondsToHours/index.js":false,"./millisecondsToMinutes/index.js":false,"./millisecondsToSeconds/index.js":false,"./min/index.js":false,"./minutesToHours/index.js":false,"./minutesToMilliseconds/index.js":false,"./minutesToSeconds/index.js":false,"./monthsToQuarters/index.js":false,"./monthsToYears/index.js":false,"./nextDay/index.js":false,"./nextFriday/index.js":false,"./nextMonday/index.js":false,"./nextSaturday/index.js":false,"./nextSunday/index.js":false,"./nextThursday/index.js":false,"./nextTuesday/index.js":false,"./nextWednesday/index.js":false,"./parse/index.js":false,"./parseISO/index.js":false,"./parseJSON/index.js":false,"./previousDay/index.js":false,"./previousFriday/index.js":false,"./previousMonday/index.js":false,"./previousSaturday/index.js":false,"./previousSunday/index.js":false,"./previousThursday/index.js":false,"./previousTuesday/index.js":false,"./previousWednesday/index.js":false,"./quartersToMonths/index.js":false,"./quartersToYears/index.js":false,"./roundToNearestMinutes/index.js":false,"./secondsToHours/index.js":false,"./secondsToMilliseconds/index.js":false,"./secondsToMinutes/index.js":false,"./set/index.js":false,"./setDate/index.js":false,"./setDay/index.js":false,"./setDayOfYear/index.js":false,"./setDefaultOptions/index.js":false,"./setHours/index.js":false,"./setISODay/index.js":false,"./setISOWeek/index.js":false,"./setISOWeekYear/index.js":false,"./setMilliseconds/index.js":false,"./setMinutes/index.js":false,"./setMonth/index.js":false,"./setQuarter/index.js":false,"./setSeconds/index.js":false,"./setWeek/index.js":false,"./setWeekYear/index.js":false,"./setYear/index.js":false,"./startOfDay/index.js":false,"./startOfDecade/index.js":false,"./startOfHour/index.js":false,"./startOfISOWeek/index.js":false,"./startOfISOWeekYear/index.js":false,"./startOfMinute/index.js":false,"./startOfMonth/index.js":false,"./startOfQuarter/index.js":false,"./startOfSecond/index.js":false,"./startOfToday/index.js":false,"./startOfTomorrow/index.js":false,"./startOfWeek/index.js":false,"./startOfWeekYear/index.js":false,"./startOfYear/index.js":false,"./startOfYesterday/index.js":false,"./sub/index.js":false,"./subBusinessDays/index.js":false,"./subDays/index.js":false,"./subHours/index.js":false,"./subISOWeekYears/index.js":false,"./subMilliseconds/index.js":"lL2M9","./subMinutes/index.js":false,"./subMonths/index.js":false,"./subQuarters/index.js":false,"./subSeconds/index.js":false,"./subWeeks/index.js":false,"./subYears/index.js":false,"./toDate/index.js":"fsust","./weeksToDays/index.js":false,"./yearsToMonths/index.js":false,"./yearsToQuarters/index.js":false,"./constants/index.js":"iOhcx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Tp9s":[function(require,module,exports) {
+},{"./add/index.js":"h7zb2","./addBusinessDays/index.js":false,"./addDays/index.js":"g6fAH","./addHours/index.js":false,"./addISOWeekYears/index.js":false,"./addMilliseconds/index.js":"7Tp9s","./addMinutes/index.js":false,"./addMonths/index.js":"hES3W","./addQuarters/index.js":false,"./addSeconds/index.js":false,"./addWeeks/index.js":false,"./addYears/index.js":false,"./areIntervalsOverlapping/index.js":false,"./clamp/index.js":false,"./closestIndexTo/index.js":false,"./closestTo/index.js":false,"./compareAsc/index.js":"h01l4","./compareDesc/index.js":false,"./daysToWeeks/index.js":false,"./differenceInBusinessDays/index.js":false,"./differenceInCalendarDays/index.js":"adZXy","./differenceInCalendarISOWeekYears/index.js":false,"./differenceInCalendarISOWeeks/index.js":false,"./differenceInCalendarMonths/index.js":"8oypH","./differenceInCalendarQuarters/index.js":false,"./differenceInCalendarWeeks/index.js":false,"./differenceInCalendarYears/index.js":"f4WIY","./differenceInDays/index.js":"1mpAo","./differenceInHours/index.js":"9Vac7","./differenceInISOWeekYears/index.js":false,"./differenceInMilliseconds/index.js":"Eb6qZ","./differenceInMinutes/index.js":"4Qv17","./differenceInMonths/index.js":"8lj6Z","./differenceInQuarters/index.js":false,"./differenceInSeconds/index.js":"5uZgU","./differenceInWeeks/index.js":false,"./differenceInYears/index.js":"2tncr","./eachDayOfInterval/index.js":false,"./eachHourOfInterval/index.js":false,"./eachMinuteOfInterval/index.js":false,"./eachMonthOfInterval/index.js":false,"./eachQuarterOfInterval/index.js":false,"./eachWeekOfInterval/index.js":false,"./eachWeekendOfInterval/index.js":false,"./eachWeekendOfMonth/index.js":false,"./eachWeekendOfYear/index.js":false,"./eachYearOfInterval/index.js":false,"./endOfDay/index.js":"kLkh7","./endOfDecade/index.js":false,"./endOfHour/index.js":false,"./endOfISOWeek/index.js":false,"./endOfISOWeekYear/index.js":false,"./endOfMinute/index.js":false,"./endOfMonth/index.js":"4tHlS","./endOfQuarter/index.js":false,"./endOfSecond/index.js":false,"./endOfToday/index.js":false,"./endOfTomorrow/index.js":false,"./endOfWeek/index.js":false,"./endOfYear/index.js":false,"./endOfYesterday/index.js":false,"./format/index.js":"lnm6V","./formatDistance/index.js":"lPnhm","./formatDistanceStrict/index.js":false,"./formatDistanceToNow/index.js":"kV5oc","./formatDistanceToNowStrict/index.js":false,"./formatDuration/index.js":"gZD5H","./formatISO/index.js":false,"./formatISO9075/index.js":false,"./formatISODuration/index.js":false,"./formatRFC3339/index.js":false,"./formatRFC7231/index.js":false,"./formatRelative/index.js":false,"./fromUnixTime/index.js":false,"./getDate/index.js":false,"./getDay/index.js":false,"./getDayOfYear/index.js":false,"./getDaysInMonth/index.js":false,"./getDaysInYear/index.js":false,"./getDecade/index.js":false,"./getDefaultOptions/index.js":false,"./getHours/index.js":false,"./getISODay/index.js":false,"./getISOWeek/index.js":false,"./getISOWeekYear/index.js":false,"./getISOWeeksInYear/index.js":false,"./getMilliseconds/index.js":false,"./getMinutes/index.js":false,"./getMonth/index.js":false,"./getOverlappingDaysInIntervals/index.js":false,"./getQuarter/index.js":false,"./getSeconds/index.js":false,"./getTime/index.js":false,"./getUnixTime/index.js":false,"./getWeek/index.js":false,"./getWeekOfMonth/index.js":false,"./getWeekYear/index.js":false,"./getWeeksInMonth/index.js":false,"./getYear/index.js":false,"./hoursToMilliseconds/index.js":false,"./hoursToMinutes/index.js":false,"./hoursToSeconds/index.js":false,"./intervalToDuration/index.js":"5hNtu","./intlFormat/index.js":false,"./intlFormatDistance/index.js":false,"./isAfter/index.js":false,"./isBefore/index.js":false,"./isDate/index.js":"kqNhT","./isEqual/index.js":false,"./isExists/index.js":false,"./isFirstDayOfMonth/index.js":false,"./isFriday/index.js":false,"./isFuture/index.js":false,"./isLastDayOfMonth/index.js":"1as6x","./isLeapYear/index.js":false,"./isMatch/index.js":false,"./isMonday/index.js":false,"./isPast/index.js":false,"./isSameDay/index.js":false,"./isSameHour/index.js":false,"./isSameISOWeek/index.js":false,"./isSameISOWeekYear/index.js":false,"./isSameMinute/index.js":false,"./isSameMonth/index.js":false,"./isSameQuarter/index.js":false,"./isSameSecond/index.js":false,"./isSameWeek/index.js":false,"./isSameYear/index.js":false,"./isSaturday/index.js":false,"./isSunday/index.js":false,"./isThisHour/index.js":false,"./isThisISOWeek/index.js":false,"./isThisMinute/index.js":false,"./isThisMonth/index.js":false,"./isThisQuarter/index.js":false,"./isThisSecond/index.js":false,"./isThisWeek/index.js":false,"./isThisYear/index.js":false,"./isThursday/index.js":false,"./isToday/index.js":false,"./isTomorrow/index.js":false,"./isTuesday/index.js":false,"./isValid/index.js":"eXoMl","./isWednesday/index.js":false,"./isWeekend/index.js":false,"./isWithinInterval/index.js":false,"./isYesterday/index.js":false,"./lastDayOfDecade/index.js":false,"./lastDayOfISOWeek/index.js":false,"./lastDayOfISOWeekYear/index.js":false,"./lastDayOfMonth/index.js":false,"./lastDayOfQuarter/index.js":false,"./lastDayOfWeek/index.js":false,"./lastDayOfYear/index.js":false,"./lightFormat/index.js":false,"./max/index.js":false,"./milliseconds/index.js":false,"./millisecondsToHours/index.js":false,"./millisecondsToMinutes/index.js":false,"./millisecondsToSeconds/index.js":false,"./min/index.js":false,"./minutesToHours/index.js":false,"./minutesToMilliseconds/index.js":false,"./minutesToSeconds/index.js":false,"./monthsToQuarters/index.js":false,"./monthsToYears/index.js":false,"./nextDay/index.js":false,"./nextFriday/index.js":false,"./nextMonday/index.js":false,"./nextSaturday/index.js":false,"./nextSunday/index.js":false,"./nextThursday/index.js":false,"./nextTuesday/index.js":false,"./nextWednesday/index.js":false,"./parse/index.js":false,"./parseISO/index.js":"3UpeK","./parseJSON/index.js":false,"./previousDay/index.js":false,"./previousFriday/index.js":false,"./previousMonday/index.js":false,"./previousSaturday/index.js":false,"./previousSunday/index.js":false,"./previousThursday/index.js":false,"./previousTuesday/index.js":false,"./previousWednesday/index.js":false,"./quartersToMonths/index.js":false,"./quartersToYears/index.js":false,"./roundToNearestMinutes/index.js":false,"./secondsToHours/index.js":false,"./secondsToMilliseconds/index.js":false,"./secondsToMinutes/index.js":false,"./set/index.js":false,"./setDate/index.js":false,"./setDay/index.js":false,"./setDayOfYear/index.js":false,"./setDefaultOptions/index.js":false,"./setHours/index.js":false,"./setISODay/index.js":false,"./setISOWeek/index.js":false,"./setISOWeekYear/index.js":false,"./setMilliseconds/index.js":false,"./setMinutes/index.js":false,"./setMonth/index.js":false,"./setQuarter/index.js":false,"./setSeconds/index.js":false,"./setWeek/index.js":false,"./setWeekYear/index.js":false,"./setYear/index.js":false,"./startOfDay/index.js":"4Tvs3","./startOfDecade/index.js":false,"./startOfHour/index.js":false,"./startOfISOWeek/index.js":false,"./startOfISOWeekYear/index.js":false,"./startOfMinute/index.js":false,"./startOfMonth/index.js":false,"./startOfQuarter/index.js":false,"./startOfSecond/index.js":false,"./startOfToday/index.js":false,"./startOfTomorrow/index.js":false,"./startOfWeek/index.js":false,"./startOfWeekYear/index.js":false,"./startOfYear/index.js":false,"./startOfYesterday/index.js":false,"./sub/index.js":false,"./subBusinessDays/index.js":false,"./subDays/index.js":false,"./subHours/index.js":false,"./subISOWeekYears/index.js":false,"./subMilliseconds/index.js":"lL2M9","./subMinutes/index.js":false,"./subMonths/index.js":false,"./subQuarters/index.js":false,"./subSeconds/index.js":false,"./subWeeks/index.js":false,"./subYears/index.js":false,"./toDate/index.js":"fsust","./weeksToDays/index.js":false,"./yearsToMonths/index.js":false,"./yearsToQuarters/index.js":false,"./constants/index.js":"iOhcx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h7zb2":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../addDays/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../addMonths/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../toDate/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
+var _indexJs4 = require("../_lib/toInteger/index.js");
+var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
+function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") _typeof = function _typeof(obj) {
+        return typeof obj;
+    };
+    else _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    return _typeof(obj);
+}
+function add(dirtyDate, duration) {
+    (0, _indexJsDefault3.default)(2, arguments);
+    if (!duration || _typeof(duration) !== "object") return new Date(NaN);
+    var years = duration.years ? (0, _indexJsDefault4.default)(duration.years) : 0;
+    var months = duration.months ? (0, _indexJsDefault4.default)(duration.months) : 0;
+    var weeks = duration.weeks ? (0, _indexJsDefault4.default)(duration.weeks) : 0;
+    var days = duration.days ? (0, _indexJsDefault4.default)(duration.days) : 0;
+    var hours = duration.hours ? (0, _indexJsDefault4.default)(duration.hours) : 0;
+    var minutes = duration.minutes ? (0, _indexJsDefault4.default)(duration.minutes) : 0;
+    var seconds = duration.seconds ? (0, _indexJsDefault4.default)(duration.seconds) : 0; // Add years and months
+    var date = (0, _indexJsDefault2.default)(dirtyDate);
+    var dateWithMonths = months || years ? (0, _indexJsDefault1.default)(date, months + years * 12) : date; // Add weeks and days
+    var dateWithDays = days || weeks ? (0, _indexJsDefault.default)(dateWithMonths, days + weeks * 7) : dateWithMonths; // Add days, hours, minutes and seconds
+    var minutesToAdd = minutes + hours * 60;
+    var secondsToAdd = seconds + minutesToAdd * 60;
+    var msToAdd = secondsToAdd * 1000;
+    var finalDate = new Date(dateWithDays.getTime() + msToAdd);
+    return finalDate;
+}
+exports.default = add;
+
+},{"../addDays/index.js":"g6fAH","../addMonths/index.js":"hES3W","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","../_lib/toInteger/index.js":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"g6fAH":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../_lib/toInteger/index.js");
@@ -1329,13 +1373,17 @@ var _indexJs1 = require("../toDate/index.js");
 var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
 var _indexJs2 = require("../_lib/requiredArgs/index.js");
 var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
-function addMilliseconds(dirtyDate, dirtyAmount) {
+function addDays(dirtyDate, dirtyAmount) {
     (0, _indexJsDefault2.default)(2, arguments);
-    var timestamp = (0, _indexJsDefault1.default)(dirtyDate).getTime();
+    var date = (0, _indexJsDefault1.default)(dirtyDate);
     var amount = (0, _indexJsDefault.default)(dirtyAmount);
-    return new Date(timestamp + amount);
+    if (isNaN(amount)) return new Date(NaN);
+    if (!amount) // If 0 days, no-op to avoid changing times in the hour before end of DST
+    return date;
+    date.setDate(date.getDate() + amount);
+    return date;
 }
-exports.default = addMilliseconds;
+exports.default = addDays;
 
 },{"../_lib/toInteger/index.js":"f7kKX","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f7kKX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1388,7 +1436,68 @@ function requiredArgs(required, args) {
 }
 exports.default = requiredArgs;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h01l4":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hES3W":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../_lib/toInteger/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../toDate/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+function addMonths(dirtyDate, dirtyAmount) {
+    (0, _indexJsDefault2.default)(2, arguments);
+    var date = (0, _indexJsDefault1.default)(dirtyDate);
+    var amount = (0, _indexJsDefault.default)(dirtyAmount);
+    if (isNaN(amount)) return new Date(NaN);
+    if (!amount) // If 0 months, no-op to avoid changing times in the hour before end of DST
+    return date;
+    var dayOfMonth = date.getDate(); // The JS Date object supports date math by accepting out-of-bounds values for
+    // month, day, etc. For example, new Date(2020, 0, 0) returns 31 Dec 2019 and
+    // new Date(2020, 13, 1) returns 1 Feb 2021.  This is *almost* the behavior we
+    // want except that dates will wrap around the end of a month, meaning that
+    // new Date(2020, 13, 31) will return 3 Mar 2021 not 28 Feb 2021 as desired. So
+    // we'll default to the end of the desired month by adding 1 to the desired
+    // month and using a date of 0 to back up one day to the end of the desired
+    // month.
+    var endOfDesiredMonth = new Date(date.getTime());
+    endOfDesiredMonth.setMonth(date.getMonth() + amount + 1, 0);
+    var daysInMonth = endOfDesiredMonth.getDate();
+    if (dayOfMonth >= daysInMonth) // If we're already at the end of the month, then this is the correct date
+    // and we're done.
+    return endOfDesiredMonth;
+    else {
+        // Otherwise, we now know that setting the original day-of-month value won't
+        // cause an overflow, so set the desired day-of-month. Note that we can't
+        // just set the date of `endOfDesiredMonth` because that object may have had
+        // its time changed in the unusual case where where a DST transition was on
+        // the last day of the month and its local time was in the hour skipped or
+        // repeated next to a DST transition.  So we use `date` instead which is
+        // guaranteed to still have the original time.
+        date.setFullYear(endOfDesiredMonth.getFullYear(), endOfDesiredMonth.getMonth(), dayOfMonth);
+        return date;
+    }
+}
+exports.default = addMonths;
+
+},{"../_lib/toInteger/index.js":"f7kKX","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Tp9s":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../_lib/toInteger/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../toDate/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+function addMilliseconds(dirtyDate, dirtyAmount) {
+    (0, _indexJsDefault2.default)(2, arguments);
+    var timestamp = (0, _indexJsDefault1.default)(dirtyDate).getTime();
+    var amount = (0, _indexJsDefault.default)(dirtyAmount);
+    return new Date(timestamp + amount);
+}
+exports.default = addMilliseconds;
+
+},{"../_lib/toInteger/index.js":"f7kKX","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h01l4":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../toDate/index.js");
@@ -1405,6 +1514,53 @@ function compareAsc(dirtyDateLeft, dirtyDateRight) {
     else return diff;
 }
 exports.default = compareAsc;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"adZXy":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../_lib/getTimezoneOffsetInMilliseconds/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../startOfDay/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+var MILLISECONDS_IN_DAY = 86400000;
+function differenceInCalendarDays(dirtyDateLeft, dirtyDateRight) {
+    (0, _indexJsDefault2.default)(2, arguments);
+    var startOfDayLeft = (0, _indexJsDefault1.default)(dirtyDateLeft);
+    var startOfDayRight = (0, _indexJsDefault1.default)(dirtyDateRight);
+    var timestampLeft = startOfDayLeft.getTime() - (0, _indexJsDefault.default)(startOfDayLeft);
+    var timestampRight = startOfDayRight.getTime() - (0, _indexJsDefault.default)(startOfDayRight); // Round the number of days to the nearest integer
+    // because the number of milliseconds in a day is not constant
+    // (e.g. it's different in the day of the daylight saving time clock shift)
+    return Math.round((timestampLeft - timestampRight) / MILLISECONDS_IN_DAY);
+}
+exports.default = differenceInCalendarDays;
+
+},{"../_lib/getTimezoneOffsetInMilliseconds/index.js":"bc74C","../startOfDay/index.js":"4Tvs3","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bc74C":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function getTimezoneOffsetInMilliseconds(date) {
+    var utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
+    utcDate.setUTCFullYear(date.getFullYear());
+    return date.getTime() - utcDate.getTime();
+}
+exports.default = getTimezoneOffsetInMilliseconds;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Tvs3":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function startOfDay(dirtyDate) {
+    (0, _indexJsDefault1.default)(1, arguments);
+    var date = (0, _indexJsDefault.default)(dirtyDate);
+    date.setHours(0, 0, 0, 0);
+    return date;
+}
+exports.default = startOfDay;
 
 },{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8oypH":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1423,7 +1579,110 @@ function differenceInCalendarMonths(dirtyDateLeft, dirtyDateRight) {
 }
 exports.default = differenceInCalendarMonths;
 
-},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Eb6qZ":[function(require,module,exports) {
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f4WIY":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function differenceInCalendarYears(dirtyDateLeft, dirtyDateRight) {
+    (0, _indexJsDefault1.default)(2, arguments);
+    var dateLeft = (0, _indexJsDefault.default)(dirtyDateLeft);
+    var dateRight = (0, _indexJsDefault.default)(dirtyDateRight);
+    return dateLeft.getFullYear() - dateRight.getFullYear();
+}
+exports.default = differenceInCalendarYears;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1mpAo":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../differenceInCalendarDays/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/requiredArgs/index.js"); // Like `compareAsc` but uses local time not UTC, which is needed
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+// for accurate equality comparisons of UTC timestamps that end up
+// having the same representation in local time, e.g. one hour before
+// DST ends vs. the instant that DST ends.
+function compareLocalAsc(dateLeft, dateRight) {
+    var diff = dateLeft.getFullYear() - dateRight.getFullYear() || dateLeft.getMonth() - dateRight.getMonth() || dateLeft.getDate() - dateRight.getDate() || dateLeft.getHours() - dateRight.getHours() || dateLeft.getMinutes() - dateRight.getMinutes() || dateLeft.getSeconds() - dateRight.getSeconds() || dateLeft.getMilliseconds() - dateRight.getMilliseconds();
+    if (diff < 0) return -1;
+    else if (diff > 0) return 1; // Return 0 if diff is 0; return NaN if diff is NaN
+    else return diff;
+}
+function differenceInDays(dirtyDateLeft, dirtyDateRight) {
+    (0, _indexJsDefault2.default)(2, arguments);
+    var dateLeft = (0, _indexJsDefault.default)(dirtyDateLeft);
+    var dateRight = (0, _indexJsDefault.default)(dirtyDateRight);
+    var sign = compareLocalAsc(dateLeft, dateRight);
+    var difference = Math.abs((0, _indexJsDefault1.default)(dateLeft, dateRight));
+    dateLeft.setDate(dateLeft.getDate() - sign * difference); // Math.abs(diff in full days - diff in calendar days) === 1 if last calendar day is not full
+    // If so, result must be decreased by 1 in absolute value
+    var isLastDayNotFull = Number(compareLocalAsc(dateLeft, dateRight) === -sign);
+    var result = sign * (difference - isLastDayNotFull); // Prevent negative zero
+    return result === 0 ? 0 : result;
+}
+exports.default = differenceInDays;
+
+},{"../toDate/index.js":"fsust","../differenceInCalendarDays/index.js":"adZXy","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9Vac7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../constants/index.js");
+var _indexJs1 = require("../differenceInMilliseconds/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../_lib/roundingMethods/index.js");
+function differenceInHours(dateLeft, dateRight, options) {
+    (0, _indexJsDefault1.default)(2, arguments);
+    var diff = (0, _indexJsDefault.default)(dateLeft, dateRight) / (0, _indexJs.millisecondsInHour);
+    return (0, _indexJs3.getRoundingMethod)(options === null || options === void 0 ? void 0 : options.roundingMethod)(diff);
+}
+exports.default = differenceInHours;
+
+},{"../constants/index.js":"iOhcx","../differenceInMilliseconds/index.js":"Eb6qZ","../_lib/requiredArgs/index.js":"9wUgQ","../_lib/roundingMethods/index.js":"ilPgA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iOhcx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "daysInWeek", ()=>daysInWeek);
+parcelHelpers.export(exports, "daysInYear", ()=>daysInYear);
+parcelHelpers.export(exports, "maxTime", ()=>maxTime);
+parcelHelpers.export(exports, "millisecondsInMinute", ()=>millisecondsInMinute);
+parcelHelpers.export(exports, "millisecondsInHour", ()=>millisecondsInHour);
+parcelHelpers.export(exports, "millisecondsInSecond", ()=>millisecondsInSecond);
+parcelHelpers.export(exports, "minTime", ()=>minTime);
+parcelHelpers.export(exports, "minutesInHour", ()=>minutesInHour);
+parcelHelpers.export(exports, "monthsInQuarter", ()=>monthsInQuarter);
+parcelHelpers.export(exports, "monthsInYear", ()=>monthsInYear);
+parcelHelpers.export(exports, "quartersInYear", ()=>quartersInYear);
+parcelHelpers.export(exports, "secondsInHour", ()=>secondsInHour);
+parcelHelpers.export(exports, "secondsInMinute", ()=>secondsInMinute);
+parcelHelpers.export(exports, "secondsInDay", ()=>secondsInDay);
+parcelHelpers.export(exports, "secondsInWeek", ()=>secondsInWeek);
+parcelHelpers.export(exports, "secondsInYear", ()=>secondsInYear);
+parcelHelpers.export(exports, "secondsInMonth", ()=>secondsInMonth);
+parcelHelpers.export(exports, "secondsInQuarter", ()=>secondsInQuarter);
+var daysInWeek = 7;
+var daysInYear = 365.2425;
+var maxTime = Math.pow(10, 8) * 86400000;
+var millisecondsInMinute = 60000;
+var millisecondsInHour = 3600000;
+var millisecondsInSecond = 1000;
+var minTime = -maxTime;
+var minutesInHour = 60;
+var monthsInQuarter = 3;
+var monthsInYear = 12;
+var quartersInYear = 4;
+var secondsInHour = 3600;
+var secondsInMinute = 60;
+var secondsInDay = secondsInHour * 24;
+var secondsInWeek = secondsInDay * 7;
+var secondsInYear = secondsInDay * daysInYear;
+var secondsInMonth = secondsInYear / 12;
+var secondsInQuarter = secondsInMonth * 3;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Eb6qZ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../toDate/index.js");
@@ -1436,7 +1695,40 @@ function differenceInMilliseconds(dateLeft, dateRight) {
 }
 exports.default = differenceInMilliseconds;
 
-},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8lj6Z":[function(require,module,exports) {
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ilPgA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getRoundingMethod", ()=>getRoundingMethod);
+var roundingMap = {
+    ceil: Math.ceil,
+    round: Math.round,
+    floor: Math.floor,
+    trunc: function trunc(value) {
+        return value < 0 ? Math.ceil(value) : Math.floor(value);
+    } // Math.trunc is not supported by IE
+};
+var defaultRoundingMethod = "trunc";
+function getRoundingMethod(method) {
+    return method ? roundingMap[method] : roundingMap[defaultRoundingMethod];
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Qv17":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../constants/index.js");
+var _indexJs1 = require("../differenceInMilliseconds/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../_lib/roundingMethods/index.js");
+function differenceInMinutes(dateLeft, dateRight, options) {
+    (0, _indexJsDefault1.default)(2, arguments);
+    var diff = (0, _indexJsDefault.default)(dateLeft, dateRight) / (0, _indexJs.millisecondsInMinute);
+    return (0, _indexJs3.getRoundingMethod)(options === null || options === void 0 ? void 0 : options.roundingMethod)(diff);
+}
+exports.default = differenceInMinutes;
+
+},{"../constants/index.js":"iOhcx","../differenceInMilliseconds/index.js":"Eb6qZ","../_lib/requiredArgs/index.js":"9wUgQ","../_lib/roundingMethods/index.js":"ilPgA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8lj6Z":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../toDate/index.js");
@@ -1536,24 +1828,34 @@ function differenceInSeconds(dateLeft, dateRight, options) {
 }
 exports.default = differenceInSeconds;
 
-},{"../differenceInMilliseconds/index.js":"Eb6qZ","../_lib/requiredArgs/index.js":"9wUgQ","../_lib/roundingMethods/index.js":"ilPgA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ilPgA":[function(require,module,exports) {
+},{"../differenceInMilliseconds/index.js":"Eb6qZ","../_lib/requiredArgs/index.js":"9wUgQ","../_lib/roundingMethods/index.js":"ilPgA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2tncr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "getRoundingMethod", ()=>getRoundingMethod);
-var roundingMap = {
-    ceil: Math.ceil,
-    round: Math.round,
-    floor: Math.floor,
-    trunc: function trunc(value) {
-        return value < 0 ? Math.ceil(value) : Math.floor(value);
-    } // Math.trunc is not supported by IE
-};
-var defaultRoundingMethod = "trunc";
-function getRoundingMethod(method) {
-    return method ? roundingMap[method] : roundingMap[defaultRoundingMethod];
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../differenceInCalendarYears/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../compareAsc/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
+function differenceInYears(dirtyDateLeft, dirtyDateRight) {
+    (0, _indexJsDefault3.default)(2, arguments);
+    var dateLeft = (0, _indexJsDefault.default)(dirtyDateLeft);
+    var dateRight = (0, _indexJsDefault.default)(dirtyDateRight);
+    var sign = (0, _indexJsDefault2.default)(dateLeft, dateRight);
+    var difference = Math.abs((0, _indexJsDefault1.default)(dateLeft, dateRight)); // Set both dates to a valid leap year for accurate comparison when dealing
+    // with leap days
+    dateLeft.setFullYear(1584);
+    dateRight.setFullYear(1584); // Math.abs(diff in full years - diff in calendar years) === 1 if last calendar year is not full
+    // If so, result must be decreased by 1 in absolute value
+    var isLastYearNotFull = (0, _indexJsDefault2.default)(dateLeft, dateRight) === -sign;
+    var result = sign * (difference - Number(isLastYearNotFull)); // Prevent negative zero
+    return result === 0 ? 0 : result;
 }
+exports.default = differenceInYears;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lnm6V":[function(require,module,exports) {
+},{"../toDate/index.js":"fsust","../differenceInCalendarYears/index.js":"f4WIY","../compareAsc/index.js":"h01l4","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lnm6V":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../isValid/index.js");
@@ -2839,16 +3141,6 @@ var longFormatters = {
 };
 exports.default = longFormatters;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bc74C":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function getTimezoneOffsetInMilliseconds(date) {
-    var utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
-    utcDate.setUTCFullYear(date.getFullYear());
-    return date.getTime() - utcDate.getTime();
-}
-exports.default = getTimezoneOffsetInMilliseconds;
-
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4R0Xq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -3665,47 +3957,279 @@ function formatDistanceToNow(dirtyDate, options) {
 }
 exports.default = formatDistanceToNow;
 
-},{"../formatDistance/index.js":"lPnhm","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iOhcx":[function(require,module,exports) {
+},{"../formatDistance/index.js":"lPnhm","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gZD5H":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "daysInWeek", ()=>daysInWeek);
-parcelHelpers.export(exports, "daysInYear", ()=>daysInYear);
-parcelHelpers.export(exports, "maxTime", ()=>maxTime);
-parcelHelpers.export(exports, "millisecondsInMinute", ()=>millisecondsInMinute);
-parcelHelpers.export(exports, "millisecondsInHour", ()=>millisecondsInHour);
-parcelHelpers.export(exports, "millisecondsInSecond", ()=>millisecondsInSecond);
-parcelHelpers.export(exports, "minTime", ()=>minTime);
-parcelHelpers.export(exports, "minutesInHour", ()=>minutesInHour);
-parcelHelpers.export(exports, "monthsInQuarter", ()=>monthsInQuarter);
-parcelHelpers.export(exports, "monthsInYear", ()=>monthsInYear);
-parcelHelpers.export(exports, "quartersInYear", ()=>quartersInYear);
-parcelHelpers.export(exports, "secondsInHour", ()=>secondsInHour);
-parcelHelpers.export(exports, "secondsInMinute", ()=>secondsInMinute);
-parcelHelpers.export(exports, "secondsInDay", ()=>secondsInDay);
-parcelHelpers.export(exports, "secondsInWeek", ()=>secondsInWeek);
-parcelHelpers.export(exports, "secondsInYear", ()=>secondsInYear);
-parcelHelpers.export(exports, "secondsInMonth", ()=>secondsInMonth);
-parcelHelpers.export(exports, "secondsInQuarter", ()=>secondsInQuarter);
-var daysInWeek = 7;
-var daysInYear = 365.2425;
-var maxTime = Math.pow(10, 8) * 86400000;
-var millisecondsInMinute = 60000;
-var millisecondsInHour = 3600000;
-var millisecondsInSecond = 1000;
-var minTime = -maxTime;
-var minutesInHour = 60;
-var monthsInQuarter = 3;
-var monthsInYear = 12;
-var quartersInYear = 4;
-var secondsInHour = 3600;
-var secondsInMinute = 60;
-var secondsInDay = secondsInHour * 24;
-var secondsInWeek = secondsInDay * 7;
-var secondsInYear = secondsInDay * daysInYear;
-var secondsInMonth = secondsInYear / 12;
-var secondsInQuarter = secondsInMonth * 3;
+var _indexJs = require("../_lib/defaultOptions/index.js");
+var _indexJs1 = require("../_lib/defaultLocale/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs1);
+var defaultFormat = [
+    "years",
+    "months",
+    "weeks",
+    "days",
+    "hours",
+    "minutes",
+    "seconds"
+];
+function formatDuration(duration, options) {
+    var _ref, _options$locale, _options$format, _options$zero, _options$delimiter;
+    if (arguments.length < 1) throw new TypeError("1 argument required, but only ".concat(arguments.length, " present"));
+    var defaultOptions = (0, _indexJs.getDefaultOptions)();
+    var locale = (_ref = (_options$locale = options === null || options === void 0 ? void 0 : options.locale) !== null && _options$locale !== void 0 ? _options$locale : defaultOptions.locale) !== null && _ref !== void 0 ? _ref : (0, _indexJsDefault.default);
+    var format = (_options$format = options === null || options === void 0 ? void 0 : options.format) !== null && _options$format !== void 0 ? _options$format : defaultFormat;
+    var zero = (_options$zero = options === null || options === void 0 ? void 0 : options.zero) !== null && _options$zero !== void 0 ? _options$zero : false;
+    var delimiter = (_options$delimiter = options === null || options === void 0 ? void 0 : options.delimiter) !== null && _options$delimiter !== void 0 ? _options$delimiter : " ";
+    if (!locale.formatDistance) return "";
+    var result = format.reduce(function(acc, unit) {
+        var token = "x".concat(unit.replace(/(^.)/, function(m) {
+            return m.toUpperCase();
+        }));
+        var value = duration[unit];
+        if (typeof value === "number" && (zero || duration[unit])) return acc.concat(locale.formatDistance(token, value));
+        return acc;
+    }, []).join(delimiter);
+    return result;
+}
+exports.default = formatDuration;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
+},{"../_lib/defaultOptions/index.js":"dWs8l","../_lib/defaultLocale/index.js":"1rVeP","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5hNtu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../compareAsc/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../add/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../differenceInDays/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../differenceInHours/index.js");
+var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
+var _indexJs4 = require("../differenceInMinutes/index.js");
+var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
+var _indexJs5 = require("../differenceInMonths/index.js");
+var _indexJsDefault5 = parcelHelpers.interopDefault(_indexJs5);
+var _indexJs6 = require("../differenceInSeconds/index.js");
+var _indexJsDefault6 = parcelHelpers.interopDefault(_indexJs6);
+var _indexJs7 = require("../differenceInYears/index.js");
+var _indexJsDefault7 = parcelHelpers.interopDefault(_indexJs7);
+var _indexJs8 = require("../toDate/index.js");
+var _indexJsDefault8 = parcelHelpers.interopDefault(_indexJs8);
+var _indexJs9 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault9 = parcelHelpers.interopDefault(_indexJs9);
+function intervalToDuration(interval) {
+    (0, _indexJsDefault9.default)(1, arguments);
+    var start = (0, _indexJsDefault8.default)(interval.start);
+    var end = (0, _indexJsDefault8.default)(interval.end);
+    if (isNaN(start.getTime())) throw new RangeError("Start Date is invalid");
+    if (isNaN(end.getTime())) throw new RangeError("End Date is invalid");
+    var duration = {};
+    duration.years = Math.abs((0, _indexJsDefault7.default)(end, start));
+    var sign = (0, _indexJsDefault.default)(end, start);
+    var remainingMonths = (0, _indexJsDefault1.default)(start, {
+        years: sign * duration.years
+    });
+    duration.months = Math.abs((0, _indexJsDefault5.default)(end, remainingMonths));
+    var remainingDays = (0, _indexJsDefault1.default)(remainingMonths, {
+        months: sign * duration.months
+    });
+    duration.days = Math.abs((0, _indexJsDefault2.default)(end, remainingDays));
+    var remainingHours = (0, _indexJsDefault1.default)(remainingDays, {
+        days: sign * duration.days
+    });
+    duration.hours = Math.abs((0, _indexJsDefault3.default)(end, remainingHours));
+    var remainingMinutes = (0, _indexJsDefault1.default)(remainingHours, {
+        hours: sign * duration.hours
+    });
+    duration.minutes = Math.abs((0, _indexJsDefault4.default)(end, remainingMinutes));
+    var remainingSeconds = (0, _indexJsDefault1.default)(remainingMinutes, {
+        minutes: sign * duration.minutes
+    });
+    duration.seconds = Math.abs((0, _indexJsDefault6.default)(end, remainingSeconds));
+    return duration;
+}
+exports.default = intervalToDuration;
+
+},{"../compareAsc/index.js":"h01l4","../add/index.js":"h7zb2","../differenceInDays/index.js":"1mpAo","../differenceInHours/index.js":"9Vac7","../differenceInMinutes/index.js":"4Qv17","../differenceInMonths/index.js":"8lj6Z","../differenceInSeconds/index.js":"5uZgU","../differenceInYears/index.js":"2tncr","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3UpeK":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../constants/index.js");
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/toInteger/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs2);
+function parseISO(argument, options) {
+    var _options$additionalDi;
+    (0, _indexJsDefault.default)(1, arguments);
+    var additionalDigits = (0, _indexJsDefault1.default)((_options$additionalDi = options === null || options === void 0 ? void 0 : options.additionalDigits) !== null && _options$additionalDi !== void 0 ? _options$additionalDi : 2);
+    if (additionalDigits !== 2 && additionalDigits !== 1 && additionalDigits !== 0) throw new RangeError("additionalDigits must be 0, 1 or 2");
+    if (!(typeof argument === "string" || Object.prototype.toString.call(argument) === "[object String]")) return new Date(NaN);
+    var dateStrings = splitDateString(argument);
+    var date;
+    if (dateStrings.date) {
+        var parseYearResult = parseYear(dateStrings.date, additionalDigits);
+        date = parseDate(parseYearResult.restDateString, parseYearResult.year);
+    }
+    if (!date || isNaN(date.getTime())) return new Date(NaN);
+    var timestamp = date.getTime();
+    var time = 0;
+    var offset;
+    if (dateStrings.time) {
+        time = parseTime(dateStrings.time);
+        if (isNaN(time)) return new Date(NaN);
+    }
+    if (dateStrings.timezone) {
+        offset = parseTimezone(dateStrings.timezone);
+        if (isNaN(offset)) return new Date(NaN);
+    } else {
+        var dirtyDate = new Date(timestamp + time); // js parsed string assuming it's in UTC timezone
+        // but we need it to be parsed in our timezone
+        // so we use utc values to build date in our timezone.
+        // Year values from 0 to 99 map to the years 1900 to 1999
+        // so set year explicitly with setFullYear.
+        var result = new Date(0);
+        result.setFullYear(dirtyDate.getUTCFullYear(), dirtyDate.getUTCMonth(), dirtyDate.getUTCDate());
+        result.setHours(dirtyDate.getUTCHours(), dirtyDate.getUTCMinutes(), dirtyDate.getUTCSeconds(), dirtyDate.getUTCMilliseconds());
+        return result;
+    }
+    return new Date(timestamp + time + offset);
+}
+exports.default = parseISO;
+var patterns = {
+    dateTimeDelimiter: /[T ]/,
+    timeZoneDelimiter: /[Z ]/i,
+    timezone: /([Z+-].*)$/
+};
+var dateRegex = /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
+var timeRegex = /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
+var timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
+function splitDateString(dateString) {
+    var dateStrings = {};
+    var array = dateString.split(patterns.dateTimeDelimiter);
+    var timeString; // The regex match should only return at maximum two array elements.
+    // [date], [time], or [date, time].
+    if (array.length > 2) return dateStrings;
+    if (/:/.test(array[0])) timeString = array[0];
+    else {
+        dateStrings.date = array[0];
+        timeString = array[1];
+        if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
+            dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
+            timeString = dateString.substr(dateStrings.date.length, dateString.length);
+        }
+    }
+    if (timeString) {
+        var token = patterns.timezone.exec(timeString);
+        if (token) {
+            dateStrings.time = timeString.replace(token[1], "");
+            dateStrings.timezone = token[1];
+        } else dateStrings.time = timeString;
+    }
+    return dateStrings;
+}
+function parseYear(dateString, additionalDigits) {
+    var regex = new RegExp("^(?:(\\d{4}|[+-]\\d{" + (4 + additionalDigits) + "})|(\\d{2}|[+-]\\d{" + (2 + additionalDigits) + "})$)");
+    var captures = dateString.match(regex); // Invalid ISO-formatted year
+    if (!captures) return {
+        year: NaN,
+        restDateString: ""
+    };
+    var year = captures[1] ? parseInt(captures[1]) : null;
+    var century = captures[2] ? parseInt(captures[2]) : null; // either year or century is null, not both
+    return {
+        year: century === null ? year : century * 100,
+        restDateString: dateString.slice((captures[1] || captures[2]).length)
+    };
+}
+function parseDate(dateString, year) {
+    // Invalid ISO-formatted year
+    if (year === null) return new Date(NaN);
+    var captures = dateString.match(dateRegex); // Invalid ISO-formatted string
+    if (!captures) return new Date(NaN);
+    var isWeekDate = !!captures[4];
+    var dayOfYear = parseDateUnit(captures[1]);
+    var month = parseDateUnit(captures[2]) - 1;
+    var day = parseDateUnit(captures[3]);
+    var week = parseDateUnit(captures[4]);
+    var dayOfWeek = parseDateUnit(captures[5]) - 1;
+    if (isWeekDate) {
+        if (!validateWeekDate(year, week, dayOfWeek)) return new Date(NaN);
+        return dayOfISOWeekYear(year, week, dayOfWeek);
+    } else {
+        var date = new Date(0);
+        if (!validateDate(year, month, day) || !validateDayOfYearDate(year, dayOfYear)) return new Date(NaN);
+        date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
+        return date;
+    }
+}
+function parseDateUnit(value) {
+    return value ? parseInt(value) : 1;
+}
+function parseTime(timeString) {
+    var captures = timeString.match(timeRegex);
+    if (!captures) return NaN; // Invalid ISO-formatted time
+    var hours = parseTimeUnit(captures[1]);
+    var minutes = parseTimeUnit(captures[2]);
+    var seconds = parseTimeUnit(captures[3]);
+    if (!validateTime(hours, minutes, seconds)) return NaN;
+    return hours * (0, _indexJs.millisecondsInHour) + minutes * (0, _indexJs.millisecondsInMinute) + seconds * 1000;
+}
+function parseTimeUnit(value) {
+    return value && parseFloat(value.replace(",", ".")) || 0;
+}
+function parseTimezone(timezoneString) {
+    if (timezoneString === "Z") return 0;
+    var captures = timezoneString.match(timezoneRegex);
+    if (!captures) return 0;
+    var sign = captures[1] === "+" ? -1 : 1;
+    var hours = parseInt(captures[2]);
+    var minutes = captures[3] && parseInt(captures[3]) || 0;
+    if (!validateTimezone(hours, minutes)) return NaN;
+    return sign * (hours * (0, _indexJs.millisecondsInHour) + minutes * (0, _indexJs.millisecondsInMinute));
+}
+function dayOfISOWeekYear(isoWeekYear, week, day) {
+    var date = new Date(0);
+    date.setUTCFullYear(isoWeekYear, 0, 4);
+    var fourthOfJanuaryDay = date.getUTCDay() || 7;
+    var diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
+    date.setUTCDate(date.getUTCDate() + diff);
+    return date;
+} // Validation functions
+// February is null to handle the leap year (using ||)
+var daysInMonths = [
+    31,
+    null,
+    31,
+    30,
+    31,
+    30,
+    31,
+    31,
+    30,
+    31,
+    30,
+    31
+];
+function isLeapYearIndex(year) {
+    return year % 400 === 0 || year % 4 === 0 && year % 100 !== 0;
+}
+function validateDate(year, month, date) {
+    return month >= 0 && month <= 11 && date >= 1 && date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28));
+}
+function validateDayOfYearDate(year, dayOfYear) {
+    return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
+}
+function validateWeekDate(_year, week, day) {
+    return week >= 1 && week <= 53 && day >= 0 && day <= 6;
+}
+function validateTime(hours, minutes, seconds) {
+    if (hours === 24) return minutes === 0 && seconds === 0;
+    return seconds >= 0 && seconds < 60 && minutes >= 0 && minutes < 60 && hours >= 0 && hours < 25;
+}
+function validateTimezone(_hours, minutes) {
+    return minutes >= 0 && minutes <= 59;
+}
+
+},{"../constants/index.js":"iOhcx","../_lib/requiredArgs/index.js":"9wUgQ","../_lib/toInteger/index.js":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
 (function(global, factory) {
     module.exports = factory();
 })(this, function() {
@@ -3794,6 +4318,988 @@ var secondsInQuarter = secondsInMonth * 3;
     });
     /* eslint-enable no-var */ return api;
 });
+
+},{}],"59L3s":[function(require,module,exports) {
+"use strict";
+var __assign = this && this.__assign || function() {
+    __assign = Object.assign || function(t) {
+        for(var s, i = 1, n = arguments.length; i < n; i++){
+            s = arguments[i];
+            for(var p in s)if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var __createBinding = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, {
+        enumerable: true,
+        get: function() {
+            return m[k];
+        }
+    });
+} : function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+});
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function(o, v) {
+    Object.defineProperty(o, "default", {
+        enumerable: true,
+        value: v
+    });
+} : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = this && this.__importStar || function(mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) {
+        for(var k in mod)if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    }
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+/*
+ * Module dependencies
+ */ var ElementType = __importStar(require("domelementtype"));
+var entities_1 = require("entities");
+/**
+ * Mixed-case SVG and MathML tags & attributes
+ * recognized by the HTML parser.
+ *
+ * @see https://html.spec.whatwg.org/multipage/parsing.html#parsing-main-inforeign
+ */ var foreignNames_1 = require("./foreignNames");
+var unencodedElements = new Set([
+    "style",
+    "script",
+    "xmp",
+    "iframe",
+    "noembed",
+    "noframes",
+    "plaintext",
+    "noscript", 
+]);
+/**
+ * Format attributes
+ */ function formatAttributes(attributes, opts) {
+    if (!attributes) return;
+    return Object.keys(attributes).map(function(key) {
+        var _a, _b;
+        var value = (_a = attributes[key]) !== null && _a !== void 0 ? _a : "";
+        if (opts.xmlMode === "foreign") /* Fix up mixed-case attribute names */ key = (_b = foreignNames_1.attributeNames.get(key)) !== null && _b !== void 0 ? _b : key;
+        if (!opts.emptyAttrs && !opts.xmlMode && value === "") return key;
+        return key + '="' + (opts.decodeEntities !== false ? entities_1.encodeXML(value) : value.replace(/"/g, "&quot;")) + '"';
+    }).join(" ");
+}
+/**
+ * Self-enclosing tags
+ */ var singleTag = new Set([
+    "area",
+    "base",
+    "basefont",
+    "br",
+    "col",
+    "command",
+    "embed",
+    "frame",
+    "hr",
+    "img",
+    "input",
+    "isindex",
+    "keygen",
+    "link",
+    "meta",
+    "param",
+    "source",
+    "track",
+    "wbr", 
+]);
+/**
+ * Renders a DOM node or an array of DOM nodes to a string.
+ *
+ * Can be thought of as the equivalent of the `outerHTML` of the passed node(s).
+ *
+ * @param node Node to be rendered.
+ * @param options Changes serialization behavior
+ */ function render(node, options) {
+    if (options === void 0) options = {};
+    var nodes = "length" in node ? node : [
+        node
+    ];
+    var output = "";
+    for(var i = 0; i < nodes.length; i++)output += renderNode(nodes[i], options);
+    return output;
+}
+exports.default = render;
+function renderNode(node, options) {
+    switch(node.type){
+        case ElementType.Root:
+            return render(node.children, options);
+        case ElementType.Directive:
+        case ElementType.Doctype:
+            return renderDirective(node);
+        case ElementType.Comment:
+            return renderComment(node);
+        case ElementType.CDATA:
+            return renderCdata(node);
+        case ElementType.Script:
+        case ElementType.Style:
+        case ElementType.Tag:
+            return renderTag(node, options);
+        case ElementType.Text:
+            return renderText(node, options);
+    }
+}
+var foreignModeIntegrationPoints = new Set([
+    "mi",
+    "mo",
+    "mn",
+    "ms",
+    "mtext",
+    "annotation-xml",
+    "foreignObject",
+    "desc",
+    "title", 
+]);
+var foreignElements = new Set([
+    "svg",
+    "math"
+]);
+function renderTag(elem, opts) {
+    var _a;
+    // Handle SVG / MathML in HTML
+    if (opts.xmlMode === "foreign") {
+        /* Fix up mixed-case element names */ elem.name = (_a = foreignNames_1.elementNames.get(elem.name)) !== null && _a !== void 0 ? _a : elem.name;
+        /* Exit foreign mode at integration points */ if (elem.parent && foreignModeIntegrationPoints.has(elem.parent.name)) opts = __assign(__assign({}, opts), {
+            xmlMode: false
+        });
+    }
+    if (!opts.xmlMode && foreignElements.has(elem.name)) opts = __assign(__assign({}, opts), {
+        xmlMode: "foreign"
+    });
+    var tag = "<" + elem.name;
+    var attribs = formatAttributes(elem.attribs, opts);
+    if (attribs) tag += " " + attribs;
+    if (elem.children.length === 0 && (opts.xmlMode ? opts.selfClosingTags !== false : opts.selfClosingTags && singleTag.has(elem.name))) {
+        if (!opts.xmlMode) tag += " ";
+        tag += "/>";
+    } else {
+        tag += ">";
+        if (elem.children.length > 0) tag += render(elem.children, opts);
+        if (opts.xmlMode || !singleTag.has(elem.name)) tag += "</" + elem.name + ">";
+    }
+    return tag;
+}
+function renderDirective(elem) {
+    return "<" + elem.data + ">";
+}
+function renderText(elem, opts) {
+    var data = elem.data || "";
+    // If entities weren't decoded, no need to encode them back
+    if (opts.decodeEntities !== false && !(!opts.xmlMode && elem.parent && unencodedElements.has(elem.parent.name))) data = entities_1.encodeXML(data);
+    return data;
+}
+function renderCdata(elem) {
+    return "<![CDATA[" + elem.children[0].data + "]]>";
+}
+function renderComment(elem) {
+    return "<!--" + elem.data + "-->";
+}
+
+},{"domelementtype":"isPKn","entities":"jp4Mg","./foreignNames":"kUwEA"}],"isPKn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "ElementType", ()=>ElementType);
+/**
+ * Tests whether an element is a tag or not.
+ *
+ * @param elem Element to test
+ */ parcelHelpers.export(exports, "isTag", ()=>isTag);
+parcelHelpers.export(exports, "Root", ()=>Root);
+parcelHelpers.export(exports, "Text", ()=>Text);
+parcelHelpers.export(exports, "Directive", ()=>Directive);
+parcelHelpers.export(exports, "Comment", ()=>Comment);
+parcelHelpers.export(exports, "Script", ()=>Script);
+parcelHelpers.export(exports, "Style", ()=>Style);
+parcelHelpers.export(exports, "Tag", ()=>Tag);
+parcelHelpers.export(exports, "CDATA", ()=>CDATA);
+parcelHelpers.export(exports, "Doctype", ()=>Doctype);
+var ElementType;
+(function(ElementType) {
+    /** Type for the root element of a document */ ElementType["Root"] = "root";
+    /** Type for Text */ ElementType["Text"] = "text";
+    /** Type for <? ... ?> */ ElementType["Directive"] = "directive";
+    /** Type for <!-- ... --> */ ElementType["Comment"] = "comment";
+    /** Type for <script> tags */ ElementType["Script"] = "script";
+    /** Type for <style> tags */ ElementType["Style"] = "style";
+    /** Type for Any tag */ ElementType["Tag"] = "tag";
+    /** Type for <![CDATA[ ... ]]> */ ElementType["CDATA"] = "cdata";
+    /** Type for <!doctype ...> */ ElementType["Doctype"] = "doctype";
+})(ElementType || (ElementType = {}));
+function isTag(elem) {
+    return elem.type === ElementType.Tag || elem.type === ElementType.Script || elem.type === ElementType.Style;
+}
+const Root = ElementType.Root;
+const Text = ElementType.Text;
+const Directive = ElementType.Directive;
+const Comment = ElementType.Comment;
+const Script = ElementType.Script;
+const Style = ElementType.Style;
+const Tag = ElementType.Tag;
+const CDATA = ElementType.CDATA;
+const Doctype = ElementType.Doctype;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jp4Mg":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.decodeXMLStrict = exports.decodeHTML5Strict = exports.decodeHTML4Strict = exports.decodeHTML5 = exports.decodeHTML4 = exports.decodeHTMLStrict = exports.decodeHTML = exports.decodeXML = exports.encodeHTML5 = exports.encodeHTML4 = exports.escapeUTF8 = exports.escape = exports.encodeNonAsciiHTML = exports.encodeHTML = exports.encodeXML = exports.encode = exports.decodeStrict = exports.decode = void 0;
+var decode_1 = require("./decode");
+var encode_1 = require("./encode");
+/**
+ * Decodes a string with entities.
+ *
+ * @param data String to decode.
+ * @param level Optional level to decode at. 0 = XML, 1 = HTML. Default is 0.
+ * @deprecated Use `decodeXML` or `decodeHTML` directly.
+ */ function decode(data, level) {
+    return (!level || level <= 0 ? decode_1.decodeXML : decode_1.decodeHTML)(data);
+}
+exports.decode = decode;
+/**
+ * Decodes a string with entities. Does not allow missing trailing semicolons for entities.
+ *
+ * @param data String to decode.
+ * @param level Optional level to decode at. 0 = XML, 1 = HTML. Default is 0.
+ * @deprecated Use `decodeHTMLStrict` or `decodeXML` directly.
+ */ function decodeStrict(data, level) {
+    return (!level || level <= 0 ? decode_1.decodeXML : decode_1.decodeHTMLStrict)(data);
+}
+exports.decodeStrict = decodeStrict;
+/**
+ * Encodes a string with entities.
+ *
+ * @param data String to encode.
+ * @param level Optional level to encode at. 0 = XML, 1 = HTML. Default is 0.
+ * @deprecated Use `encodeHTML`, `encodeXML` or `encodeNonAsciiHTML` directly.
+ */ function encode(data, level) {
+    return (!level || level <= 0 ? encode_1.encodeXML : encode_1.encodeHTML)(data);
+}
+exports.encode = encode;
+var encode_2 = require("./encode");
+Object.defineProperty(exports, "encodeXML", {
+    enumerable: true,
+    get: function() {
+        return encode_2.encodeXML;
+    }
+});
+Object.defineProperty(exports, "encodeHTML", {
+    enumerable: true,
+    get: function() {
+        return encode_2.encodeHTML;
+    }
+});
+Object.defineProperty(exports, "encodeNonAsciiHTML", {
+    enumerable: true,
+    get: function() {
+        return encode_2.encodeNonAsciiHTML;
+    }
+});
+Object.defineProperty(exports, "escape", {
+    enumerable: true,
+    get: function() {
+        return encode_2.escape;
+    }
+});
+Object.defineProperty(exports, "escapeUTF8", {
+    enumerable: true,
+    get: function() {
+        return encode_2.escapeUTF8;
+    }
+});
+// Legacy aliases (deprecated)
+Object.defineProperty(exports, "encodeHTML4", {
+    enumerable: true,
+    get: function() {
+        return encode_2.encodeHTML;
+    }
+});
+Object.defineProperty(exports, "encodeHTML5", {
+    enumerable: true,
+    get: function() {
+        return encode_2.encodeHTML;
+    }
+});
+var decode_2 = require("./decode");
+Object.defineProperty(exports, "decodeXML", {
+    enumerable: true,
+    get: function() {
+        return decode_2.decodeXML;
+    }
+});
+Object.defineProperty(exports, "decodeHTML", {
+    enumerable: true,
+    get: function() {
+        return decode_2.decodeHTML;
+    }
+});
+Object.defineProperty(exports, "decodeHTMLStrict", {
+    enumerable: true,
+    get: function() {
+        return decode_2.decodeHTMLStrict;
+    }
+});
+// Legacy aliases (deprecated)
+Object.defineProperty(exports, "decodeHTML4", {
+    enumerable: true,
+    get: function() {
+        return decode_2.decodeHTML;
+    }
+});
+Object.defineProperty(exports, "decodeHTML5", {
+    enumerable: true,
+    get: function() {
+        return decode_2.decodeHTML;
+    }
+});
+Object.defineProperty(exports, "decodeHTML4Strict", {
+    enumerable: true,
+    get: function() {
+        return decode_2.decodeHTMLStrict;
+    }
+});
+Object.defineProperty(exports, "decodeHTML5Strict", {
+    enumerable: true,
+    get: function() {
+        return decode_2.decodeHTMLStrict;
+    }
+});
+Object.defineProperty(exports, "decodeXMLStrict", {
+    enumerable: true,
+    get: function() {
+        return decode_2.decodeXML;
+    }
+});
+
+},{"./decode":"kWIFC","./encode":"6QLS8"}],"kWIFC":[function(require,module,exports) {
+"use strict";
+var __importDefault = this && this.__importDefault || function(mod) {
+    return mod && mod.__esModule ? mod : {
+        "default": mod
+    };
+};
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.decodeHTML = exports.decodeHTMLStrict = exports.decodeXML = void 0;
+var entities_json_1 = __importDefault(require("./maps/entities.json"));
+var legacy_json_1 = __importDefault(require("./maps/legacy.json"));
+var xml_json_1 = __importDefault(require("./maps/xml.json"));
+var decode_codepoint_1 = __importDefault(require("./decode_codepoint"));
+var strictEntityRe = /&(?:[a-zA-Z0-9]+|#[xX][\da-fA-F]+|#\d+);/g;
+exports.decodeXML = getStrictDecoder(xml_json_1.default);
+exports.decodeHTMLStrict = getStrictDecoder(entities_json_1.default);
+function getStrictDecoder(map) {
+    var replace = getReplacer(map);
+    return function(str) {
+        return String(str).replace(strictEntityRe, replace);
+    };
+}
+var sorter = function(a, b) {
+    return a < b ? 1 : -1;
+};
+exports.decodeHTML = function() {
+    var legacy = Object.keys(legacy_json_1.default).sort(sorter);
+    var keys = Object.keys(entities_json_1.default).sort(sorter);
+    for(var i = 0, j = 0; i < keys.length; i++)if (legacy[j] === keys[i]) {
+        keys[i] += ";?";
+        j++;
+    } else keys[i] += ";";
+    var re = new RegExp("&(?:" + keys.join("|") + "|#[xX][\\da-fA-F]+;?|#\\d+;?)", "g");
+    var replace = getReplacer(entities_json_1.default);
+    function replacer(str) {
+        if (str.substr(-1) !== ";") str += ";";
+        return replace(str);
+    }
+    // TODO consider creating a merged map
+    return function(str) {
+        return String(str).replace(re, replacer);
+    };
+}();
+function getReplacer(map) {
+    return function replace(str) {
+        if (str.charAt(1) === "#") {
+            var secondChar = str.charAt(2);
+            if (secondChar === "X" || secondChar === "x") return decode_codepoint_1.default(parseInt(str.substr(3), 16));
+            return decode_codepoint_1.default(parseInt(str.substr(2), 10));
+        }
+        // eslint-disable-next-line @typescript-eslint/prefer-nullish-coalescing
+        return map[str.slice(1, -1)] || str;
+    };
+}
+
+},{"./maps/entities.json":"44PRp","./maps/legacy.json":"BQogi","./maps/xml.json":"6rBuv","./decode_codepoint":"csv8t"}],"44PRp":[function(require,module,exports) {
+module.exports = JSON.parse('{"Aacute":"\xc1","aacute":"\xe1","Abreve":"Ă","abreve":"ă","ac":"∾","acd":"∿","acE":"∾̳","Acirc":"\xc2","acirc":"\xe2","acute":"\xb4","Acy":"А","acy":"а","AElig":"\xc6","aelig":"\xe6","af":"⁡","Afr":"\uD835\uDD04","afr":"\uD835\uDD1E","Agrave":"\xc0","agrave":"\xe0","alefsym":"ℵ","aleph":"ℵ","Alpha":"Α","alpha":"α","Amacr":"Ā","amacr":"ā","amalg":"⨿","amp":"&","AMP":"&","andand":"⩕","And":"⩓","and":"∧","andd":"⩜","andslope":"⩘","andv":"⩚","ang":"∠","ange":"⦤","angle":"∠","angmsdaa":"⦨","angmsdab":"⦩","angmsdac":"⦪","angmsdad":"⦫","angmsdae":"⦬","angmsdaf":"⦭","angmsdag":"⦮","angmsdah":"⦯","angmsd":"∡","angrt":"∟","angrtvb":"⊾","angrtvbd":"⦝","angsph":"∢","angst":"\xc5","angzarr":"⍼","Aogon":"Ą","aogon":"ą","Aopf":"\uD835\uDD38","aopf":"\uD835\uDD52","apacir":"⩯","ap":"≈","apE":"⩰","ape":"≊","apid":"≋","apos":"\'","ApplyFunction":"⁡","approx":"≈","approxeq":"≊","Aring":"\xc5","aring":"\xe5","Ascr":"\uD835\uDC9C","ascr":"\uD835\uDCB6","Assign":"≔","ast":"*","asymp":"≈","asympeq":"≍","Atilde":"\xc3","atilde":"\xe3","Auml":"\xc4","auml":"\xe4","awconint":"∳","awint":"⨑","backcong":"≌","backepsilon":"϶","backprime":"‵","backsim":"∽","backsimeq":"⋍","Backslash":"∖","Barv":"⫧","barvee":"⊽","barwed":"⌅","Barwed":"⌆","barwedge":"⌅","bbrk":"⎵","bbrktbrk":"⎶","bcong":"≌","Bcy":"Б","bcy":"б","bdquo":"„","becaus":"∵","because":"∵","Because":"∵","bemptyv":"⦰","bepsi":"϶","bernou":"ℬ","Bernoullis":"ℬ","Beta":"Β","beta":"β","beth":"ℶ","between":"≬","Bfr":"\uD835\uDD05","bfr":"\uD835\uDD1F","bigcap":"⋂","bigcirc":"◯","bigcup":"⋃","bigodot":"⨀","bigoplus":"⨁","bigotimes":"⨂","bigsqcup":"⨆","bigstar":"★","bigtriangledown":"▽","bigtriangleup":"△","biguplus":"⨄","bigvee":"⋁","bigwedge":"⋀","bkarow":"⤍","blacklozenge":"⧫","blacksquare":"▪","blacktriangle":"▴","blacktriangledown":"▾","blacktriangleleft":"◂","blacktriangleright":"▸","blank":"␣","blk12":"▒","blk14":"░","blk34":"▓","block":"█","bne":"=⃥","bnequiv":"≡⃥","bNot":"⫭","bnot":"⌐","Bopf":"\uD835\uDD39","bopf":"\uD835\uDD53","bot":"⊥","bottom":"⊥","bowtie":"⋈","boxbox":"⧉","boxdl":"┐","boxdL":"╕","boxDl":"╖","boxDL":"╗","boxdr":"┌","boxdR":"╒","boxDr":"╓","boxDR":"╔","boxh":"─","boxH":"═","boxhd":"┬","boxHd":"╤","boxhD":"╥","boxHD":"╦","boxhu":"┴","boxHu":"╧","boxhU":"╨","boxHU":"╩","boxminus":"⊟","boxplus":"⊞","boxtimes":"⊠","boxul":"┘","boxuL":"╛","boxUl":"╜","boxUL":"╝","boxur":"└","boxuR":"╘","boxUr":"╙","boxUR":"╚","boxv":"│","boxV":"║","boxvh":"┼","boxvH":"╪","boxVh":"╫","boxVH":"╬","boxvl":"┤","boxvL":"╡","boxVl":"╢","boxVL":"╣","boxvr":"├","boxvR":"╞","boxVr":"╟","boxVR":"╠","bprime":"‵","breve":"˘","Breve":"˘","brvbar":"\xa6","bscr":"\uD835\uDCB7","Bscr":"ℬ","bsemi":"⁏","bsim":"∽","bsime":"⋍","bsolb":"⧅","bsol":"\\\\","bsolhsub":"⟈","bull":"•","bullet":"•","bump":"≎","bumpE":"⪮","bumpe":"≏","Bumpeq":"≎","bumpeq":"≏","Cacute":"Ć","cacute":"ć","capand":"⩄","capbrcup":"⩉","capcap":"⩋","cap":"∩","Cap":"⋒","capcup":"⩇","capdot":"⩀","CapitalDifferentialD":"ⅅ","caps":"∩︀","caret":"⁁","caron":"ˇ","Cayleys":"ℭ","ccaps":"⩍","Ccaron":"Č","ccaron":"č","Ccedil":"\xc7","ccedil":"\xe7","Ccirc":"Ĉ","ccirc":"ĉ","Cconint":"∰","ccups":"⩌","ccupssm":"⩐","Cdot":"Ċ","cdot":"ċ","cedil":"\xb8","Cedilla":"\xb8","cemptyv":"⦲","cent":"\xa2","centerdot":"\xb7","CenterDot":"\xb7","cfr":"\uD835\uDD20","Cfr":"ℭ","CHcy":"Ч","chcy":"ч","check":"✓","checkmark":"✓","Chi":"Χ","chi":"χ","circ":"ˆ","circeq":"≗","circlearrowleft":"↺","circlearrowright":"↻","circledast":"⊛","circledcirc":"⊚","circleddash":"⊝","CircleDot":"⊙","circledR":"\xae","circledS":"Ⓢ","CircleMinus":"⊖","CirclePlus":"⊕","CircleTimes":"⊗","cir":"○","cirE":"⧃","cire":"≗","cirfnint":"⨐","cirmid":"⫯","cirscir":"⧂","ClockwiseContourIntegral":"∲","CloseCurlyDoubleQuote":"”","CloseCurlyQuote":"’","clubs":"♣","clubsuit":"♣","colon":":","Colon":"∷","Colone":"⩴","colone":"≔","coloneq":"≔","comma":",","commat":"@","comp":"∁","compfn":"∘","complement":"∁","complexes":"ℂ","cong":"≅","congdot":"⩭","Congruent":"≡","conint":"∮","Conint":"∯","ContourIntegral":"∮","copf":"\uD835\uDD54","Copf":"ℂ","coprod":"∐","Coproduct":"∐","copy":"\xa9","COPY":"\xa9","copysr":"℗","CounterClockwiseContourIntegral":"∳","crarr":"↵","cross":"✗","Cross":"⨯","Cscr":"\uD835\uDC9E","cscr":"\uD835\uDCB8","csub":"⫏","csube":"⫑","csup":"⫐","csupe":"⫒","ctdot":"⋯","cudarrl":"⤸","cudarrr":"⤵","cuepr":"⋞","cuesc":"⋟","cularr":"↶","cularrp":"⤽","cupbrcap":"⩈","cupcap":"⩆","CupCap":"≍","cup":"∪","Cup":"⋓","cupcup":"⩊","cupdot":"⊍","cupor":"⩅","cups":"∪︀","curarr":"↷","curarrm":"⤼","curlyeqprec":"⋞","curlyeqsucc":"⋟","curlyvee":"⋎","curlywedge":"⋏","curren":"\xa4","curvearrowleft":"↶","curvearrowright":"↷","cuvee":"⋎","cuwed":"⋏","cwconint":"∲","cwint":"∱","cylcty":"⌭","dagger":"†","Dagger":"‡","daleth":"ℸ","darr":"↓","Darr":"↡","dArr":"⇓","dash":"‐","Dashv":"⫤","dashv":"⊣","dbkarow":"⤏","dblac":"˝","Dcaron":"Ď","dcaron":"ď","Dcy":"Д","dcy":"д","ddagger":"‡","ddarr":"⇊","DD":"ⅅ","dd":"ⅆ","DDotrahd":"⤑","ddotseq":"⩷","deg":"\xb0","Del":"∇","Delta":"Δ","delta":"δ","demptyv":"⦱","dfisht":"⥿","Dfr":"\uD835\uDD07","dfr":"\uD835\uDD21","dHar":"⥥","dharl":"⇃","dharr":"⇂","DiacriticalAcute":"\xb4","DiacriticalDot":"˙","DiacriticalDoubleAcute":"˝","DiacriticalGrave":"`","DiacriticalTilde":"˜","diam":"⋄","diamond":"⋄","Diamond":"⋄","diamondsuit":"♦","diams":"♦","die":"\xa8","DifferentialD":"ⅆ","digamma":"ϝ","disin":"⋲","div":"\xf7","divide":"\xf7","divideontimes":"⋇","divonx":"⋇","DJcy":"Ђ","djcy":"ђ","dlcorn":"⌞","dlcrop":"⌍","dollar":"$","Dopf":"\uD835\uDD3B","dopf":"\uD835\uDD55","Dot":"\xa8","dot":"˙","DotDot":"⃜","doteq":"≐","doteqdot":"≑","DotEqual":"≐","dotminus":"∸","dotplus":"∔","dotsquare":"⊡","doublebarwedge":"⌆","DoubleContourIntegral":"∯","DoubleDot":"\xa8","DoubleDownArrow":"⇓","DoubleLeftArrow":"⇐","DoubleLeftRightArrow":"⇔","DoubleLeftTee":"⫤","DoubleLongLeftArrow":"⟸","DoubleLongLeftRightArrow":"⟺","DoubleLongRightArrow":"⟹","DoubleRightArrow":"⇒","DoubleRightTee":"⊨","DoubleUpArrow":"⇑","DoubleUpDownArrow":"⇕","DoubleVerticalBar":"∥","DownArrowBar":"⤓","downarrow":"↓","DownArrow":"↓","Downarrow":"⇓","DownArrowUpArrow":"⇵","DownBreve":"̑","downdownarrows":"⇊","downharpoonleft":"⇃","downharpoonright":"⇂","DownLeftRightVector":"⥐","DownLeftTeeVector":"⥞","DownLeftVectorBar":"⥖","DownLeftVector":"↽","DownRightTeeVector":"⥟","DownRightVectorBar":"⥗","DownRightVector":"⇁","DownTeeArrow":"↧","DownTee":"⊤","drbkarow":"⤐","drcorn":"⌟","drcrop":"⌌","Dscr":"\uD835\uDC9F","dscr":"\uD835\uDCB9","DScy":"Ѕ","dscy":"ѕ","dsol":"⧶","Dstrok":"Đ","dstrok":"đ","dtdot":"⋱","dtri":"▿","dtrif":"▾","duarr":"⇵","duhar":"⥯","dwangle":"⦦","DZcy":"Џ","dzcy":"џ","dzigrarr":"⟿","Eacute":"\xc9","eacute":"\xe9","easter":"⩮","Ecaron":"Ě","ecaron":"ě","Ecirc":"\xca","ecirc":"\xea","ecir":"≖","ecolon":"≕","Ecy":"Э","ecy":"э","eDDot":"⩷","Edot":"Ė","edot":"ė","eDot":"≑","ee":"ⅇ","efDot":"≒","Efr":"\uD835\uDD08","efr":"\uD835\uDD22","eg":"⪚","Egrave":"\xc8","egrave":"\xe8","egs":"⪖","egsdot":"⪘","el":"⪙","Element":"∈","elinters":"⏧","ell":"ℓ","els":"⪕","elsdot":"⪗","Emacr":"Ē","emacr":"ē","empty":"∅","emptyset":"∅","EmptySmallSquare":"◻","emptyv":"∅","EmptyVerySmallSquare":"▫","emsp13":" ","emsp14":" ","emsp":" ","ENG":"Ŋ","eng":"ŋ","ensp":" ","Eogon":"Ę","eogon":"ę","Eopf":"\uD835\uDD3C","eopf":"\uD835\uDD56","epar":"⋕","eparsl":"⧣","eplus":"⩱","epsi":"ε","Epsilon":"Ε","epsilon":"ε","epsiv":"ϵ","eqcirc":"≖","eqcolon":"≕","eqsim":"≂","eqslantgtr":"⪖","eqslantless":"⪕","Equal":"⩵","equals":"=","EqualTilde":"≂","equest":"≟","Equilibrium":"⇌","equiv":"≡","equivDD":"⩸","eqvparsl":"⧥","erarr":"⥱","erDot":"≓","escr":"ℯ","Escr":"ℰ","esdot":"≐","Esim":"⩳","esim":"≂","Eta":"Η","eta":"η","ETH":"\xd0","eth":"\xf0","Euml":"\xcb","euml":"\xeb","euro":"€","excl":"!","exist":"∃","Exists":"∃","expectation":"ℰ","exponentiale":"ⅇ","ExponentialE":"ⅇ","fallingdotseq":"≒","Fcy":"Ф","fcy":"ф","female":"♀","ffilig":"ﬃ","fflig":"ﬀ","ffllig":"ﬄ","Ffr":"\uD835\uDD09","ffr":"\uD835\uDD23","filig":"ﬁ","FilledSmallSquare":"◼","FilledVerySmallSquare":"▪","fjlig":"fj","flat":"♭","fllig":"ﬂ","fltns":"▱","fnof":"ƒ","Fopf":"\uD835\uDD3D","fopf":"\uD835\uDD57","forall":"∀","ForAll":"∀","fork":"⋔","forkv":"⫙","Fouriertrf":"ℱ","fpartint":"⨍","frac12":"\xbd","frac13":"⅓","frac14":"\xbc","frac15":"⅕","frac16":"⅙","frac18":"⅛","frac23":"⅔","frac25":"⅖","frac34":"\xbe","frac35":"⅗","frac38":"⅜","frac45":"⅘","frac56":"⅚","frac58":"⅝","frac78":"⅞","frasl":"⁄","frown":"⌢","fscr":"\uD835\uDCBB","Fscr":"ℱ","gacute":"ǵ","Gamma":"Γ","gamma":"γ","Gammad":"Ϝ","gammad":"ϝ","gap":"⪆","Gbreve":"Ğ","gbreve":"ğ","Gcedil":"Ģ","Gcirc":"Ĝ","gcirc":"ĝ","Gcy":"Г","gcy":"г","Gdot":"Ġ","gdot":"ġ","ge":"≥","gE":"≧","gEl":"⪌","gel":"⋛","geq":"≥","geqq":"≧","geqslant":"⩾","gescc":"⪩","ges":"⩾","gesdot":"⪀","gesdoto":"⪂","gesdotol":"⪄","gesl":"⋛︀","gesles":"⪔","Gfr":"\uD835\uDD0A","gfr":"\uD835\uDD24","gg":"≫","Gg":"⋙","ggg":"⋙","gimel":"ℷ","GJcy":"Ѓ","gjcy":"ѓ","gla":"⪥","gl":"≷","glE":"⪒","glj":"⪤","gnap":"⪊","gnapprox":"⪊","gne":"⪈","gnE":"≩","gneq":"⪈","gneqq":"≩","gnsim":"⋧","Gopf":"\uD835\uDD3E","gopf":"\uD835\uDD58","grave":"`","GreaterEqual":"≥","GreaterEqualLess":"⋛","GreaterFullEqual":"≧","GreaterGreater":"⪢","GreaterLess":"≷","GreaterSlantEqual":"⩾","GreaterTilde":"≳","Gscr":"\uD835\uDCA2","gscr":"ℊ","gsim":"≳","gsime":"⪎","gsiml":"⪐","gtcc":"⪧","gtcir":"⩺","gt":">","GT":">","Gt":"≫","gtdot":"⋗","gtlPar":"⦕","gtquest":"⩼","gtrapprox":"⪆","gtrarr":"⥸","gtrdot":"⋗","gtreqless":"⋛","gtreqqless":"⪌","gtrless":"≷","gtrsim":"≳","gvertneqq":"≩︀","gvnE":"≩︀","Hacek":"ˇ","hairsp":" ","half":"\xbd","hamilt":"ℋ","HARDcy":"Ъ","hardcy":"ъ","harrcir":"⥈","harr":"↔","hArr":"⇔","harrw":"↭","Hat":"^","hbar":"ℏ","Hcirc":"Ĥ","hcirc":"ĥ","hearts":"♥","heartsuit":"♥","hellip":"…","hercon":"⊹","hfr":"\uD835\uDD25","Hfr":"ℌ","HilbertSpace":"ℋ","hksearow":"⤥","hkswarow":"⤦","hoarr":"⇿","homtht":"∻","hookleftarrow":"↩","hookrightarrow":"↪","hopf":"\uD835\uDD59","Hopf":"ℍ","horbar":"―","HorizontalLine":"─","hscr":"\uD835\uDCBD","Hscr":"ℋ","hslash":"ℏ","Hstrok":"Ħ","hstrok":"ħ","HumpDownHump":"≎","HumpEqual":"≏","hybull":"⁃","hyphen":"‐","Iacute":"\xcd","iacute":"\xed","ic":"⁣","Icirc":"\xce","icirc":"\xee","Icy":"И","icy":"и","Idot":"İ","IEcy":"Е","iecy":"е","iexcl":"\xa1","iff":"⇔","ifr":"\uD835\uDD26","Ifr":"ℑ","Igrave":"\xcc","igrave":"\xec","ii":"ⅈ","iiiint":"⨌","iiint":"∭","iinfin":"⧜","iiota":"℩","IJlig":"Ĳ","ijlig":"ĳ","Imacr":"Ī","imacr":"ī","image":"ℑ","ImaginaryI":"ⅈ","imagline":"ℐ","imagpart":"ℑ","imath":"ı","Im":"ℑ","imof":"⊷","imped":"Ƶ","Implies":"⇒","incare":"℅","in":"∈","infin":"∞","infintie":"⧝","inodot":"ı","intcal":"⊺","int":"∫","Int":"∬","integers":"ℤ","Integral":"∫","intercal":"⊺","Intersection":"⋂","intlarhk":"⨗","intprod":"⨼","InvisibleComma":"⁣","InvisibleTimes":"⁢","IOcy":"Ё","iocy":"ё","Iogon":"Į","iogon":"į","Iopf":"\uD835\uDD40","iopf":"\uD835\uDD5A","Iota":"Ι","iota":"ι","iprod":"⨼","iquest":"\xbf","iscr":"\uD835\uDCBE","Iscr":"ℐ","isin":"∈","isindot":"⋵","isinE":"⋹","isins":"⋴","isinsv":"⋳","isinv":"∈","it":"⁢","Itilde":"Ĩ","itilde":"ĩ","Iukcy":"І","iukcy":"і","Iuml":"\xcf","iuml":"\xef","Jcirc":"Ĵ","jcirc":"ĵ","Jcy":"Й","jcy":"й","Jfr":"\uD835\uDD0D","jfr":"\uD835\uDD27","jmath":"ȷ","Jopf":"\uD835\uDD41","jopf":"\uD835\uDD5B","Jscr":"\uD835\uDCA5","jscr":"\uD835\uDCBF","Jsercy":"Ј","jsercy":"ј","Jukcy":"Є","jukcy":"є","Kappa":"Κ","kappa":"κ","kappav":"ϰ","Kcedil":"Ķ","kcedil":"ķ","Kcy":"К","kcy":"к","Kfr":"\uD835\uDD0E","kfr":"\uD835\uDD28","kgreen":"ĸ","KHcy":"Х","khcy":"х","KJcy":"Ќ","kjcy":"ќ","Kopf":"\uD835\uDD42","kopf":"\uD835\uDD5C","Kscr":"\uD835\uDCA6","kscr":"\uD835\uDCC0","lAarr":"⇚","Lacute":"Ĺ","lacute":"ĺ","laemptyv":"⦴","lagran":"ℒ","Lambda":"Λ","lambda":"λ","lang":"⟨","Lang":"⟪","langd":"⦑","langle":"⟨","lap":"⪅","Laplacetrf":"ℒ","laquo":"\xab","larrb":"⇤","larrbfs":"⤟","larr":"←","Larr":"↞","lArr":"⇐","larrfs":"⤝","larrhk":"↩","larrlp":"↫","larrpl":"⤹","larrsim":"⥳","larrtl":"↢","latail":"⤙","lAtail":"⤛","lat":"⪫","late":"⪭","lates":"⪭︀","lbarr":"⤌","lBarr":"⤎","lbbrk":"❲","lbrace":"{","lbrack":"[","lbrke":"⦋","lbrksld":"⦏","lbrkslu":"⦍","Lcaron":"Ľ","lcaron":"ľ","Lcedil":"Ļ","lcedil":"ļ","lceil":"⌈","lcub":"{","Lcy":"Л","lcy":"л","ldca":"⤶","ldquo":"“","ldquor":"„","ldrdhar":"⥧","ldrushar":"⥋","ldsh":"↲","le":"≤","lE":"≦","LeftAngleBracket":"⟨","LeftArrowBar":"⇤","leftarrow":"←","LeftArrow":"←","Leftarrow":"⇐","LeftArrowRightArrow":"⇆","leftarrowtail":"↢","LeftCeiling":"⌈","LeftDoubleBracket":"⟦","LeftDownTeeVector":"⥡","LeftDownVectorBar":"⥙","LeftDownVector":"⇃","LeftFloor":"⌊","leftharpoondown":"↽","leftharpoonup":"↼","leftleftarrows":"⇇","leftrightarrow":"↔","LeftRightArrow":"↔","Leftrightarrow":"⇔","leftrightarrows":"⇆","leftrightharpoons":"⇋","leftrightsquigarrow":"↭","LeftRightVector":"⥎","LeftTeeArrow":"↤","LeftTee":"⊣","LeftTeeVector":"⥚","leftthreetimes":"⋋","LeftTriangleBar":"⧏","LeftTriangle":"⊲","LeftTriangleEqual":"⊴","LeftUpDownVector":"⥑","LeftUpTeeVector":"⥠","LeftUpVectorBar":"⥘","LeftUpVector":"↿","LeftVectorBar":"⥒","LeftVector":"↼","lEg":"⪋","leg":"⋚","leq":"≤","leqq":"≦","leqslant":"⩽","lescc":"⪨","les":"⩽","lesdot":"⩿","lesdoto":"⪁","lesdotor":"⪃","lesg":"⋚︀","lesges":"⪓","lessapprox":"⪅","lessdot":"⋖","lesseqgtr":"⋚","lesseqqgtr":"⪋","LessEqualGreater":"⋚","LessFullEqual":"≦","LessGreater":"≶","lessgtr":"≶","LessLess":"⪡","lesssim":"≲","LessSlantEqual":"⩽","LessTilde":"≲","lfisht":"⥼","lfloor":"⌊","Lfr":"\uD835\uDD0F","lfr":"\uD835\uDD29","lg":"≶","lgE":"⪑","lHar":"⥢","lhard":"↽","lharu":"↼","lharul":"⥪","lhblk":"▄","LJcy":"Љ","ljcy":"љ","llarr":"⇇","ll":"≪","Ll":"⋘","llcorner":"⌞","Lleftarrow":"⇚","llhard":"⥫","lltri":"◺","Lmidot":"Ŀ","lmidot":"ŀ","lmoustache":"⎰","lmoust":"⎰","lnap":"⪉","lnapprox":"⪉","lne":"⪇","lnE":"≨","lneq":"⪇","lneqq":"≨","lnsim":"⋦","loang":"⟬","loarr":"⇽","lobrk":"⟦","longleftarrow":"⟵","LongLeftArrow":"⟵","Longleftarrow":"⟸","longleftrightarrow":"⟷","LongLeftRightArrow":"⟷","Longleftrightarrow":"⟺","longmapsto":"⟼","longrightarrow":"⟶","LongRightArrow":"⟶","Longrightarrow":"⟹","looparrowleft":"↫","looparrowright":"↬","lopar":"⦅","Lopf":"\uD835\uDD43","lopf":"\uD835\uDD5D","loplus":"⨭","lotimes":"⨴","lowast":"∗","lowbar":"_","LowerLeftArrow":"↙","LowerRightArrow":"↘","loz":"◊","lozenge":"◊","lozf":"⧫","lpar":"(","lparlt":"⦓","lrarr":"⇆","lrcorner":"⌟","lrhar":"⇋","lrhard":"⥭","lrm":"‎","lrtri":"⊿","lsaquo":"‹","lscr":"\uD835\uDCC1","Lscr":"ℒ","lsh":"↰","Lsh":"↰","lsim":"≲","lsime":"⪍","lsimg":"⪏","lsqb":"[","lsquo":"‘","lsquor":"‚","Lstrok":"Ł","lstrok":"ł","ltcc":"⪦","ltcir":"⩹","lt":"<","LT":"<","Lt":"≪","ltdot":"⋖","lthree":"⋋","ltimes":"⋉","ltlarr":"⥶","ltquest":"⩻","ltri":"◃","ltrie":"⊴","ltrif":"◂","ltrPar":"⦖","lurdshar":"⥊","luruhar":"⥦","lvertneqq":"≨︀","lvnE":"≨︀","macr":"\xaf","male":"♂","malt":"✠","maltese":"✠","Map":"⤅","map":"↦","mapsto":"↦","mapstodown":"↧","mapstoleft":"↤","mapstoup":"↥","marker":"▮","mcomma":"⨩","Mcy":"М","mcy":"м","mdash":"—","mDDot":"∺","measuredangle":"∡","MediumSpace":" ","Mellintrf":"ℳ","Mfr":"\uD835\uDD10","mfr":"\uD835\uDD2A","mho":"℧","micro":"\xb5","midast":"*","midcir":"⫰","mid":"∣","middot":"\xb7","minusb":"⊟","minus":"−","minusd":"∸","minusdu":"⨪","MinusPlus":"∓","mlcp":"⫛","mldr":"…","mnplus":"∓","models":"⊧","Mopf":"\uD835\uDD44","mopf":"\uD835\uDD5E","mp":"∓","mscr":"\uD835\uDCC2","Mscr":"ℳ","mstpos":"∾","Mu":"Μ","mu":"μ","multimap":"⊸","mumap":"⊸","nabla":"∇","Nacute":"Ń","nacute":"ń","nang":"∠⃒","nap":"≉","napE":"⩰̸","napid":"≋̸","napos":"ŉ","napprox":"≉","natural":"♮","naturals":"ℕ","natur":"♮","nbsp":"\xa0","nbump":"≎̸","nbumpe":"≏̸","ncap":"⩃","Ncaron":"Ň","ncaron":"ň","Ncedil":"Ņ","ncedil":"ņ","ncong":"≇","ncongdot":"⩭̸","ncup":"⩂","Ncy":"Н","ncy":"н","ndash":"–","nearhk":"⤤","nearr":"↗","neArr":"⇗","nearrow":"↗","ne":"≠","nedot":"≐̸","NegativeMediumSpace":"​","NegativeThickSpace":"​","NegativeThinSpace":"​","NegativeVeryThinSpace":"​","nequiv":"≢","nesear":"⤨","nesim":"≂̸","NestedGreaterGreater":"≫","NestedLessLess":"≪","NewLine":"\\n","nexist":"∄","nexists":"∄","Nfr":"\uD835\uDD11","nfr":"\uD835\uDD2B","ngE":"≧̸","nge":"≱","ngeq":"≱","ngeqq":"≧̸","ngeqslant":"⩾̸","nges":"⩾̸","nGg":"⋙̸","ngsim":"≵","nGt":"≫⃒","ngt":"≯","ngtr":"≯","nGtv":"≫̸","nharr":"↮","nhArr":"⇎","nhpar":"⫲","ni":"∋","nis":"⋼","nisd":"⋺","niv":"∋","NJcy":"Њ","njcy":"њ","nlarr":"↚","nlArr":"⇍","nldr":"‥","nlE":"≦̸","nle":"≰","nleftarrow":"↚","nLeftarrow":"⇍","nleftrightarrow":"↮","nLeftrightarrow":"⇎","nleq":"≰","nleqq":"≦̸","nleqslant":"⩽̸","nles":"⩽̸","nless":"≮","nLl":"⋘̸","nlsim":"≴","nLt":"≪⃒","nlt":"≮","nltri":"⋪","nltrie":"⋬","nLtv":"≪̸","nmid":"∤","NoBreak":"⁠","NonBreakingSpace":"\xa0","nopf":"\uD835\uDD5F","Nopf":"ℕ","Not":"⫬","not":"\xac","NotCongruent":"≢","NotCupCap":"≭","NotDoubleVerticalBar":"∦","NotElement":"∉","NotEqual":"≠","NotEqualTilde":"≂̸","NotExists":"∄","NotGreater":"≯","NotGreaterEqual":"≱","NotGreaterFullEqual":"≧̸","NotGreaterGreater":"≫̸","NotGreaterLess":"≹","NotGreaterSlantEqual":"⩾̸","NotGreaterTilde":"≵","NotHumpDownHump":"≎̸","NotHumpEqual":"≏̸","notin":"∉","notindot":"⋵̸","notinE":"⋹̸","notinva":"∉","notinvb":"⋷","notinvc":"⋶","NotLeftTriangleBar":"⧏̸","NotLeftTriangle":"⋪","NotLeftTriangleEqual":"⋬","NotLess":"≮","NotLessEqual":"≰","NotLessGreater":"≸","NotLessLess":"≪̸","NotLessSlantEqual":"⩽̸","NotLessTilde":"≴","NotNestedGreaterGreater":"⪢̸","NotNestedLessLess":"⪡̸","notni":"∌","notniva":"∌","notnivb":"⋾","notnivc":"⋽","NotPrecedes":"⊀","NotPrecedesEqual":"⪯̸","NotPrecedesSlantEqual":"⋠","NotReverseElement":"∌","NotRightTriangleBar":"⧐̸","NotRightTriangle":"⋫","NotRightTriangleEqual":"⋭","NotSquareSubset":"⊏̸","NotSquareSubsetEqual":"⋢","NotSquareSuperset":"⊐̸","NotSquareSupersetEqual":"⋣","NotSubset":"⊂⃒","NotSubsetEqual":"⊈","NotSucceeds":"⊁","NotSucceedsEqual":"⪰̸","NotSucceedsSlantEqual":"⋡","NotSucceedsTilde":"≿̸","NotSuperset":"⊃⃒","NotSupersetEqual":"⊉","NotTilde":"≁","NotTildeEqual":"≄","NotTildeFullEqual":"≇","NotTildeTilde":"≉","NotVerticalBar":"∤","nparallel":"∦","npar":"∦","nparsl":"⫽⃥","npart":"∂̸","npolint":"⨔","npr":"⊀","nprcue":"⋠","nprec":"⊀","npreceq":"⪯̸","npre":"⪯̸","nrarrc":"⤳̸","nrarr":"↛","nrArr":"⇏","nrarrw":"↝̸","nrightarrow":"↛","nRightarrow":"⇏","nrtri":"⋫","nrtrie":"⋭","nsc":"⊁","nsccue":"⋡","nsce":"⪰̸","Nscr":"\uD835\uDCA9","nscr":"\uD835\uDCC3","nshortmid":"∤","nshortparallel":"∦","nsim":"≁","nsime":"≄","nsimeq":"≄","nsmid":"∤","nspar":"∦","nsqsube":"⋢","nsqsupe":"⋣","nsub":"⊄","nsubE":"⫅̸","nsube":"⊈","nsubset":"⊂⃒","nsubseteq":"⊈","nsubseteqq":"⫅̸","nsucc":"⊁","nsucceq":"⪰̸","nsup":"⊅","nsupE":"⫆̸","nsupe":"⊉","nsupset":"⊃⃒","nsupseteq":"⊉","nsupseteqq":"⫆̸","ntgl":"≹","Ntilde":"\xd1","ntilde":"\xf1","ntlg":"≸","ntriangleleft":"⋪","ntrianglelefteq":"⋬","ntriangleright":"⋫","ntrianglerighteq":"⋭","Nu":"Ν","nu":"ν","num":"#","numero":"№","numsp":" ","nvap":"≍⃒","nvdash":"⊬","nvDash":"⊭","nVdash":"⊮","nVDash":"⊯","nvge":"≥⃒","nvgt":">⃒","nvHarr":"⤄","nvinfin":"⧞","nvlArr":"⤂","nvle":"≤⃒","nvlt":"<⃒","nvltrie":"⊴⃒","nvrArr":"⤃","nvrtrie":"⊵⃒","nvsim":"∼⃒","nwarhk":"⤣","nwarr":"↖","nwArr":"⇖","nwarrow":"↖","nwnear":"⤧","Oacute":"\xd3","oacute":"\xf3","oast":"⊛","Ocirc":"\xd4","ocirc":"\xf4","ocir":"⊚","Ocy":"О","ocy":"о","odash":"⊝","Odblac":"Ő","odblac":"ő","odiv":"⨸","odot":"⊙","odsold":"⦼","OElig":"Œ","oelig":"œ","ofcir":"⦿","Ofr":"\uD835\uDD12","ofr":"\uD835\uDD2C","ogon":"˛","Ograve":"\xd2","ograve":"\xf2","ogt":"⧁","ohbar":"⦵","ohm":"Ω","oint":"∮","olarr":"↺","olcir":"⦾","olcross":"⦻","oline":"‾","olt":"⧀","Omacr":"Ō","omacr":"ō","Omega":"Ω","omega":"ω","Omicron":"Ο","omicron":"ο","omid":"⦶","ominus":"⊖","Oopf":"\uD835\uDD46","oopf":"\uD835\uDD60","opar":"⦷","OpenCurlyDoubleQuote":"“","OpenCurlyQuote":"‘","operp":"⦹","oplus":"⊕","orarr":"↻","Or":"⩔","or":"∨","ord":"⩝","order":"ℴ","orderof":"ℴ","ordf":"\xaa","ordm":"\xba","origof":"⊶","oror":"⩖","orslope":"⩗","orv":"⩛","oS":"Ⓢ","Oscr":"\uD835\uDCAA","oscr":"ℴ","Oslash":"\xd8","oslash":"\xf8","osol":"⊘","Otilde":"\xd5","otilde":"\xf5","otimesas":"⨶","Otimes":"⨷","otimes":"⊗","Ouml":"\xd6","ouml":"\xf6","ovbar":"⌽","OverBar":"‾","OverBrace":"⏞","OverBracket":"⎴","OverParenthesis":"⏜","para":"\xb6","parallel":"∥","par":"∥","parsim":"⫳","parsl":"⫽","part":"∂","PartialD":"∂","Pcy":"П","pcy":"п","percnt":"%","period":".","permil":"‰","perp":"⊥","pertenk":"‱","Pfr":"\uD835\uDD13","pfr":"\uD835\uDD2D","Phi":"Φ","phi":"φ","phiv":"ϕ","phmmat":"ℳ","phone":"☎","Pi":"Π","pi":"π","pitchfork":"⋔","piv":"ϖ","planck":"ℏ","planckh":"ℎ","plankv":"ℏ","plusacir":"⨣","plusb":"⊞","pluscir":"⨢","plus":"+","plusdo":"∔","plusdu":"⨥","pluse":"⩲","PlusMinus":"\xb1","plusmn":"\xb1","plussim":"⨦","plustwo":"⨧","pm":"\xb1","Poincareplane":"ℌ","pointint":"⨕","popf":"\uD835\uDD61","Popf":"ℙ","pound":"\xa3","prap":"⪷","Pr":"⪻","pr":"≺","prcue":"≼","precapprox":"⪷","prec":"≺","preccurlyeq":"≼","Precedes":"≺","PrecedesEqual":"⪯","PrecedesSlantEqual":"≼","PrecedesTilde":"≾","preceq":"⪯","precnapprox":"⪹","precneqq":"⪵","precnsim":"⋨","pre":"⪯","prE":"⪳","precsim":"≾","prime":"′","Prime":"″","primes":"ℙ","prnap":"⪹","prnE":"⪵","prnsim":"⋨","prod":"∏","Product":"∏","profalar":"⌮","profline":"⌒","profsurf":"⌓","prop":"∝","Proportional":"∝","Proportion":"∷","propto":"∝","prsim":"≾","prurel":"⊰","Pscr":"\uD835\uDCAB","pscr":"\uD835\uDCC5","Psi":"Ψ","psi":"ψ","puncsp":" ","Qfr":"\uD835\uDD14","qfr":"\uD835\uDD2E","qint":"⨌","qopf":"\uD835\uDD62","Qopf":"ℚ","qprime":"⁗","Qscr":"\uD835\uDCAC","qscr":"\uD835\uDCC6","quaternions":"ℍ","quatint":"⨖","quest":"?","questeq":"≟","quot":"\\"","QUOT":"\\"","rAarr":"⇛","race":"∽̱","Racute":"Ŕ","racute":"ŕ","radic":"√","raemptyv":"⦳","rang":"⟩","Rang":"⟫","rangd":"⦒","range":"⦥","rangle":"⟩","raquo":"\xbb","rarrap":"⥵","rarrb":"⇥","rarrbfs":"⤠","rarrc":"⤳","rarr":"→","Rarr":"↠","rArr":"⇒","rarrfs":"⤞","rarrhk":"↪","rarrlp":"↬","rarrpl":"⥅","rarrsim":"⥴","Rarrtl":"⤖","rarrtl":"↣","rarrw":"↝","ratail":"⤚","rAtail":"⤜","ratio":"∶","rationals":"ℚ","rbarr":"⤍","rBarr":"⤏","RBarr":"⤐","rbbrk":"❳","rbrace":"}","rbrack":"]","rbrke":"⦌","rbrksld":"⦎","rbrkslu":"⦐","Rcaron":"Ř","rcaron":"ř","Rcedil":"Ŗ","rcedil":"ŗ","rceil":"⌉","rcub":"}","Rcy":"Р","rcy":"р","rdca":"⤷","rdldhar":"⥩","rdquo":"”","rdquor":"”","rdsh":"↳","real":"ℜ","realine":"ℛ","realpart":"ℜ","reals":"ℝ","Re":"ℜ","rect":"▭","reg":"\xae","REG":"\xae","ReverseElement":"∋","ReverseEquilibrium":"⇋","ReverseUpEquilibrium":"⥯","rfisht":"⥽","rfloor":"⌋","rfr":"\uD835\uDD2F","Rfr":"ℜ","rHar":"⥤","rhard":"⇁","rharu":"⇀","rharul":"⥬","Rho":"Ρ","rho":"ρ","rhov":"ϱ","RightAngleBracket":"⟩","RightArrowBar":"⇥","rightarrow":"→","RightArrow":"→","Rightarrow":"⇒","RightArrowLeftArrow":"⇄","rightarrowtail":"↣","RightCeiling":"⌉","RightDoubleBracket":"⟧","RightDownTeeVector":"⥝","RightDownVectorBar":"⥕","RightDownVector":"⇂","RightFloor":"⌋","rightharpoondown":"⇁","rightharpoonup":"⇀","rightleftarrows":"⇄","rightleftharpoons":"⇌","rightrightarrows":"⇉","rightsquigarrow":"↝","RightTeeArrow":"↦","RightTee":"⊢","RightTeeVector":"⥛","rightthreetimes":"⋌","RightTriangleBar":"⧐","RightTriangle":"⊳","RightTriangleEqual":"⊵","RightUpDownVector":"⥏","RightUpTeeVector":"⥜","RightUpVectorBar":"⥔","RightUpVector":"↾","RightVectorBar":"⥓","RightVector":"⇀","ring":"˚","risingdotseq":"≓","rlarr":"⇄","rlhar":"⇌","rlm":"‏","rmoustache":"⎱","rmoust":"⎱","rnmid":"⫮","roang":"⟭","roarr":"⇾","robrk":"⟧","ropar":"⦆","ropf":"\uD835\uDD63","Ropf":"ℝ","roplus":"⨮","rotimes":"⨵","RoundImplies":"⥰","rpar":")","rpargt":"⦔","rppolint":"⨒","rrarr":"⇉","Rrightarrow":"⇛","rsaquo":"›","rscr":"\uD835\uDCC7","Rscr":"ℛ","rsh":"↱","Rsh":"↱","rsqb":"]","rsquo":"’","rsquor":"’","rthree":"⋌","rtimes":"⋊","rtri":"▹","rtrie":"⊵","rtrif":"▸","rtriltri":"⧎","RuleDelayed":"⧴","ruluhar":"⥨","rx":"℞","Sacute":"Ś","sacute":"ś","sbquo":"‚","scap":"⪸","Scaron":"Š","scaron":"š","Sc":"⪼","sc":"≻","sccue":"≽","sce":"⪰","scE":"⪴","Scedil":"Ş","scedil":"ş","Scirc":"Ŝ","scirc":"ŝ","scnap":"⪺","scnE":"⪶","scnsim":"⋩","scpolint":"⨓","scsim":"≿","Scy":"С","scy":"с","sdotb":"⊡","sdot":"⋅","sdote":"⩦","searhk":"⤥","searr":"↘","seArr":"⇘","searrow":"↘","sect":"\xa7","semi":";","seswar":"⤩","setminus":"∖","setmn":"∖","sext":"✶","Sfr":"\uD835\uDD16","sfr":"\uD835\uDD30","sfrown":"⌢","sharp":"♯","SHCHcy":"Щ","shchcy":"щ","SHcy":"Ш","shcy":"ш","ShortDownArrow":"↓","ShortLeftArrow":"←","shortmid":"∣","shortparallel":"∥","ShortRightArrow":"→","ShortUpArrow":"↑","shy":"\xad","Sigma":"Σ","sigma":"σ","sigmaf":"ς","sigmav":"ς","sim":"∼","simdot":"⩪","sime":"≃","simeq":"≃","simg":"⪞","simgE":"⪠","siml":"⪝","simlE":"⪟","simne":"≆","simplus":"⨤","simrarr":"⥲","slarr":"←","SmallCircle":"∘","smallsetminus":"∖","smashp":"⨳","smeparsl":"⧤","smid":"∣","smile":"⌣","smt":"⪪","smte":"⪬","smtes":"⪬︀","SOFTcy":"Ь","softcy":"ь","solbar":"⌿","solb":"⧄","sol":"/","Sopf":"\uD835\uDD4A","sopf":"\uD835\uDD64","spades":"♠","spadesuit":"♠","spar":"∥","sqcap":"⊓","sqcaps":"⊓︀","sqcup":"⊔","sqcups":"⊔︀","Sqrt":"√","sqsub":"⊏","sqsube":"⊑","sqsubset":"⊏","sqsubseteq":"⊑","sqsup":"⊐","sqsupe":"⊒","sqsupset":"⊐","sqsupseteq":"⊒","square":"□","Square":"□","SquareIntersection":"⊓","SquareSubset":"⊏","SquareSubsetEqual":"⊑","SquareSuperset":"⊐","SquareSupersetEqual":"⊒","SquareUnion":"⊔","squarf":"▪","squ":"□","squf":"▪","srarr":"→","Sscr":"\uD835\uDCAE","sscr":"\uD835\uDCC8","ssetmn":"∖","ssmile":"⌣","sstarf":"⋆","Star":"⋆","star":"☆","starf":"★","straightepsilon":"ϵ","straightphi":"ϕ","strns":"\xaf","sub":"⊂","Sub":"⋐","subdot":"⪽","subE":"⫅","sube":"⊆","subedot":"⫃","submult":"⫁","subnE":"⫋","subne":"⊊","subplus":"⪿","subrarr":"⥹","subset":"⊂","Subset":"⋐","subseteq":"⊆","subseteqq":"⫅","SubsetEqual":"⊆","subsetneq":"⊊","subsetneqq":"⫋","subsim":"⫇","subsub":"⫕","subsup":"⫓","succapprox":"⪸","succ":"≻","succcurlyeq":"≽","Succeeds":"≻","SucceedsEqual":"⪰","SucceedsSlantEqual":"≽","SucceedsTilde":"≿","succeq":"⪰","succnapprox":"⪺","succneqq":"⪶","succnsim":"⋩","succsim":"≿","SuchThat":"∋","sum":"∑","Sum":"∑","sung":"♪","sup1":"\xb9","sup2":"\xb2","sup3":"\xb3","sup":"⊃","Sup":"⋑","supdot":"⪾","supdsub":"⫘","supE":"⫆","supe":"⊇","supedot":"⫄","Superset":"⊃","SupersetEqual":"⊇","suphsol":"⟉","suphsub":"⫗","suplarr":"⥻","supmult":"⫂","supnE":"⫌","supne":"⊋","supplus":"⫀","supset":"⊃","Supset":"⋑","supseteq":"⊇","supseteqq":"⫆","supsetneq":"⊋","supsetneqq":"⫌","supsim":"⫈","supsub":"⫔","supsup":"⫖","swarhk":"⤦","swarr":"↙","swArr":"⇙","swarrow":"↙","swnwar":"⤪","szlig":"\xdf","Tab":"\\t","target":"⌖","Tau":"Τ","tau":"τ","tbrk":"⎴","Tcaron":"Ť","tcaron":"ť","Tcedil":"Ţ","tcedil":"ţ","Tcy":"Т","tcy":"т","tdot":"⃛","telrec":"⌕","Tfr":"\uD835\uDD17","tfr":"\uD835\uDD31","there4":"∴","therefore":"∴","Therefore":"∴","Theta":"Θ","theta":"θ","thetasym":"ϑ","thetav":"ϑ","thickapprox":"≈","thicksim":"∼","ThickSpace":"  ","ThinSpace":" ","thinsp":" ","thkap":"≈","thksim":"∼","THORN":"\xde","thorn":"\xfe","tilde":"˜","Tilde":"∼","TildeEqual":"≃","TildeFullEqual":"≅","TildeTilde":"≈","timesbar":"⨱","timesb":"⊠","times":"\xd7","timesd":"⨰","tint":"∭","toea":"⤨","topbot":"⌶","topcir":"⫱","top":"⊤","Topf":"\uD835\uDD4B","topf":"\uD835\uDD65","topfork":"⫚","tosa":"⤩","tprime":"‴","trade":"™","TRADE":"™","triangle":"▵","triangledown":"▿","triangleleft":"◃","trianglelefteq":"⊴","triangleq":"≜","triangleright":"▹","trianglerighteq":"⊵","tridot":"◬","trie":"≜","triminus":"⨺","TripleDot":"⃛","triplus":"⨹","trisb":"⧍","tritime":"⨻","trpezium":"⏢","Tscr":"\uD835\uDCAF","tscr":"\uD835\uDCC9","TScy":"Ц","tscy":"ц","TSHcy":"Ћ","tshcy":"ћ","Tstrok":"Ŧ","tstrok":"ŧ","twixt":"≬","twoheadleftarrow":"↞","twoheadrightarrow":"↠","Uacute":"\xda","uacute":"\xfa","uarr":"↑","Uarr":"↟","uArr":"⇑","Uarrocir":"⥉","Ubrcy":"Ў","ubrcy":"ў","Ubreve":"Ŭ","ubreve":"ŭ","Ucirc":"\xdb","ucirc":"\xfb","Ucy":"У","ucy":"у","udarr":"⇅","Udblac":"Ű","udblac":"ű","udhar":"⥮","ufisht":"⥾","Ufr":"\uD835\uDD18","ufr":"\uD835\uDD32","Ugrave":"\xd9","ugrave":"\xf9","uHar":"⥣","uharl":"↿","uharr":"↾","uhblk":"▀","ulcorn":"⌜","ulcorner":"⌜","ulcrop":"⌏","ultri":"◸","Umacr":"Ū","umacr":"ū","uml":"\xa8","UnderBar":"_","UnderBrace":"⏟","UnderBracket":"⎵","UnderParenthesis":"⏝","Union":"⋃","UnionPlus":"⊎","Uogon":"Ų","uogon":"ų","Uopf":"\uD835\uDD4C","uopf":"\uD835\uDD66","UpArrowBar":"⤒","uparrow":"↑","UpArrow":"↑","Uparrow":"⇑","UpArrowDownArrow":"⇅","updownarrow":"↕","UpDownArrow":"↕","Updownarrow":"⇕","UpEquilibrium":"⥮","upharpoonleft":"↿","upharpoonright":"↾","uplus":"⊎","UpperLeftArrow":"↖","UpperRightArrow":"↗","upsi":"υ","Upsi":"ϒ","upsih":"ϒ","Upsilon":"Υ","upsilon":"υ","UpTeeArrow":"↥","UpTee":"⊥","upuparrows":"⇈","urcorn":"⌝","urcorner":"⌝","urcrop":"⌎","Uring":"Ů","uring":"ů","urtri":"◹","Uscr":"\uD835\uDCB0","uscr":"\uD835\uDCCA","utdot":"⋰","Utilde":"Ũ","utilde":"ũ","utri":"▵","utrif":"▴","uuarr":"⇈","Uuml":"\xdc","uuml":"\xfc","uwangle":"⦧","vangrt":"⦜","varepsilon":"ϵ","varkappa":"ϰ","varnothing":"∅","varphi":"ϕ","varpi":"ϖ","varpropto":"∝","varr":"↕","vArr":"⇕","varrho":"ϱ","varsigma":"ς","varsubsetneq":"⊊︀","varsubsetneqq":"⫋︀","varsupsetneq":"⊋︀","varsupsetneqq":"⫌︀","vartheta":"ϑ","vartriangleleft":"⊲","vartriangleright":"⊳","vBar":"⫨","Vbar":"⫫","vBarv":"⫩","Vcy":"В","vcy":"в","vdash":"⊢","vDash":"⊨","Vdash":"⊩","VDash":"⊫","Vdashl":"⫦","veebar":"⊻","vee":"∨","Vee":"⋁","veeeq":"≚","vellip":"⋮","verbar":"|","Verbar":"‖","vert":"|","Vert":"‖","VerticalBar":"∣","VerticalLine":"|","VerticalSeparator":"❘","VerticalTilde":"≀","VeryThinSpace":" ","Vfr":"\uD835\uDD19","vfr":"\uD835\uDD33","vltri":"⊲","vnsub":"⊂⃒","vnsup":"⊃⃒","Vopf":"\uD835\uDD4D","vopf":"\uD835\uDD67","vprop":"∝","vrtri":"⊳","Vscr":"\uD835\uDCB1","vscr":"\uD835\uDCCB","vsubnE":"⫋︀","vsubne":"⊊︀","vsupnE":"⫌︀","vsupne":"⊋︀","Vvdash":"⊪","vzigzag":"⦚","Wcirc":"Ŵ","wcirc":"ŵ","wedbar":"⩟","wedge":"∧","Wedge":"⋀","wedgeq":"≙","weierp":"℘","Wfr":"\uD835\uDD1A","wfr":"\uD835\uDD34","Wopf":"\uD835\uDD4E","wopf":"\uD835\uDD68","wp":"℘","wr":"≀","wreath":"≀","Wscr":"\uD835\uDCB2","wscr":"\uD835\uDCCC","xcap":"⋂","xcirc":"◯","xcup":"⋃","xdtri":"▽","Xfr":"\uD835\uDD1B","xfr":"\uD835\uDD35","xharr":"⟷","xhArr":"⟺","Xi":"Ξ","xi":"ξ","xlarr":"⟵","xlArr":"⟸","xmap":"⟼","xnis":"⋻","xodot":"⨀","Xopf":"\uD835\uDD4F","xopf":"\uD835\uDD69","xoplus":"⨁","xotime":"⨂","xrarr":"⟶","xrArr":"⟹","Xscr":"\uD835\uDCB3","xscr":"\uD835\uDCCD","xsqcup":"⨆","xuplus":"⨄","xutri":"△","xvee":"⋁","xwedge":"⋀","Yacute":"\xdd","yacute":"\xfd","YAcy":"Я","yacy":"я","Ycirc":"Ŷ","ycirc":"ŷ","Ycy":"Ы","ycy":"ы","yen":"\xa5","Yfr":"\uD835\uDD1C","yfr":"\uD835\uDD36","YIcy":"Ї","yicy":"ї","Yopf":"\uD835\uDD50","yopf":"\uD835\uDD6A","Yscr":"\uD835\uDCB4","yscr":"\uD835\uDCCE","YUcy":"Ю","yucy":"ю","yuml":"\xff","Yuml":"Ÿ","Zacute":"Ź","zacute":"ź","Zcaron":"Ž","zcaron":"ž","Zcy":"З","zcy":"з","Zdot":"Ż","zdot":"ż","zeetrf":"ℨ","ZeroWidthSpace":"​","Zeta":"Ζ","zeta":"ζ","zfr":"\uD835\uDD37","Zfr":"ℨ","ZHcy":"Ж","zhcy":"ж","zigrarr":"⇝","zopf":"\uD835\uDD6B","Zopf":"ℤ","Zscr":"\uD835\uDCB5","zscr":"\uD835\uDCCF","zwj":"‍","zwnj":"‌"}');
+
+},{}],"BQogi":[function(require,module,exports) {
+module.exports = JSON.parse('{"Aacute":"\xc1","aacute":"\xe1","Acirc":"\xc2","acirc":"\xe2","acute":"\xb4","AElig":"\xc6","aelig":"\xe6","Agrave":"\xc0","agrave":"\xe0","amp":"&","AMP":"&","Aring":"\xc5","aring":"\xe5","Atilde":"\xc3","atilde":"\xe3","Auml":"\xc4","auml":"\xe4","brvbar":"\xa6","Ccedil":"\xc7","ccedil":"\xe7","cedil":"\xb8","cent":"\xa2","copy":"\xa9","COPY":"\xa9","curren":"\xa4","deg":"\xb0","divide":"\xf7","Eacute":"\xc9","eacute":"\xe9","Ecirc":"\xca","ecirc":"\xea","Egrave":"\xc8","egrave":"\xe8","ETH":"\xd0","eth":"\xf0","Euml":"\xcb","euml":"\xeb","frac12":"\xbd","frac14":"\xbc","frac34":"\xbe","gt":">","GT":">","Iacute":"\xcd","iacute":"\xed","Icirc":"\xce","icirc":"\xee","iexcl":"\xa1","Igrave":"\xcc","igrave":"\xec","iquest":"\xbf","Iuml":"\xcf","iuml":"\xef","laquo":"\xab","lt":"<","LT":"<","macr":"\xaf","micro":"\xb5","middot":"\xb7","nbsp":"\xa0","not":"\xac","Ntilde":"\xd1","ntilde":"\xf1","Oacute":"\xd3","oacute":"\xf3","Ocirc":"\xd4","ocirc":"\xf4","Ograve":"\xd2","ograve":"\xf2","ordf":"\xaa","ordm":"\xba","Oslash":"\xd8","oslash":"\xf8","Otilde":"\xd5","otilde":"\xf5","Ouml":"\xd6","ouml":"\xf6","para":"\xb6","plusmn":"\xb1","pound":"\xa3","quot":"\\"","QUOT":"\\"","raquo":"\xbb","reg":"\xae","REG":"\xae","sect":"\xa7","shy":"\xad","sup1":"\xb9","sup2":"\xb2","sup3":"\xb3","szlig":"\xdf","THORN":"\xde","thorn":"\xfe","times":"\xd7","Uacute":"\xda","uacute":"\xfa","Ucirc":"\xdb","ucirc":"\xfb","Ugrave":"\xd9","ugrave":"\xf9","uml":"\xa8","Uuml":"\xdc","uuml":"\xfc","Yacute":"\xdd","yacute":"\xfd","yen":"\xa5","yuml":"\xff"}');
+
+},{}],"6rBuv":[function(require,module,exports) {
+module.exports = JSON.parse('{"amp":"&","apos":"\'","gt":">","lt":"<","quot":"\\""}');
+
+},{}],"csv8t":[function(require,module,exports) {
+"use strict";
+var __importDefault = this && this.__importDefault || function(mod) {
+    return mod && mod.__esModule ? mod : {
+        "default": mod
+    };
+};
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var decode_json_1 = __importDefault(require("./maps/decode.json"));
+// Adapted from https://github.com/mathiasbynens/he/blob/master/src/he.js#L94-L119
+var fromCodePoint = // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+String.fromCodePoint || function(codePoint) {
+    var output = "";
+    if (codePoint > 0xffff) {
+        codePoint -= 0x10000;
+        output += String.fromCharCode(codePoint >>> 10 & 0x3ff | 0xd800);
+        codePoint = 0xdc00 | codePoint & 0x3ff;
+    }
+    output += String.fromCharCode(codePoint);
+    return output;
+};
+function decodeCodePoint(codePoint) {
+    if (codePoint >= 0xd800 && codePoint <= 0xdfff || codePoint > 0x10ffff) return "�";
+    if (codePoint in decode_json_1.default) codePoint = decode_json_1.default[codePoint];
+    return fromCodePoint(codePoint);
+}
+exports.default = decodeCodePoint;
+
+},{"./maps/decode.json":"1NeVF"}],"1NeVF":[function(require,module,exports) {
+module.exports = JSON.parse('{"0":65533,"128":8364,"130":8218,"131":402,"132":8222,"133":8230,"134":8224,"135":8225,"136":710,"137":8240,"138":352,"139":8249,"140":338,"142":381,"145":8216,"146":8217,"147":8220,"148":8221,"149":8226,"150":8211,"151":8212,"152":732,"153":8482,"154":353,"155":8250,"156":339,"158":382,"159":376}');
+
+},{}],"6QLS8":[function(require,module,exports) {
+"use strict";
+var __importDefault = this && this.__importDefault || function(mod) {
+    return mod && mod.__esModule ? mod : {
+        "default": mod
+    };
+};
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.escapeUTF8 = exports.escape = exports.encodeNonAsciiHTML = exports.encodeHTML = exports.encodeXML = void 0;
+var xml_json_1 = __importDefault(require("./maps/xml.json"));
+var inverseXML = getInverseObj(xml_json_1.default);
+var xmlReplacer = getInverseReplacer(inverseXML);
+/**
+ * Encodes all non-ASCII characters, as well as characters not valid in XML
+ * documents using XML entities.
+ *
+ * If a character has no equivalent entity, a
+ * numeric hexadecimal reference (eg. `&#xfc;`) will be used.
+ */ exports.encodeXML = getASCIIEncoder(inverseXML);
+var entities_json_1 = __importDefault(require("./maps/entities.json"));
+var inverseHTML = getInverseObj(entities_json_1.default);
+var htmlReplacer = getInverseReplacer(inverseHTML);
+/**
+ * Encodes all entities and non-ASCII characters in the input.
+ *
+ * This includes characters that are valid ASCII characters in HTML documents.
+ * For example `#` will be encoded as `&num;`. To get a more compact output,
+ * consider using the `encodeNonAsciiHTML` function.
+ *
+ * If a character has no equivalent entity, a
+ * numeric hexadecimal reference (eg. `&#xfc;`) will be used.
+ */ exports.encodeHTML = getInverse(inverseHTML, htmlReplacer);
+/**
+ * Encodes all non-ASCII characters, as well as characters not valid in HTML
+ * documents using HTML entities.
+ *
+ * If a character has no equivalent entity, a
+ * numeric hexadecimal reference (eg. `&#xfc;`) will be used.
+ */ exports.encodeNonAsciiHTML = getASCIIEncoder(inverseHTML);
+function getInverseObj(obj) {
+    return Object.keys(obj).sort().reduce(function(inverse, name) {
+        inverse[obj[name]] = "&" + name + ";";
+        return inverse;
+    }, {});
+}
+function getInverseReplacer(inverse) {
+    var single = [];
+    var multiple = [];
+    for(var _i = 0, _a = Object.keys(inverse); _i < _a.length; _i++){
+        var k = _a[_i];
+        if (k.length === 1) // Add value to single array
+        single.push("\\" + k);
+        else // Add value to multiple array
+        multiple.push(k);
+    }
+    // Add ranges to single characters.
+    single.sort();
+    for(var start = 0; start < single.length - 1; start++){
+        // Find the end of a run of characters
+        var end = start;
+        while(end < single.length - 1 && single[end].charCodeAt(1) + 1 === single[end + 1].charCodeAt(1))end += 1;
+        var count = 1 + end - start;
+        // We want to replace at least three characters
+        if (count < 3) continue;
+        single.splice(start, count, single[start] + "-" + single[end]);
+    }
+    multiple.unshift("[" + single.join("") + "]");
+    return new RegExp(multiple.join("|"), "g");
+}
+// /[^\0-\x7F]/gu
+var reNonASCII = /(?:[\x80-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF])/g;
+var getCodePoint = // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+String.prototype.codePointAt != null ? function(str) {
+    return str.codePointAt(0);
+} : function(c) {
+    return (c.charCodeAt(0) - 0xd800) * 0x400 + c.charCodeAt(1) - 0xdc00 + 0x10000;
+};
+function singleCharReplacer(c) {
+    return "&#x" + (c.length > 1 ? getCodePoint(c) : c.charCodeAt(0)).toString(16).toUpperCase() + ";";
+}
+function getInverse(inverse, re) {
+    return function(data) {
+        return data.replace(re, function(name) {
+            return inverse[name];
+        }).replace(reNonASCII, singleCharReplacer);
+    };
+}
+var reEscapeChars = new RegExp(xmlReplacer.source + "|" + reNonASCII.source, "g");
+/**
+ * Encodes all non-ASCII characters, as well as characters not valid in XML
+ * documents using numeric hexadecimal reference (eg. `&#xfc;`).
+ *
+ * Have a look at `escapeUTF8` if you want a more concise output at the expense
+ * of reduced transportability.
+ *
+ * @param data String to escape.
+ */ function escape(data) {
+    return data.replace(reEscapeChars, singleCharReplacer);
+}
+exports.escape = escape;
+/**
+ * Encodes all characters not valid in XML documents using numeric hexadecimal
+ * reference (eg. `&#xfc;`).
+ *
+ * Note that the output will be character-set dependent.
+ *
+ * @param data String to escape.
+ */ function escapeUTF8(data) {
+    return data.replace(xmlReplacer, singleCharReplacer);
+}
+exports.escapeUTF8 = escapeUTF8;
+function getASCIIEncoder(obj) {
+    return function(data) {
+        return data.replace(reEscapeChars, function(c) {
+            return obj[c] || singleCharReplacer(c);
+        });
+    };
+}
+
+},{"./maps/xml.json":"6rBuv","./maps/entities.json":"44PRp"}],"kUwEA":[function(require,module,exports) {
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.attributeNames = exports.elementNames = void 0;
+exports.elementNames = new Map([
+    [
+        "altglyph",
+        "altGlyph"
+    ],
+    [
+        "altglyphdef",
+        "altGlyphDef"
+    ],
+    [
+        "altglyphitem",
+        "altGlyphItem"
+    ],
+    [
+        "animatecolor",
+        "animateColor"
+    ],
+    [
+        "animatemotion",
+        "animateMotion"
+    ],
+    [
+        "animatetransform",
+        "animateTransform"
+    ],
+    [
+        "clippath",
+        "clipPath"
+    ],
+    [
+        "feblend",
+        "feBlend"
+    ],
+    [
+        "fecolormatrix",
+        "feColorMatrix"
+    ],
+    [
+        "fecomponenttransfer",
+        "feComponentTransfer"
+    ],
+    [
+        "fecomposite",
+        "feComposite"
+    ],
+    [
+        "feconvolvematrix",
+        "feConvolveMatrix"
+    ],
+    [
+        "fediffuselighting",
+        "feDiffuseLighting"
+    ],
+    [
+        "fedisplacementmap",
+        "feDisplacementMap"
+    ],
+    [
+        "fedistantlight",
+        "feDistantLight"
+    ],
+    [
+        "fedropshadow",
+        "feDropShadow"
+    ],
+    [
+        "feflood",
+        "feFlood"
+    ],
+    [
+        "fefunca",
+        "feFuncA"
+    ],
+    [
+        "fefuncb",
+        "feFuncB"
+    ],
+    [
+        "fefuncg",
+        "feFuncG"
+    ],
+    [
+        "fefuncr",
+        "feFuncR"
+    ],
+    [
+        "fegaussianblur",
+        "feGaussianBlur"
+    ],
+    [
+        "feimage",
+        "feImage"
+    ],
+    [
+        "femerge",
+        "feMerge"
+    ],
+    [
+        "femergenode",
+        "feMergeNode"
+    ],
+    [
+        "femorphology",
+        "feMorphology"
+    ],
+    [
+        "feoffset",
+        "feOffset"
+    ],
+    [
+        "fepointlight",
+        "fePointLight"
+    ],
+    [
+        "fespecularlighting",
+        "feSpecularLighting"
+    ],
+    [
+        "fespotlight",
+        "feSpotLight"
+    ],
+    [
+        "fetile",
+        "feTile"
+    ],
+    [
+        "feturbulence",
+        "feTurbulence"
+    ],
+    [
+        "foreignobject",
+        "foreignObject"
+    ],
+    [
+        "glyphref",
+        "glyphRef"
+    ],
+    [
+        "lineargradient",
+        "linearGradient"
+    ],
+    [
+        "radialgradient",
+        "radialGradient"
+    ],
+    [
+        "textpath",
+        "textPath"
+    ], 
+]);
+exports.attributeNames = new Map([
+    [
+        "definitionurl",
+        "definitionURL"
+    ],
+    [
+        "attributename",
+        "attributeName"
+    ],
+    [
+        "attributetype",
+        "attributeType"
+    ],
+    [
+        "basefrequency",
+        "baseFrequency"
+    ],
+    [
+        "baseprofile",
+        "baseProfile"
+    ],
+    [
+        "calcmode",
+        "calcMode"
+    ],
+    [
+        "clippathunits",
+        "clipPathUnits"
+    ],
+    [
+        "diffuseconstant",
+        "diffuseConstant"
+    ],
+    [
+        "edgemode",
+        "edgeMode"
+    ],
+    [
+        "filterunits",
+        "filterUnits"
+    ],
+    [
+        "glyphref",
+        "glyphRef"
+    ],
+    [
+        "gradienttransform",
+        "gradientTransform"
+    ],
+    [
+        "gradientunits",
+        "gradientUnits"
+    ],
+    [
+        "kernelmatrix",
+        "kernelMatrix"
+    ],
+    [
+        "kernelunitlength",
+        "kernelUnitLength"
+    ],
+    [
+        "keypoints",
+        "keyPoints"
+    ],
+    [
+        "keysplines",
+        "keySplines"
+    ],
+    [
+        "keytimes",
+        "keyTimes"
+    ],
+    [
+        "lengthadjust",
+        "lengthAdjust"
+    ],
+    [
+        "limitingconeangle",
+        "limitingConeAngle"
+    ],
+    [
+        "markerheight",
+        "markerHeight"
+    ],
+    [
+        "markerunits",
+        "markerUnits"
+    ],
+    [
+        "markerwidth",
+        "markerWidth"
+    ],
+    [
+        "maskcontentunits",
+        "maskContentUnits"
+    ],
+    [
+        "maskunits",
+        "maskUnits"
+    ],
+    [
+        "numoctaves",
+        "numOctaves"
+    ],
+    [
+        "pathlength",
+        "pathLength"
+    ],
+    [
+        "patterncontentunits",
+        "patternContentUnits"
+    ],
+    [
+        "patterntransform",
+        "patternTransform"
+    ],
+    [
+        "patternunits",
+        "patternUnits"
+    ],
+    [
+        "pointsatx",
+        "pointsAtX"
+    ],
+    [
+        "pointsaty",
+        "pointsAtY"
+    ],
+    [
+        "pointsatz",
+        "pointsAtZ"
+    ],
+    [
+        "preservealpha",
+        "preserveAlpha"
+    ],
+    [
+        "preserveaspectratio",
+        "preserveAspectRatio"
+    ],
+    [
+        "primitiveunits",
+        "primitiveUnits"
+    ],
+    [
+        "refx",
+        "refX"
+    ],
+    [
+        "refy",
+        "refY"
+    ],
+    [
+        "repeatcount",
+        "repeatCount"
+    ],
+    [
+        "repeatdur",
+        "repeatDur"
+    ],
+    [
+        "requiredextensions",
+        "requiredExtensions"
+    ],
+    [
+        "requiredfeatures",
+        "requiredFeatures"
+    ],
+    [
+        "specularconstant",
+        "specularConstant"
+    ],
+    [
+        "specularexponent",
+        "specularExponent"
+    ],
+    [
+        "spreadmethod",
+        "spreadMethod"
+    ],
+    [
+        "startoffset",
+        "startOffset"
+    ],
+    [
+        "stddeviation",
+        "stdDeviation"
+    ],
+    [
+        "stitchtiles",
+        "stitchTiles"
+    ],
+    [
+        "surfacescale",
+        "surfaceScale"
+    ],
+    [
+        "systemlanguage",
+        "systemLanguage"
+    ],
+    [
+        "tablevalues",
+        "tableValues"
+    ],
+    [
+        "targetx",
+        "targetX"
+    ],
+    [
+        "targety",
+        "targetY"
+    ],
+    [
+        "textlength",
+        "textLength"
+    ],
+    [
+        "viewbox",
+        "viewBox"
+    ],
+    [
+        "viewtarget",
+        "viewTarget"
+    ],
+    [
+        "xchannelselector",
+        "xChannelSelector"
+    ],
+    [
+        "ychannelselector",
+        "yChannelSelector"
+    ],
+    [
+        "zoomandpan",
+        "zoomAndPan"
+    ], 
+]);
 
 },{}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire4482")
 

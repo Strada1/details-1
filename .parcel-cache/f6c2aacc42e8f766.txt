@@ -29,7 +29,7 @@
 91D:\Web\STRADA\Git\details-1\node_modules\json-stable-stringify-without-jsonify\package.json133113393581789365 0
 65D:\Web\STRADA\Git\details-1\node_modules\es-abstract\2020\Call.js133113393628549802 0
 49D:\Web\STRADA\Git\details-1\node_modules\is-regex133113393594522622 1
-45D:\Web\STRADA\Git\details-1\package-lock.json133114145611064448 0
+45D:\Web\STRADA\Git\details-1\package-lock.json133114961502573729 0
 82D:\Web\STRADA\Git\details-1\node_modules\function.prototype.name\implementation.js133113393592501387 0
 57D:\Web\STRADA\Git\details-1\node_modules\msgpackr-extract133113393601281463 1
 80D:\Web\STRADA\Git\details-1\node_modules\@parcel\transformer-babel\src\config.js133113393593961413 0
@@ -49,7 +49,7 @@
 89D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\picture-in-picture.js133113393647644076 0
 91D:\Web\STRADA\Git\details-1\node_modules\eslint-plugin-n\lib\rules\no-unpublished-import.js133113393623310636 0
 73D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\parseISO\index.d.ts133113393802121514 0
-32D:\Web\STRADA\Git\details-1\dist133114952703073813 1
+32D:\Web\STRADA\Git\details-1\dist133115114371466903 1
 85D:\Web\STRADA\Git\details-1\node_modules\date-fns\fp\areIntervalsOverlapping\index.js133113393717063720 0
 69D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\fp\fromUnixTime133113393794309769 1
 58D:\Web\STRADA\Git\details-1\node_modules\@msgpackr-extract133113393818573994 1
@@ -65,7 +65,7 @@
 72D:\Web\STRADA\Git\details-1\node_modules\date-fns\endOfHour\package.json133113393755674343 0
 93D:\Web\STRADA\Git\details-1\node_modules\eslint-plugin-import\node_modules\doctrine\README.md133113393590922211 0
 72D:\Web\STRADA\Git\details-1\node_modules\minimist\test\parse_modified.js133113393596121757 0
-38D:\Web\STRADA\Git\details-1\.gitignore133114145610970046 0
+38D:\Web\STRADA\Git\details-1\.gitignore133115082580256730 0
 73D:\Web\STRADA\Git\details-1\node_modules\eslint-plugin-import\SECURITY.md133113393628182355 0
 92D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\nn\_lib\formatDistance\index.js133113393708561451 0
 83D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\lv\_lib\match\index.js133113393707444147 0
@@ -124,14 +124,14 @@
 88D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\km\_lib\formatLong\index.js133113393706619697 0
 79D:\Web\STRADA\Git\details-1\node_modules\date-fns\locale\hy\_lib\formatDistance133113393738849317 1
 55D:\Web\STRADA\Git\details-1\node_modules\array-includes133113393600243585 1
-38D:\Web\STRADA\Git\details-1\index.html133114145611024733 0
+38D:\Web\STRADA\Git\details-1\index.html133115107665776584 0
 65D:\Web\STRADA\Git\details-1\node_modules\has-symbols\CHANGELOG.md133113393595620111 0
 66D:\Web\STRADA\Git\details-1\node_modules\reusify\benchmarks\fib.js133113393593281019 0
 79D:\Web\STRADA\Git\details-1\node_modules\htmlnano\lib\modules\sortAttributes.js133113393605562296 0
 79D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\he\_lib\formatLong133113393703074078 1
 78D:\Web\STRADA\Git\details-1\node_modules\date-fns\locale\zh-TW\_lib\formatLong133113393749903797 1
 49D:\Web\STRADA\Git\details-1\node_modules\lmdb\src133113393627010375 1
-36D:\Web\STRADA\Git\details-1\index.js133114145611034663 0
+36D:\Web\STRADA\Git\details-1\index.js133115114369450218 0
 55D:\Web\STRADA\Git\details-1\node_modules\dom-serializer133113393596082041 1
 65D:\Web\STRADA\Git\details-1\node_modules\htmlnano\lib\htmlnano.js133113393596052242 0
 71D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\getDay\index.d.ts133113393797800947 0
@@ -157,7 +157,7 @@
 68D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\ar\_lib133113393698381199 1
 51D:\Web\STRADA\Git\details-1\node_modules\source-map133113393600819569 1
 71D:\Web\STRADA\Git\details-1\node_modules\eslint\lib\rules\func-style.js133113393626369713 0
-59D:\Web\STRADA\Git\details-1\node_modules\.package-lock.json133114124752049866 0
+59D:\Web\STRADA\Git\details-1\node_modules\.package-lock.json133114961502975076 0
 75D:\Web\STRADA\Git\details-1\node_modules\eslint\lib\rules\spaced-comment.js133113393642091901 0
 63D:\Web\STRADA\Git\details-1\node_modules\@parcel\diagnostic\src133113393586040397 1
 74D:\Web\STRADA\Git\details-1\node_modules\date-fns\fp\setYear\index.js.flow133113393670412804 0
@@ -166,7 +166,7 @@
 79D:\Web\STRADA\Git\details-1\node_modules\date-fns\fp\startOfMonth\index.js.flow133113393670541899 0
 50D:\Web\STRADA\Git\details-1\node_modules\path-type133113393588190750 1
 68D:\Web\STRADA\Git\details-1\node_modules\eslint\lib\rules\no-void.js133113393635099938 0
-40D:\Web\STRADA\Git\details-1\package.json133114145611064448 0
+40D:\Web\STRADA\Git\details-1\package.json133115079627482048 0
 57D:\Web\STRADA\Git\details-1\node_modules\type-fest\source133113393608090041 1
 52D:\Web\STRADA\Git\details-1\node_modules\uri-js\dist133113393593673420 1
 59D:\Web\STRADA\Git\details-1\node_modules\tsconfig-paths\lib133113393608964253 1
@@ -207,7 +207,7 @@
 37D:\Web\STRADA\Git\details-1\README.md133112522128441575 0
 68D:\Web\STRADA\Git\details-1\node_modules\date-fns\fp\toDate\index.js133113393721731714 0
 73D:\Web\STRADA\Git\details-1\node_modules\eslint\lib\rules\prefer-const.js133113393635820024 0
-35D:\Web\STRADA\Git\details-1\view.js133112550100964219 0
+35D:\Web\STRADA\Git\details-1\view.js133115113672122753 0
 79D:\Web\STRADA\Git\details-1\node_modules\date-fns\fp\endOfISOWeek\index.js.flow133113393666772681 0
 35D:\Web\STRADA\Git\details-1\path\to133113724977480145 1
 62D:\Web\STRADA\Git\details-1\node_modules\svgo\lib\svgo-node.js133113393624482678 0
@@ -12639,7 +12639,7 @@
 76D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\parseJSON\package.json133113393768819455 0
 71D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\parseISO\index.js133113393714049161 0
 76D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\parseISO\index.js.flow133113393662581337 0
-41D:\Web\STRADA\Git\details-1\css\style.css133113261377896101 0
+41D:\Web\STRADA\Git\details-1\css\style.css133114983316982656 0
 70D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\parse\index.d.ts133113393802101653 0
 90D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\fp\setWeekYearWithOptions\index.d.ts133113393797051082 0
 68D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\parse\index.js133113393714009436 0
@@ -13645,7 +13645,7 @@
 86D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\ar-EG\_lib\formatRelative133113393697730633 1
 80D:\Web\STRADA\Git\details-1\node_modules\css-tree\lib\syntax\atrule\font-face.js133113393613363913 0
 95D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\ar-EG\_lib\formatRelative\index.js133113393697730633 0
-55D:\Web\STRADA\Git\details-1\dist\index.b2625c6b.css.map133114141997745053 0
+55D:\Web\STRADA\Git\details-1\dist\index.b2625c6b.css.map133115108531651936 0
 91D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\ar-EG\_lib\formatLong\index.js133113393697710783 0
 76D:\Web\STRADA\Git\details-1\node_modules\@parcel\transformer-postcss\LICENSE133113393581973181 0
 72D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\fp\addISOWeekYears133113393792621369 1
@@ -13667,7 +13667,7 @@
 88D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\link-rel-prefetch.js133113393645493704 0
 93D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\css-content-visibility.js133113393629364455 0
 74D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\af\index.d.ts133113393799633544 0
-50D:\Web\STRADA\Git\details-1\dist\index.3d214d75.js133114952702933340 0
+50D:\Web\STRADA\Git\details-1\dist\index.3d214d75.js133115114371426775 0
 72D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\af\index.js133113393697502218 0
 88D:\Web\STRADA\Git\details-1\node_modules\caniuse-lite\data\features\css-width-stretch.js133113393632880153 0
 77D:\Web\STRADA\Git\details-1\node_modules\date-fns\esm\locale\af\index.js.flow133113393649272925 0
@@ -16621,7 +16621,7 @@
 56D:\Web\STRADA\Git\details-1\node_modules\.bin\terser.cmd133113393815509797 0
 56D:\Web\STRADA\Git\details-1\node_modules\.bin\terser.ps1133113393815509797 0
 40D:\Web\STRADA\Git\details-1\img\love.png133101427080835227 0
-54D:\Web\STRADA\Git\details-1\dist\index.3d214d75.js.map133114952703063778 0
-51D:\Web\STRADA\Git\details-1\dist\index.b2625c6b.css133114141997715251 0
-43D:\Web\STRADA\Git\details-1\dist\index.html133114952702702587 0
+54D:\Web\STRADA\Git\details-1\dist\index.3d214d75.js.map133115114371456884 0
+51D:\Web\STRADA\Git\details-1\dist\index.b2625c6b.css133115108531631858 0
+43D:\Web\STRADA\Git\details-1\dist\index.html133115108531962954 0
 50D:\Web\STRADA\Git\details-1\dist\lupa.c361a497.png133114141997834415 0

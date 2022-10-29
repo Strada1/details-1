@@ -1,6 +1,5 @@
 import { ELEMENT_UI } from './view.js'
-import { format, formatDistanceToNow } from 'date-fns'
-import Cookies from 'js-cookie'
+import {formatDuration, intervalToDuration} from 'date-fns'
 
 ELEMENT_UI.submitFutureDate.addEventListener('submit', getFutureDate)
 
@@ -10,19 +9,17 @@ function getFutureDate() {
   DistanceToNow(enteredDate)
 }
 
-function getNowDate() {
-  let dateNow = new Date();
-  dateNow = format(dateNow, "Y DD HH", { useAdditionalDayOfYearTokens: true })
-  return dateNow;
-}
-
 function DistanceToNow (enteredDate) {
-  const dateNow = getNowDate();
-  const distnaceDate = formatDistanceToNow(enteredDate);
-  console.log('distnaceDate: ', distnaceDate); 
+  let distnaceDate = intervalToDuration({
+    start: new Date(),
+    end: new Date(enteredDate)
+  })
+  distnaceDate = formatDuration(distnaceDate);
+  console.log(' distnaceDate: ',  distnaceDate);
+ 
+  ELEMENT_UI.result.textContent = "";
+  ELEMENT_UI.result.textContent = distnaceDate
 }
 
 
-// function timeLeft() {
-  
-// }
+
