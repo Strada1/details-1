@@ -1,0 +1,48 @@
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+}
+:active, :hover, :focus {
+   outline: 0;
+   outline-offset: 0;
+}
+body {
+   font-size: 16px;
+   font-family: Arial, Helvetica, sans-serif;
+   line-height: normal;
+   min-height: 100vh;
+}
+ul {
+   list-style: none;
+}
+img {
+   max-width: 100%;
+}
+.container {
+   max-width: 1200px;
+   margin: 0 auto;
+   padding: 0 15px;
+}
+/* 2. HEADER */
+.header {background: #787878;}
+.header-content {display: flex;flex-wrap: wrap;align-items: center;justify-content: space-between;color: #fff;padding: 8px 0;}
+.header-content__title {font-size: 18px;}
+.big-title {font-size: 20px;text-transform: uppercase;font-weight: bold;color: #9aff00;}
+.header-content__contacts i {
+   color: #9aff00;
+}
+/* 2. PAGE */
+.app {margin: 50px 0;text-align: center;font-size: 22px;}
+.app__header {
+    margin-bottom: 2em;
+}
+.select-date__input {font-size: inherit;border-radius: 12px;border: none;box-shadow: 0 0 2px #808080;padding: 8px 12px;}
+.select-date__input[type=date]::-webkit-calendar-picker-indicator {
+   cursor: pointer;
+}
+.select-date__btn {font-size: inherit;color: #757575;background: #f1f1f1;border-radius: 12px;border: none;box-shadow: 0 0 2px #808080;padding: 8px 12px;transition: all 0.3s;cursor: pointer;}
+.select-date__btn:hover {
+   color: #2f2f2f;
+   background: #cecece;
+}
