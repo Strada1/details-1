@@ -1,0 +1,66 @@
+body {
+}
+
+.wrapper {
+	padding: 100px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.container {
+	display: flex;
+}
+
+.time {
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.container-button {
+	margin-top: 20px;
+}
+
+input {
+	cursor: pointer;
+}
+
+button {
+	margin: 0 auto;
+	width: 60px;
+	height: 30px;
+	background: linear-gradient(90deg, #fcff9e 0%, #ebbe7c 100%);
+
+	border: 1px solid #000;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+button:hover {
+	opacity: 0.6;
+	transition: ease-in-out 0.2s;
+}
+
+span {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+
+	padding: 10px;
+
+	max-width: auto;
+	width: 200px;
+	height: 40px;
+
+	border: 1px solid #000;
+	border-radius: 10px;
+
+	background: linear-gradient(90deg, #fcff9e 0%, #ebbe7c 100%);
+}
+
+span:last-child {
+	margin-right: 0px;
+}
