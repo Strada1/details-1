@@ -1,0 +1,26 @@
+{
+  "name": "details-1",
+  "version": "1.0.0",
+  "description": "weatger app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Strada1/details-1.git"
+  },
+  "author": "kibig0go",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Strada1/details-1/issues"
+  },
+  "homepage": "https://github.com/Strada1/details-1#readme",
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "parcel": "^2.7.0"
+  }
+}
