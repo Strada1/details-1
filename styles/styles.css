@@ -30,7 +30,7 @@ html, body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 300px;
+    width: 350px;
     margin-top: 130px;
     background-color: inherit;
 }
@@ -41,7 +41,7 @@ html, body {
 }
 .from-date {
     text-align: start;
-    width: 175px;
+    width: 220px;
     height: 30px;
     color: rgb(4, 52, 74);
     padding: 0 20px 0 20px;
@@ -73,7 +73,7 @@ html, body {
     inset rgba(255,255,255,.9) 3px 3px 8px,
     rgba(0, 98, 163,.8) 3px 3px 8px -3px;
 }
-.btn-start:hover {
+.btn-start:hover:not(:disabled) {
     background: rgb(113, 193, 230) radial-gradient(circle at 0 0, rgba(151, 206, 232, 0.55), rgba(151, 206, 232,.35));
     box-shadow:
     inset rgba(0, 98, 163,.5) -3px -3px 8px,
@@ -83,11 +83,11 @@ html, body {
     0 0 50px #A42FED,
     0 0 100px #E024ED;
 }
-.btn-start:active {
+.btn-start:active:not(:disabled) {
     scale: .95;
 }
 .count-down {
-    width: 450px;
+    width: 475px;
     height: 80px;
     display: flex;
     flex-direction: column;
@@ -97,6 +97,11 @@ html, body {
 .text-inform {
     font-size: 21px;
     color: rgb(4, 67, 96);
+    opacity: 0;
+    transition: opacity .5s ease-in-out;
+}
+.text-inform.active {
+    opacity: 1;
 }
 .date-count-down {
     min-width: 475px;
