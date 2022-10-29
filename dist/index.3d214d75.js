@@ -532,240 +532,39 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"bB7Pu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _viewJs = require("./view.js");
 var _dateFns = require("date-fns");
-window.addEventListener("unhandledrejection", function(event) {
-    console.log(event.promise);
-    console.log(event.reason);
-});
-let list = [];
-(0, _viewJs.ITEMS_TAB).formSumbitNow.addEventListener("submit", addTown);
-(0, _viewJs.ITEMS_TAB).formSumbitDetalis.addEventListener("submit", addTown);
-async function getItem() {
-    let cityName = (0, _viewJs.ITEMS_TAB).Town.value;
-    if (!cityName) cityName = getCookie("lastCity");
-    cityName = cityName.trim();
-    const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
-    const serverUrl = "//api.openweathermap.org/data/2.5/weather";
-    const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
-    const response = await fetch(url);
-    if (response.ok) {
-        const json = await response.json();
-        createItems(json, cityName);
-    } else alert("Ошибка HTTP: " + response.status);
-}
-function createItems(json, cityName) {
-    let temperature = json.main.temp;
-    temperature = Math.round(temperature);
-    let feelsLike = json.main.feels_like;
-    feelsLike = Math.round(feelsLike);
-    const WeatherStatus = json.weather[0].main;
-    let Sunrise = json.sys.sunrise;
-    Sunrise = new Date(Sunrise * 1000);
-    Sunrise = (0, _dateFns.format)(Sunrise, "H':'mm':'ss");
-    let Sunset = json.sys.sunset;
-    Sunset = new Date(Sunset * 1000);
-    Sunset = (0, _dateFns.format)(Sunset, "H':'mm':'ss");
-    const icon = json.weather[0].icon;
-    renderNow(temperature, cityName, icon);
-    renderDetalis(temperature, cityName, feelsLike, WeatherStatus, Sunrise, Sunset);
-    (0, _viewJs.ITEMS_TAB).formSumbitNow.reset();
-    (0, _viewJs.ITEMS_TAB).formSumbitDetalis.reset();
-}
-async function addTown(event) {
+var _jsCookie = require("js-cookie");
+var _jsCookieDefault = parcelHelpers.interopDefault(_jsCookie);
+(0, _viewJs.ELEMENT_UI).submitFutureDate.addEventListener("submit", getFutureDate);
+function getFutureDate() {
     event.preventDefault();
-    getItem();
+    const enteredDate = (0, _viewJs.ELEMENT_UI).inputDate.value;
+    DistanceToNow(enteredDate);
 }
-function renderNow(temperature, cityName, icon) {
-    const temperatureNow = document.getElementById("temperatureNow");
-    const loveButton = document.getElementById("loveButton");
-    temperatureNow.textContent = "";
-    (0, _viewJs.renderNowHTML)(temperature, cityName, icon);
-    // loveButton
-    loveButton.classList.add("after__render");
-    loveButton.addEventListener("click", addLocation);
-}
-function renderDetalis(temperature, cityName, feelsLike, WeatherStatus, Sunrise, Sunset) {
-    const DetalisTab = document.getElementById("DetalisTab");
-    const dataWether = document.getElementById("dataWether");
-    DetalisTab.textContent = "";
-    dataWether.textContent = "";
-    (0, _viewJs.renderDetailsHTML)(temperature, cityName, feelsLike, WeatherStatus, Sunrise, Sunset);
-}
-function toStorage(list) {
-    const citiesArray = JSON.stringify(list);
-    localStorage.setItem("citiesArray", citiesArray);
-}
-function getCookie(name) {
-    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
-    return matches ? decodeURIComponent(matches[1]) : undefined;
-}
-function setCookie(name, value, options = {}) {
-    options = {
-        path: "/",
-        ...options
-    };
-    if (options.expires instanceof Date) options.expires = options.expires.toUTCString();
-    let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
-    for(let optionKey in options){
-        updatedCookie += "; " + optionKey;
-        let optionValue = options[optionKey];
-        if (optionValue !== true) updatedCookie += "=" + optionValue;
-    }
-    document.cookie = updatedCookie;
-}
-function lastFavoriteViewed(cityName) {
-    const lastCity = cityName;
-    // setCookie('lastCity', `${lastCity}`, {'max-age': 3600})
-    document.cookie = `lastCity=${lastCity}; max-age=3600`;
-}
-function addLocation() {
-    const cityValue = document.getElementById("cityName");
-    const cityName = cityValue.textContent;
-    if (!list) list = [
-        "Варшава"
-    ];
-    lastFavoriteViewed(cityName);
-    const indexObj = list.findIndex(function(item) {
-        return item === cityName;
+function getNowDate() {
+    let dateNow = new Date();
+    dateNow = (0, _dateFns.format)(dateNow, "Y DD HH", {
+        useAdditionalDayOfYearTokens: true
     });
-    if (indexObj === -1 && localStorage.length) {
-        toStorage(list);
-        const cityInLs = JSON.parse(localStorage.getItem("citiesArray"));
-        list = cityInLs;
-        list.push(cityName) // (заменить на concat или оператор расширения)
-        ;
-        toStorage(list);
-        renderAddedLocation();
-    } else alert("Уже есть такой город");
+    return dateNow;
 }
-document.body.onload = renderAddedLocation();
-function renderAddedLocation() {
-    const city = document.getElementById("city");
-    const cityTab2 = document.getElementById("cityTab2");
-    city.textContent = "";
-    cityTab2.textContent = "";
-    let listLocal = JSON.parse(localStorage.getItem("citiesArray"));
-    list = listLocal;
-    if (!listLocal) listLocal = [
-        "Варшава"
-    ];
-    (0, _viewJs.renderAddedLocationHTML)(listLocal, showNowTab, deleteTown);
-    showlastCity();
-}
-function deleteTown(event) {
-    let town = event.target.previousSibling.textContent;
-    town = town.trim();
-    const newList = list.filter((item)=>item !== town);
-    toStorage(newList);
-    renderAddedLocation();
-}
-async function showNowTab(event) {
-    const cityName = event.target.textContent;
-    lastFavoriteViewed(cityName);
-    getItem();
-    // меняю цвет города по которому кликнул
-    event.target.classList = "showTown";
-    setTimeout(()=>event.target.className = "delete__class", 350);
-}
-async function showlastCity() {
-    let cityName = getCookie("lastCity");
-    if (!cityName) cityName = "Варшава";
-    toStorage(list);
-    getItem();
-}
+function DistanceToNow(enteredDate) {
+    const dateNow = getNowDate();
+    const distnaceDate = (0, _dateFns.formatDistanceToNow)(enteredDate);
+    console.log("distnaceDate: ", distnaceDate);
+} // function timeLeft() {
+ // }
 
-},{"./view.js":"de63B","date-fns":"9yHCA"}],"de63B":[function(require,module,exports) {
+},{"./view.js":"de63B","date-fns":"9yHCA","js-cookie":"c8bBu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"de63B":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ITEMS_TAB", ()=>ITEMS_TAB);
-parcelHelpers.export(exports, "renderNowHTML", ()=>renderNowHTML);
-parcelHelpers.export(exports, "renderDetailsHTML", ()=>renderDetailsHTML);
-parcelHelpers.export(exports, "renderAddedLocationHTML", ()=>renderAddedLocationHTML);
-const ITEMS_TAB = {
-    Town2: document.getElementById("Town2"),
-    formSumbitNow: document.getElementById("formSumbitNow"),
-    Town: document.getElementById("Town"),
-    formSumbitDetalis: document.getElementById("forrmSubmitDetalis"),
-    tabNow: document.getElementById("tabNow"),
-    tabDetalis: document.getElementById("tabDetalis"),
-    tabForecast: document.getElementById("tabForecast")
+parcelHelpers.export(exports, "ELEMENT_UI", ()=>ELEMENT_UI);
+const ELEMENT_UI = {
+    inputDate: document.getElementById("inputDate"),
+    submitFutureDate: document.getElementById("submitFutureDate")
 };
-function renderNowHTML(temperature, cityName, icon) {
-    const linkImg = `//openweathermap.org/img/wn/${icon}@2x.png`;
-    // картинка в now
-    const imgWeather = document.createElement("img");
-    imgWeather.className = "img_cloud";
-    imgWeather.src = linkImg;
-    temperatureNow.prepend(imgWeather);
-    // температура
-    const divTemperature = document.createElement("div");
-    divTemperature.className = "temperature";
-    divTemperature.textContent = `${temperature}°`;
-    temperatureNow.prepend(divTemperature);
-    // локация во вкладке now
-    const divName = document.createElement("div");
-    divName.className = "section1_text";
-    divName.id = "cityName";
-    divName.textContent = cityName;
-    temperatureNow.append(divName);
-}
-function renderDetailsHTML(temperature, cityName, feelsLike, weatherStatus, Sunrise, Sunset) {
-    // Имя города
-    const divName = document.createElement("div");
-    divName.className = "Actobe_text";
-    divName.textContent = cityName;
-    DetalisTab.prepend(divName);
-    // Temperature
-    const divTemperature = document.createElement("div");
-    divTemperature.textContent = `Temperature: ${temperature}°`;
-    dataWether.append(divTemperature);
-    // Feels like
-    const divFeelslike = document.createElement("div");
-    divFeelslike.textContent = `Feels like: ${feelsLike}°`;
-    dataWether.append(divFeelslike);
-    // Weather
-    const divWeather = document.createElement("div");
-    divWeather.textContent = `Weather: ${weatherStatus}`;
-    dataWether.append(divWeather);
-    // Sunrise
-    const divSunrise = document.createElement("div");
-    divSunrise.textContent = `Sunrise: ${Sunrise}`;
-    dataWether.append(divSunrise);
-    // Sunset
-    const divSunset = document.createElement("div");
-    divSunset.textContent = `Sunset: ${Sunset}`;
-    dataWether.append(divSunset);
-}
-function renderAddedLocationHTML(listLocal, showNowTab, deleteTown) {
-    listLocal.forEach(function(item) {
-        // добавление в Now
-        const divLocation = document.createElement("div");
-        divLocation.textContent = item;
-        divLocation.onclick = showNowTab;
-        city.append(divLocation);
-        // cityTab2.append(divLocation)
-        const cross = document.createElement("input");
-        cross.value = "☒";
-        cross.type = "submit";
-        cross.classList = "button_close";
-        cross.onclick = deleteTown // переделать AddEventListner
-        ;
-        city.append(cross);
-        // cityTab2.append(cross)
-        // добавление в Detalis
-        const divLocationTab2 = document.createElement("div");
-        divLocationTab2.textContent = item;
-        divLocationTab2.onclick = showNowTab;
-        cityTab2.append(divLocationTab2);
-        const crossTab2 = document.createElement("input");
-        crossTab2.value = "☒";
-        crossTab2.type = "submit";
-        crossTab2.classList = "button_close";
-        crossTab2.onclick = deleteTown;
-        cityTab2.append(crossTab2);
-    });
-}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
 exports.interopDefault = function(a) {
@@ -1521,7 +1320,7 @@ var _indexJsDefault238 = parcelHelpers.interopDefault(_indexJs238);
 var _indexJs239 = require("./constants/index.js");
 parcelHelpers.exportAll(_indexJs239, exports);
 
-},{"./add/index.js":false,"./addBusinessDays/index.js":false,"./addDays/index.js":false,"./addHours/index.js":false,"./addISOWeekYears/index.js":false,"./addMilliseconds/index.js":"7Tp9s","./addMinutes/index.js":false,"./addMonths/index.js":false,"./addQuarters/index.js":false,"./addSeconds/index.js":false,"./addWeeks/index.js":false,"./addYears/index.js":false,"./areIntervalsOverlapping/index.js":false,"./clamp/index.js":false,"./closestIndexTo/index.js":false,"./closestTo/index.js":false,"./compareAsc/index.js":false,"./compareDesc/index.js":false,"./daysToWeeks/index.js":false,"./differenceInBusinessDays/index.js":false,"./differenceInCalendarDays/index.js":false,"./differenceInCalendarISOWeekYears/index.js":false,"./differenceInCalendarISOWeeks/index.js":false,"./differenceInCalendarMonths/index.js":false,"./differenceInCalendarQuarters/index.js":false,"./differenceInCalendarWeeks/index.js":false,"./differenceInCalendarYears/index.js":false,"./differenceInDays/index.js":false,"./differenceInHours/index.js":false,"./differenceInISOWeekYears/index.js":false,"./differenceInMilliseconds/index.js":false,"./differenceInMinutes/index.js":false,"./differenceInMonths/index.js":false,"./differenceInQuarters/index.js":false,"./differenceInSeconds/index.js":false,"./differenceInWeeks/index.js":false,"./differenceInYears/index.js":false,"./eachDayOfInterval/index.js":false,"./eachHourOfInterval/index.js":false,"./eachMinuteOfInterval/index.js":false,"./eachMonthOfInterval/index.js":false,"./eachQuarterOfInterval/index.js":false,"./eachWeekOfInterval/index.js":false,"./eachWeekendOfInterval/index.js":false,"./eachWeekendOfMonth/index.js":false,"./eachWeekendOfYear/index.js":false,"./eachYearOfInterval/index.js":false,"./endOfDay/index.js":false,"./endOfDecade/index.js":false,"./endOfHour/index.js":false,"./endOfISOWeek/index.js":false,"./endOfISOWeekYear/index.js":false,"./endOfMinute/index.js":false,"./endOfMonth/index.js":false,"./endOfQuarter/index.js":false,"./endOfSecond/index.js":false,"./endOfToday/index.js":false,"./endOfTomorrow/index.js":false,"./endOfWeek/index.js":false,"./endOfYear/index.js":false,"./endOfYesterday/index.js":false,"./format/index.js":"lnm6V","./formatDistance/index.js":false,"./formatDistanceStrict/index.js":false,"./formatDistanceToNow/index.js":false,"./formatDistanceToNowStrict/index.js":false,"./formatDuration/index.js":false,"./formatISO/index.js":false,"./formatISO9075/index.js":false,"./formatISODuration/index.js":false,"./formatRFC3339/index.js":false,"./formatRFC7231/index.js":false,"./formatRelative/index.js":false,"./fromUnixTime/index.js":false,"./getDate/index.js":false,"./getDay/index.js":false,"./getDayOfYear/index.js":false,"./getDaysInMonth/index.js":false,"./getDaysInYear/index.js":false,"./getDecade/index.js":false,"./getDefaultOptions/index.js":false,"./getHours/index.js":false,"./getISODay/index.js":false,"./getISOWeek/index.js":false,"./getISOWeekYear/index.js":false,"./getISOWeeksInYear/index.js":false,"./getMilliseconds/index.js":false,"./getMinutes/index.js":false,"./getMonth/index.js":false,"./getOverlappingDaysInIntervals/index.js":false,"./getQuarter/index.js":false,"./getSeconds/index.js":false,"./getTime/index.js":false,"./getUnixTime/index.js":false,"./getWeek/index.js":false,"./getWeekOfMonth/index.js":false,"./getWeekYear/index.js":false,"./getWeeksInMonth/index.js":false,"./getYear/index.js":false,"./hoursToMilliseconds/index.js":false,"./hoursToMinutes/index.js":false,"./hoursToSeconds/index.js":false,"./intervalToDuration/index.js":false,"./intlFormat/index.js":false,"./intlFormatDistance/index.js":false,"./isAfter/index.js":false,"./isBefore/index.js":false,"./isDate/index.js":"kqNhT","./isEqual/index.js":false,"./isExists/index.js":false,"./isFirstDayOfMonth/index.js":false,"./isFriday/index.js":false,"./isFuture/index.js":false,"./isLastDayOfMonth/index.js":false,"./isLeapYear/index.js":false,"./isMatch/index.js":false,"./isMonday/index.js":false,"./isPast/index.js":false,"./isSameDay/index.js":false,"./isSameHour/index.js":false,"./isSameISOWeek/index.js":false,"./isSameISOWeekYear/index.js":false,"./isSameMinute/index.js":false,"./isSameMonth/index.js":false,"./isSameQuarter/index.js":false,"./isSameSecond/index.js":false,"./isSameWeek/index.js":false,"./isSameYear/index.js":false,"./isSaturday/index.js":false,"./isSunday/index.js":false,"./isThisHour/index.js":false,"./isThisISOWeek/index.js":false,"./isThisMinute/index.js":false,"./isThisMonth/index.js":false,"./isThisQuarter/index.js":false,"./isThisSecond/index.js":false,"./isThisWeek/index.js":false,"./isThisYear/index.js":false,"./isThursday/index.js":false,"./isToday/index.js":false,"./isTomorrow/index.js":false,"./isTuesday/index.js":false,"./isValid/index.js":"eXoMl","./isWednesday/index.js":false,"./isWeekend/index.js":false,"./isWithinInterval/index.js":false,"./isYesterday/index.js":false,"./lastDayOfDecade/index.js":false,"./lastDayOfISOWeek/index.js":false,"./lastDayOfISOWeekYear/index.js":false,"./lastDayOfMonth/index.js":false,"./lastDayOfQuarter/index.js":false,"./lastDayOfWeek/index.js":false,"./lastDayOfYear/index.js":false,"./lightFormat/index.js":false,"./max/index.js":false,"./milliseconds/index.js":false,"./millisecondsToHours/index.js":false,"./millisecondsToMinutes/index.js":false,"./millisecondsToSeconds/index.js":false,"./min/index.js":false,"./minutesToHours/index.js":false,"./minutesToMilliseconds/index.js":false,"./minutesToSeconds/index.js":false,"./monthsToQuarters/index.js":false,"./monthsToYears/index.js":false,"./nextDay/index.js":false,"./nextFriday/index.js":false,"./nextMonday/index.js":false,"./nextSaturday/index.js":false,"./nextSunday/index.js":false,"./nextThursday/index.js":false,"./nextTuesday/index.js":false,"./nextWednesday/index.js":false,"./parse/index.js":false,"./parseISO/index.js":false,"./parseJSON/index.js":false,"./previousDay/index.js":false,"./previousFriday/index.js":false,"./previousMonday/index.js":false,"./previousSaturday/index.js":false,"./previousSunday/index.js":false,"./previousThursday/index.js":false,"./previousTuesday/index.js":false,"./previousWednesday/index.js":false,"./quartersToMonths/index.js":false,"./quartersToYears/index.js":false,"./roundToNearestMinutes/index.js":false,"./secondsToHours/index.js":false,"./secondsToMilliseconds/index.js":false,"./secondsToMinutes/index.js":false,"./set/index.js":false,"./setDate/index.js":false,"./setDay/index.js":false,"./setDayOfYear/index.js":false,"./setDefaultOptions/index.js":false,"./setHours/index.js":false,"./setISODay/index.js":false,"./setISOWeek/index.js":false,"./setISOWeekYear/index.js":false,"./setMilliseconds/index.js":false,"./setMinutes/index.js":false,"./setMonth/index.js":false,"./setQuarter/index.js":false,"./setSeconds/index.js":false,"./setWeek/index.js":false,"./setWeekYear/index.js":false,"./setYear/index.js":false,"./startOfDay/index.js":false,"./startOfDecade/index.js":false,"./startOfHour/index.js":false,"./startOfISOWeek/index.js":false,"./startOfISOWeekYear/index.js":false,"./startOfMinute/index.js":false,"./startOfMonth/index.js":false,"./startOfQuarter/index.js":false,"./startOfSecond/index.js":false,"./startOfToday/index.js":false,"./startOfTomorrow/index.js":false,"./startOfWeek/index.js":false,"./startOfWeekYear/index.js":false,"./startOfYear/index.js":false,"./startOfYesterday/index.js":false,"./sub/index.js":false,"./subBusinessDays/index.js":false,"./subDays/index.js":false,"./subHours/index.js":false,"./subISOWeekYears/index.js":false,"./subMilliseconds/index.js":"lL2M9","./subMinutes/index.js":false,"./subMonths/index.js":false,"./subQuarters/index.js":false,"./subSeconds/index.js":false,"./subWeeks/index.js":false,"./subYears/index.js":false,"./toDate/index.js":"fsust","./weeksToDays/index.js":false,"./yearsToMonths/index.js":false,"./yearsToQuarters/index.js":false,"./constants/index.js":"iOhcx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Tp9s":[function(require,module,exports) {
+},{"./add/index.js":false,"./addBusinessDays/index.js":false,"./addDays/index.js":false,"./addHours/index.js":false,"./addISOWeekYears/index.js":false,"./addMilliseconds/index.js":"7Tp9s","./addMinutes/index.js":false,"./addMonths/index.js":false,"./addQuarters/index.js":false,"./addSeconds/index.js":false,"./addWeeks/index.js":false,"./addYears/index.js":false,"./areIntervalsOverlapping/index.js":false,"./clamp/index.js":false,"./closestIndexTo/index.js":false,"./closestTo/index.js":false,"./compareAsc/index.js":"h01l4","./compareDesc/index.js":false,"./daysToWeeks/index.js":false,"./differenceInBusinessDays/index.js":false,"./differenceInCalendarDays/index.js":false,"./differenceInCalendarISOWeekYears/index.js":false,"./differenceInCalendarISOWeeks/index.js":false,"./differenceInCalendarMonths/index.js":"8oypH","./differenceInCalendarQuarters/index.js":false,"./differenceInCalendarWeeks/index.js":false,"./differenceInCalendarYears/index.js":false,"./differenceInDays/index.js":false,"./differenceInHours/index.js":false,"./differenceInISOWeekYears/index.js":false,"./differenceInMilliseconds/index.js":"Eb6qZ","./differenceInMinutes/index.js":false,"./differenceInMonths/index.js":"8lj6Z","./differenceInQuarters/index.js":false,"./differenceInSeconds/index.js":"5uZgU","./differenceInWeeks/index.js":false,"./differenceInYears/index.js":false,"./eachDayOfInterval/index.js":false,"./eachHourOfInterval/index.js":false,"./eachMinuteOfInterval/index.js":false,"./eachMonthOfInterval/index.js":false,"./eachQuarterOfInterval/index.js":false,"./eachWeekOfInterval/index.js":false,"./eachWeekendOfInterval/index.js":false,"./eachWeekendOfMonth/index.js":false,"./eachWeekendOfYear/index.js":false,"./eachYearOfInterval/index.js":false,"./endOfDay/index.js":"kLkh7","./endOfDecade/index.js":false,"./endOfHour/index.js":false,"./endOfISOWeek/index.js":false,"./endOfISOWeekYear/index.js":false,"./endOfMinute/index.js":false,"./endOfMonth/index.js":"4tHlS","./endOfQuarter/index.js":false,"./endOfSecond/index.js":false,"./endOfToday/index.js":false,"./endOfTomorrow/index.js":false,"./endOfWeek/index.js":false,"./endOfYear/index.js":false,"./endOfYesterday/index.js":false,"./format/index.js":"lnm6V","./formatDistance/index.js":"lPnhm","./formatDistanceStrict/index.js":false,"./formatDistanceToNow/index.js":"kV5oc","./formatDistanceToNowStrict/index.js":false,"./formatDuration/index.js":false,"./formatISO/index.js":false,"./formatISO9075/index.js":false,"./formatISODuration/index.js":false,"./formatRFC3339/index.js":false,"./formatRFC7231/index.js":false,"./formatRelative/index.js":false,"./fromUnixTime/index.js":false,"./getDate/index.js":false,"./getDay/index.js":false,"./getDayOfYear/index.js":false,"./getDaysInMonth/index.js":false,"./getDaysInYear/index.js":false,"./getDecade/index.js":false,"./getDefaultOptions/index.js":false,"./getHours/index.js":false,"./getISODay/index.js":false,"./getISOWeek/index.js":false,"./getISOWeekYear/index.js":false,"./getISOWeeksInYear/index.js":false,"./getMilliseconds/index.js":false,"./getMinutes/index.js":false,"./getMonth/index.js":false,"./getOverlappingDaysInIntervals/index.js":false,"./getQuarter/index.js":false,"./getSeconds/index.js":false,"./getTime/index.js":false,"./getUnixTime/index.js":false,"./getWeek/index.js":false,"./getWeekOfMonth/index.js":false,"./getWeekYear/index.js":false,"./getWeeksInMonth/index.js":false,"./getYear/index.js":false,"./hoursToMilliseconds/index.js":false,"./hoursToMinutes/index.js":false,"./hoursToSeconds/index.js":false,"./intervalToDuration/index.js":false,"./intlFormat/index.js":false,"./intlFormatDistance/index.js":false,"./isAfter/index.js":false,"./isBefore/index.js":false,"./isDate/index.js":"kqNhT","./isEqual/index.js":false,"./isExists/index.js":false,"./isFirstDayOfMonth/index.js":false,"./isFriday/index.js":false,"./isFuture/index.js":false,"./isLastDayOfMonth/index.js":"1as6x","./isLeapYear/index.js":false,"./isMatch/index.js":false,"./isMonday/index.js":false,"./isPast/index.js":false,"./isSameDay/index.js":false,"./isSameHour/index.js":false,"./isSameISOWeek/index.js":false,"./isSameISOWeekYear/index.js":false,"./isSameMinute/index.js":false,"./isSameMonth/index.js":false,"./isSameQuarter/index.js":false,"./isSameSecond/index.js":false,"./isSameWeek/index.js":false,"./isSameYear/index.js":false,"./isSaturday/index.js":false,"./isSunday/index.js":false,"./isThisHour/index.js":false,"./isThisISOWeek/index.js":false,"./isThisMinute/index.js":false,"./isThisMonth/index.js":false,"./isThisQuarter/index.js":false,"./isThisSecond/index.js":false,"./isThisWeek/index.js":false,"./isThisYear/index.js":false,"./isThursday/index.js":false,"./isToday/index.js":false,"./isTomorrow/index.js":false,"./isTuesday/index.js":false,"./isValid/index.js":"eXoMl","./isWednesday/index.js":false,"./isWeekend/index.js":false,"./isWithinInterval/index.js":false,"./isYesterday/index.js":false,"./lastDayOfDecade/index.js":false,"./lastDayOfISOWeek/index.js":false,"./lastDayOfISOWeekYear/index.js":false,"./lastDayOfMonth/index.js":false,"./lastDayOfQuarter/index.js":false,"./lastDayOfWeek/index.js":false,"./lastDayOfYear/index.js":false,"./lightFormat/index.js":false,"./max/index.js":false,"./milliseconds/index.js":false,"./millisecondsToHours/index.js":false,"./millisecondsToMinutes/index.js":false,"./millisecondsToSeconds/index.js":false,"./min/index.js":false,"./minutesToHours/index.js":false,"./minutesToMilliseconds/index.js":false,"./minutesToSeconds/index.js":false,"./monthsToQuarters/index.js":false,"./monthsToYears/index.js":false,"./nextDay/index.js":false,"./nextFriday/index.js":false,"./nextMonday/index.js":false,"./nextSaturday/index.js":false,"./nextSunday/index.js":false,"./nextThursday/index.js":false,"./nextTuesday/index.js":false,"./nextWednesday/index.js":false,"./parse/index.js":false,"./parseISO/index.js":false,"./parseJSON/index.js":false,"./previousDay/index.js":false,"./previousFriday/index.js":false,"./previousMonday/index.js":false,"./previousSaturday/index.js":false,"./previousSunday/index.js":false,"./previousThursday/index.js":false,"./previousTuesday/index.js":false,"./previousWednesday/index.js":false,"./quartersToMonths/index.js":false,"./quartersToYears/index.js":false,"./roundToNearestMinutes/index.js":false,"./secondsToHours/index.js":false,"./secondsToMilliseconds/index.js":false,"./secondsToMinutes/index.js":false,"./set/index.js":false,"./setDate/index.js":false,"./setDay/index.js":false,"./setDayOfYear/index.js":false,"./setDefaultOptions/index.js":false,"./setHours/index.js":false,"./setISODay/index.js":false,"./setISOWeek/index.js":false,"./setISOWeekYear/index.js":false,"./setMilliseconds/index.js":false,"./setMinutes/index.js":false,"./setMonth/index.js":false,"./setQuarter/index.js":false,"./setSeconds/index.js":false,"./setWeek/index.js":false,"./setWeekYear/index.js":false,"./setYear/index.js":false,"./startOfDay/index.js":false,"./startOfDecade/index.js":false,"./startOfHour/index.js":false,"./startOfISOWeek/index.js":false,"./startOfISOWeekYear/index.js":false,"./startOfMinute/index.js":false,"./startOfMonth/index.js":false,"./startOfQuarter/index.js":false,"./startOfSecond/index.js":false,"./startOfToday/index.js":false,"./startOfTomorrow/index.js":false,"./startOfWeek/index.js":false,"./startOfWeekYear/index.js":false,"./startOfYear/index.js":false,"./startOfYesterday/index.js":false,"./sub/index.js":false,"./subBusinessDays/index.js":false,"./subDays/index.js":false,"./subHours/index.js":false,"./subISOWeekYears/index.js":false,"./subMilliseconds/index.js":"lL2M9","./subMinutes/index.js":false,"./subMonths/index.js":false,"./subQuarters/index.js":false,"./subSeconds/index.js":false,"./subWeeks/index.js":false,"./subYears/index.js":false,"./toDate/index.js":"fsust","./weeksToDays/index.js":false,"./yearsToMonths/index.js":false,"./yearsToQuarters/index.js":false,"./constants/index.js":"iOhcx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Tp9s":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../_lib/toInteger/index.js");
@@ -1588,6 +1387,171 @@ function requiredArgs(required, args) {
     if (args.length < required) throw new TypeError(required + " argument" + (required > 1 ? "s" : "") + " required, but only " + args.length + " present");
 }
 exports.default = requiredArgs;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"h01l4":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function compareAsc(dirtyDateLeft, dirtyDateRight) {
+    (0, _indexJsDefault1.default)(2, arguments);
+    var dateLeft = (0, _indexJsDefault.default)(dirtyDateLeft);
+    var dateRight = (0, _indexJsDefault.default)(dirtyDateRight);
+    var diff = dateLeft.getTime() - dateRight.getTime();
+    if (diff < 0) return -1;
+    else if (diff > 0) return 1; // Return 0 if diff is 0; return NaN if diff is NaN
+    else return diff;
+}
+exports.default = compareAsc;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8oypH":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function differenceInCalendarMonths(dirtyDateLeft, dirtyDateRight) {
+    (0, _indexJsDefault1.default)(2, arguments);
+    var dateLeft = (0, _indexJsDefault.default)(dirtyDateLeft);
+    var dateRight = (0, _indexJsDefault.default)(dirtyDateRight);
+    var yearDiff = dateLeft.getFullYear() - dateRight.getFullYear();
+    var monthDiff = dateLeft.getMonth() - dateRight.getMonth();
+    return yearDiff * 12 + monthDiff;
+}
+exports.default = differenceInCalendarMonths;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"Eb6qZ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function differenceInMilliseconds(dateLeft, dateRight) {
+    (0, _indexJsDefault1.default)(2, arguments);
+    return (0, _indexJsDefault.default)(dateLeft).getTime() - (0, _indexJsDefault.default)(dateRight).getTime();
+}
+exports.default = differenceInMilliseconds;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8lj6Z":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../differenceInCalendarMonths/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../compareAsc/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
+var _indexJs4 = require("../isLastDayOfMonth/index.js");
+var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
+function differenceInMonths(dirtyDateLeft, dirtyDateRight) {
+    (0, _indexJsDefault3.default)(2, arguments);
+    var dateLeft = (0, _indexJsDefault.default)(dirtyDateLeft);
+    var dateRight = (0, _indexJsDefault.default)(dirtyDateRight);
+    var sign = (0, _indexJsDefault2.default)(dateLeft, dateRight);
+    var difference = Math.abs((0, _indexJsDefault1.default)(dateLeft, dateRight));
+    var result; // Check for the difference of less than month
+    if (difference < 1) result = 0;
+    else {
+        if (dateLeft.getMonth() === 1 && dateLeft.getDate() > 27) // This will check if the date is end of Feb and assign a higher end of month date
+        // to compare it with Jan
+        dateLeft.setDate(30);
+        dateLeft.setMonth(dateLeft.getMonth() - sign * difference); // Math.abs(diff in full months - diff in calendar months) === 1 if last calendar month is not full
+        // If so, result must be decreased by 1 in absolute value
+        var isLastMonthNotFull = (0, _indexJsDefault2.default)(dateLeft, dateRight) === -sign; // Check for cases of one full calendar month
+        if ((0, _indexJsDefault4.default)((0, _indexJsDefault.default)(dirtyDateLeft)) && difference === 1 && (0, _indexJsDefault2.default)(dirtyDateLeft, dateRight) === 1) isLastMonthNotFull = false;
+        result = sign * (difference - Number(isLastMonthNotFull));
+    } // Prevent negative zero
+    return result === 0 ? 0 : result;
+}
+exports.default = differenceInMonths;
+
+},{"../toDate/index.js":"fsust","../differenceInCalendarMonths/index.js":"8oypH","../compareAsc/index.js":"h01l4","../_lib/requiredArgs/index.js":"9wUgQ","../isLastDayOfMonth/index.js":"1as6x","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1as6x":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../endOfDay/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../endOfMonth/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
+function isLastDayOfMonth(dirtyDate) {
+    (0, _indexJsDefault3.default)(1, arguments);
+    var date = (0, _indexJsDefault.default)(dirtyDate);
+    return (0, _indexJsDefault1.default)(date).getTime() === (0, _indexJsDefault2.default)(date).getTime();
+}
+exports.default = isLastDayOfMonth;
+
+},{"../toDate/index.js":"fsust","../endOfDay/index.js":"kLkh7","../endOfMonth/index.js":"4tHlS","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kLkh7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function endOfDay(dirtyDate) {
+    (0, _indexJsDefault1.default)(1, arguments);
+    var date = (0, _indexJsDefault.default)(dirtyDate);
+    date.setHours(23, 59, 59, 999);
+    return date;
+}
+exports.default = endOfDay;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4tHlS":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function endOfMonth(dirtyDate) {
+    (0, _indexJsDefault1.default)(1, arguments);
+    var date = (0, _indexJsDefault.default)(dirtyDate);
+    var month = date.getMonth();
+    date.setFullYear(date.getFullYear(), month + 1, 0);
+    date.setHours(23, 59, 59, 999);
+    return date;
+}
+exports.default = endOfMonth;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5uZgU":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../differenceInMilliseconds/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/roundingMethods/index.js");
+function differenceInSeconds(dateLeft, dateRight, options) {
+    (0, _indexJsDefault1.default)(2, arguments);
+    var diff = (0, _indexJsDefault.default)(dateLeft, dateRight) / 1000;
+    return (0, _indexJs2.getRoundingMethod)(options === null || options === void 0 ? void 0 : options.roundingMethod)(diff);
+}
+exports.default = differenceInSeconds;
+
+},{"../differenceInMilliseconds/index.js":"Eb6qZ","../_lib/requiredArgs/index.js":"9wUgQ","../_lib/roundingMethods/index.js":"ilPgA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ilPgA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "getRoundingMethod", ()=>getRoundingMethod);
+var roundingMap = {
+    ceil: Math.ceil,
+    round: Math.round,
+    floor: Math.floor,
+    trunc: function trunc(value) {
+        return value < 0 ? Math.ceil(value) : Math.floor(value);
+    } // Math.trunc is not supported by IE
+};
+var defaultRoundingMethod = "trunc";
+function getRoundingMethod(method) {
+    return method ? roundingMap[method] : roundingMap[defaultRoundingMethod];
+}
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lnm6V":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -3578,7 +3542,130 @@ function buildMatchPatternFn(args) {
 }
 exports.default = buildMatchPatternFn;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iOhcx":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lPnhm":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../_lib/defaultOptions/index.js");
+var _indexJs1 = require("../compareAsc/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../differenceInMonths/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../differenceInSeconds/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs3);
+var _indexJs4 = require("../_lib/defaultLocale/index.js");
+var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs4);
+var _indexJs5 = require("../toDate/index.js");
+var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs5);
+var _indexJs6 = require("../_lib/cloneObject/index.js");
+var _indexJsDefault5 = parcelHelpers.interopDefault(_indexJs6);
+var _indexJs7 = require("../_lib/assign/index.js");
+var _indexJsDefault6 = parcelHelpers.interopDefault(_indexJs7);
+var _indexJs8 = require("../_lib/getTimezoneOffsetInMilliseconds/index.js");
+var _indexJsDefault7 = parcelHelpers.interopDefault(_indexJs8);
+var _indexJs9 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault8 = parcelHelpers.interopDefault(_indexJs9);
+var MINUTES_IN_DAY = 1440;
+var MINUTES_IN_ALMOST_TWO_DAYS = 2520;
+var MINUTES_IN_MONTH = 43200;
+var MINUTES_IN_TWO_MONTHS = 86400;
+function formatDistance(dirtyDate, dirtyBaseDate, options) {
+    var _ref, _options$locale;
+    (0, _indexJsDefault8.default)(2, arguments);
+    var defaultOptions = (0, _indexJs.getDefaultOptions)();
+    var locale = (_ref = (_options$locale = options === null || options === void 0 ? void 0 : options.locale) !== null && _options$locale !== void 0 ? _options$locale : defaultOptions.locale) !== null && _ref !== void 0 ? _ref : (0, _indexJsDefault3.default);
+    if (!locale.formatDistance) throw new RangeError("locale must contain formatDistance property");
+    var comparison = (0, _indexJsDefault.default)(dirtyDate, dirtyBaseDate);
+    if (isNaN(comparison)) throw new RangeError("Invalid time value");
+    var localizeOptions = (0, _indexJsDefault6.default)((0, _indexJsDefault5.default)(options), {
+        addSuffix: Boolean(options === null || options === void 0 ? void 0 : options.addSuffix),
+        comparison: comparison
+    });
+    var dateLeft;
+    var dateRight;
+    if (comparison > 0) {
+        dateLeft = (0, _indexJsDefault4.default)(dirtyBaseDate);
+        dateRight = (0, _indexJsDefault4.default)(dirtyDate);
+    } else {
+        dateLeft = (0, _indexJsDefault4.default)(dirtyDate);
+        dateRight = (0, _indexJsDefault4.default)(dirtyBaseDate);
+    }
+    var seconds = (0, _indexJsDefault2.default)(dateRight, dateLeft);
+    var offsetInSeconds = ((0, _indexJsDefault7.default)(dateRight) - (0, _indexJsDefault7.default)(dateLeft)) / 1000;
+    var minutes = Math.round((seconds - offsetInSeconds) / 60);
+    var months; // 0 up to 2 mins
+    if (minutes < 2) {
+        if (options !== null && options !== void 0 && options.includeSeconds) {
+            if (seconds < 5) return locale.formatDistance("lessThanXSeconds", 5, localizeOptions);
+            else if (seconds < 10) return locale.formatDistance("lessThanXSeconds", 10, localizeOptions);
+            else if (seconds < 20) return locale.formatDistance("lessThanXSeconds", 20, localizeOptions);
+            else if (seconds < 40) return locale.formatDistance("halfAMinute", 0, localizeOptions);
+            else if (seconds < 60) return locale.formatDistance("lessThanXMinutes", 1, localizeOptions);
+            else return locale.formatDistance("xMinutes", 1, localizeOptions);
+        } else {
+            if (minutes === 0) return locale.formatDistance("lessThanXMinutes", 1, localizeOptions);
+            else return locale.formatDistance("xMinutes", minutes, localizeOptions);
+        } // 2 mins up to 0.75 hrs
+    } else if (minutes < 45) return locale.formatDistance("xMinutes", minutes, localizeOptions); // 0.75 hrs up to 1.5 hrs
+    else if (minutes < 90) return locale.formatDistance("aboutXHours", 1, localizeOptions); // 1.5 hrs up to 24 hrs
+    else if (minutes < MINUTES_IN_DAY) {
+        var hours = Math.round(minutes / 60);
+        return locale.formatDistance("aboutXHours", hours, localizeOptions); // 1 day up to 1.75 days
+    } else if (minutes < MINUTES_IN_ALMOST_TWO_DAYS) return locale.formatDistance("xDays", 1, localizeOptions); // 1.75 days up to 30 days
+    else if (minutes < MINUTES_IN_MONTH) {
+        var days = Math.round(minutes / MINUTES_IN_DAY);
+        return locale.formatDistance("xDays", days, localizeOptions); // 1 month up to 2 months
+    } else if (minutes < MINUTES_IN_TWO_MONTHS) {
+        months = Math.round(minutes / MINUTES_IN_MONTH);
+        return locale.formatDistance("aboutXMonths", months, localizeOptions);
+    }
+    months = (0, _indexJsDefault1.default)(dateRight, dateLeft); // 2 months up to 12 months
+    if (months < 12) {
+        var nearestMonth = Math.round(minutes / MINUTES_IN_MONTH);
+        return locale.formatDistance("xMonths", nearestMonth, localizeOptions); // 1 year up to max Date
+    } else {
+        var monthsSinceStartOfYear = months % 12;
+        var years = Math.floor(months / 12); // N years up to 1 years 3 months
+        if (monthsSinceStartOfYear < 3) return locale.formatDistance("aboutXYears", years, localizeOptions); // N years 3 months up to N years 9 months
+        else if (monthsSinceStartOfYear < 9) return locale.formatDistance("overXYears", years, localizeOptions); // N years 9 months up to N year 12 months
+        else return locale.formatDistance("almostXYears", years + 1, localizeOptions);
+    }
+}
+exports.default = formatDistance;
+
+},{"../_lib/defaultOptions/index.js":"dWs8l","../compareAsc/index.js":"h01l4","../differenceInMonths/index.js":"8lj6Z","../differenceInSeconds/index.js":"5uZgU","../_lib/defaultLocale/index.js":"1rVeP","../toDate/index.js":"fsust","../_lib/cloneObject/index.js":"PgZBT","../_lib/assign/index.js":"hBuJM","../_lib/getTimezoneOffsetInMilliseconds/index.js":"bc74C","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"PgZBT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../assign/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+function cloneObject(object) {
+    return (0, _indexJsDefault.default)({}, object);
+}
+exports.default = cloneObject;
+
+},{"../assign/index.js":"hBuJM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hBuJM":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function assign(target, object) {
+    if (target == null) throw new TypeError("assign requires that input parameter not be null or undefined");
+    for(var property in object)if (Object.prototype.hasOwnProperty.call(object, property)) target[property] = object[property];
+    return target;
+}
+exports.default = assign;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kV5oc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../formatDistance/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function formatDistanceToNow(dirtyDate, options) {
+    (0, _indexJsDefault1.default)(1, arguments);
+    return (0, _indexJsDefault.default)(dirtyDate, Date.now(), options);
+}
+exports.default = formatDistanceToNow;
+
+},{"../formatDistance/index.js":"lPnhm","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iOhcx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "daysInWeek", ()=>daysInWeek);
@@ -3618,6 +3705,96 @@ var secondsInYear = secondsInDay * daysInYear;
 var secondsInMonth = secondsInYear / 12;
 var secondsInQuarter = secondsInMonth * 3;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire4482")
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8bBu":[function(require,module,exports) {
+(function(global, factory) {
+    module.exports = factory();
+})(this, function() {
+    "use strict";
+    /* eslint-disable no-var */ function assign(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)target[key] = source[key];
+        }
+        return target;
+    }
+    /* eslint-enable no-var */ /* eslint-disable no-var */ var defaultConverter = {
+        read: function(value) {
+            if (value[0] === '"') value = value.slice(1, -1);
+            return value.replace(/(%[\dA-F]{2})+/gi, decodeURIComponent);
+        },
+        write: function(value) {
+            return encodeURIComponent(value).replace(/%(2[346BF]|3[AC-F]|40|5[BDE]|60|7[BCD])/g, decodeURIComponent);
+        }
+    };
+    /* eslint-enable no-var */ /* eslint-disable no-var */ function init(converter, defaultAttributes) {
+        function set(key, value, attributes) {
+            if (typeof document === "undefined") return;
+            attributes = assign({}, defaultAttributes, attributes);
+            if (typeof attributes.expires === "number") attributes.expires = new Date(Date.now() + attributes.expires * 864e5);
+            if (attributes.expires) attributes.expires = attributes.expires.toUTCString();
+            key = encodeURIComponent(key).replace(/%(2[346B]|5E|60|7C)/g, decodeURIComponent).replace(/[()]/g, escape);
+            var stringifiedAttributes = "";
+            for(var attributeName in attributes){
+                if (!attributes[attributeName]) continue;
+                stringifiedAttributes += "; " + attributeName;
+                if (attributes[attributeName] === true) continue;
+                // Considers RFC 6265 section 5.2:
+                // ...
+                // 3.  If the remaining unparsed-attributes contains a %x3B (";")
+                //     character:
+                // Consume the characters of the unparsed-attributes up to,
+                // not including, the first %x3B (";") character.
+                // ...
+                stringifiedAttributes += "=" + attributes[attributeName].split(";")[0];
+            }
+            return document.cookie = key + "=" + converter.write(value, key) + stringifiedAttributes;
+        }
+        function get(key) {
+            if (typeof document === "undefined" || arguments.length && !key) return;
+            // To prevent the for loop in the first place assign an empty array
+            // in case there are no cookies at all.
+            var cookies = document.cookie ? document.cookie.split("; ") : [];
+            var jar = {};
+            for(var i = 0; i < cookies.length; i++){
+                var parts = cookies[i].split("=");
+                var value = parts.slice(1).join("=");
+                try {
+                    var foundKey = decodeURIComponent(parts[0]);
+                    jar[foundKey] = converter.read(value, foundKey);
+                    if (key === foundKey) break;
+                } catch (e) {}
+            }
+            return key ? jar[key] : jar;
+        }
+        return Object.create({
+            set: set,
+            get: get,
+            remove: function(key, attributes) {
+                set(key, "", assign({}, attributes, {
+                    expires: -1
+                }));
+            },
+            withAttributes: function(attributes) {
+                return init(this.converter, assign({}, this.attributes, attributes));
+            },
+            withConverter: function(converter) {
+                return init(assign({}, this.converter, converter), this.attributes);
+            }
+        }, {
+            attributes: {
+                value: Object.freeze(defaultAttributes)
+            },
+            converter: {
+                value: Object.freeze(converter)
+            }
+        });
+    }
+    var api = init(defaultConverter, {
+        path: "/"
+    });
+    /* eslint-enable no-var */ return api;
+});
+
+},{}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire4482")
 
 //# sourceMappingURL=index.3d214d75.js.map
