@@ -539,23 +539,23 @@ var _valueJs = require("./value.js");
     getIntervalToDuration((0, _dateFns.parseISO)((0, _valueJs.ELEMENTS).INPUT.value));
 };
 function getIntervalToDuration(endDate) {
-    const time = setInterval(getIntervalToDuration, 1000);
     const intervalDuration = (0, _dateFns.intervalToDuration)({
         start: (0, _valueJs.nowDate),
         end: endDate
     });
     const intervalTime = endDate - (0, _valueJs.nowDate);
-    checkInterval(intervalDuration, intervalTime, time, endDate);
+    checkInterval(intervalDuration, intervalTime);
 }
-function checkInterval(intervalDuration, intervalTime, time, endDate) {
+function checkInterval(intervalDuration, intervalTime) {
     if (intervalTime >= 0) {
-        const days = (0, _dateFns.getDayOfYear)(endDate);
+        setInterval(checkInterval, 1000);
+        const days = Math.floor(intervalTime / 86400000) - 365 * intervalDuration.years;
         changeTimer(intervalDuration.years, (0, _valueJs.ELEMENTS).YEARS);
         changeTimer(days, (0, _valueJs.ELEMENTS).DAYS);
         changeTimer(intervalDuration.hours, (0, _valueJs.ELEMENTS).WATCH);
         return;
     }
-    clearInterval(time);
+    clearInterval();
 }
 function changeTimer(date, element) {
     element.textContent = date;

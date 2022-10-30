@@ -1,4 +1,4 @@
-import { parseISO, intervalToDuration, getDayOfYear } from 'date-fns';
+import { parseISO, intervalToDuration } from 'date-fns';
 import { ELEMENTS, nowDate } from './value.js';
 
 ELEMENTS.FORM.onsubmit = function (event) {
@@ -7,24 +7,25 @@ ELEMENTS.FORM.onsubmit = function (event) {
 };
 
 function getIntervalToDuration(endDate) {
-  const time = setInterval(getIntervalToDuration, 1000);
   const intervalDuration = intervalToDuration({
     start: nowDate,
     end: endDate,
   });
   const intervalTime = endDate - nowDate;
-  checkInterval(intervalDuration, intervalTime, time, endDate);
+  checkInterval(intervalDuration, intervalTime);
 }
 
-function checkInterval(intervalDuration, intervalTime, time, endDate) {
+function checkInterval(intervalDuration, intervalTime) {
   if (intervalTime >= 0) {
-    const days = getDayOfYear(endDate);
+    setInterval(checkInterval, 1000);
+
+    const days = Math.floor(intervalTime / (1000 * 60 * 60 * 24)) - 365 * intervalDuration.years;
     changeTimer(intervalDuration.years, ELEMENTS.YEARS);
     changeTimer(days, ELEMENTS.DAYS);
     changeTimer(intervalDuration.hours, ELEMENTS.WATCH);
     return;
   }
-  clearInterval(time);
+  clearInterval();
 }
 
 function changeTimer(date, element) {
