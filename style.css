@@ -1,0 +1,23 @@
+body {
+background: burlywood;
+}
+
+.timer {
+margin-left: 550px;
+margin-top: 300px;
+}
+
+.timer input {
+    border-radius: 10px;
+    border: 0px;
+    width: 210px;
+    height: 35px;
+    color: black;
+    outline: 1px solid black;
+}
+
+.timer p {
+    color: black;
+    margin-top: 10px;
+    margin-left: -70px;
+}
