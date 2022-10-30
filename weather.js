@@ -131,12 +131,7 @@ function renderDetails(item) {
 }
 
 function renderForecast12h(name, item) {
-  let DateToday = format(new Date(), 'd MMM')
-  ELEMENTS.FORECAST_DATE_TODAY1.textContent = DateToday;
-  ELEMENTS.FORECAST_DATE_TODAY2.textContent = DateToday;
-  ELEMENTS.FORECAST_DATE_TODAY3.textContent = DateToday;
-
-
+ makeTodayDate();
   ELEMENTS.FORECAST_CITY.textContent = name
   ELEMENTS.FORECAST_TEMP_12_HOUR.textContent = 
     "Temperature:" + " " + Math.round(item.main.temp) + "°";
@@ -148,7 +143,6 @@ function renderForecast12h(name, item) {
   const iconUrl = `https://openweathermap.org/img/wn/`;
   icon.src = `${iconUrl}${item.weather[0].icon}@2x.png`;
 
-  CITYNAME.date = DateToday;
   CITYNAME.info12Forecast = item
   CITYNAME.name12 = name
   CookieSet();
@@ -185,9 +179,18 @@ function renderForecast18h(item) {
  CookieSet();
 }
 
+function makeTodayDate() {
+  let DateToday = format(new Date(), 'd MMM')
+  ELEMENTS.FORECAST_DATE_TODAY.forEach(item => {
+    item.textContent = DateToday
+  })
+  CITYNAME.date = DateToday;
+}
+
 renderRight();
 renderLeftNow(CITYNAME.infoNow);
 renderDetails(CITYNAME.infoDetails);
 renderForecast12h(CITYNAME.name12, CITYNAME.info12Forecast);
 renderForecast15h(CITYNAME.info15Forecast);
 renderForecast18h(CITYNAME.info18Forecast);
+makeTodayDate();

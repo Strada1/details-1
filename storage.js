@@ -10,7 +10,7 @@ function localSet() {
 
 function localGet() {
   if (localStorage.getItem("likedCity") == null) {
-    return {};
+    return new Set();
   } else {
     return JSON.parse(localStorage.getItem("likedCity"));
   }
