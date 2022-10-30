@@ -1,0 +1,17 @@
+{
+  "name": "data-counter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Pavel Strogov",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "parsel": "^0.3.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  }
+}

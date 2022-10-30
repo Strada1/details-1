@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles/style.css">
+  <title>Обратный отсчет</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Сколько осталось до события?</h1>
+    <form class="event-form" action="">
+      <label for="event-add">
+        <h2>Введите название вашего события</h2>
+      </label>
+      <input class="event-add" id="event-add" type="text" value="новогодняя вечеринка">
+      <label for="event-data">
+        <h2>Выберите дату вашего события</h2>
+      </label>
+      <input class="event-data" id="event-data" type="date" value="2022-12-31">
+      <label for="event-button">
+        <h2>Узнать сколько дней до вашего события</h2>
+      </label>
+      <input class="event-submit" id="event-submit" type="submit" value="Узнать количество дней">
+    </form>
+
+    <div class="future">
+      <div class="event-item">
+        <div class="duration">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script type="module" src="./scripts/index.js"></script>
+</body>
+
+</html>
