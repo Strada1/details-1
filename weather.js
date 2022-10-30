@@ -160,17 +160,17 @@ function renderForecast15h(item) {
    CookieSet()
  
   ELEMENTS.FORECAST_TEMP_15_HOUR.textContent =
-    "Temperature:" + " " + Math.round(CITYNAME.info15Forecast.list[4].main.temp) + "°";
-  // ELEMENTS.FORECAST_FEEL_15_HOUR.textContent =
-  //   "Feels like:" + " " + Math.round(item.list[4].main.feels_like) + "°";
-  // ELEMENTS.FORECAST_WEATHER_15_HOUR.textContent = `Weather: ${item.list[4].weather[0].main}`;
+    "Temperature:" + " " + Math.round(CITYNAME.list[4].main.temp) + "°";
+  ELEMENTS.FORECAST_FEEL_15_HOUR.textContent =
+    "Feels like:" + " " + Math.round(item.list[4].main.feels_like) + "°";
+  ELEMENTS.FORECAST_WEATHER_15_HOUR.textContent = `Weather: ${item.list[4].weather[0].main}`;
 
-  // let icon = ELEMENTS.FORECAST_ICON_15_HOUR;
-  // const iconUrl = `https://openweathermap.org/img/wn/`;
-  // icon.src = `${iconUrl}${item.list[4].weather[0].icon}@2x.png`;
+  let icon = ELEMENTS.FORECAST_ICON_15_HOUR;
+  const iconUrl = `https://openweathermap.org/img/wn/`;
+  icon.src = `${iconUrl}${item.list[4].weather[0].icon}@2x.png`;
 
-  // CITYNAME.info15Forecast = item;
-  // CookieSet()
+  CITYNAME.info15Forecast = item;
+  CookieSet()
 }
 
 function renderForecast18h(item) {
