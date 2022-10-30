@@ -4,5 +4,9 @@
   },
   "devDependencies": {
     "parcel": "^2.7.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
   }
 }

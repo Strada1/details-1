@@ -7,4 +7,3 @@ export const ELEMENTS = {
 };
 
 export const nowDate = new Date();
-export const endTimer = '0';
