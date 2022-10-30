@@ -9,22 +9,23 @@ function localSet() {
 }
 
 function localGet() {
-  if (localStorage.getItem("likedCity") !== null) {
-    return JSON.parse(localStorage.getItem("likedCity"));
-  } else {
+  if (localStorage.getItem("likedCity") == null) {
     return {};
+  } else {
+    return JSON.parse(localStorage.getItem("likedCity"));
   }
 }
 
 function CookieSet() {
-    Cookies.set("CityNow", JSON.stringify(CITYNAME));
+  Cookies.set("CityNow", JSON.stringify(CITYNAME));
 }
-
 
 function localGetNow() {
+  if (Cookies.get("CityNow") == null) {
+    return {}
+  } else {
     return JSON.parse(Cookies.get("CityNow"));
+  }
 }
 
-
-
-export { cityAll, localSet,CookieSet,CITYNAME };
+export { cityAll, localSet, CookieSet, CITYNAME };

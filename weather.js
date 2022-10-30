@@ -26,7 +26,6 @@ async function request(item) {
   let resultForecast = await fetch(urlForecast);
   let jsonResultForecast = await resultForecast.json();
 
-
   if (!(jsonResultWeather.cod == 200)) {
     alert(`${jsonResultWeather.message}`);
   } else if (!(jsonResultForecast.cod == 200)) {
@@ -34,9 +33,9 @@ async function request(item) {
   } else {
     renderLeftNow(jsonResultWeather);
     renderDetails(jsonResultWeather);
-    renderForecast12h(jsonResultForecast);
-    renderForecast15h(jsonResultForecast);
-    renderForecast18h(jsonResultForecast);
+    renderForecast12h(jsonResultForecast.city.name, jsonResultForecast.list[3]);
+    renderForecast15h(jsonResultForecast.list[4]);
+    renderForecast18h(jsonResultForecast.list[5]);
   }
   searchInput.value = "";
 }
@@ -128,61 +127,59 @@ function renderDetails(item) {
     "Sunset:" + " " + SUNSET
 
   CITYNAME.infoDetails = item;
-
   CookieSet();
 }
 
-function renderForecast12h(item) {
+function renderForecast12h(name, item) {
   let DateToday = format(new Date(), 'd MMM')
-
-  ELEMENTS.FORECAST_CITY.textContent = item.city.name
   ELEMENTS.FORECAST_DATE_TODAY1.textContent = DateToday;
   ELEMENTS.FORECAST_DATE_TODAY2.textContent = DateToday;
   ELEMENTS.FORECAST_DATE_TODAY3.textContent = DateToday;
 
-  ELEMENTS.FORECAST_TEMP_12_HOUR.textContent =
-    "Temperature:" + " " + Math.round(item.list[3].main.temp) + "°";
+
+  ELEMENTS.FORECAST_CITY.textContent = name
+  ELEMENTS.FORECAST_TEMP_12_HOUR.textContent = 
+    "Temperature:" + " " + Math.round(item.main.temp) + "°";
   ELEMENTS.FORECAST_FEEL_12_HOUR.textContent =
-    "Feels like:" + " " + Math.round(item.list[3].main.feels_like) + "°";
-  ELEMENTS.FORECAST_WEATHER_12_HOUR.textContent = `Weather: ${item.list[3].weather[0].main}`;
+    "Feels like:" + " " + Math.round(item.main.feels_like) + "°";
+  ELEMENTS.FORECAST_WEATHER_12_HOUR.textContent = `Weather: ${item.weather[0].main}`;
 
   let icon = ELEMENTS.FORECAST_ICON_12_HOUR;
   const iconUrl = `https://openweathermap.org/img/wn/`;
-  icon.src = `${iconUrl}${item.list[3].weather[0].icon}@2x.png`;
+  icon.src = `${iconUrl}${item.weather[0].icon}@2x.png`;
 
   CITYNAME.date = DateToday;
   CITYNAME.info12Forecast = item
+  CITYNAME.name12 = name
   CookieSet();
 }
 
 function renderForecast15h(item) {
-   CITYNAME.info15Forecast = item;
-   CookieSet()
- 
   ELEMENTS.FORECAST_TEMP_15_HOUR.textContent =
-    "Temperature:" + " " + Math.round(CITYNAME.list[4].main.temp) + "°";
+    "Temperature:" + " " + Math.round(item.main.temp) + "°";
   ELEMENTS.FORECAST_FEEL_15_HOUR.textContent =
-    "Feels like:" + " " + Math.round(item.list[4].main.feels_like) + "°";
-  ELEMENTS.FORECAST_WEATHER_15_HOUR.textContent = `Weather: ${item.list[4].weather[0].main}`;
+    "Feels like:" + " " + Math.round(item.main.feels_like) + "°";
+  ELEMENTS.FORECAST_WEATHER_15_HOUR.textContent = `Weather: ${item.weather[0].main}`;
 
   let icon = ELEMENTS.FORECAST_ICON_15_HOUR;
   const iconUrl = `https://openweathermap.org/img/wn/`;
-  icon.src = `${iconUrl}${item.list[4].weather[0].icon}@2x.png`;
+  icon.src = `${iconUrl}${item.weather[0].icon}@2x.png`;
 
   CITYNAME.info15Forecast = item;
   CookieSet()
+
 }
 
 function renderForecast18h(item) {
   ELEMENTS.FORECAST_TEMP_18_HOUR.textContent =
-    "Temperature:" + " " + Math.round(item.list[5].main.temp) + "°";
+    "Temperature:" + " " + Math.round(item.main.temp) + "°";
   ELEMENTS.FORECAST_FEEL_18_HOUR.textContent =
-    "Feels like:" + " " + Math.round(item.list[5].main.feels_like) + "°";
-  ELEMENTS.FORECAST_WEATHER_18_HOUR.textContent = `Weather: ${item.list[5].weather[0].main}`;
+    "Feels like:" + " " + Math.round(item.main.feels_like) + "°";
+  ELEMENTS.FORECAST_WEATHER_18_HOUR.textContent = `Weather: ${item.weather[0].main}`;
 
   let icon = ELEMENTS.FORECAST_ICON_18_HOUR;
   const iconUrl = `https://openweathermap.org/img/wn/`;
-  icon.src = `${iconUrl}${item.list[5].weather[0].icon}@2x.png`;
+  icon.src = `${iconUrl}${item.weather[0].icon}@2x.png`;
 
   CITYNAME.info18Forecast = item;
  CookieSet();
@@ -191,7 +188,6 @@ function renderForecast18h(item) {
 renderRight();
 renderLeftNow(CITYNAME.infoNow);
 renderDetails(CITYNAME.infoDetails);
-
-renderForecast12h(CITYNAME.info12Forecast);
+renderForecast12h(CITYNAME.name12, CITYNAME.info12Forecast);
 renderForecast15h(CITYNAME.info15Forecast);
 renderForecast18h(CITYNAME.info18Forecast);
