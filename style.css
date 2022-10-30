@@ -66,7 +66,7 @@ body {
 }
 
 .container {
-  width: 431px;
+  width: 460px;
   padding: 18px 0 52px;
   border-radius: 4px;
   background-color: #011c2c;
@@ -80,7 +80,7 @@ body {
 }
 
 .date-wrapper {
-  width: 387px;
+  width: 430px;
   margin: 0 auto;
 }
 
@@ -88,31 +88,29 @@ body {
   margin: 0 0 44px;
 }
 
-.date {
-  width: 115px;
-  margin: 0 0 12px;
-  padding: 0 20px;
+.date-distance {
+  display: flex;
+  justify-content: space-between;
+  height: 46px;
+  margin: 0 0 50px;
+  padding: 0 10px;
   border: 1px solid #dbdbdb;
   border-radius: 4px;
   font-weight: 400;
-  font-size: 40px;
-  
+  font-size: 18px;
+  line-height: 46px;
   overflow: hidden;
   white-space: nowrap; 
 }
-.date p {
+
+.date-distance p {
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.date-distance {
-  display: flex;
-  justify-content: space-between;
-}
-
 .input {
   padding: 8px;
-  width: 253px;
+  width: 290px;
   margin-right: 16px;
   background: transparent;
   border: 1px solid #d1d1d1;

@@ -1,42 +1,41 @@
-import { parseISO } from "date-fns";
-import { intervalToDuration } from "date-fns";
-
 const ELEMENTS = {
   input: document.querySelector(".input"),
-  years: document.querySelector(".date-row:nth-child(1) .date p"),
-  days: document.querySelector(".date-row:nth-child(2) .date p"),
-  hours: document.querySelector(".date-row:nth-child(3) .date p"),
+  date: document.querySelector(".date-distance p"),
   buttonResult: document.querySelector(".button"),
 };
 
 function dateDistance() {
-  const time = setInterval(dateDistance, 1000);
-  const currentDate = parseISO(ELEMENTS.input.value);
-
-  const duration = intervalToDuration({
-    start: new Date(),
-    end: currentDate,
-  });
-
+  const currentDate = Date.parse(ELEMENTS.input.value);
   const totalTime = currentDate - new Date();
-  const days = Math.floor(totalTime / (1000 * 60 * 60 * 24)) - 365*duration.years;
+  const resultTime = new Date(totalTime);
 
-  if (totalTime >= 0) {
-
-    addTimer(ELEMENTS.years, duration.years);
-    addTimer(ELEMENTS.days, days);
-    addTimer(ELEMENTS.hours, duration.hours);
-    console.log(duration);
-  } else {
-    clearInterval(time);
-  }
+  return { totalTime, resultTime };
 }
 
-function addTimer(element, date) {
-  element.textContent = date;
+function render(time) {
+  const timeStroke = `${time.getFullYear() - 1970} лет 
+  ${time.getUTCMonth()} мес 
+  ${time.getUTCDate() - 1} дн 
+  ${time.getUTCHours()} ч 
+  ${time.getUTCMinutes()} мин 
+  ${time.getUTCSeconds()} сек`;
+
+  ELEMENTS.date.textContent = timeStroke;
+}
+
+function interval() {
+  const timerId = setInterval(function () {
+    const result = dateDistance();
+    if (result.totalTime <= 0) {
+      clearInterval(timerId);
+    } else {
+      console.log(result.resultTime);
+      render(result.resultTime);
+    }
+  }, 1000);
 }
 
 ELEMENTS.buttonResult.addEventListener("click", (event) => {
-  dateDistance();
+  interval();
   event.preventDefault();
 });
