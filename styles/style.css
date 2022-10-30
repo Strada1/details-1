@@ -1,0 +1,13 @@
+
+.container{
+  background-color: azure;
+  max-width: 450px;
+  margin: 0 auto;
+  padding: 10px;
+}
+form input{
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  padding: 3px;
+}
