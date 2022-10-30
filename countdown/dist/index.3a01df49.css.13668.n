@@ -1,0 +1,59 @@
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  src: local(Roboto), url("Roboto-Medium.2527f55c.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  src: local(Roboto), url("Roboto-Bold.e6f94654.woff2") format("woff2");
+  font-display: swap;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  color: #444;
+  background-color: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 30px;
+  display: flex;
+}
+
+.main {
+  min-width: 800px;
+  justify-content: center;
+  display: flex;
+}
+
+.countdown {
+  background-color: #f0f8ff;
+  padding: 20px 80px;
+  display: flex;
+}
+
+.countdown__form {
+  margin-right: 80px;
+}
+
+.countdown__label {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+  display: block;
+}
+
+/*# sourceMappingURL=index.3a01df49.css.map */
