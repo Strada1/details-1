@@ -6,7 +6,6 @@ let CITYNAME = localGetNow();
 
 function localSet() {
   localStorage.setItem("likedCity", JSON.stringify([...cityAll]));
-   localStorage.setItem("CityNow", JSON.stringify(CITYNAME));
 }
 
 function localGet() {
@@ -22,13 +21,10 @@ function CookieSet() {
 }
 
 
-function CookieSet2() {
-  Cookies.set("forecastNow", JSON.stringify(CITYNAME));
-}
-
-
 function localGetNow() {
     return JSON.parse(Cookies.get("CityNow"));
 }
 
-export { cityAll, localSet,CookieSet,CookieSet2, CITYNAME };
+
+
+export { cityAll, localSet,CookieSet,CITYNAME };

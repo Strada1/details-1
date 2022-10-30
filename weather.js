@@ -2,7 +2,7 @@ const searchForm = document.querySelector(".forecast-form");
 const searchInput = document.querySelector(".inputForm");
 
 import { ELEMENTS } from "./elements.js";
-import { cityAll, localSet, CookieSet, CookieSet2,CITYNAME } from "./storage.js";
+import { cityAll, localSet, CookieSet,CITYNAME } from "./storage.js";
 import { format } from 'date-fns';
 
 
@@ -135,7 +135,6 @@ function renderDetails(item) {
 function renderForecast12h(item) {
   let DateToday = format(new Date(), 'd MMM')
 
-
   ELEMENTS.FORECAST_CITY.textContent = item.city.name
   ELEMENTS.FORECAST_DATE_TODAY1.textContent = DateToday;
   ELEMENTS.FORECAST_DATE_TODAY2.textContent = DateToday;
@@ -157,18 +156,21 @@ function renderForecast12h(item) {
 }
 
 function renderForecast15h(item) {
+   CITYNAME.info15Forecast = item;
+   CookieSet()
+ 
   ELEMENTS.FORECAST_TEMP_15_HOUR.textContent =
-    "Temperature:" + " " + Math.round(item.list[4].main.temp) + "°";
-  ELEMENTS.FORECAST_FEEL_15_HOUR.textContent =
-    "Feels like:" + " " + Math.round(item.list[4].main.feels_like) + "°";
-  ELEMENTS.FORECAST_WEATHER_15_HOUR.textContent = `Weather: ${item.list[4].weather[0].main}`;
+    "Temperature:" + " " + Math.round(CITYNAME.info15Forecast.list[4].main.temp) + "°";
+  // ELEMENTS.FORECAST_FEEL_15_HOUR.textContent =
+  //   "Feels like:" + " " + Math.round(item.list[4].main.feels_like) + "°";
+  // ELEMENTS.FORECAST_WEATHER_15_HOUR.textContent = `Weather: ${item.list[4].weather[0].main}`;
 
-  let icon = ELEMENTS.FORECAST_ICON_15_HOUR;
-  const iconUrl = `https://openweathermap.org/img/wn/`;
-  icon.src = `${iconUrl}${item.list[4].weather[0].icon}@2x.png`;
+  // let icon = ELEMENTS.FORECAST_ICON_15_HOUR;
+  // const iconUrl = `https://openweathermap.org/img/wn/`;
+  // icon.src = `${iconUrl}${item.list[4].weather[0].icon}@2x.png`;
 
-  CITYNAME.info15Forecast = item;
-  CookieSet2()
+  // CITYNAME.info15Forecast = item;
+  // CookieSet()
 }
 
 function renderForecast18h(item) {
@@ -183,12 +185,13 @@ function renderForecast18h(item) {
   icon.src = `${iconUrl}${item.list[5].weather[0].icon}@2x.png`;
 
   CITYNAME.info18Forecast = item;
- CookieSet2();
+ CookieSet();
 }
 
 renderRight();
 renderLeftNow(CITYNAME.infoNow);
 renderDetails(CITYNAME.infoDetails);
+
 renderForecast12h(CITYNAME.info12Forecast);
 renderForecast15h(CITYNAME.info15Forecast);
 renderForecast18h(CITYNAME.info18Forecast);
