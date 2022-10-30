@@ -18,7 +18,6 @@ if (inputTimer.value == '') {
           end: new Date(inputTimer.value)
         })
      date1 = answer
-     console.log(date1)
      render();
      setTimeout(timer, 1000)
      }
