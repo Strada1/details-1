@@ -1,0 +1,149 @@
+*, :before, :after {
+  box-sizing: border-box;
+}
+
+body {
+  color: #fff;
+  background-color: #01131e;
+  margin: 0;
+  font-family: Roboto Mono, monospace;
+}
+
+input, textarea, button {
+  padding: 0;
+  font-family: inherit;
+}
+
+label {
+  cursor: pointer;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+fieldset {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+legend {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+body {
+  justify-content: center;
+  align-items: center;
+  margin: 100px 0 0;
+  display: flex;
+}
+
+.container {
+  width: 460px;
+  text-align: center;
+  background-color: #011c2c;
+  border-radius: 4px;
+  padding: 18px 0 52px;
+}
+
+.date-header {
+  margin: 0 0 35px;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.date-wrapper {
+  width: 430px;
+  margin: 0 auto;
+}
+
+.date-row {
+  margin: 0 0 44px;
+}
+
+.date-distance {
+  height: 46px;
+  white-space: nowrap;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  justify-content: space-between;
+  margin: 0 0 50px;
+  padding: 0 10px;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 46px;
+  display: flex;
+  overflow: hidden;
+}
+
+.date-distance p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.input {
+  width: 290px;
+  color: #fff;
+  background: none;
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  margin-right: 16px;
+  padding: 8px;
+  font-family: Roboto Mono;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.date-form {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.button {
+  height: 46px;
+  color: #fff;
+  background: #03ae85;
+  border: none;
+  border-radius: 3px;
+  padding: 0 31px;
+  font-size: 18px;
+  line-height: 46px;
+  transition: all .2s ease-in;
+  display: inline-block;
+}
+
+.button:hover {
+  background: #fd6259;
+}
+
+.button:active {
+  background: #fd6259;
+  position: relative;
+  top: 1px;
+}
+
+/*# sourceMappingURL=index.3a01df49.css.map */
