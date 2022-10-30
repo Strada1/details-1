@@ -19,23 +19,24 @@
   width: 50%;
   height: 50vh;
 }
-.countdown__set-time, .countdown__time-left {
+.countdown__set-time,
+.countdown__time-left {
   font-size: 130px;
   color: white;
-  background-color: #008B8B;
+  background-color: #008b8b;
 }
 .countdown__result {
   text-align: right;
   gap: 50px;
   font-size: 100px;
-  color: #008B8B;
+  color: #008b8b;
 }
 .countdown__result-text {
   font-size: 75px;
 }
 .countdown__form input {
   font-size: 30px;
-  border: #008B8B 2px solid;
+  border: #008b8b 2px solid;
   border-radius: 15px;
   text-align: center;
   width: 450px;

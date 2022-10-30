@@ -10,6 +10,7 @@ function renderCountdown(difference) {
       difference[keys] = `0${difference[keys]}`;
     }
   }
+
   COUNTDOWN.DAY.textContent = difference.days;
   COUNTDOWN.HOURS.textContent = difference.hours;
   COUNTDOWN.MINUTES.textContent = difference.minutes;
@@ -28,7 +29,9 @@ function getDifferenceTime(futureDate) {
     });
   }
   const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const hours = Math.floor(
+    (difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
   const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((difference % (1000 * 60)) / 1000);
   renderCountdown({
