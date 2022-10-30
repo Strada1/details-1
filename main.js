@@ -22,10 +22,14 @@ ELEMENTS.BTN.addEventListener('click', function (event) {
   event.preventDefault();
 
   const cityName = ELEMENTS.INPUT?.value ?? 'Actobe';
-  const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
+  const url = createUrl(cityName);
   checkUrl(url);
   changeForecast(cityName);
 });
+
+function createUrl(city) {
+  return `${serverUrl}?q=${city}&appid=${apiKey}&units=metric`;
+}
 
 async function checkUrl(url) {
   try {
@@ -83,7 +87,7 @@ function getLocalStorageСities() {
 }
 
 function getCurrentCity() {
-  const url = `${serverUrl}?q=${document.cookie}&appid=${apiKey}&units=metric`;
+  const url = createUrl(document.cookie);
   checkUrl(url);
   changeForecast(document.cookie);
 }
@@ -96,17 +100,14 @@ function renderLocation(cities, index) {
   const newIndex = renderLocation(cities, index - 1) + 1;
   const city = cities[newIndex];
 
-  const li = document.createElement('li');
-  li.className = 'list-item';
+  const li = createElements(NEW_ELEMENTS.LI, CLASS_ELEMENT.LIST_ITEM);
   ELEMENTS.LIST_LOCATION.prepend(li);
 
-  const p = document.createElement('p');
-  p.className = 'list-item-city';
+  const p = createElements(NEW_ELEMENTS.P, CLASS_ELEMENT.LIST_ITEM_CITY);
   p.textContent = city;
   li.append(p);
 
-  const btn = document.createElement('button');
-  btn.className = 'locations__delete';
+  const btn = createElements(NEW_ELEMENTS.BTN, CLASS_ELEMENT.LOCATION_DELETE);
   btn.textContent = 'X';
   li.append(btn);
 
@@ -121,6 +122,12 @@ function renderLocation(cities, index) {
   return newIndex;
 }
 
+function createElements(element, classElement) {
+  const li = document.createElement(element);
+  li.className = classElement;
+  return li;
+}
+
 function deletelistItem(items) {
   items?.forEach(function (city) {
     city?.remove();
@@ -128,14 +135,14 @@ function deletelistItem(items) {
 }
 
 function saveCurrentCity(nameCity) {
-  const url = `${serverUrl}?q=${nameCity}&appid=${apiKey}&units=metric`;
+  const url = createUrl(nameCity);
   checkUrl(url);
   document.cookie = `${nameCity}; max-age=7200`;
   getCurrentCity();
 }
 
 function deleteCity(nameCity, li) {
-  let deleteCity = new Set(JSON.parse(localStorage.getItem('cities')));
+  const deleteCity = new Set(JSON.parse(localStorage.getItem('cities')));
   deleteCity?.delete(nameCity);
   localStorage.setItem('cities', JSON.stringify([...deleteCity]));
   li.remove();
@@ -151,11 +158,11 @@ function changeDetails(result) {
 }
 
 function changeTemperature(elementTemperature, textTemperature, resultTemp) {
-  elementTemperature.textContent = textTemperature + Math.round(resultTemp) + '°';
+  elementTemperature.textContent = textTemperature + Math.round(resultTemp) + NEW_ELEMENTS.TEMP;
 }
 
 function changeSunriseSunset(time, timeOfDay, elementsTimeOfDay) {
-  const resultTime = format(new Date(time * 1000), 'HH:mm');
+  const resultTime = format(new Date(time * 1000), TYPE_FORMAT.HOURS);
   elementsTimeOfDay.textContent = timeOfDay + resultTime;
 }
 
@@ -231,6 +238,6 @@ function createElementSpan(nowDate, divItem) {
 
 function createElementTemperature(temperature, divTemperature) {
   const spanTemperature = document.createElement(NEW_ELEMENTS.SPAN);
-  spanTemperature.textContent = 'Temperature:' + ' ' + Math.round(temperature) + '°';
+  spanTemperature.textContent = `Temperature: ${Math.round(temperature)}${NEW_ELEMENTS.TEMP}`;
   divTemperature.append(spanTemperature);
 }

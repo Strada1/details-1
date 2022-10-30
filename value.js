@@ -29,6 +29,10 @@ export const TYPE_FORMAT = {
 export const NEW_ELEMENTS = {
   DIV: 'div',
   SPAN: 'span',
+  TEMP: '°',
+  LI: 'li',
+  P: 'p',
+  BTN: 'button',
 };
 export const CLASS_ELEMENT = {
   FORECAST_ITEM: 'forecast__item',
@@ -36,4 +40,7 @@ export const CLASS_ELEMENT = {
   FORECAST_WEATHER: 'forecast__weather',
   FORECAST_TEMPERATURE: 'forecast__temperature',
   FORECAST_ICON: 'forecast__icon',
+  LIST_ITEM: 'list-item',
+  LIST_ITEM_CITY: 'list-item-city',
+  LOCATION_DELETE: 'locations__delete',
 };
