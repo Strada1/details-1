@@ -533,31 +533,36 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"1Z4Rq":[function(require,module,exports) {
 var _dateFns = require("date-fns");
-const userInput = document.querySelector(".user_input");
-const userBtn = document.querySelector(".user_btn");
-const yearsValue = document.querySelector(".years_value");
-const daysValue = document.querySelector(".days_value");
-const hoursValue = document.querySelector(".hours_value");
-const minutesValue = document.querySelector(".minutes_value");
-const secondsValue = document.querySelector(".seconds_value");
-console.log(new Date());
+const ELEMENTS = {
+    userInput: document.querySelector(".user_input"),
+    yearsValue: document.querySelector(".years_value"),
+    daysValue: document.querySelector(".days_value"),
+    hoursValue: document.querySelector(".hours_value"),
+    minutesValue: document.querySelector(".minutes_value"),
+    secondsValue: document.querySelector(".seconds_value")
+};
 function countDownTime() {
-    let dateNow = new Date();
-    let dateEnd = new Date(userInput.value);
-    const countDown = (0, _dateFns.intervalToDuration)({
-        start: new Date(dateNow.getFullYear(), dateNow.getMonth(), dateNow.getDate(), dateNow.getHours(), dateNow.getMinutes(), dateNow.getSeconds()),
-        end: new Date(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate(), dateEnd.getHours(), 0, 0)
-    });
-    yearsValue.textContent = countDown.years;
-    daysValue.textContent = countDown.days;
-    hoursValue.textContent = countDown.hours;
-    minutesValue.textContent = countDown.minutes;
-    secondsValue.textContent = countDown.seconds;
-    setTimeout(()=>{
-        countDownTime();
-    }, 1000);
+    const dateNow = new Date();
+    const dateEnd = new Date(ELEMENTS.userInput.value);
+    const timer = setTimeout(countDownTime, 1000);
+    const timeDifference = dateEnd - dateNow;
+    if (timeDifference >= 0) {
+        const countDown = (0, _dateFns.intervalToDuration)({
+            start: new Date(dateNow.getFullYear(), dateNow.getMonth(), dateNow.getDate(), dateNow.getHours(), dateNow.getMinutes(), dateNow.getSeconds()),
+            end: new Date(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate(), dateEnd.getHours(), dateEnd.getMinutes(), dateEnd.getSeconds())
+        });
+        ELEMENTS.yearsValue.textContent = countDown.years;
+        ELEMENTS.daysValue.textContent = countDown.days;
+        ELEMENTS.hoursValue.textContent = countDown.hours;
+        ELEMENTS.minutesValue.textContent = countDown.minutes;
+        ELEMENTS.secondsValue.textContent = countDown.seconds;
+    } else {
+        console.log("Введите дату которая еще не наступила");
+        clearTimeout(timer);
+        ELEMENTS.secondsValue.textContent = 0;
+    }
 }
-userInput.addEventListener("change", countDownTime);
+ELEMENTS.userInput.addEventListener("change", countDownTime);
 
 },{"date-fns":"9yHCA"}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
