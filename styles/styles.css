@@ -21,7 +21,7 @@ html, body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 500px;
+    width: 550px;
     height: 400px;
     box-shadow: 0 0 15px rgba(16, 96, 133, 0.9), 0 0 25px rgba(151, 206, 232,0.9);
     border-radius: 5px;
@@ -88,7 +88,7 @@ html, body {
 }
 .count-down {
     width: 475px;
-    height: 80px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,7 +97,7 @@ html, body {
 .text-inform {
     font-size: 21px;
     font-weight: 700;
-    color: rgb(4, 67, 96);
+    color: rgb(45, 5, 64);
     opacity: 0;
     transition: opacity .5s ease-in-out;
 }
@@ -105,24 +105,17 @@ html, body {
     opacity: 1;
 }
 .date-count-down {
-    min-width: 475px;
-    height: 22px;
+    min-width: 500px;
+    height: 40px;
     text-align: center;
     margin-top: 30px;
-    padding: 0;
-    font-size: 17px;
-    color: rgb(45, 5, 64);
-    background-color: transparent;
-    box-shadow: 0 0 15px rgba(2, 68, 115, 0.4), 0 0 25px rgba(0, 98, 163,0.9);
-    border-radius: 5px;
-    height: 23px;
-    padding: 0;
+    padding: 13px 3px 0 3px;
+    font-size: 18px;
     border: none; 
     outline: none;
-    cursor: pointer;
-    text-align: center;
     border-radius: 5px;
-    background: rgb(0, 166, 255) radial-gradient(circle at 0 0, rgba(0, 166, 255, 0.55), rgba(0, 166, 255,.35));
+    color: rgb(45, 5, 64);
+    background: rgb(113, 193, 230, .4) radial-gradient(circle at 0 0, rgba(57, 136, 172, 0.55), rgba(26, 162, 225, 0.35));
     box-shadow:
     inset rgba(0, 98, 163,.5) -3px -3px 8px,
     inset rgba(255,255,255,.9) 3px 3px 8px,
@@ -135,7 +128,7 @@ html, body {
 }
 .btn-clear {
     margin-top: 35px;
-    background: rgb(113, 193, 230) radial-gradient(circle at 0 0, rgba(57, 136, 172, 0.55), rgba(26, 162, 225, 0.35));
+    background: rgb(113, 193, 230, .7) radial-gradient(circle at 0 0, rgba(57, 136, 172, 0.55), rgba(26, 162, 225, 0.35));
     box-shadow:
     inset rgba(0, 98, 163,.5) -3px -3px 8px,
     inset rgba(255,255,255,.9) 3px 3px 8px,
