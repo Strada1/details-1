@@ -6,7 +6,6 @@ import { ELEMENT, ERRORS } from './view'
 ELEMENT.formDate.addEventListener('submit', (event) => handlerCheckDate(event))
 ELEMENT.btnClear.addEventListener('click', handlerClear)
 let myTimerId
-console.log(myTimerId)
 
 function handlerCheckDate (event) {
   event.preventDefault()
