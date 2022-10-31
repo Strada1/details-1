@@ -1,4 +1,4 @@
-import { format } from './node_modules/date-fns'
+import { format}  from './node_modules/date-fns'
 
 
 window.addEventListener('load', startPage);
@@ -93,8 +93,8 @@ function createSecondBlock(result) {
     //     hour: "numeric",
     //     minute : "2-digit"
     // };
-    detailSunrise.textContent = `Sunrise: ${format(sunriseTime)}`;
-    // detailSunset.textContent = `Sunset: ${sunsetTime.toLocaleTimeString("en-US", timeOptions)}`;
+    detailSunrise.textContent = `Sunrise: ${format((sunriseTime), 'h:mm aaa')}`;
+    detailSunset.textContent = `Sunset: ${format((sunsetTime), 'h:mm aaa')}`;
 
 };
 
