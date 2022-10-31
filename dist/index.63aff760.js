@@ -142,7 +142,7 @@
       this[globalName] = mainExports;
     }
   }
-})({"kCuy0":[function(require,module,exports) {
+})({"1JEHZ":[function(require,module,exports) {
 "use strict";
 var global = arguments[3];
 var HMR_HOST = null;
@@ -532,17 +532,25 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"adjPd":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _getDate = require("date-fns/getDate");
+var _getDateDefault = parcelHelpers.interopDefault(_getDate);
+var _getMonth = require("date-fns/getMonth");
+var _getMonthDefault = parcelHelpers.interopDefault(_getMonth);
+var _lightFormat = require("date-fns/lightFormat");
+var _lightFormatDefault = parcelHelpers.interopDefault(_lightFormat);
 const form = document.querySelector(".search__form");
 const formInput = document.querySelector(".search__form-input");
 const likeButton = document.querySelector(".like__button");
 const currentCity = document.querySelector(".current__city-nowtab");
-const serverUrl = "https://api.openweathermap.org/data/2.5";
-const apiKey = "609c9b4b7ef12e010193bbaa8935143b";
+const serverUrl = "http://api.openweathermap.org/data/2.5";
+const apiKey = "f660a2fb1e4bad108d6160b7f58c555f";
 let addedLocationsMassive = [];
 document.addEventListener("DOMContentLoaded", ()=>{
     for(let key in localStorage){
         if (!localStorage.hasOwnProperty(key)) continue; // пропустит такие ключи, как "setItem", "getItem" и так далее
         if (JSON.parse(localStorage.getItem(`${key}`)).isSelected === true) getWeatherInfo(JSON.parse(localStorage.getItem(`${key}`)).name);
+        getForecastInfo(JSON.parse(localStorage.getItem(`${key}`)).name);
         addedLocationsMassive = addedLocationsMassive.concat(JSON.parse(localStorage.getItem(`${key}`)));
     }
     renderLocationList(addedLocationsMassive);
@@ -615,19 +623,25 @@ function renderDetailsTab(weatherInfo) {
 function renderForecastTab(forecast) {
     const currentCity = document.querySelector(".current__city-forecasttab");
     currentCity.firstChild.textContent = forecast.city.name;
-    const forecastIcon = document.querySelector(".forecast__icon");
-    forecastIcon.src = `http://openweathermap.org/img/wn/${forecast.list[0].weather[0].icon}@2x.png`;
-    const weatherDescr = document.querySelector(".forecast__weather-descr");
+    console.log((0, _getMonthDefault.default)(new Date(forecast.list[20].dt)));
+    const date = document.querySelectorAll(".actual__date");
+    const time = document.querySelectorAll(".forecast__time");
+    const forecastIcon = document.querySelectorAll(".forecast__icon");
+    const weatherDescr = document.querySelectorAll(".forecast__weather-descr");
     weatherDescr.textContent = forecast.list[0].weather[0].main;
-    const forecastTemp = document.querySelector(".details__temperature");
-    forecastTemp.textContent = Math.round(forecast.list[0].main.temp);
-    console.log(forecastTemp);
-    const times = document.querySelectorAll(".forecast__time");
-// for (let time of times) {
-//     time.textContent = getLocalTime()
-// }
+    const forecastTemp = document.querySelectorAll(".forecast__temperature");
+    const forecastFeelsLike = document.querySelectorAll(".forecast__feelslike");
+    for(let i = 0; i < 3; i++){
+        date[i].textContent = `${(0, _getDateDefault.default)(new Date(forecast.list[i].dt * 1000))} ${(0, _getMonthDefault.default)(new Date(forecast.list[i].dt * 1000)) + 1}`;
+        // date[i].textContent = `${lightFormat(new Date(forecast.list[i].dt*1000), 'yyyy-MM-dd')}`;
+        time[i].textContent = getLocalTime(forecast.list[i].dt);
+        forecastIcon[i].src = `http://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png`;
+        weatherDescr[i].textContent = forecast.list[i].weather[0].main;
+        forecastTemp[i].textContent = Math.round(forecast.list[i].main.temp);
+        forecastFeelsLike[i].textContent = Math.round(forecast.list[i].main.feels_like);
+    }
 }
-function getLocalTime(time, local) {
+function getLocalTime(time, local = 0) {
     const yourOffset = new Date().getTimezoneOffset() * 60000;
     time *= 1000;
     time += yourOffset;
@@ -684,7 +698,11 @@ function createItem(element) {
     let closeButton = document.createElement("button");
     closeButton.classList.add("close__btn");
     let closeButtonIcon = document.createElement("img");
-    closeButtonIcon.src = "./image/delete-btn.svg";
+    // closeButtonIcon.src = './image/delete-btn.svg';
+    closeButton.innerHTML = `<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line y1="-0.5" x2="20.7803" y2="-0.5" transform="matrix(0.710506 0.703691 -0.65218 0.758064 1 1)" stroke="#998899"/>
+    <line y1="-0.5" x2="20.8155" y2="-0.5" transform="matrix(0.693335 -0.720616 0.670126 0.742247 1.56787 16)" stroke="#998899"/>
+    </svg>`;
     closeButton.append(closeButtonIcon);
     listItem.append(cityNameHolder);
     listItem.append(closeButton);
@@ -705,6 +723,348 @@ function saveData(list) {
     });
 }
 
-},{}]},["kCuy0","adjPd"], "adjPd", "parcelRequire95a1")
+},{"date-fns/getDate":"754fh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","date-fns/getMonth":"f3U40","date-fns/lightFormat":"31chA"}],"754fh":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function getDate(dirtyDate) {
+    (0, _indexJsDefault1.default)(1, arguments);
+    var date = (0, _indexJsDefault.default)(dirtyDate);
+    var dayOfMonth = date.getDate();
+    return dayOfMonth;
+}
+exports.default = getDate;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fsust":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") _typeof = function _typeof(obj) {
+        return typeof obj;
+    };
+    else _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    return _typeof(obj);
+}
+function toDate(argument) {
+    (0, _indexJsDefault.default)(1, arguments);
+    var argStr = Object.prototype.toString.call(argument); // Clone the date
+    if (argument instanceof Date || _typeof(argument) === "object" && argStr === "[object Date]") // Prevent the date to lose the milliseconds when passed to new Date() in IE10
+    return new Date(argument.getTime());
+    else if (typeof argument === "number" || argStr === "[object Number]") return new Date(argument);
+    else {
+        if ((typeof argument === "string" || argStr === "[object String]") && typeof console !== "undefined") {
+            // eslint-disable-next-line no-console
+            console.warn("Starting with v2.0.0-beta.1 date-fns doesn't accept strings as date arguments. Please use `parseISO` to parse strings. See: https://github.com/date-fns/date-fns/blob/master/docs/upgradeGuide.md#string-arguments"); // eslint-disable-next-line no-console
+            console.warn(new Error().stack);
+        }
+        return new Date(NaN);
+    }
+}
+exports.default = toDate;
+
+},{"../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9wUgQ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function requiredArgs(required, args) {
+    if (args.length < required) throw new TypeError(required + " argument" + (required > 1 ? "s" : "") + " required, but only " + args.length + " present");
+}
+exports.default = requiredArgs;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"f3U40":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+function getMonth(dirtyDate) {
+    (0, _indexJsDefault1.default)(1, arguments);
+    var date = (0, _indexJsDefault.default)(dirtyDate);
+    var month = date.getMonth();
+    return month;
+}
+exports.default = getMonth;
+
+},{"../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"31chA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../toDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/format/lightFormatters/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/getTimezoneOffsetInMilliseconds/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+var _indexJs3 = require("../isValid/index.js");
+var _indexJsDefault3 = parcelHelpers.interopDefault(_indexJs3);
+var _indexJs4 = require("../subMilliseconds/index.js");
+var _indexJsDefault4 = parcelHelpers.interopDefault(_indexJs4);
+var _indexJs5 = require("../_lib/requiredArgs/index.js"); // This RegExp consists of three parts separated by `|`:
+var _indexJsDefault5 = parcelHelpers.interopDefault(_indexJs5);
+// - (\w)\1* matches any sequences of the same letter
+// - '' matches two quote characters in a row
+// - '(''|[^'])+('|$) matches anything surrounded by two quote characters ('),
+//   except a single quote symbol, which ends the sequence.
+//   Two quote characters do not end the sequence.
+//   If there is no matching single quote
+//   then the sequence will continue until the end of the string.
+// - . matches any single character unmatched by previous parts of the RegExps
+var formattingTokensRegExp = /(\w)\1*|''|'(''|[^'])+('|$)|./g;
+var escapedStringRegExp = /^'([^]*?)'?$/;
+var doubleQuoteRegExp = /''/g;
+var unescapedLatinCharacterRegExp = /[a-zA-Z]/;
+function lightFormat(dirtyDate, formatStr) {
+    (0, _indexJsDefault5.default)(2, arguments);
+    var originalDate = (0, _indexJsDefault.default)(dirtyDate);
+    if (!(0, _indexJsDefault3.default)(originalDate)) throw new RangeError("Invalid time value");
+     // Convert the date in system timezone to the same date in UTC+00:00 timezone.
+    // This ensures that when UTC functions will be implemented, locales will be compatible with them.
+    // See an issue about UTC functions: https://github.com/date-fns/date-fns/issues/376
+    var timezoneOffset = (0, _indexJsDefault2.default)(originalDate);
+    var utcDate = (0, _indexJsDefault4.default)(originalDate, timezoneOffset);
+    var tokens = formatStr.match(formattingTokensRegExp); // The only case when formattingTokensRegExp doesn't match the string is when it's empty
+    if (!tokens) return "";
+    var result = tokens.map(function(substring) {
+        // Replace two single quote characters with one single quote character
+        if (substring === "''") return "'";
+        var firstCharacter = substring[0];
+        if (firstCharacter === "'") return cleanEscapedString(substring);
+        var formatter = (0, _indexJsDefault1.default)[firstCharacter];
+        if (formatter) return formatter(utcDate, substring);
+        if (firstCharacter.match(unescapedLatinCharacterRegExp)) throw new RangeError("Format string contains an unescaped latin alphabet character `" + firstCharacter + "`");
+        return substring;
+    }).join("");
+    return result;
+}
+exports.default = lightFormat;
+function cleanEscapedString(input) {
+    var matches = input.match(escapedStringRegExp);
+    if (!matches) return input;
+    return matches[1].replace(doubleQuoteRegExp, "'");
+}
+
+},{"../toDate/index.js":"fsust","../_lib/format/lightFormatters/index.js":"9oZiA","../_lib/getTimezoneOffsetInMilliseconds/index.js":"bc74C","../isValid/index.js":"eXoMl","../subMilliseconds/index.js":"lL2M9","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9oZiA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../../addLeadingZeros/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+/*
+ * |     | Unit                           |     | Unit                           |
+ * |-----|--------------------------------|-----|--------------------------------|
+ * |  a  | AM, PM                         |  A* |                                |
+ * |  d  | Day of month                   |  D  |                                |
+ * |  h  | Hour [1-12]                    |  H  | Hour [0-23]                    |
+ * |  m  | Minute                         |  M  | Month                          |
+ * |  s  | Second                         |  S  | Fraction of second             |
+ * |  y  | Year (abs)                     |  Y  |                                |
+ *
+ * Letters marked by * are not implemented but reserved by Unicode standard.
+ */ var formatters = {
+    // Year
+    y: function y(date, token) {
+        // From http://www.unicode.org/reports/tr35/tr35-31/tr35-dates.html#Date_Format_tokens
+        // | Year     |     y | yy |   yyy |  yyyy | yyyyy |
+        // |----------|-------|----|-------|-------|-------|
+        // | AD 1     |     1 | 01 |   001 |  0001 | 00001 |
+        // | AD 12    |    12 | 12 |   012 |  0012 | 00012 |
+        // | AD 123   |   123 | 23 |   123 |  0123 | 00123 |
+        // | AD 1234  |  1234 | 34 |  1234 |  1234 | 01234 |
+        // | AD 12345 | 12345 | 45 | 12345 | 12345 | 12345 |
+        var signedYear = date.getUTCFullYear(); // Returns 1 for 1 BC (which is year 0 in JavaScript)
+        var year = signedYear > 0 ? signedYear : 1 - signedYear;
+        return (0, _indexJsDefault.default)(token === "yy" ? year % 100 : year, token.length);
+    },
+    // Month
+    M: function M(date, token) {
+        var month = date.getUTCMonth();
+        return token === "M" ? String(month + 1) : (0, _indexJsDefault.default)(month + 1, 2);
+    },
+    // Day of the month
+    d: function d(date, token) {
+        return (0, _indexJsDefault.default)(date.getUTCDate(), token.length);
+    },
+    // AM or PM
+    a: function a(date, token) {
+        var dayPeriodEnumValue = date.getUTCHours() / 12 >= 1 ? "pm" : "am";
+        switch(token){
+            case "a":
+            case "aa":
+                return dayPeriodEnumValue.toUpperCase();
+            case "aaa":
+                return dayPeriodEnumValue;
+            case "aaaaa":
+                return dayPeriodEnumValue[0];
+            case "aaaa":
+            default:
+                return dayPeriodEnumValue === "am" ? "a.m." : "p.m.";
+        }
+    },
+    // Hour [1-12]
+    h: function h(date, token) {
+        return (0, _indexJsDefault.default)(date.getUTCHours() % 12 || 12, token.length);
+    },
+    // Hour [0-23]
+    H: function H(date, token) {
+        return (0, _indexJsDefault.default)(date.getUTCHours(), token.length);
+    },
+    // Minute
+    m: function m(date, token) {
+        return (0, _indexJsDefault.default)(date.getUTCMinutes(), token.length);
+    },
+    // Second
+    s: function s(date, token) {
+        return (0, _indexJsDefault.default)(date.getUTCSeconds(), token.length);
+    },
+    // Fraction of second
+    S: function S(date, token) {
+        var numberOfDigits = token.length;
+        var milliseconds = date.getUTCMilliseconds();
+        var fractionalSeconds = Math.floor(milliseconds * Math.pow(10, numberOfDigits - 3));
+        return (0, _indexJsDefault.default)(fractionalSeconds, token.length);
+    }
+};
+exports.default = formatters;
+
+},{"../../addLeadingZeros/index.js":"6pP6x","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6pP6x":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function addLeadingZeros(number, targetLength) {
+    var sign = number < 0 ? "-" : "";
+    var output = Math.abs(number).toString();
+    while(output.length < targetLength)output = "0" + output;
+    return sign + output;
+}
+exports.default = addLeadingZeros;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bc74C":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function getTimezoneOffsetInMilliseconds(date) {
+    var utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
+    utcDate.setUTCFullYear(date.getFullYear());
+    return date.getTime() - utcDate.getTime();
+}
+exports.default = getTimezoneOffsetInMilliseconds;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eXoMl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../isDate/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../toDate/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+function isValid(dirtyDate) {
+    (0, _indexJsDefault2.default)(1, arguments);
+    if (!(0, _indexJsDefault.default)(dirtyDate) && typeof dirtyDate !== "number") return false;
+    var date = (0, _indexJsDefault1.default)(dirtyDate);
+    return !isNaN(Number(date));
+}
+exports.default = isValid;
+
+},{"../isDate/index.js":"kqNhT","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kqNhT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+function _typeof(obj) {
+    "@babel/helpers - typeof";
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") _typeof = function _typeof(obj) {
+        return typeof obj;
+    };
+    else _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+    return _typeof(obj);
+}
+function isDate(value) {
+    (0, _indexJsDefault.default)(1, arguments);
+    return value instanceof Date || _typeof(value) === "object" && Object.prototype.toString.call(value) === "[object Date]";
+}
+exports.default = isDate;
+
+},{"../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lL2M9":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../addMilliseconds/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/toInteger/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+function subMilliseconds(dirtyDate, dirtyAmount) {
+    (0, _indexJsDefault1.default)(2, arguments);
+    var amount = (0, _indexJsDefault2.default)(dirtyAmount);
+    return (0, _indexJsDefault.default)(dirtyDate, -amount);
+}
+exports.default = subMilliseconds;
+
+},{"../addMilliseconds/index.js":"7Tp9s","../_lib/requiredArgs/index.js":"9wUgQ","../_lib/toInteger/index.js":"f7kKX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Tp9s":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _indexJs = require("../_lib/toInteger/index.js");
+var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
+var _indexJs1 = require("../toDate/index.js");
+var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
+var _indexJs2 = require("../_lib/requiredArgs/index.js");
+var _indexJsDefault2 = parcelHelpers.interopDefault(_indexJs2);
+function addMilliseconds(dirtyDate, dirtyAmount) {
+    (0, _indexJsDefault2.default)(2, arguments);
+    var timestamp = (0, _indexJsDefault1.default)(dirtyDate).getTime();
+    var amount = (0, _indexJsDefault.default)(dirtyAmount);
+    return new Date(timestamp + amount);
+}
+exports.default = addMilliseconds;
+
+},{"../_lib/toInteger/index.js":"f7kKX","../toDate/index.js":"fsust","../_lib/requiredArgs/index.js":"9wUgQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f7kKX":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function toInteger(dirtyNumber) {
+    if (dirtyNumber === null || dirtyNumber === true || dirtyNumber === false) return NaN;
+    var number = Number(dirtyNumber);
+    if (isNaN(number)) return number;
+    return number < 0 ? Math.ceil(number) : Math.floor(number);
+}
+exports.default = toInteger;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["1JEHZ","adjPd"], "adjPd", "parcelRequire95a1")
 
 //# sourceMappingURL=index.63aff760.js.map

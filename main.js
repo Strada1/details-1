@@ -1,9 +1,12 @@
+import getDate from 'date-fns/getDate';
+import getMonth from 'date-fns/getMonth'
+import lightFormat from 'date-fns/lightFormat'
 const form = document.querySelector('.search__form');
 const formInput = document.querySelector('.search__form-input');
 const likeButton = document.querySelector('.like__button');
 const currentCity = document.querySelector('.current__city-nowtab');
-const serverUrl = 'https://api.openweathermap.org/data/2.5';
-const apiKey = '609c9b4b7ef12e010193bbaa8935143b';
+const serverUrl = 'http://api.openweathermap.org/data/2.5';
+const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
 let addedLocationsMassive = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             continue; // пропустит такие ключи, как "setItem", "getItem" и так далее
         }
         if (JSON.parse(localStorage.getItem(`${key}`)).isSelected === true) getWeatherInfo(JSON.parse(localStorage.getItem(`${key}`)).name);
+        getForecastInfo(JSON.parse(localStorage.getItem(`${key}`)).name);
         addedLocationsMassive = addedLocationsMassive.concat(JSON.parse(localStorage.getItem(`${key}`)));
     }
     renderLocationList(addedLocationsMassive);
@@ -107,21 +111,28 @@ function renderDetailsTab(weatherInfo) {
 function renderForecastTab(forecast) {
     const currentCity = document.querySelector('.current__city-forecasttab');
     currentCity.firstChild.textContent = forecast.city.name;
-    const forecastIcon = document.querySelector('.forecast__icon');
-    forecastIcon.src = 
-    `http://openweathermap.org/img/wn/${forecast.list[0].weather[0].icon}@2x.png`;
-    const weatherDescr = document.querySelector('.forecast__weather-descr');
+    console.log(getMonth(new Date(forecast.list[20].dt)));
+    const date = document.querySelectorAll('.actual__date');
+    const time = document.querySelectorAll('.forecast__time');
+    const forecastIcon = document.querySelectorAll('.forecast__icon');
+    const weatherDescr = document.querySelectorAll('.forecast__weather-descr');
     weatherDescr.textContent = forecast.list[0].weather[0].main;
-    const forecastTemp = document.querySelector('.details__temperature');
-    forecastTemp.textContent =  Math.round(forecast.list[0].main.temp);
-    console.log(forecastTemp);
-    const times = document.querySelectorAll('.forecast__time');
-    // for (let time of times) {
-    //     time.textContent = getLocalTime()
-    // }
+    const forecastTemp = document.querySelectorAll('.forecast__temperature');
+    const forecastFeelsLike = document.querySelectorAll('.forecast__feelslike');
+
+    for (let i = 0; i < 3; i++) {
+        date[i].textContent = `${getDate(new Date(forecast.list[i].dt*1000))} ${getMonth(new Date(forecast.list[i].dt*1000))+1}`;
+        // date[i].textContent = `${lightFormat(new Date(forecast.list[i].dt*1000), 'yyyy-MM-dd')}`;
+        time[i].textContent = getLocalTime(forecast.list[i].dt);
+        forecastIcon[i].src = 
+        `http://openweathermap.org/img/wn/${forecast.list[i].weather[0].icon}@2x.png`;
+        weatherDescr[i].textContent = forecast.list[i].weather[0].main;
+        forecastTemp[i].textContent = Math.round(forecast.list[i].main.temp);
+        forecastFeelsLike[i].textContent = Math.round(forecast.list[i].main.feels_like);
+    }
 }
 
-function getLocalTime(time, local) {
+function getLocalTime(time, local = 0) {
     const yourOffset = new Date().getTimezoneOffset()*60*1000;
     time *= 1000;
     time += yourOffset;
@@ -182,7 +193,11 @@ function createItem(element) {
     let closeButton = document.createElement('button');
     closeButton.classList.add('close__btn');
     let closeButtonIcon = document.createElement('img');
-    closeButtonIcon.src = './image/delete-btn.svg';
+    // closeButtonIcon.src = './image/delete-btn.svg';
+    closeButton.innerHTML = `<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line y1="-0.5" x2="20.7803" y2="-0.5" transform="matrix(0.710506 0.703691 -0.65218 0.758064 1 1)" stroke="#998899"/>
+    <line y1="-0.5" x2="20.8155" y2="-0.5" transform="matrix(0.693335 -0.720616 0.670126 0.742247 1.56787 16)" stroke="#998899"/>
+    </svg>`
     closeButton.append(closeButtonIcon);
     listItem.append(cityNameHolder);
     listItem.append(closeButton);

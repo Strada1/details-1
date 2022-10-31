@@ -325,6 +325,20 @@ button {
     width: 41px;
 }
 
+/* .forecast__inner-list-item {
+    height: 34.2px;
+    padding-right: 10px;
+    border-radius: 6px;
+    padding-left: 0px;
+    margin-bottom: 6px;
+    margin-right: 10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .1s;
+} */
+
 .locations {
     border-right: 2px solid #000;
     border-bottom: 2px solid #000;
