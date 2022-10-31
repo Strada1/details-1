@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="contentOG">
+            <div class="search__block">
+                <form class="search__form" action="#" method="get">
+                    <input class="search__input" type="text" name="search" placeholder="Search">
+                    <button class="search__button" type="submit"><img src="images/Shape.svg" alt="Кнопка отправки"></button> 
+                </form>
+            </div>
+            <div class="sides__block">
+                <div class="left__block">
+                    <div class="tabs">
+                        <nav class="tabs__items">
+                            <a href="#tab_01" class="tabs__item item-plus">Now</a>
+                            <a href="#tab_02" class="tabs__item">Details</a>
+                            <a href="#tab_03" class="tabs__item">Forecast</a>
+                        </nav>
+                        <div class="tabs__body">
+                            <div id="tab_01" class="tabs__block">
+                                <div class="block__item-temp"></div>
+                                <div class="block__item-weather"><img class="block__item-weather-img" src="images/cloud.svg"></div>
+                                <div class="block__item-city"></div>
+                                <div class="block__item-like">
+                                    <button><img class="block__item-like-img" src="images/heart.svg"></button>
+                                </div>
+                            </div>
+                            <div id="tab_02" class="tabs__block">
+                                <div class="selected__city-details"></div>
+                                <div class="selected__city__details-items">
+                                    <p class="detail-item detail-temp">Temperature: </p>
+                                    <p class="detail-item detail-feels">Feels like: </p>
+                                    <p class="detail-item detail-weather">Weather: </p>
+                                    <p class="detail-item detail-sunrise">Sunrise: </p>
+                                    <p class="detail-item detail-sunset">Sunset: </p>
+                                </div>
+                            </div>
+                            <div id="tab_03" class="tabs__block">
+                                <div class="selected__city-forecast"></div>
+                                <div class="block__weather__ontime">
+                                    <div class="ontime__item-date">17 May</div>
+                                    <div class="ontime__item-hour">12:00</div>
+                                    <div class="ontime__item-temp">
+                                        <p class="item-temp-meter">Temperature: 13</p>
+                                        <p class="item-temp-feels">Feels like: 10</p>
+                                    </div>
+                                    <div class="ontime__item-condition">Rain</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="right__block">
+                    <div class="added__locations">
+                       <p class="added__text">Added Locations:</p> 
+                    </div>
+                    <div class="liked__locations">
+                        <div class="added__list">
+
+                        <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script type="module" src="kuku.js"></script>    
+</body>
+</html>
