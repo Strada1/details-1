@@ -537,7 +537,7 @@ const formInput = document.querySelector(".search__form-input");
 const likeButton = document.querySelector(".like__button");
 const currentCity = document.querySelector(".current__city-nowtab");
 const serverUrl = "https://api.openweathermap.org/data/2.5";
-const apiKey = "94760541e707ecb927f31640fd4db762";
+const apiKey = "609c9b4b7ef12e010193bbaa8935143b";
 let addedLocationsMassive = [];
 document.addEventListener("DOMContentLoaded", ()=>{
     for(let key in localStorage){
