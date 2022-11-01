@@ -39,7 +39,7 @@ function takeCity(event) {
       }
 
       if (response.status === 404) {
-        throw new InvalidRequsetError('Неккоректный запрос');
+        throw new InvalidRequestError('Неккоректный запрос');
       }
 
       const result = await response.json();
@@ -114,9 +114,7 @@ const timeTokyo = 540 * 60 * 1000;
 const localTokyo = new Date(myTime3 - timeTokyo);
 console.log(localTokyo);
 
-const createThirdBlock = function (result) {
-  const cityForecast = document.querySelector('.selected__city-forecast');
-};
+
 
 function createRightBlock() {
   clear();
@@ -168,7 +166,6 @@ let quickRemove = function () {
 };
 
 function quickStart() {
-  const search__input = document.querySelector('.search__input');
   const cityName = CurrentCity;
   const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
   const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
