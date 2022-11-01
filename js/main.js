@@ -22,13 +22,20 @@ function myTimer (inputDate) {
   myTimerId = setInterval(getDifferentTime, 1000, inputDate)
 };
 
+function eraserTimerId (timerId) {
+  if (timerId) {
+    clearInterval(timerId)
+  }
+};
+
 function getDifferentTime (inputDate) {
   const differentDate = intervalToDuration({
     start: new Date(inputDate),
     end: new Date()
   })
-  const myDifferentDate = formatDuration(differentDate)
+  let myDifferentDate = formatDuration(differentDate)
   ELEMENT.dateCountDown.textContent = myDifferentDate
+  myDifferentDate = ''
 };
 
 function handlerClear () {
@@ -50,9 +57,3 @@ function renderOutput () {
     ELEMENT.textInform.textContent = 'From this date to the future date'
   }
 }
-
-function eraserTimerId (timerId) {
-  if (timerId) {
-    clearInterval(timerId)
-  }
-};
