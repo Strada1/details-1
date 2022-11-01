@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./styles/styles.css" rel="stylesheet" type="text/css">
+    <link type="Image/x-icon" href="./images/count_down_timer.png" rel="icon">
+    <title>Count Down</title>
+</head>
+    <body>
+        <div class="wrapper">
+            <form class="form-date">
+                <div class="enter-date">
+                    <input class="from-date" type="datetime-local" >
+                    <button class="btn btn-start">Go</button>
+                </div>
+            </form>
+            <div class="count-down">
+                <span class="text-inform"></span>
+                <div class="date-count-down"></div>
+            </div>
+            <div class="clear">
+                <button class="btn btn-clear">Clear</button>
+            </div>
+        </div>
+
+        <div class="pop_up">
+            <div class="pop_up_container">
+                <div class="pop_up_body">
+                    <p class="error_text"></p>
+                    <button class="pop_up_close">
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="grey" xmlns="http://www.w3.org/2000/svg">
+                            <line y1="-0.5" x2="20.7803" y2="-0.5" transform="matrix(0.710506 0.703691 -0.65218 0.758064 1 1)" stroke="grey"/>
+                            <line y1="-0.5" x2="20.8155" y2="-0.5" transform="matrix(0.693335 -0.720616 0.670126 0.742247 1.56787 16)" stroke="grey"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    <script type="module" src="./js/main.js"></script>   
+    </body>
+</html>
