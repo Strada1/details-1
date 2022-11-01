@@ -3,10 +3,12 @@ import { intervalToDuration } from 'date-fns';
 const ELEMENTS = {
     userInput: document.querySelector('.user_input'),
     yearsValue: document.querySelector('.years_value'),
+    monthsValue: document.querySelector('.months_value'),
     daysValue: document.querySelector('.days_value'),
     hoursValue: document.querySelector('.hours_value'),
     minutesValue: document.querySelector('.minutes_value'),
     secondsValue: document.querySelector('.seconds_value'),
+
 }
 
 function countDownTime() {
@@ -20,7 +22,9 @@ function countDownTime() {
             start: new Date(dateNow.getFullYear(), dateNow.getMonth(), dateNow.getDate(), dateNow.getHours(), dateNow.getMinutes(), dateNow.getSeconds()),
             end: new Date(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate(), dateEnd.getHours(), dateEnd.getMinutes(), dateEnd.getSeconds()),
         })
+        console.log(countDown)
         ELEMENTS.yearsValue.textContent = countDown.years;
+        ELEMENTS.monthsValue.textContent = countDown.months;
         ELEMENTS.daysValue.textContent = countDown.days;
         ELEMENTS.hoursValue.textContent = countDown.hours;
         ELEMENTS.minutesValue.textContent = countDown.minutes;
