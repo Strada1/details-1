@@ -22,7 +22,6 @@ function countDownTime() {
             start: new Date(dateNow.getFullYear(), dateNow.getMonth(), dateNow.getDate(), dateNow.getHours(), dateNow.getMinutes(), dateNow.getSeconds()),
             end: new Date(dateEnd.getFullYear(), dateEnd.getMonth(), dateEnd.getDate(), dateEnd.getHours(), dateEnd.getMinutes(), dateEnd.getSeconds()),
         })
-        console.log(countDown)
         ELEMENTS.yearsValue.textContent = countDown.years;
         ELEMENTS.monthsValue.textContent = countDown.months;
         ELEMENTS.daysValue.textContent = countDown.days;
