@@ -20,11 +20,11 @@ function getCity(event) {
 async function request(item) {
   const urlWeather = `${serverUrlWeather}?q=${item}&appid=${apiKey}&units=metric`;
   const urlForecast = `${serverUrlForecast}?q=${item}&appid=${apiKey}&units=metric`;
-  let resultWeather = await fetch(urlWeather);
-  let jsonResultWeather = await resultWeather.json();
+  const resultWeather = await fetch(urlWeather);
+  const jsonResultWeather = await resultWeather.json();
 
-  let resultForecast = await fetch(urlForecast);
-  let jsonResultForecast = await resultForecast.json();
+  const resultForecast = await fetch(urlForecast);
+  const jsonResultForecast = await resultForecast.json();
 
   if (!(jsonResultWeather.cod == 200)) {
     alert(`${jsonResultWeather.message}`);
@@ -89,10 +89,10 @@ function renderRight() {
   ELEMENTS.SAVE_CITY_FORM.textContent = "";
 
   for (let item of cityAll) {
-    let SAVED_CITY = document.createElement("li");
+    const SAVED_CITY = document.createElement("li");
     SAVED_CITY.textContent = item;
     ELEMENTS.SAVE_CITY_FORM.prepend(SAVED_CITY);
-    let REMOVE_SAVED_CITY = document.createElement("button");
+    const REMOVE_SAVED_CITY = document.createElement("button");
     SAVED_CITY.appendChild(REMOVE_SAVED_CITY);
 
     SAVED_CITY.addEventListener("click", function () {
@@ -118,8 +118,8 @@ function renderDetails(item) {
   ELEMENTS.DETAILS_FEEL_LIKE.textContent =
     "Feels like:" + " " + Math.round(item.main.feels_like) + "°";
   
-  let SUNRISE = format(new Date(item.sys.sunrise * 1000), 'p');
-  let SUNSET = format(new Date(item.sys.sunset * 1000), 'p');
+    const SUNRISE = format(new Date(item.sys.sunrise * 1000), 'p');
+    const SUNSET = format(new Date(item.sys.sunset * 1000), 'p');
 
   ELEMENTS.DETAILS_SUNRISE.textContent =
     "Sunrise:" + " " + SUNRISE
@@ -139,7 +139,7 @@ function renderForecast12h(name, item) {
     "Feels like:" + " " + Math.round(item.main.feels_like) + "°";
   ELEMENTS.FORECAST_WEATHER_12_HOUR.textContent = `Weather: ${item.weather[0].main}`;
 
-  let icon = ELEMENTS.FORECAST_ICON_12_HOUR;
+  const icon = ELEMENTS.FORECAST_ICON_12_HOUR;
   const iconUrl = `https://openweathermap.org/img/wn/`;
   icon.src = `${iconUrl}${item.weather[0].icon}@2x.png`;
 
@@ -155,7 +155,7 @@ function renderForecast15h(item) {
     "Feels like:" + " " + Math.round(item.main.feels_like) + "°";
   ELEMENTS.FORECAST_WEATHER_15_HOUR.textContent = `Weather: ${item.weather[0].main}`;
 
-  let icon = ELEMENTS.FORECAST_ICON_15_HOUR;
+  const icon = ELEMENTS.FORECAST_ICON_15_HOUR;
   const iconUrl = `https://openweathermap.org/img/wn/`;
   icon.src = `${iconUrl}${item.weather[0].icon}@2x.png`;
 
@@ -171,7 +171,7 @@ function renderForecast18h(item) {
     "Feels like:" + " " + Math.round(item.main.feels_like) + "°";
   ELEMENTS.FORECAST_WEATHER_18_HOUR.textContent = `Weather: ${item.weather[0].main}`;
 
-  let icon = ELEMENTS.FORECAST_ICON_18_HOUR;
+  const icon = ELEMENTS.FORECAST_ICON_18_HOUR;
   const iconUrl = `https://openweathermap.org/img/wn/`;
   icon.src = `${iconUrl}${item.weather[0].icon}@2x.png`;
 
@@ -180,7 +180,7 @@ function renderForecast18h(item) {
 }
 
 function makeTodayDate() {
-  let DateToday = format(new Date(), 'd MMM')
+  const DateToday = format(new Date(), 'd MMM')
   ELEMENTS.FORECAST_DATE_TODAY.forEach(item => {
     item.textContent = DateToday
   })

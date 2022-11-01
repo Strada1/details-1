@@ -1,8 +1,7 @@
 import Cookies from "js-cookie";
-// new Set(localGet());
 
-let cityAll = new Set(localGet());
-let CITYNAME = localGetNow();
+const cityAll = new Set(localGet());
+const CITYNAME = localGetNow();
 
 function localSet() {
   localStorage.setItem("likedCity", JSON.stringify([...cityAll]));
