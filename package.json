@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "eslint": "^8.26.0",
     "parcel": "^2.7.0"
   },
   "dependencies": {
