@@ -5,7 +5,15 @@ window.addEventListener('load', startPage);
 const search__form = document.querySelector('.search__form');
 search__form.addEventListener('submit', takeCity);
 
-const CurrentCity = localStorage.getItem('CurrentCity');
+
+function getCookie() {
+  return document.cookie.split('; ').reduce((acc, item) => {
+    const [name, value] = item.split('=')
+
+    return { ...acc, [name]: value }
+  }, {})
+}
+const cookie = getCookie();
 
 let setCities = localStorage.getItem('CitiesSet');
 setCities = JSON.parse(setCities);
@@ -44,7 +52,7 @@ function takeCity(event) {
 
       const result = await response.json();
       render(result);
-      localStorage.setItem('CurrentCity', cityName);
+      document.cookie = `lastCity = ${cityName}; max-age = 3600`;
     } catch (error) {
       alert(error.message);
     }
@@ -83,10 +91,6 @@ function createSecondBlock(result) {
   detailWeather.textContent = `Weather: ${result.weather[0].main}`;
   const sunriseTime = new Date(showLocalSunrise(result));
   const sunsetTime = new Date(showLocalSunset(result));
-  // const timeOptions = {
-  //     hour: "numeric",
-  //     minute : "2-digit"
-  // };
   detailSunrise.textContent = `Sunrise: ${format((sunriseTime), 'h:mm aaa')}`;
   detailSunset.textContent = `Sunset: ${format((sunsetTime), 'h:mm aaa')}`;
 }
@@ -106,15 +110,6 @@ function showLocalSunset(result) {
   const showLocalSunset = sunset + myOffset + offsetReqCity;
   return showLocalSunset;
 }
-
-const myTime = new Date();
-const myTime2 = myTime.getTimezoneOffset();
-const myTime3 = myTime - myTime2 * 60 * 1000;
-const timeTokyo = 540 * 60 * 1000;
-const localTokyo = new Date(myTime3 - timeTokyo);
-console.log(localTokyo);
-
-
 
 function createRightBlock() {
   clear();
@@ -166,7 +161,7 @@ let quickRemove = function () {
 };
 
 function quickStart() {
-  const cityName = CurrentCity;
+  const cityName = cookie.lastCity;
   const serverUrl = 'http://api.openweathermap.org/data/2.5/weather';
   const apiKey = 'f660a2fb1e4bad108d6160b7f58c555f';
   const url = `${serverUrl}?q=${cityName}&appid=${apiKey}&units=metric`;
@@ -174,9 +169,9 @@ function quickStart() {
     .then((response) => response.json())
     .then((result) => {
       render(result);
-      localStorage.setItem('CurrentCity', cityName);
+      document.cookie = `lastCity = ${cityName}; max-age = 3600`;
     })
-    .catch((err) => alert(err.message));
+    .catch((err) => err);
 }
 
 let clear = function () {
@@ -204,6 +199,8 @@ class InvalidRequestError extends MyError {
     super(message);
   }
 }
+
+
 
 /* Рекурсия
 function checkChildren(elem, sum, deep, result) {
