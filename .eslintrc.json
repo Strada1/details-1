@@ -11,5 +11,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "eqeqeq": "error",
+        "no-unused-vars": "warn"
     }
 }
