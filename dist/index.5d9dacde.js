@@ -677,8 +677,7 @@ function setLocal(item) {
     if (item instanceof Set) localStorage.setItem("newList", JSON.stringify([
         ...item
     ]));
-    else // localStorage.setItem("cityName", item);
-    setCookie("cityName", item, {
+    else setCookie("cityName", item, {
         secure: true,
         "max-age": 3600
     });
@@ -690,7 +689,6 @@ function getCookie(name) {
 function setCookie(name, value, options = {}) {
     options = {
         path: "/",
-        // при необходимости добавьте другие значения по умолчанию
         ...options
     };
     if (options.expires instanceof Date) options.expires = options.expires.toUTCString();
@@ -702,7 +700,6 @@ function setCookie(name, value, options = {}) {
     }
     document.cookie = updatedCookie;
 }
-console.log(cookieCity);
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c8BdP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -716,27 +713,25 @@ var _elementsJs = require("./elements.js");
 function render() {
     let delCity = document.querySelectorAll(".locations-items li");
     delCity.forEach((item)=>item.remove());
-    addFavoriteHTML((0, _indexJs.list));
+    for (let item of (0, _indexJs.list))addFavoriteHTML(item);
 }
 function addFavoriteHTML(cityName) {
-    if (typeof cityName == "string") {
-        const ul = document.querySelector(".locations-items");
-        let li = document.createElement("li");
-        ul.prepend(li);
-        li.addEventListener("click", (event)=>{
-            event.preventDefault();
-            (0, _indexJs.showForecast)(cityName);
-        });
-        let p = document.createElement("p");
-        li.prepend(p);
-        p.textContent = cityName;
-        let button = document.createElement("button");
-        button.classList.add("button-exit");
-        li.append(button);
-        button.addEventListener("click", ()=>{
-            (0, _indexJs.deleteFavoriteLocation)(cityName);
-        });
-    } else for (let item of (0, _indexJs.list))addFavoriteHTML(item);
+    const ul = document.querySelector(".locations-items");
+    let li = document.createElement("li");
+    ul.prepend(li);
+    li.addEventListener("click", (event)=>{
+        event.preventDefault();
+        (0, _indexJs.showForecast)(cityName);
+    });
+    let p = document.createElement("p");
+    li.prepend(p);
+    p.textContent = cityName;
+    let button = document.createElement("button");
+    button.classList.add("button-exit");
+    li.append(button);
+    button.addEventListener("click", ()=>{
+        (0, _indexJs.deleteFavoriteLocation)(cityName);
+    });
 }
 function setNowHTML(degrees, icon, forecastCity) {
     (0, _elementsJs.ELEMENTS).forecastDegrees.textContent = degrees;
@@ -794,7 +789,6 @@ async function loadWeather(url) {
             sunset: json.sys.sunset,
             detailsWeather: json.weather[0].main
         };
-        console.log(FORECAST.currentTimeZone);
         const sunriseTime = (0, _setTimeJs.cityTime)(FORECAST.sunrise, FORECAST.currentTimeZone);
         const sunsetTime = (0, _setTimeJs.cityTime)(FORECAST.sunset, FORECAST.currentTimeZone);
         (0, _vueJs.setNowHTML)(FORECAST.degrees, FORECAST.icon, FORECAST.forecastCity);

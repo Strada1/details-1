@@ -31,7 +31,7 @@ export async function loadWeather(url) {
 
       detailsWeather: json.weather[0].main,
     };
-console.log(FORECAST.currentTimeZone)
+
     const sunriseTime = cityTime(FORECAST.sunrise, FORECAST.currentTimeZone);
     const sunsetTime = cityTime(FORECAST.sunset, FORECAST.currentTimeZone);
 

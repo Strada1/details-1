@@ -6,34 +6,31 @@ import { deleteFavoriteLocation } from "./index.js";
 export function render() {
   let delCity = document.querySelectorAll(".locations-items li");
   delCity.forEach((item) => item.remove());
-  addFavoriteHTML(list);
+
+  for (let item of list) {
+    addFavoriteHTML(item);
+  }
 }
 
 export function addFavoriteHTML(cityName) {
-  if (typeof cityName == "string") {
-    const ul = document.querySelector(".locations-items");
-    let li = document.createElement("li");
-    ul.prepend(li);
-    li.addEventListener("click", (event) => {
-      event.preventDefault();
-      showForecast(cityName);
-    });
+  const ul = document.querySelector(".locations-items");
+  let li = document.createElement("li");
+  ul.prepend(li);
+  li.addEventListener("click", (event) => {
+    event.preventDefault();
+    showForecast(cityName);
+  });
 
-    let p = document.createElement("p");
-    li.prepend(p);
-    p.textContent = cityName;
+  let p = document.createElement("p");
+  li.prepend(p);
+  p.textContent = cityName;
 
-    let button = document.createElement("button");
-    button.classList.add("button-exit");
-    li.append(button);
-    button.addEventListener("click", () => {
-      deleteFavoriteLocation(cityName);
-    });
-  } else {
-    for (let item of list) {
-      addFavoriteHTML(item);
-    }
-  }
+  let button = document.createElement("button");
+  button.classList.add("button-exit");
+  li.append(button);
+  button.addEventListener("click", () => {
+    deleteFavoriteLocation(cityName);
+  });
 }
 
 export function setNowHTML(degrees, icon, forecastCity) {
