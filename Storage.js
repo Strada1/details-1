@@ -3,7 +3,6 @@ export class Storage {
     constructor(name = 'temp', storage = 'session') {
         this.name = name;
         this.storage = storage;
-        console.log(this);
     }
 
     set name(name) {
