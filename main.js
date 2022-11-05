@@ -3,9 +3,9 @@ class Storage {
     constructor(name, storage = 'local') { 
         this.name = name;
         if (storage === 'session') {
-            this.storage = localStorage;
+            this.storage = sessionStorage;
         }
-        this.storage = sessionStorage;
+        this.storage = localStorage;
     }
 
     set(value) {
