@@ -10,12 +10,17 @@ export class Storage {
     }
 
     set storage(storage) {
-        if (storage === 'local' || storage === 'localStorage' || storage === 'localstorage' || storage === localStorage) this._storage = localStorage;
+        if (storage === 'local' ||
+            storage === 'localStorage' ||
+            storage === 'localstorage' ||
+            storage === localStorage) {
+                this._storage = localStorage;
+            }
         else this._storage = sessionStorage;
     }
 
     set(value) {
-        this._storage.setItem(this._name, value);
+        return this._storage.setItem(this._name, value);
     }
 
     get() {
@@ -23,7 +28,7 @@ export class Storage {
     }
 
     clear() {
-        this._storage.removeItem(this._name);
+        return this._storage.removeItem(this._name);
     }
 
     isEmpty() {
