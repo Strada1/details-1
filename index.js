@@ -1,7 +1,7 @@
 class Storage {
   constructor (names) {
-	localStorage.setItem(`${names}`, null);
 	this.names = names;
+	localStorage.setItem(`${this.names}`, null);
   }
 
   get(key) {
@@ -10,7 +10,7 @@ class Storage {
   }
 
   set (value) {
-    localStorage.setItem(names, value)
+    localStorage.names = value;
   }
 
   clear(key) {
@@ -18,6 +18,12 @@ class Storage {
   }
 }
 
+
 const names = new Storage('names')
 names.set(5)
 names.get('names')
+
+const test = new Storage('test')
+test.set(2)
+test.get('test')
+
