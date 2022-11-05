@@ -1,29 +1,71 @@
 class Storage {
-  constructor (names) {
+
+  constructor (key, names, typeStorage) {
 	this.names = names;
-	localStorage.setItem(`${this.names}`, null);
+	this.key = key;
+	this.typeStorage = typeStorage;
   }
 
-  get(key) {
-	const valueLS = localStorage.getItem(`${key}`)
-    console.log('valueLS: ', valueLS)
+  get() {
+	const item = localStorage.getItem(`${this.key}`)
+	return item;
   }
 
-  set (value) {
-    localStorage.names = value;
+  set () {
+	localStorage.setItem(this.key, this.names)
   }
 
-  clear(key) {
-	localStorage.clear(`${key}`)
+//   set names(value) {
+// 	this._names = value
+//   }
+
+  clear() {
+	localStorage.removeItem(this.key)
   }
 }
 
+const test = new Storage('test', 123, )
+test.set()
+test.get()
+test.clear()
 
-const names = new Storage('names')
-names.set(5)
-names.get('names')
+const newStorage = new Storage('Storage', 121)
+newStorage.set()
+newStorage.get()
 
-const test = new Storage('test')
-test.set(2)
-test.get('test')
+const one = new Storage('one', 123)
+one.set()
+one.get()
+one.clear()
 
+
+// class Storage {
+//   constructor (names) {
+// 	this.names = names;
+// 	localStorage.setItem(`${this.names}`, null);
+//   }
+
+//   get(key) {
+// 	const valueLS = localStorage.getItem(`${key}`)
+//     console.log('valueLS: ', valueLS)
+//   }
+
+//   set (value) {
+//     localStorage.names = value;
+//   }
+
+//   clear(key) {
+// 	localStorage.clear(`${key}`)
+//   }
+// }
+
+
+// const names = new Storage('names')
+// names.set(5)
+// names.get('names')
+
+// const test = new Storage('test')
+// test.set(2)
+// test.get('test')
+
+// localStorage.clear()
