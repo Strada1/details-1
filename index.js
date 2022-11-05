@@ -1,11 +1,12 @@
 class Storage {
-  constructor(settings, name) {
+  constructor(settings, name = "default Name") {
     this.settings = settings;
-    if (name == undefined) {
-      this.name = "default Name";
-    } else {
-      this.name = name;
-    }
+    this.name = name;
+    // if (name == undefined) {
+    //   this.name = "default Name";
+    // } else {
+    //   this.name = name;
+    // }
   }
 
   get() {
