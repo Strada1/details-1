@@ -14,6 +14,6 @@ export function getConvertDate(time) {
 
 export function getNowDate() {
   const day = format(new Date(), "dd LLLL");
-  const hours = format(new Date(), "kk:mm:ss");
+  const hours = format(new Date(), "HH:mm:ss");
   return [day, hours];
 }
