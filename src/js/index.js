@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie';
-
 class Storage {
   constructor(name, storage, defaultValue) {
     this.name = name;
@@ -9,28 +7,25 @@ class Storage {
   }
 
   isStorage() {
-    this.storage === 'local' ? this.storage = true : this.storage = false;
+    this.storage === 'local' ? this.storage = localStorage : this.storage = sessionStorage;
   }
 
   get() {
-    return (this.storage) ? localStorage.getItem(this.name) : Cookies.get(this.name);
+    return this.storage.getItem(this.name);
   }
 
   set(value = this.defaultValue) {
-    this.storage ? localStorage.setItem(this.name, value) : Cookies.set(this.name, value);
+    this.storage.setItem(this.name, value);
   }
 
   clear() {
-    this.storage ? localStorage.removeItem(this.name) : Cookies.remove(this.name);
+    this.storage.removeItem(this.name);
   }
 
   isEmpty() {
-    if (this.storage) {
-      return localStorage.getItem(this.name) ?? true;
-    }
-    return Cookies.get(this.name) ?? true;
+    return this.storage.getItem(this.name) ?? true;
   }
 }
 
 const names = new Storage('names', 'local');
-const age = new Storage('age', 'cookie', 15);
+const age = new Storage('age', 'session', 15);
