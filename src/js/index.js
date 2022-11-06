@@ -7,7 +7,11 @@ class Storage {
   }
 
   isStorage() {
-    this.storage === 'local' ? this.storage = localStorage : this.storage = sessionStorage;
+    if (this.storage === 'local') {
+      this.storage = localStorage;
+    } else {
+      this.storage = sessionStorage;
+    }
   }
 
   get() {
@@ -23,9 +27,11 @@ class Storage {
   }
 
   isEmpty() {
-    return this.storage.getItem(this.name) ?? true;
+    return this.storage.getItem(this.name) === 'undefined'
+      || this.storage.getItem(this.name) === 'null';
   }
 }
 
 const names = new Storage('names', 'local');
+
 const age = new Storage('age', 'session', 15);
