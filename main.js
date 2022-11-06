@@ -1,8 +1,8 @@
 class Storage {
-    
+
     constructor(name, storage = 'local') { 
-        this.name = name;
-        storage === 'local' ? this.storage = localStorage : this.storage = sessionStorage;
+        this.name = name ?? 'storage';
+        this.storage =  storage === 'local' ? localStorage : sessionStorage;
     }
 
     set(value) {
