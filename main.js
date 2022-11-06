@@ -2,14 +2,11 @@ class Storage {
     
     constructor(name, storage = 'local') { 
         this.name = name;
-        if (storage === 'session') {
-            this.storage = sessionStorage;
-        }
-        this.storage = localStorage;
+        storage === 'local' ? this.storage = localStorage : this.storage = sessionStorage;
     }
 
     set(value) {
-        return this.storage.setItem(this.name, value);
+        this.storage.setItem(this.name, value);
     }
 
     get() {
@@ -17,14 +14,11 @@ class Storage {
     }
 
     clear() {
-        return this.storage.setItem(this.name, '');
+        this.storage.setItem(this.name, '');
     }
 
     isEmpty() {
-        if (!this.storage.getItem(this.name)) {
-            return true;
-        } 
-        return false;
+        return !!this.storage.getItem(this.name);
     }
 }
 
