@@ -3,36 +3,31 @@ class Storage {
         this.key = key;
         this.store = [];
         this.websiteStorage = websiteStorage;
+        this.websiteStorage === 'session'
+        ? this._myStorage = sessionStorage
+        : this._myStorage = localStorage;
     }
     workWithStorageData (value) {
         !value
         ? this.store = []
         : this.store = value
         const dataStorage = JSON.stringify(this.store);
-        return this.websiteStorage === 'session'
-        ? sessionStorage.setItem(this.key, dataStorage)
-        : localStorage.setItem(this.key, dataStorage);
+        this._myStorage.setItem(this.key, dataStorage);
     }
     set (value) {
         this.workWithStorageData (value);
     }
     get () {
-        return this.websiteStorage === 'session' 
-        ? this.store = JSON.parse(sessionStorage.getItem(this.key))
-        : this.store = JSON.parse(localStorage.getItem(this.key))
+        this.store = JSON.parse(this._myStorage.getItem(this.key))
     }
     clear () {
         this.workWithStorageData ();
     }
     delete () {
-        return this.websiteStorage === 'session'
-        ? sessionStorage.removeItem(this.key)
-        : localStorage.removeItem(this.key)
+        this._myStorage.removeItem(this.key)
     }
     isEmpty () {
-        this.websiteStorage === 'session'
-        ? this.store = JSON.parse(sessionStorage.getItem(this.key))
-        : this.store = JSON.parse(localStorage.getItem(this.key))
+        this.store = JSON.parse(this._myStorage.getItem(this.key))
         if (!this.store) {
             return true;
         }
@@ -53,4 +48,3 @@ console.log(names.get());
 // names.clear();
 // names.delete();
 console.log(names.isEmpty(key));
-
