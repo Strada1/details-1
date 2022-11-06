@@ -1,35 +1,39 @@
 class Storage {
-
-  constructor (key, names, typeStorage) {
-	this.names = names;
-	this.key = key;
-	this.typeStorage = typeStorage;
+  constructor (key, typeStorage) {
+    this.key = key
+    this.typeStorage = typeStorage === 'localStorage' ? localStorage : sessionStorage
   }
 
-  get() {
-	const item = localStorage.getItem(this.key)
-	return item;
+  get () {
+    const item = this.typeStorage.getItem(this.key)
+    return item
   }
 
-  set () {
-	localStorage.setItem(this.key, this.names)
+  set (value) {
+    this.typeStorage.setItem(this.key, value)
   }
 
-  clear() {
-	localStorage.removeItem(this.key)
+  clear () {
+    this.typeStorage.setItem(this.key, '')
+  }
+
+  isEmpty () {
+    if (!this.key) {
+      return true
+    } else {
+      return false
+    }
   }
 }
 
-const test = new Storage('test', 123, )
-test.set()
-test.get()
-test.clear()
-
-const newStorage = new Storage('Storage', 121)
-newStorage.set()
-newStorage.get()
-
-const one = new Storage('one', 123)
-one.set()
+const one = new Storage('one', sessionStorage)
+one.set('test')
 one.get()
 one.clear()
+one.isEmpty()
+console.log('one.isEmpty: ', one.isEmpty())
+
+const kirill = new Storage('Kirill', localStorage)
+kirill.set('age: 17')
+kirill.isEmpty()
+console.log('kirill.isEmpty: ', kirill.isEmpty())
