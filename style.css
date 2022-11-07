@@ -73,6 +73,10 @@ button {
     width: 27px;
     height: 27px;
     border-radius: 50%;
+    background: url(./image/search-btn.svg);
+    background-repeat: no-repeat;
+    background-position: 0%;
+    background-size: cover;
 }
 
 .search__form-button:hover {

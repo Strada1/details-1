@@ -205,7 +205,8 @@ function createItem(element) {
         getWeatherInfo(element.name);
         getForecastInfo(element.name);
     })
-    closeButton.addEventListener('click', () => {
+    closeButton.addEventListener('click', (e) => {
+        e.stopPropagation();
         deleteCityFromFavorite(element.name);
         renderLocationList(addedLocationsMassive);
     })

@@ -62,6 +62,7 @@ button {
 .search__form-button {
   width: 27px;
   height: 27px;
+  background: url("search-btn.8ee261de.svg") 0% / cover no-repeat;
   border-radius: 50%;
 }
 

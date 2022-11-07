@@ -1,4 +1,4 @@
-13687
+13688
 101C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\differenceInMonths\index.js.flow121436361000000000 0
 100C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\locale\fr\_lib\formatDistance\index.js121436361000000000 0
 94C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\differenceInCalendarISOWeekYears133116896626810839 1
@@ -24,7 +24,7 @@
 101C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\secondsToMilliseconds\index.d.ts121436361000000000 0
 71C:\Users\borki\Desktop\strada\details-1\node_modules\flatted\types.d.ts121436361000000000 0
 92C:\Users\borki\Desktop\strada\details-1\node_modules\electron-to-chromium\full-versions.json121436361000000000 0
-49C:\Users\borki\Desktop\strada\details-1\style.css133116878078951099 0
+49C:\Users\borki\Desktop\strada\details-1\style.css133123196012545308 0
 114C:\Users\borki\Desktop\strada\details-1\node_modules\js-sdsl\dist\cjs\container\TreeContainer\Base\TreeIterator.js133090784790000000 0
 83C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\setDefaultOptions133116896676687368 1
 72C:\Users\borki\Desktop\strada\details-1\node_modules\glob-parent\LICENSE121436361000000000 0
@@ -53,7 +53,7 @@
 103C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\fp\eachHourOfIntervalWithOptions\index.js121436361000000000 0
 91C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\locale\gu\_lib\formatDistance133116896497194936 1
 93C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\quartersToYears\index.js121436361000000000 0
-44C:\Users\borki\Desktop\strada\details-1\dist133116905556332073 1
+44C:\Users\borki\Desktop\strada\details-1\dist133123197415249907 1
 84C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\parseJSON\package.json121436361000000000 0
 64C:\Users\borki\Desktop\strada\details-1\node_modules\imurmurhash133116896756112032 1
 88C:\Users\borki\Desktop\strada\details-1\node_modules\eslint\lib\rules\no-implied-eval.js121436361000000000 0
@@ -95,7 +95,7 @@
 104C:\Users\borki\Desktop\strada\details-1\node_modules\caniuse-lite\data\features\subresource-integrity.js121436361000000000 0
 111C:\Users\borki\Desktop\strada\details-1\node_modules\js-sdsl\dist\cjs\container\SequentialContainer\Vector.d.ts133090784790000000 0
 93C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\nextWednesday\index.js.flow121436361000000000 0
-50C:\Users\borki\Desktop\strada\details-1\index.html133116887390291584 0
+50C:\Users\borki\Desktop\strada\details-1\index.html133123195796494397 0
 86C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\_lib\protectedTokens133116896391882611 1
 93C:\Users\borki\Desktop\strada\details-1\node_modules\caniuse-lite\data\features\filesystem.js121436361000000000 0
 52C:\Users\borki\Desktop\strada\details-1\node_modules133116896771972127 1
@@ -118,7 +118,7 @@
 61C:\Users\borki\Desktop\strada\details-1\node_modules\levn\lib133116896291750750 1
 78C:\Users\borki\Desktop\strada\details-1\node_modules\svgo\plugins\sortAttrs.js121436361000000000 0
 83C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\endOfDay\index.js121436361000000000 0
-47C:\Users\borki\Desktop\strada\details-1\main.js133116906209222462 0
+47C:\Users\borki\Desktop\strada\details-1\main.js133123197428494747 0
 106C:\Users\borki\Desktop\strada\details-1\node_modules\caniuse-lite\data\features\intersectionobserver-v2.js121436361000000000 0
 90C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\locale\zh-CN\_lib\formatLong133116896521841809 1
 65C:\Users\borki\Desktop\strada\details-1\node_modules\caniuse-lite133116896743046945 1
@@ -499,7 +499,7 @@
 73C:\Users\borki\Desktop\strada\details-1\node_modules\electron-to-chromium133116896756740352 1
 72C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\fp\getYear133116896694874524 1
 104C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\ta\_lib\formatDistance\index.js121436361000000000 0
-63C:\Users\borki\Desktop\strada\details-1\dist\index.3a01df49.css133116903578017013 0
+63C:\Users\borki\Desktop\strada\details-1\dist\index.3a01df49.css133123196014526864 0
 95C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\runtime-react-refresh\package.json133116896745290961 0
 68C:\Users\borki\Desktop\strada\details-1\node_modules\queue-microtask133116896753100087 1
 67C:\Users\borki\Desktop\strada\details-1\node_modules\semver\LICENSE121436361000000000 0
@@ -1317,7 +1317,7 @@
 76C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\locale\ja-Hira133116896715669781 1
 83C:\Users\borki\Desktop\strada\details-1\node_modules\node-addon-api\tools\README.md121436361000000000 0
 110C:\Users\borki\Desktop\strada\details-1\node_modules\htmlnano\docs\versioned_docs\version-2.0.0\050-modules.md121436361000000000 0
-62C:\Users\borki\Desktop\strada\details-1\node_modules\which\bin133116896289028032 1
+62C:\Users\borki\Desktop\strada\details-1\node_modules\which\bin133116896289207685 1
 83C:\Users\borki\Desktop\strada\details-1\node_modules\espree\lib\token-translator.js121436361000000000 0
 130C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\source-map\parcel_sourcemap_node\artifacts\index.linux-arm64-gnu.node121436361000000000 0
 87C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\getDecade\index.js121436361000000000 0
@@ -1539,7 +1539,7 @@
 78C:\Users\borki\Desktop\strada\details-1\node_modules\posthtml-parser\readme.md121436361000000000 0
 89C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\fp\subMinutes\index.js.flow121436361000000000 0
 90C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\differenceInCalendarDays133116896630704816 1
-60C:\Users\borki\Desktop\strada\details-1\image\search-btn.svg133116821034792157 0
+60C:\Users\borki\Desktop\strada\details-1\image\search-btn.svg133123196651110445 0
 86C:\Users\borki\Desktop\strada\details-1\node_modules\@swc\helpers\scripts\generator.sh121436361000000000 0
 76C:\Users\borki\Desktop\strada\details-1\node_modules\flat-cache\src\utils.js121436361000000000 0
 81C:\Users\borki\Desktop\strada\details-1\node_modules\yaml\browser\types\binary.js121436361000000000 0
@@ -2352,7 +2352,7 @@
 90C:\Users\borki\Desktop\strada\details-1\node_modules\eslint\lib\rules\utils\fix-tracker.js121436361000000000 0
 80C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\is\_lib133116896433019894 1
 88C:\Users\borki\Desktop\strada\details-1\node_modules\eslint\lib\rules\no-return-await.js121436361000000000 0
-66C:\Users\borki\Desktop\strada\details-1\image\search-btn-hover.svg133116821034782183 0
+66C:\Users\borki\Desktop\strada\details-1\image\search-btn-hover.svg133123196484290255 0
 85C:\Users\borki\Desktop\strada\details-1\node_modules\term-size\vendor\macos\term-size121436361000000000 0
 79C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\fp\getWeekOfMonth133116896694415734 1
 86C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\fp\setDate\index.js.flow121436361000000000 0
@@ -3210,7 +3210,7 @@
 87C:\Users\borki\Desktop\strada\details-1\node_modules\@jridgewell\gen-mapping\dist\types133116896286659972 1
 89C:\Users\borki\Desktop\strada\details-1\node_modules\node-addon-api\tools\clang-format.js121436361000000000 0
 87C:\Users\borki\Desktop\strada\details-1\node_modules\node-addon-api\tools\conversion.js121436361000000000 0
-73C:\Users\borki\Desktop\strada\details-1\node_modules\msgpackr-extract\bin133116896305903357 1
+73C:\Users\borki\Desktop\strada\details-1\node_modules\msgpackr-extract\bin133116896306033006 1
 81C:\Users\borki\Desktop\strada\details-1\node_modules\msgpackr-extract\binding.gyp121436361000000000 0
 82C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\workers\src\Worker.js121436361000000000 0
 90C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\isSaturday\index.d.ts121436361000000000 0
@@ -4621,7 +4621,7 @@
 89C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\is\_lib\localize133116896432980003 1
 78C:\Users\borki\Desktop\strada\details-1\node_modules\eslint-scope\lib\scope.js121436361000000000 0
 108C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\transformer-posthtml\lib\PostHTMLTransformer.js121436361000000000 0
-63C:\Users\borki\Desktop\strada\details-1\node_modules\eslint\bin133116896310690364 1
+63C:\Users\borki\Desktop\strada\details-1\node_modules\eslint\bin133116896310879852 1
 94C:\Users\borki\Desktop\strada\details-1\node_modules\eslint\lib\rules\no-restricted-globals.js121436361000000000 0
 100C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\bg\_lib\formatLong\index.js121436361000000000 0
 104C:\Users\borki\Desktop\strada\details-1\node_modules\@eslint\eslintrc\lib\shared\deprecation-warnings.js121436361000000000 0
@@ -5430,7 +5430,7 @@
 77C:\Users\borki\Desktop\strada\details-1\node_modules\doctrine\lib\doctrine.js121436361000000000 0
 83C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\secondsToHours133116896653701237 1
 76C:\Users\borki\Desktop\strada\details-1\node_modules\doctrine\lib\utility.js121436361000000000 0
-68C:\Users\borki\Desktop\strada\details-1\node_modules\detect-libc\bin133116896316381027 1
+68C:\Users\borki\Desktop\strada\details-1\node_modules\detect-libc\bin133116896316590466 1
 72C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\isThisYear133116896709489795 1
 93C:\Users\borki\Desktop\strada\details-1\node_modules\csso\lib\replace\property\font-weight.js121436361000000000 0
 101C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\roundToNearestMinutesWithOptions133116896653611438 1
@@ -9645,7 +9645,7 @@
 81C:\Users\borki\Desktop\strada\details-1\node_modules\@lezer\common\dist\tree.d.ts121436361000000000 0
 75C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\ta133116896671690730 1
 75C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\th133116896671820369 1
-67C:\Users\borki\Desktop\strada\details-1\dist\index.3a01df49.css.map133116903578056905 0
+67C:\Users\borki\Desktop\strada\details-1\dist\index.3a01df49.css.map133123196014556769 0
 75C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\tr133116896671930107 1
 80C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\uz-Cyrl133116896672139522 1
 75C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\vi133116896672309080 1
@@ -9688,7 +9688,7 @@
 94C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\uz-Cyrl\_lib\localize133116896450049144 1
 100C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\uz-Cyrl\_lib\match\index.js121436361000000000 0
 88C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\uz\package.json121436361000000000 0
-66C:\Users\borki\Desktop\strada\details-1\dist\index.63aff760.js.map133116905556322105 0
+66C:\Users\borki\Desktop\strada\details-1\dist\index.63aff760.js.map133123197415219997 0
 95C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\uz\_lib\formatDistance133116896450228665 1
 102C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\transformer-image\src\ImageTransformer.js121436361000000000 0
 95C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\locale\uz\_lib\formatRelative133116896450348354 1
@@ -10714,7 +10714,7 @@
 89C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\differenceInQuarters133116896636906094 1
 88C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\differenceInSeconds133116896637025789 1
 99C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\differenceInSecondsWithOptions133116896637075642 1
-55C:\Users\borki\Desktop\strada\details-1\dist\index.html133116903578017013 0
+55C:\Users\borki\Desktop\strada\details-1\dist\index.html133123195797558072 0
 86C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\differenceInYears133116896637275102 1
 97C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\eachDayOfIntervalWithOptions133116896637424696 1
 98C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\eachHourOfIntervalWithOptions133116896637594252 1
@@ -10793,6 +10793,7 @@
 89C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\watcher\src\PromiseRunner.hh121436361000000000 0
 79C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\isLeapYear133116896646630110 1
 87C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\isMatchWithOptions133116896646839534 1
+68C:\Users\borki\Desktop\strada\details-1\dist\search-btn.8ee261de.svg133123196652031212 0
 104C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\core\test\fixtures\config-extends-not-found133116896292578547 1
 77C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\isMonday133116896646939267 1
 79C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\isSameHour133116896647108813 1
@@ -10899,7 +10900,7 @@
 91C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\subYears\index.js.flow121436361000000000 0
 90C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\subYears\package.json121436361000000000 0
 88C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\subWeeks\index.d.ts121436361000000000 0
-74C:\Users\borki\Desktop\strada\details-1\dist\search-btn-hover.a2a41965.svg133116903577767696 0
+74C:\Users\borki\Desktop\strada\details-1\dist\search-btn-hover.a2a41965.svg133123196485222960 0
 86C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\subWeeks\index.js121436361000000000 0
 95C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\core\lib\requests\DevDepRequest.js121436361000000000 0
 91C:\Users\borki\Desktop\strada\details-1\node_modules\date-fns\esm\fp\subWeeks\index.js.flow121436361000000000 0
@@ -12765,7 +12766,7 @@
 104C:\Users\borki\Desktop\strada\details-1\node_modules\@swc\helpers\src\_class_private_field_loose_key.mjs121436361000000000 0
 75C:\Users\borki\Desktop\strada\details-1\node_modules\acorn-jsx\package.json133116896742448550 0
 72C:\Users\borki\Desktop\strada\details-1\node_modules\acorn-jsx\README.md121436361000000000 0
-62C:\Users\borki\Desktop\strada\details-1\node_modules\acorn\bin133116896281753082 1
+62C:\Users\borki\Desktop\strada\details-1\node_modules\acorn\bin133116896282221831 1
 74C:\Users\borki\Desktop\strada\details-1\node_modules\acorn\dist\acorn.d.ts121436361000000000 0
 78C:\Users\borki\Desktop\strada\details-1\node_modules\acorn\dist\acorn.mjs.d.ts121436361000000000 0
 70C:\Users\borki\Desktop\strada\details-1\node_modules\acorn\dist\bin.js121436361000000000 0
@@ -13237,7 +13238,7 @@
 104C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\optimizer-htmlnano\lib\HTMLNanoOptimizer.js121436361000000000 0
 78C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\optimizer-css\lib133116896286989138 1
 87C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\optimizer-css\package.json133116896745500911 0
-62C:\Users\borki\Desktop\strada\details-1\dist\index.63aff760.js133116905556282575 0
+62C:\Users\borki\Desktop\strada\details-1\dist\index.63aff760.js133123197415190058 0
 78C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\optimizer-css\src133116896287487761 1
 87C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\node-resolver-core\LICENSE121436361000000000 0
 92C:\Users\borki\Desktop\strada\details-1\node_modules\@parcel\node-resolver-core\package.json133116896746338160 0
@@ -13685,4 +13686,4 @@
 66C:\Users\borki\Desktop\strada\details-1\node_modules\.bin\svgo.cmd133116896759552850 0
 68C:\Users\borki\Desktop\strada\details-1\node_modules\.bin\terser.ps1133116896759612684 0
 60C:\Users\borki\Desktop\strada\details-1\image\delete-btn.svg133116821034752265 0
-68C:\Users\borki\Desktop\strada\details-1\dist\cloud-icon.34437895.png133116903577787635 0
+68C:\Users\borki\Desktop\strada\details-1\dist\cloud-icon.34437895.png133123192617335106 0
