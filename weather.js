@@ -2,7 +2,7 @@ const searchForm = document.querySelector(".forecast-form");
 const searchInput = document.querySelector(".inputForm");
 
 import { ELEMENTS } from "./elements.js";
-import { cityAll, localSet, CookieSet,CITYNAME, Storage, OBJ} from "./storage.js";
+import { cityAll, localSet, CookieSet,CITYNAME, Storage, OBJ, localОption} from "./storage.js";
 import { format } from 'date-fns';
 
 
@@ -53,7 +53,9 @@ function renderLeftNow(item) {
   ELEMENTS.DEGREES_NUMBER.prepend(ELEMENTS.NEW_TEMP);
   CITYNAME.infoNow = item;
   
-CookieSet();
+let instanceClass = new Storage('NowCityes', CITYNAME, localОption.localStorage)
+instanceClass.set();
+instanceClass.get();
 }
 
 ELEMENTS.HEART.addEventListener("click", function () {
