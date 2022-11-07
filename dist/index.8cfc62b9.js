@@ -570,7 +570,7 @@ function openTab(tabName) {
 }
 document.getElementById("searchButton").addEventListener("click", searchClick);
 async function searchClick() {
-    localStorage.setItem("currentCity", inputCity.value);
+    setCookie("currentCity", inputCity.value);
     let url = `${serverUrl}?q=${inputCity.value.trim()}&appid=${apiKey}`;
     let json;
     try {
@@ -650,12 +650,22 @@ function getFavoriteCities() {
     else return new Set();
 }
 function getCurrentCity() {
-    if (localStorage.getItem("currentCity") !== null) inputCity.value = localStorage.getItem("currentCity");
+    inputCity.value = getCookie("currentCity");
+}
+function setCookie(name, value) {
+    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + "; max-age=3600";
+}
+function setCookie(name, value) {
+    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + "; max-age=3600";
+}
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
+    return matches ? decodeURIComponent(matches[1]) : "";
 }
 getCurrentCity();
 refreshAddedLocation();
 
-},{"./img/close.svg":"ln7uQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","date-fns":"9yHCA"}],"ln7uQ":[function(require,module,exports) {
+},{"./img/close.svg":"ln7uQ","date-fns":"9yHCA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ln7uQ":[function(require,module,exports) {
 module.exports = require("./helpers/bundle-url").getBundleURL("fqV6O") + "close.996aed91.svg" + "?" + Date.now();
 
 },{"./helpers/bundle-url":"lgJ39"}],"lgJ39":[function(require,module,exports) {
@@ -691,36 +701,6 @@ function getOrigin(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
-
-},{}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, "__esModule", {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
 
 },{}],"9yHCA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1474,7 +1454,37 @@ function toInteger(dirtyNumber) {
 }
 exports.default = toInteger;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fsust":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"fsust":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _indexJs = require("../_lib/requiredArgs/index.js");

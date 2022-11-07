@@ -43,7 +43,7 @@ document.getElementById("searchButton").addEventListener("click", searchClick);
 
 async function searchClick() {
 
-    localStorage.setItem('currentCity', inputCity.value);
+    setCookie('currentCity', inputCity.value);
 
     let url = `${serverUrl}?q=${inputCity.value.trim()}&appid=${apiKey}`;
     let json;
@@ -151,12 +151,24 @@ function getFavoriteCities() {
 }
 
 function getCurrentCity() {
-    if (localStorage.getItem('currentCity') !== null) inputCity.value = localStorage.getItem('currentCity');
+    inputCity.value = getCookie('currentCity');
+}
+
+function setCookie(name, value) {
+    document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + '; max-age=3600';
+}
+
+function setCookie(name, value) {
+    document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + '; max-age=3600';
+}
+
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : "";
 }
 
 getCurrentCity();
 
 refreshAddedLocation();
-
-
-
