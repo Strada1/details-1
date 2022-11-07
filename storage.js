@@ -2,7 +2,6 @@ import Cookies from "js-cookie";
 
 const cityAll = new Set(localGet());
 const CITYNAME = localGetNow();
-
 function localSet() {
   localStorage.setItem("likedCity", JSON.stringify([...cityAll]));
 }
@@ -27,4 +26,4 @@ function localGetNow() {
   }
 }
 
-export { cityAll, localSet, CookieSet, CITYNAME };
+export { cityAll, localSet, CookieSet, CITYNAME};
