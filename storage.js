@@ -48,7 +48,7 @@ class Storage {
       this.storage.removeItem(this.key)
     }
     isEmpty() {
-      return this.get() ? true : false
+      return !this.get() ? true : false
     }
   };
 
