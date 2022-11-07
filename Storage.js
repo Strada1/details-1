@@ -27,8 +27,12 @@ export class Storage {
         return this._storage.getItem(this._name);
     }
 
-    clear() {
+    delete() {
         return this._storage.removeItem(this._name);
+    }
+
+    clear() {
+        return this._storage.setItem(this._name, '');
     }
 
     isEmpty() {
