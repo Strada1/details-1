@@ -4,9 +4,9 @@ const TYPE_STORAGE = {
 };
 
 class Storage {
-    constructor(key, typeStorage = TYPE_STORAGE.LOCAL){
+    constructor(key, typeStorage){
         this.key = key;
-        this.typeStorage = typeStorage;
+        this.typeStorage = typeStorage ?? TYPE_STORAGE.LOCAL;
     }
 
     set (value){
@@ -17,7 +17,6 @@ class Storage {
 
     get() {
         const getItem = this.typeStorage.getItem(this.key);
-
         if (!getItem){
             return [];
         }
@@ -25,25 +24,21 @@ class Storage {
     }
 
     clear() {
-        this.typeStorage.removeItem(this.key);
+        this.typeStorage.setItem(this.key,"");
     }
 
     isEmpty() {
-
+        const value = this.typeStorage.getItem(this.key)
+        return !value ? true : false;
     }
 }
 
+const local = new Storage(`localKey`,TYPE_STORAGE.LOCAL);
+local.set(`1`)
+local.set(`2`)
+local.set(`3`)
 
-const local = new Storage(`localKey`);
-local.set(`dasdas`);
-local.set(`dasdas222`);
-local.set(`das`);
 local.get();
+local.clear();
 
-const local2 = new Storage(`localKey2`);
-local2.set(`1`);
-local2.set(`2`);
-local2.set(`3`);
-local2.set(`1`);
-
-local2.get();
+console.log( local.isEmpty() );
