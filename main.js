@@ -7,7 +7,7 @@ class Storage {
     return JSON.parse(this.storage.getItem(this.key));
   }
   set(value) {
-    this.storage.setItem(this.key, JSON.stringify(value ?? 'defaultValue'));
+    this.storage.setItem(this.key, JSON.stringify(value));
   }
   clear() {
     this.storage.removeItem(this.key);
