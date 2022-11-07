@@ -26,15 +26,10 @@ function localGetNow() {
   }
 }
 
-const localОption = {
-  localStorage: localStorage,
-  sessionStorage: sessionStorage,
-};
-
 class Storage {
-  constructor(key) {
+  constructor(key, local) {
     this.key = key ?? "defaultKey",
-    this.storage = localОption.localStorage
+    this.storage = local ?? localStorage
   }
   get() {
     return JSON.parse(this.storage.getItem(this.key));
@@ -49,7 +44,5 @@ class Storage {
     return this.get() ? false : true;
   }
 }
-
-
 
 export { cityAll, localSet, CookieSet, CITYNAME, Storage, localОption };
