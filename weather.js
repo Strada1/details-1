@@ -2,7 +2,7 @@ const searchForm = document.querySelector(".forecast-form");
 const searchInput = document.querySelector(".inputForm");
 
 import { ELEMENTS } from "./elements.js";
-import { cityAll, localSet, CookieSet,CITYNAME } from "./storage.js";
+import { cityAll, localSet, CookieSet,CITYNAME, Storage, OBJ} from "./storage.js";
 import { format } from 'date-fns';
 
 
@@ -40,6 +40,7 @@ async function request(item) {
   searchInput.value = "";
 }
 
+
 function renderLeftNow(item) {
   let CLOUD_IMG = document.querySelector(".cloud");
   CLOUD_IMG.src = ` https://openweathermap.org/img/wn/${item.weather[0].icon}@4x.png `;
@@ -51,7 +52,7 @@ function renderLeftNow(item) {
   ELEMENTS.NEW_TEMP.classList.add("degrees-num");
   ELEMENTS.DEGREES_NUMBER.prepend(ELEMENTS.NEW_TEMP);
   CITYNAME.infoNow = item;
-
+  
 CookieSet();
 }
 
@@ -69,21 +70,6 @@ function SaveCity(name) {
   }
 }
 
-
-// //конструктор
-// ELEMENTS.HEART.addEventListener("click", function () {
-//   constr(ELEMENTS.CITY_NAME.innerText);
-// });
-
-// function constr(name) {
-// const cityes = new CityLiked(name);
-// console.log(cityes)
-
-// function CityLiked(name) {
-//   this.name = name;
-// }
-
-// }
 
 function renderRight() {
   ELEMENTS.SAVE_CITY_FORM.textContent = "";
