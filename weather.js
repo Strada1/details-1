@@ -53,10 +53,13 @@ function renderLeftNow(item) {
   ELEMENTS.DEGREES_NUMBER.prepend(ELEMENTS.NEW_TEMP);
   CITYNAME.infoNow = item;
   
-let instanceClass = new Storage('NowCityes', CITYNAME, localОption.localStorage)
-instanceClass.set();
-instanceClass.get();
+// let instanceClass = new Storage('NowCityes', CITYNAME, localОption.localStorage)
+// instanceClass.set();
+// instanceClass.get();
 }
+
+const a = new Storage('pipippi')
+
 
 ELEMENTS.HEART.addEventListener("click", function () {
   SaveCity(ELEMENTS.CITY_NAME.innerText);
@@ -71,7 +74,6 @@ function SaveCity(name) {
     localSet();
   }
 }
-
 
 function renderRight() {
   ELEMENTS.SAVE_CITY_FORM.textContent = "";
