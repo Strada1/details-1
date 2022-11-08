@@ -1,0 +1,14 @@
+Напишите класс Storage который будет создавать экземпляры для работы с localStorage
+
+Пример:
+    [x] const names = new Storage(’names’);
+    [x] names.get() // возвращает значение для ключа names в localStorage;
+    [x] names.set() // устанавливает значение для ключа names в localStorage;
+    [ ] names.clear() // очищает значение для ключа names в localStorage;
+    [ ] names.isEmpty() // вернет true если ключ names в localStorage имеет пустое значение (null || undefind);
+
+Создайте несколько экземпляров класса Storage и убедитесь что все они работают правильно
+
+Для класса Storage добавьте пару опций в конструктор
+    [x][1] чтобы можно было выбирать local или session storage
+    [x][2] возможность указать значение по-умолчанию (при создании экземпляра)

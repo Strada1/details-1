@@ -1,0 +1,24 @@
+{
+  "name": "classstorage",
+  "version": "1.0.0",
+  "description": "classStorage",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Strada1/details-1.git"
+  },
+  "author": "meVarensev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Strada1/details-1/issues"
+  },
+  "homepage": "https://github.com/Strada1/details-1#readme",
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "parcel": "^2.7.0"
+  }
+}
