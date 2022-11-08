@@ -1,0 +1,31 @@
+body {
+    font-size: 1em;
+}
+
+input,
+button {
+    font-size: 1em;
+}
+
+h1 {
+    color: gray;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    background-color: aquamarine;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    min-height: 100px;
+    background-color: gray;
+}
+
+.start {
+    display: block;
+    /* align-self: stretch;  */
+    width: 100%;
+}

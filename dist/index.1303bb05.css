@@ -1,0 +1,27 @@
+body, input, button {
+  font-size: 1em;
+}
+
+h1 {
+  color: gray;
+}
+
+.container {
+  min-height: 100vh;
+  background-color: #7fffd4;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.main {
+  min-height: 100px;
+  background-color: gray;
+}
+
+.start {
+  width: 100%;
+  display: block;
+}
+
+/*# sourceMappingURL=index.1303bb05.css.map */
