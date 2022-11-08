@@ -1,0 +1,29 @@
+{
+  "name": "countdown",
+  "version": "1.0.0",
+  "description": "Обратный отсчет",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Strada1/details-1.git"
+  },
+  "author": "terlyga78",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Strada1/details-1/issues"
+  },
+  "homepage": "https://github.com/Strada1/details-1#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.6",
+    "date-fns": "^2.29.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "parcel": "^2.7.0"
+  }
+}
