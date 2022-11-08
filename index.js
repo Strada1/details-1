@@ -15,8 +15,6 @@ function parseString() {
         dateNow,
     );
 
-    console.log(resultCalendarYears);
-
     const resultDate = subYears(new Date(inputDataElement.value), resultCalendarYears);
 
     const resultCalendarDays = differenceInCalendarDays(
@@ -24,11 +22,7 @@ function parseString() {
         dateNow,
     );
 
-    console.log(resultCalendarDays);
-
     const hours = 24 - format(dateNow, 'H');
-
-    console.log(hours);
 
     dateToElement.innerHTML = `До даты: ${resultCalendarYears} лет + ${resultCalendarDays} дней + ${hours} часов`;
 }
