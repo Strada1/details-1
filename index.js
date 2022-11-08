@@ -1,65 +1,33 @@
 class Storage {
-  constructor(key, type = 'local', defaultValue = false) {
+  constructor(key, type = 'local') {
     this.key = key;
-    if (defaultValue) {
-      this.value = 'Vlad';
-    } else {
-      this.value = null;
-    }
-    this.type = type;
-    if (typeof key === 'string' && type === 'local') {
-      localStorage.setItem(key, this.value);
-    } else if (typeof key === 'string' && type === 'session') {
-      sessionStorage.setItem(key, this.value);
-    }
+    this.value = null;
+    this.type = type === 'local' ? localStorage : sessionStorage;
+    this.type.setItem(key, this.value);
   }
 
   get() {
-    if (this.type === 'local') {
-      return localStorage.getItem(this.key);
-    } else if (this.type === 'session') {
-      return sessionStorage.getItem(this.key);
-    }
+    return this.type.getItem(this.value);
   }
 
   set(value) {
-    if (this.type === 'local') {
-      localStorage.setItem(this.key, value);
-      this.value = value;
-      return value;
-    } else if (this.type === 'session') {
-      sessionStorage.setItem(this.key, value);
-      this.value = value;
-      return value;
-    }
+    this.value = value;
+    return this.type.setItem(this.key, value);
   }
 
   clear() {
-    if (this.type === 'local') {
-      this.value = value;
-      return localStorage.setItem(this.key, null);
-    } else if (this.type === 'session') {
-      this.value = value;
-      return sessionStorage.setItem(this.key, null);
-    }
+    this.value = null;
+    return this.type.setItem(this.key, null);
   }
 
   isEmpty() {
-    if (this.type === 'local') {
-      if (this.value === null || this.value == undefined) {
-        return true;
-      } else {
-        return false;
-      }
-    } else if (this.type === 'session') {
-      if (this.value === null || this.value == undefined) {
-        return true;
-      } else {
-        return false;
-      }
+    if (!this.value) {
+      return true;
+    } else {
+      return false;
     }
   }
 }
 
 const names = new Storage('names');
-const guys = new Storage('guys', 'session', true);
+const guys = new Storage('guys', 'session');
