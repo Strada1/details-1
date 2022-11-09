@@ -1,7 +1,7 @@
 class Storage {
   constructor (key, typeStorage) {
     this.key = key
-    this.typeStorage = typeStorage === 'localStorage' ? localStorage : sessionStorage
+    this.typeStorage = typeStorage === sessionStorage ? sessionStorage : localStorage
   }
 
   get () {
@@ -18,15 +18,15 @@ class Storage {
   }
 
   isEmpty () {
-    if (!this.key) {
-      return true
-    } else {
+    if (this.key) {
       return false
+    } else {
+      return true
     }
   }
 }
 
-const one = new Storage('one', sessionStorage)
+const one = new Storage('one', sessionStorage, 'test')
 one.set('test')
 one.get()
 one.clear()
@@ -37,3 +37,8 @@ const kirill = new Storage('Kirill', localStorage)
 kirill.set('age: 17')
 kirill.isEmpty()
 console.log('kirill.isEmpty: ', kirill.isEmpty())
+
+const test = new Storage ('test')
+test.set('/')
+test.isEmpty()
+console.log('test.isEmpty: ', test.isEmpty())
