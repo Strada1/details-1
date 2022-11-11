@@ -1,0 +1,13 @@
+
+.container {
+    text-align: center;
+    max-width: 500px;
+    padding-top: 200px;
+    margin: 0 auto;
+}
+
+.output {
+    padding-top: 50px;
+    color: cornflowerblue;
+}
+

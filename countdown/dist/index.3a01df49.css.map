@@ -1,0 +1,1 @@
+{"mappings":"AACA;;;;;;;AAOA","sources":["style.css"],"sourcesContent":["\n.container {\n    text-align: center;\n    max-width: 500px;\n    padding-top: 200px;\n    margin: 0 auto;\n}\n\n.output {\n    padding-top: 50px;\n    color: cornflowerblue;\n}\n\n"],"names":[],"version":3,"file":"index.3a01df49.css.map","sourceRoot":"/__parcel_source_root/"}
