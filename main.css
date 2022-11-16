@@ -1,0 +1,70 @@
+@import url('./reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto';
+  font-weight: 400;
+  background-color: #e5e5e5;
+  font-size: 16px;
+  color: #000;
+}
+
+.container {
+  margin-top: 232px;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 533px;
+  background-color: white;
+  padding: 8px;
+}
+.input {
+  border: 1px solid #000000;
+}
+.btn {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main {
+  border: 1px solid #000000;
+  margin: 8px 0;
+  max-width: 304px;
+  height: 437px;
+  padding: 8px;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: end;
+  row-gap: 8px;
+  overflow-y: scroll;
+}
+
+.message {
+  background-color: #f7f7f7;
+  padding: 8px;
+}
+.main__message-own {
+  align-self: flex-end;
+}
+.read {
+  background-color: #e5e5e5;
+}
+.main__time {
+  text-align: end;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+}
+.main__message-other {
+  align-self: flex-start;
+}
+
+.form-message__input {
+  min-width: 267px;
+  padding: 8px;
+  margin-right: 2px;
+}
