@@ -85,6 +85,7 @@ input {
 }
 
 .chat__form {
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
@@ -97,6 +98,19 @@ input {
     padding: 5px 6px 6px 6px;
     border: 1px solid #000;
     width: 251px;
+}
+
+.chat__input:focus + .chat__input-placeholder{
+    display: none;
+}
+
+.chat__input-placeholder{
+    z-index: -1;
+    user-select: none;
+    position: absolute;
+    top: 6px;
+    left: 7px;
+    color: #7C7C7C;
 }
 
 .popup {
