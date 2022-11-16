@@ -41,14 +41,15 @@ input {
     border: 1px solid #000;
     margin-bottom: 8px;
     height: 437px;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-end; */
     padding: 8px;
+    overflow: scroll;
 }
 
 .message {
-    display: inline-flex;
+    display: flex;
     justify-content: flex-end;
 }
 
