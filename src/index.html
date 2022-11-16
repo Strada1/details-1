@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang = 'ru'>
+<head>
+  <meta charset = 'UTF-8'>
+  <title>chat</title>
+  <link rel = 'stylesheet' href = 'css/index.css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <script defer src = 'js/modal.js'></script>
+</head>
+<body>
+  <section class='chat' >
+
+    <div class='chat__header'>
+      <div class='chat__settings'>настройки</div>
+      <div class='chat__exit'>выйти</div>
+    </div>
+
+    <div class='chat__main'>
+
+
+      <div class='massage massage-right'>
+        <p class='massage__text'>   <span class='massage__name'>Собеседник</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus accusantium amet aspernatur, autem deleniti expedita fugit harum, ipsa magni nemo quibusdam quos rerum, sapiente tempore. At exercitationem rem ut. </p>
+        <div class='massage__time'>18:45</div>
+      </div>
+
+      <div class='massage massage-left'>
+        <div class='massage__block'>
+          <p class='massage__text'>
+            <span class='massage__name'>Я</span> Добрый день </p>
+        </div>
+        <div class='massage__time '>18:45</div>
+      </div>
+    </div>
+
+    <div class='chat__footer'>
+      <form class='chat-form' >
+        <label class='chat-form__label'>
+          <input class='chat-form__input' placeholder='сообщение...' type='text'>
+          <button class='chat-form__button' type='submit'> > </button>
+        </label>
+      </form>
+    </div>
+
+    <div class="modal hide">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class='modal__header'>
+            <p class='modal__title'>настройки</p>
+            <div data-modal-close class="modal__close">&times;</div>
+          </div>
+          <p class='modal__text'>Введите имя</p>
+          <form class='chat-form' >
+            <label class='chat-form__label'>
+              <input class='chat-form__input' placeholder='текст' type='text'>
+              <button class='chat-form__button' type='submit'> > </button>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
