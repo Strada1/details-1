@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Чат</title>
+</head>
+
+<body>
+    <div class="chat">
+        <div class="container">
+            <div class="chat__inner">
+                <div class="chat__top">
+                    <button class="chat__button">Настройки</button>
+                    <button class="chat__button">Выйти</button>
+                </div>
+                <div class="chat__main">
+                    <div class="message">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: <span>Добрый день!</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--interlocutor">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Собеседник мой: <span>Добрый день!</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--interlocutor">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Собеседник мой: <span>А это второе и, кажется, оно очень
+                                    длинное, чтобы поместиться на
+                                    одной строке</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--sent">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: <span>Добрый день!</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--sent">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: <span>Добрый день!</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--sent">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: <span>Добрый день!</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--sent">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: <span>Добрый день!</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--sent">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: <span>Добрый день!</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--sent">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: <span>Добрый день!</span>
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                </div>
+                <form action="" class="chat__form">
+                    <div class="chat__input" contenteditable="true"></div>
+                    <p class="chat__input-placeholder">Сообщение..</p>
+                    <button class="chat__button">
+                        ->
+                    </button>
+                </form>
+
+                <div class="popup">
+                    <div class="popup__inner">
+                        <div class="popup__top">
+                            <h3 class="popup__title">
+                                Настройки
+                            </h3>
+                            <button class="popup__button">
+                                +
+                            </button>
+                        </div>
+                        <h3 class="popup__title">
+                            Имя в чате
+                        </h3>
+                        <form action="" class="chat__form">
+                            <input type="text" class="chat__input" placeholder="Стив">
+                            <button class="chat__button">-></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
