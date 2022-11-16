@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+
+    <title>Chat</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="buttonHeader">
+        <button id="setting">Настройки</button>
+        <button id="exit">Выйти</button>
+    </div>
+
+    <div class="content">
+
+                <div class="content-message ">
+
+                    <div class="interlocutor">
+                        <span>Собеседник мой: </span><span>А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке </span>
+                    </div>
+
+                    <div class="flex-me-end">
+                        <div class="me">
+                            <span>Я: </span><span> Добрый день!</span>
+                        </div>
+                    </div>
+
+                </div>
+
+    </div>
+    <div>
+        <form action="" method="post">
+            <input id="post-name" type="text" name="name" placeholder="сообщение...">
+            <button id="sentMessage" type="submit">-></button>
+        </form>
+    </div>
+
+</div>
+
+<div class="popup__bg">
+    <form class="popup">
+        <div id="popup-header">
+            <span>Настройки</span>
+            <button class="close-popup" id="exit-popup">+</button>
+        </div>
+
+        <div class="content-popup">
+             <span id="s">Имя в чате</span>
+                <div>
+                    <form id="form-popup" action="" method="post">
+                        <input class="input-popup" type="text" name="name" placeholder="...">
+                        <button class="post-popup" type="submit">-></button>
+                    </form>
+                </div>
+        </div>
+    </form>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>
