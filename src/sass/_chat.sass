@@ -1,0 +1,51 @@
+.chat
+  padding: 10px
+  border: 1px solid black
+  width: 320px
+  height: 533px
+  display: flex
+  flex-direction: column
+  &__header
+    display: flex
+    justify-content: space-between
+    margin-bottom: 10px
+  &__settings
+    cursor: pointer
+    width: 100px
+    height: 32px
+    border: 1px solid black
+    display: flex
+    justify-content: center
+    align-items: center
+  &__exit
+    cursor: pointer
+    width: 100px
+    height: 32px
+    border: 1px solid black
+    display: flex
+    justify-content: center
+    align-items: center
+  &__main
+    overflow-y: auto
+    display: flex
+    flex-direction: column-reverse
+    padding: 10px
+    margin-bottom: 10px
+    height: 100%
+    border: 1px solid black
+
+.chat-form
+  &__label
+    gap: 5px
+    display: flex
+  &__input
+    border: 1px solid black
+    padding-left: 5px
+    padding-right: 5px
+    min-height: 32px
+    width: 100%
+  &__button
+    border: 1px solid black
+    background-color: white
+    height: 32px
+    width: 36px
