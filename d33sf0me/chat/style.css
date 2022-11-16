@@ -1,0 +1,211 @@
+@font-face {
+    font-family: "SFPro";
+    font-style: normal;
+    font-weight: 400;
+    /* Браузер сначала попробует найти шрифт локально */
+    src: local("SFPro"),
+         /* Если не получилось, загрузит woff2 */
+         url("/fonts/SFProDisplay-Thin.woff2") format("woff2"),
+         /* Если браузер не поддерживает woff2, загрузит woff */
+         url("/fonts/SFProDisplay-Thin.woff") format("woff");
+}
+/* Теперь можно использовать шрифт */
+body {
+  font-family: "SFPro", "Arial", sans-serif;
+  font-style: normal;
+}
+.container {
+  width: 320px;
+  margin: 0 auto;
+  border: 10px;
+  border-color: black;
+  
+}
+.box {
+  width: 320px;
+  height: 533px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+.top {
+    height: 48px;
+    width: 301px;
+    display: flex;
+    margin: 0px 8px 0px 8px;
+    align-items: center;
+}
+
+.settingsButton {
+
+    height: 32px;
+    width: 32px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    background-image: url(/img/settings.svg);   
+    background-repeat: no-repeat; /*Убираем повтор изображения*/    
+    background-position: center; /*Позиционируем*/   
+    background-size: cover;
+    
+}
+
+.exitButton {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    background-image: url(/img/exit.svg);   
+    background-repeat: no-repeat; /*Убираем повтор изображения*/    
+    background-position: center; /*Позиционируем*/   
+    background-size: cover;
+    margin-left: 70px;
+  }
+
+h1 {
+    text-align: center;
+    width: 90px;
+    height: 32px;
+    margin-left: 75px;
+    font-size: larger;
+    margin-top: 25px;
+}
+
+.messagesArea {
+    border-radius: 4px;
+    border: 1px solid #000;
+    background-color: #fff;
+    width: 285px;
+    height: 417px;
+    margin: 0 8px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 8px;
+}
+
+.chat__form {
+    display: flex;
+    margin: 0px 8px 8px;
+    padding: 0px;
+}
+.chat__input {
+    height: 28px;
+    width: 255px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.189);
+    background-color: #fff;
+    margin-right: 8px;
+}
+.chat__button {
+    height: 30px;
+    width: 30px;   
+    background-color: #fff;
+    cursor: pointer;
+    background-image: url(/img/send.svg);   
+    background-repeat: no-repeat; /*Убираем повтор изображения*/    
+    background-size: cover;
+    border: none;
+    background-color: #fff;
+    margin-right: auto;
+}
+
+
+p,
+h3 {
+    margin: 0;
+}
+.message {
+    display: inline-flex;
+    justify-content: flex-end;
+}
+
+.message+.message {
+    margin-top: 8px;
+}
+
+.message--interlocutor {
+    justify-content: start;
+}
+
+.message__inner {
+    background-color: #E5E5E5;
+    padding: 8px;
+}
+
+.message--sent .message__inner {
+    background-color: #F7F7F7;
+}
+
+.message__text {
+    margin-bottom: 4px;
+}
+
+.message__time {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    display: flex;
+    justify-content: end;
+}
+
+.popup {
+    position: absolute;
+    top: 8px; 
+    display: none;
+    background-color: #535353a3;
+    width: 320px;
+    height: 535px;
+    border-radius: 10px;
+    border: none;
+}
+
+.popup__inner {
+    width: 249px;
+    height: 319px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 12px;
+    background-color: #fff;
+}
+
+.popup--active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.popup__title {
+    font-weight: 400;
+}
+
+.popup .popup__title {
+    margin-bottom: 8px;
+}
+
+.popup .chat__input {
+    width: 196px;
+}
+
+.popup__button {
+    font-size: 24px;
+    line-height: 70%;
+    color: #000000;
+    opacity: 0.45;
+    transform: rotate(-45deg);
+    border: none;
+    background-color: transparent;
+    cursor: pointer;;
+}
+
+form#ChatName {
+    margin: 0px;
+  }
