@@ -1,0 +1,51 @@
+.main {
+    top: 50px;
+    position: absolute;
+    border: 1px solid black;
+    width: 320px;
+    height: 533px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.messages {
+    border: 1px solid;
+    margin: 5px 0px;
+    flex: 1 1 auto;
+    display:flex;
+    justify-content: end;
+    flex-flow: column nowrap;
+    overflow: auto;
+}
+
+.my_messages {
+    background: #F6F6F6;
+    text-align: right;
+}
+
+.other_messages {
+    background: #E5E5E5;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input {
+    width: 87%;
+    /* flex: 0 1 87%; */
+    /* margin-right: 8px; */
+}
+
