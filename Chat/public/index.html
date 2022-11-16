@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../src/index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <button id="open_settings">Настройки</button>
+        <button id="login">Выйти</button>
+      </div>
+      <div class="chat">
+        <div class="me">
+          <div class="message delivered">
+            <p>Я:Добрый день!</p>
+            <span>18:45</span>
+          </div>
+        </div>
+        <div class="he">
+          <div class="message delivered">
+            <p>Мой собеседник: Добрый день!</p>
+            <span>18:46</span>
+          </div>
+        </div>
+        <div class="he">
+          <div class="message delivered">
+            <p>
+              Мой собеседник: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной
+              строке...
+            </p>
+            <span>18:46</span>
+          </div>
+        </div>
+        <div class="me">
+          <div class="message sent">
+            <p>Я:Добрый день!</p>
+            <span>18:47</span>
+          </div>
+        </div>
+      </div>
+      <form class="bottom">
+        <input type="text" placeholder="Сообщение..." />
+        <button id="send">-></button>
+      </form>
+    </div>
+    <div class="popup" id="settings">
+      <div class="popup_container">
+        <div class="settings">
+          <div class="settings_top">
+            <h1>Настройки</h1>
+            <button class="close" id="close_settings">+</button>
+          </div>
+          <div class="settings_1">
+            <h1>Имя в чате</h1>
+            <form>
+              <input type="text" placeholder="Имя..." />
+              <button id="send">-></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="../src/index.js"></script>
+  </body>
+</html>
