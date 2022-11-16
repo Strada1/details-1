@@ -11,6 +11,10 @@ body {
 
 .container {
   margin-top: 232px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
   max-width: 320px;
   margin-left: auto;
   margin-right: auto;
@@ -35,17 +39,18 @@ body {
   margin: 8px 0;
   max-width: 304px;
   height: 437px;
-  padding: 8px;
-  display: inline-flex;
+  padding: 8px 8px 0;
+  display: flex;
   flex-direction: column;
-  justify-content: end;
-  row-gap: 8px;
   overflow-y: scroll;
+  justify-content: end;
+  align-items: flex-start;
 }
 
 .message {
   background-color: #f7f7f7;
   padding: 8px;
+  margin-bottom: 8px;
 }
 .main__message-own {
   align-self: flex-end;
@@ -63,6 +68,11 @@ body {
   align-self: flex-start;
 }
 
+.form-message {
+  display: flex;
+  justify-content: space-between;
+  max-width: 304px;
+}
 .form-message__input {
   min-width: 267px;
   padding: 8px;
