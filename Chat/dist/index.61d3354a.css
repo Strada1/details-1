@@ -78,10 +78,10 @@ form input {
   height: 437px;
   border: 1px solid #000;
   flex-direction: column;
-  justify-content: flex-end;
   margin-bottom: 5px;
   padding: 5px;
   display: flex;
+  overflow-y: auto;
 }
 
 .chat .me {

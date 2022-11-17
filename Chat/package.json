@@ -9,6 +9,7 @@
   "author": "PushToTalk",
   "license": "ISC",
   "devDependencies": {
+    "date-fns": "^2.29.3",
     "eslint": "^8.27.0",
     "parcel": "^2.8.0"
   }

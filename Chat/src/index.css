@@ -79,11 +79,11 @@ form input {
 .chat {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   height: 437px;
   border: 1px solid black;
   padding: 5px;
   margin-bottom: 5px;
+  overflow-y: auto;
 }
 
 .chat .me {

@@ -13,7 +13,7 @@
         <button id="open_settings">Настройки</button>
         <button id="login">Выйти</button>
       </div>
-      <div class="chat">
+      <div class="chat" id="chat">
         <div class="me">
           <div class="message delivered">
             <p>Я:Добрый день!</p>
@@ -22,14 +22,14 @@
         </div>
         <div class="he">
           <div class="message delivered">
-            <p>Мой собеседник: Добрый день!</p>
+            <p>Мой собеседник:Добрый день!</p>
             <span>18:46</span>
           </div>
         </div>
         <div class="he">
           <div class="message delivered">
             <p>
-              Мой собеседник: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной
+              Мой собеседник:А это второе и, кажется, оно очень длинное, чтобы поместиться на одной
               строке...
             </p>
             <span>18:46</span>
@@ -42,7 +42,7 @@
           </div>
         </div>
       </div>
-      <form class="bottom">
+      <form class="bottom" id="sentMessage">
         <input type="text" placeholder="Сообщение..." />
         <button id="send">-></button>
       </form>
@@ -64,6 +64,14 @@
         </div>
       </div>
     </div>
+    <template id="message">
+      <div class="me">
+        <div class="message delivered">
+          <p>Я:Добрый день!</p>
+          <span>18:45</span>
+        </div>
+      </div>
+    </template>
     <script type="module" src="../src/index.js"></script>
   </body>
 </html>
