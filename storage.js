@@ -45,4 +45,7 @@ class Storage {
   }
 }
 
-export { cityAll, localSet, CookieSet, CITYNAME, Storage, localОption };
+const instanceClassNow = new Storage('NowCity')
+const nowCity = instanceClassNow.get();
+
+export { cityAll, localSet, CookieSet, CITYNAME, Storage, localОption, instanceClassNow, nowCity };
