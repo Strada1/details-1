@@ -7,6 +7,7 @@
     padding: 10px;
     display: flex;
     flex-flow: column nowrap;
+    z-index: -1;
 }
 
 body {
@@ -14,28 +15,76 @@ body {
     justify-content: center;
 }
 
+.exit {
+    font-size: 24px;
+    font-weight: 800;
+    font-family: Roboto;
+    transform: rotate(45deg);
+}
+
+.blur {
+    transition: 2s;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+}
+
+.time {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+    text-align: right;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
 }
 
+
+
 .messages {
     border: 1px solid;
     margin: 5px 0px;
     flex: 1 1 auto;
-    display:flex;
-    justify-content: end;
-    flex-flow: column nowrap;
+    display: flex;
+    flex-direction: column-reverse;
     overflow: auto;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+
+}
+
+.message_send, .message_delivered {
+    display: flex;
+    flex-flow: column nowrap;
+    width: fit-content;
+    
+}
+
+.message_delivered {
+    background-color: #E5E5E5;
+}
+
+.message_send {
+    background-color: #F6F6F6;
 }
 
 .my_messages {
-    background: #F6F6F6;
+    display: flex;
+    flex-direction: row-reverse;
     text-align: right;
+    margin: 8px;
 }
 
 .other_messages {
-    background: #E5E5E5;
+    margin: 8px;
 }
 
 .form {
@@ -45,7 +94,27 @@ body {
 
 .input {
     width: 87%;
-    /* flex: 0 1 87%; */
-    /* margin-right: 8px; */
 }
 
+.active-modal {
+    overflow: hidden;
+    transition:0.2s;
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.menu {
+    /* position: absolute; */
+    display: none;
+}
+
+.modal-show {
+    top: 150px;
+    display: block;
+    position: absolute;
+    border: 1px solid black;
+    width: 320px;
+    height: 319px;
+    padding: 10px;
+
+}
