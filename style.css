@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    background: grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+.wrapper {
+    background-color: #fff;
+    width: 320px;
+    height: 533px;
+    padding: 9px 8px;
+}
+
+.wrapper__dark {
+    background-color: #696969;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.settings {
+    border: 1px solid #000;
+    padding: 6px 8px;
+}
+
+.popup {
+    width: 273px;
+    height: 319px;
+    border: 1px solid #000;
+    position: absolute;
+    margin: 40px 16px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup__hidden {
+    visibility: hidden;
+}
+
+.popup__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 80px;
+    padding: 10px 10px;
+}
+
+.popup__content {
+    display: flex;
+    flex-direction: column;
+}
+
+.content__name {
+    padding-left: 4%;
+}
+
+.popup__form {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.input__form {
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input__form-message {
+    width: 267px;
+    height: 32px;
+    border: 1px solid #000;
+    padding: 1px 6px;
+}
+
+.popup__input {
+    width: 207px;
+}
+
+.input__form-message::placeholder {
+    font-size: 18px;
+    line-height: 21px;
+    color: #696969;
+}
+
+.input__form-message:focus {
+    outline: none;
+}
+
+.input__form-send {
+    width: 29px;
+    height: 32px;
+    border: 1px solid #000;
+}
+
+.chat {
+    width: 304px;
+    height: 437px;
+    border: 1px solid #000;
+    margin-bottom: 8px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-start;
+}
+
+.message {
+    display: inline-block;
+    background-color: #E5E5E5;
+    padding: 8px;
+    margin-bottom: 8px;
+}
+
+.time {
+    width: 40px;
+    margin-top: 4px;
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+    margin-left: auto;
+}
+
+.my {
+    margin-left: auto;;
+}
+
+.sent {
+    background-color: #F6F6F6;
+}
+
+.input__form-send {
+    background-image: url();
+    text-align: center;
+}
