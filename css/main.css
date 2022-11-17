@@ -1,0 +1,211 @@
+@import url('./reset.css');
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	font-family: "Roboto";
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.container {
+	width: 320px;
+	height: 533px;
+}
+
+/* ------------------------------------------------------- */
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	/* padding-right: 8px; */
+}
+
+.settings {
+	box-sizing:border-box;
+	border: 1px solid;
+	padding: 6px 8px 7px 8px;
+	width: 107px;
+	height: 32px;
+	margin: 0px 8px 0px 8px;
+}
+
+.exit {
+	box-sizing:border-box;
+	border: 1px solid;
+	padding: 7px 8px 12px 8px;
+	width: 66px;
+	height: 32px;
+	margin: 0px 8px 0px 8px;
+}
+
+/* ------------------------------------------------------- */
+::-webkit-scrollbar {
+	width: 5px;
+  }
+   
+::-webkit-scrollbar-thumb {
+	border-radius: 1px;
+	background: linear-gradient(180deg, #00c6fb, #005bea);
+  }
+/* ------------------------------------------------------- */
+
+.main {
+	padding-top: 7px;
+	margin: 0px 8px 8px 8px;
+}
+
+.container-scroll {
+	height: 437px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	border: 1px solid;
+}
+
+.chat__Container {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	width: 304px;
+	min-height: 100%
+}
+
+.message__completed {
+	background-color: #E5E5E5;
+}
+
+.message__sent {
+	background: #F6F6F6;
+}
+
+.my__SMS {
+	margin-bottom: 8px;
+	margin-right: 8px;
+	margin-left: 8px;
+	padding-right: 6px;
+	padding-top: 8px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+	flex-direction: column;
+	min-width: 139px;
+	height: 52px;
+}
+
+.his__SMS {
+	margin-bottom: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
+	padding-left: 6px;
+	padding-top: 8px;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: column;
+}
+
+.time__SMS {
+	display: flex;
+	justify-content: flex-end;
+	font-size: 14px;
+	font-weight: 300;
+	font-style: italic;
+	margin: 4px 8px 8px 0px;
+}
+
+
+
+/* ------------------------------------------------------- */
+
+.send__SMS__container {
+	margin-top: 8px;
+	display: flex;
+	justify-content:space-between;
+}
+
+.input__message {
+	padding-left: 7px;
+	flex: 0 0 80%;
+	width: 267px;
+	height: 32px;
+	border: 1px solid #000000;
+}
+
+.button__send__message {
+	margin-left: 4px;
+	border: 1px solid #000000;
+	width: 29px;
+	height: 32px;
+}
+
+
+/* -------POPUP------------------------------------------------ */
+
+.popup {
+	position: fixed;
+	width: 321px;
+	height: 533px;
+	background-color: #535353;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.8s ease 0s;
+}
+
+.popup.open {
+	opacity: 1;
+	visibility: visible;
+	transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+}
+
+.popup__body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100%;
+}
+
+.popup__content {
+	width: 273px;
+	height: 319px;
+	background-color: #ffffff;
+}
+
+.popup__button__exit {
+	margin-top: 13px;
+	margin-left: 241px;
+	font-size: 24px;
+    line-height: 70%;
+    color: #000000;
+    opacity: 0.45;
+    transform: rotate(-45deg);
+}
+
+.popup__form {
+	margin-left: 14px;
+	margin-top: 8px;
+}
+
+.popup__input {
+	padding-left: 8px;
+	border: 1px solid #000000;
+	width: 207px;
+	height: 32px;
+}
+
+.popup_title {
+	margin-top: -16px;
+	margin-left: 14px;
+}
+
+.popup_name__chat {
+	margin-top: 16px;
+	margin-left: 14px;
+}
+
+.popup__button {
+	border: 1px solid #000000;
+	width: 30px;
+	height: 32px;
+}
