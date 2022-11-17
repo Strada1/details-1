@@ -1,8 +1,11 @@
+@charset "UTF-8";
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
   font-family: "Roboto", sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: blue orange;
 }
 
 body {
@@ -12,6 +15,23 @@ body {
   align-items: center;
 }
 
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(255, 165, 0, 0);
+}
+
+/* цвет дорожки */
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.36);
+  /* цвет плашки */
+  border-radius: 20px;
+  border: 2px solid white;
+}
+
+/* padding вокруг плашки */
 .chat {
   padding: 10px;
   border: 1px solid black;

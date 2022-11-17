@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <script defer src = 'js/modal.js'></script>
+  <script type="module" src="js/index.js"></script>
 </head>
 <body>
   <section class='chat' >
@@ -19,17 +20,15 @@
 
     <div class='chat__main'>
 
-
       <div class='massage massage-right'>
-        <p class='massage__text'>   <span class='massage__name'>Собеседник</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab accusamus accusantium amet aspernatur, autem deleniti expedita fugit harum, ipsa magni nemo quibusdam quos rerum, sapiente tempore. At exercitationem rem ut. </p>
+        <div class='massage__name'>Я</div>
+        <p class='massage__text'>Добрый день </p>
         <div class='massage__time'>18:45</div>
       </div>
 
       <div class='massage massage-left'>
-        <div class='massage__block'>
-          <p class='massage__text'>
-            <span class='massage__name'>Я</span> Добрый день </p>
-        </div>
+        <div class='massage__name'>Собеседник</div>
+        <p class='massage__text'>Здрартуй </p>
         <div class='massage__time '>18:45</div>
       </div>
     </div>
@@ -37,7 +36,9 @@
     <div class='chat__footer'>
       <form class='chat-form' >
         <label class='chat-form__label'>
-          <input class='chat-form__input' placeholder='сообщение...' type='text'>
+          <input class='chat-form__input'
+                 placeholder='сообщение...'
+                 type='text'>
           <button class='chat-form__button' type='submit'> > </button>
         </label>
       </form>
@@ -61,5 +62,13 @@
       </div>
     </div>
   </section>
+
+  <template id="template-massage">
+    <div class='massage massage-right'>
+      <div class='massage__name'></div>
+      <p class='massage__text'></p>
+      <div class='massage__time'></div>
+    </div>
+  </template>
 </body>
 </html>

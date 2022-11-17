@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "description": "Репозиторий для первого потока \"Детали\"",
   "main": "index.js",
-  "dependencies": {
+  "devDependencies": {
+    "eslint": "^8.27.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "parcel": "^2.8.0",
+    "prettier": "2.7.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

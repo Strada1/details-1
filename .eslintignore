@@ -1,0 +1,4 @@
+/src/dist
+/.idea/
+/.parcel-cache
+/node_modules
