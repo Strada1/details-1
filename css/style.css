@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}
+
+.container {
+    width: 100%;
+    min-width: 320px;
+    max-width: 2134px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.chat-wrapper {
+    width: 320px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+.common-btn {
+    background-color: transparent;
+    border: 1px solid #000;
+    padding: 8px 7px;
+}
+
+.main-interface {
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: flex-start;
+}
+
+.message-screen {
+    border: 1px solid #000;
+    padding: 10px;
+    margin-bottom: 8px;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: stretch;
+    align-items: flex-start;
+    height: 440px;
+}
+
+.message-item {
+    background-color: #E5E5E5;
+    padding: 8px;
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: stretch;
+    align-items: flex-start;
+    align-self: flex-end;
+}
+.companion-message {
+    display: flex;
+    align-self: flex-start;
+
+}
+
+.message-text {
+    order: 0;
+    flex: 2 1 auto;
+    align-self: auto;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 4px;
+}
+
+.message-date {
+    order: 0;
+    flex: 0 1 auto;
+    align-self: flex-end;
+    font-size: 14px;
+}
+
+.message-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: flex-start;
+}
+
+.message-field {
+    padding: 7px;
+    margin-right: 8px;
+    flex: 2
+}

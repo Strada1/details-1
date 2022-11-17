@@ -4,12 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/style.css" />
     <title>Chat</title>
   </head>
   <body>
-    <h1>Chat</h1>
-
+    <div class="container">
+      <div class="chat-wrapper">
+        <div class="main-interface">
+          <button class="settings-btn common-btn">Настройки</button>
+          <button class="logout-btn common-btn">Выход</button>
+        </div>
+        <div class="message-screen">
+          <ul class="message-list">
+            <li class="message-item">
+              <div class=""><span class="author">Я:</span> Добрый день!</div>
+              <div class="message-date">18:45</div>
+            </li>
+            <li class="message-item companion-message">
+              <div class="message-text">
+                <span class="author">Собеседник:</span> Добрый день!
+              </div>
+              <div class="message-date">18:47</div>
+            </li>
+            <li class="message-item companion-message">
+              <div class="message-text">
+                <span class="author">Собеседник:</span> А это второе и, кажется,
+                оно очень длинное, чтобы поместиться на одной строке
+              </div>
+              <div class="message-date">18:49</div>
+            </li>
+          </ul>
+        </div>
+        <div class="message-interface">
+          <form action="" class="message-form">
+            <input
+              type="text"
+              class="message-field"
+              placeholder="введите сообщение"
+            />
+            <button type="submit" class="common-btn">-></button>
+          </form>
+        </div>
+      </div>
+    </div>
     <script src="js/index.js"></script>
   </body>
 </html>
