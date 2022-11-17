@@ -98,9 +98,84 @@ body {
     align-content: stretch;
     align-items: flex-start;
 }
-
 .message-field {
+    flex: 2
+}
+
+.message-field,
+.user-field {
     padding: 7px;
     margin-right: 8px;
-    flex: 2
+}
+
+.popup-layout {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .7);
+    display: none;
+}
+
+.popup-wrapper {
+    width: 280px;
+    height: 320px;
+    background: #fff;
+    margin: 27vh auto;
+    padding: 15px;
+}
+
+.input-block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: flex-start;
+}
+
+.popup-label {
+
+    margin-bottom: 16px;
+    width: 100%;
+    flex: 3;
+    flex-grow: 2;
+}
+
+.user-field {
+    width: 84%;
+}
+
+.header-block {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 70px;
+}
+
+.close-btn {
+    width: 15px;
+    height: 15px;
+    background-color:transparent;
+    border: none;
+    position: relative;
+}
+
+.close-btn::before,
+.close-btn::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    background-color: #000;
+    left: 0;
+    top: 11px;
+}
+
+.close-btn::before {
+    transform: rotate(45deg);
+}
+
+.close-btn::after {
+    transform: rotate(-45deg);
 }
