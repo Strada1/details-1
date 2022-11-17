@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="chat__wrapper">
+        <div class="chat__buttons">
+            <button class="chat__buttons-settings">Настройки</button>
+            <button class="chat__buttons-exit">Выход</button>
+        </div>
+        <div class="chat__container">
+            <div class="chat__container-window">
+                <div class="chat__container-message delivered my-message">
+                    <p class="text ">Я: Добрый день!</p>
+                    <p class="time">18:45</p>
+                </div>
+                <div class="chat__container-message delivered">
+                    <p class="text">Собеседник мой: Добрый день!</p>
+                    <p class="time">18:45</p>
+                </div>
+                <div class="chat__container-message delivered">
+                    <p class="text">Собеседник мой: А это второе и, кажется, оно очень
+                        длинное, чтобы поместиться на
+                        одной строке</p>
+                    <p class="time">18:45</p>
+                </div>
+                <div class="chat__container-message sent my-message">
+                    <p class="text">Я: Добрый день!</p>
+                    <p class="time">18:45</p>
+                </div>
+            </div>
+        </div>
+        <form class="chat__input">
+            <input type="text" class="chat__input-field" placeholder="сообщение..">
+            <button class="chat__input-button btn">-></button>
+        </form>
+    </div>
+    <div class="pop-up" style="display: none;">
+        <div class="pop-up__content">
+            <div class="pop-up__content-window">
+                <div class="pop-up__content-header">
+                    <p class="pop-up__content-header-title">Настройки</p>
+                    <p class="pop-up__content-header-close">+</p>
+                    <p class="pop-up__content-header-name">Имя в чате</p>
+                </div>
+                <form class="pop-up__content-input">
+                    <input type="text" class="pop-up__content-input-field" placeholder="Имя">
+                    <button class="pop-up__content-input-button">-></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+</html>
