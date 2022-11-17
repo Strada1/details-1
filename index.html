@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <script src="./scripts.js" type="module"></script>
+    <title>chat</title>
+</head>
+<body>
+    <div class="menu">
+        <div class="settings-menu">
+            <div class="header">
+                <span>Настройки</span>
+                <span class="exit">+</span>
+            </div>
+            <span>Имя в чате:</span>
+            <form>
+                <input type="text" placeholder="введите имя">
+                <button>-></button>
+            </form>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="auth-menu">
+            <div class="header">
+                <span>Авторизация</span>
+                <span class="exit">+</span>
+            </div>
+            <span>Почта:</span>
+            <form id="autorize">
+                <input type="email" placeholder="mail@server.com"><br>
+                <button>Получить код</button>
+            </form>
+        </div>
+    </div>
+    <div class="menu">
+        <div class="response-menu">
+            <div class="header">
+                <span>Подтверждение</span>
+                <span class="exit">+</span>
+            </div>
+            <div>
+                <span>Код:</span>
+                <form>
+                    <input type="text"><br>
+                    <button>Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="header">
+            <button class="settings">Настройки</button>
+            <button class="auth">Выйти</button> 
+        </div>
+        <div class="messages">
+            <div class="my_messages">
+                <div class="message_delivered">
+                    <span>Я: Добрый день!</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_delivered">
+                    <span>Собеседник мой: Добрый день!</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_send">
+                    <span>Собеседник мой: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="my_messages">
+                <div class="message_delivered">
+                    <span>Я: Добрый день!</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_send">
+                    <span>Собеседник мой: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_delivered">
+                    <span>Собеседник мой: Добрый день!</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_delivered">
+                    <span>Собеседник мой: Добрый день!</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_send">
+                    <span>Собеседник мой: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_delivered">
+                    <span>Собеседник мой: Добрый день!</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_send">
+                    <span>Собеседник мой: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_delivered">
+                    <span>Собеседник мой: Добрый день!</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="other_messages">
+                <div class="message_delivered">
+                    <span>Собеседник мой: Добрый день!</span>
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+        </div>
+        <form class="form">
+            <input class="input" type="text">
+            <button>-></button>
+        </form>
+    </div>
+</body>
+</html>
