@@ -1,6 +1,13 @@
-import {ELEMENT} from "./view.js"
+import { format } from 'date-fns'
+import { even } from 'prelude-ls';
+import {ELEMENT} from "./view.js";
 
 ELEMENT.SENDMESSAGE.addEventListener("submit", addMessageToDOM)
+
+function nowTime() {
+	const timeNow = format(new Date(), "kk ':' mm")
+	return timeNow;
+}
 
 function addMessageToDOM (event) {
 	event.preventDefault();
@@ -9,15 +16,17 @@ function addMessageToDOM (event) {
 	if(!message) {
 		alert('Пустая строка, введите сообщение!')
 	} else {
-		// ELEMENT.TEXTMESSAGE.textContent = message;
-		console.log('ELEMENT.TEXTMESSAGE: ', ELEMENT.TEXTMESSAGE);
-		console.log('ELEMENT.TEMPLATE: ', ELEMENT.TEMPLATE);
+		const userContent = document.createElement('div');
+		userContent.append(ELEMENT.TEMPLATE.content.cloneNode(true));
+		const contentMyMessage = userContent.querySelector(".text__my__SMS")
+		const timeMyMessage = userContent.querySelector(".time__SMS")
 
+		contentMyMessage.textContent = message;
+		timeMyMessage.textContent = nowTime();
+		
+		contentMyMessage.scrollIntoView();
 
-		const elem = document.createElement('div');
-		elem.append(ELEMENT.TEMPLATE.content.cloneNode(true));
-		document.body.append(elem);
+		ELEMENT.CHATCONTAINER.append(userContent);
+		event.target.reset();
 	}
-
-	
 }
