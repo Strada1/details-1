@@ -1,0 +1,134 @@
+@import url('./reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  font-family: 'Roboto';
+  font-weight: 400;
+  background-color: #e5e5e5;
+  font-size: 16px;
+  color: #000;
+}
+
+.container {
+  margin-top: 232px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 533px;
+  background-color: white;
+  padding: 8px;
+}
+.input {
+  border: 1px solid #000000;
+  padding: 8px;
+  margin-right: 2px;
+}
+.btn {
+  border: 1px solid #000000;
+  padding: 8px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main {
+  border: 1px solid #000000;
+  margin: 8px 0;
+  max-width: 304px;
+  height: 437px;
+  padding: 8px 8px 0;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  justify-content: end;
+}
+
+.message {
+  background-color: #f7f7f7;
+  margin-bottom: 8px;
+  padding: 8px;
+}
+.main__message-own {
+  align-self: flex-end;
+}
+.read {
+  background-color: #e5e5e5;
+}
+.main__time {
+  text-align: end;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+}
+.main__message-other {
+  align-self: flex-start;
+}
+
+.form-message {
+  display: flex;
+  justify-content: space-between;
+  max-width: 304px;
+}
+.form-message__input {
+  min-width: 267px;
+}
+
+.popup {
+  position: absolute;
+  display: none;
+  width: 321px;
+  height: 533px;
+  background-color: #535353;
+  max-width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: -8px;
+  margin-left: -7px;
+}
+
+.popup__inner {
+  width: 273px;
+  height: 319px;
+  border: 1px solid #000;
+  padding: 12px;
+  background-color: #fff;
+}
+
+.popup--active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup__top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.popup__title {
+  font-weight: 400;
+}
+
+.popup .popup__title {
+  margin-bottom: 8px;
+}
+
+.popup .chat__input {
+  width: 209px;
+}
+
+.popup__button {
+  font-size: 24px;
+  line-height: 70%;
+  color: #000000;
+  opacity: 0.45;
+  transform: rotate(-45deg);
+  background-color: transparent;
+  margin-top: -9px;
+}
