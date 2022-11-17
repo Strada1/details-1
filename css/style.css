@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.main {
+    background: #111;
+}
+.container {
+    max-width: 1000px;
+    height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+}
+.time-form {
+    background: #444;
+    padding: 1em;
+}
+.time-input {
+    width: 100%;
+    margin-bottom: 0.2em;
+    font-size: 1.125rem;
+}
+.time-input:focus {
+    outline: none;
+}
+.submit-form {
+    padding: 0.2em .5em;
+    font-family: 'Roboto';
+    font-size: 1.125rem;
+}
+.answer {
+    margin-top: .7em;
+    color:#fff;
+    font-size: 1.125rem;
+}
