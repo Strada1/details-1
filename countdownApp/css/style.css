@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  text-align: center;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.display {
+  margin: 0 auto;
+}
+
+.display_wrapper {
+  max-width: 200px;
+  border: 2px solid black;
+
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.user_input {
+}
+.user_btn {
+}
