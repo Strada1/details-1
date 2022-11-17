@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.6"
+  }
+}
