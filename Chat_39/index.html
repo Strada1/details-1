@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="main-block">
+        <div class="configuration-wrapper">
+          <button class="btn-settings">Настройки</button>
+          <button class="btn-exit">Выйти</button>
+        </div>
+        <div class="message-window">
+          <template id="template_my_message">
+            <div class="my_message-block">
+              <div class="my_message-wrapper delivered-message_color">
+                Я: <span class="my_message_view"></span>
+
+                <p class="time_message">18:45</p>
+              </div>
+            </div>
+          </template>
+          <div class="other_message-block">
+            <div class="other_message-wrapper delivered-message_color">
+              Собеседник мой: А это второе и, кажется, оно очень длинное, чтобы
+              поместиться на одной строке
+              <p class="time-message">18:45</p>
+            </div>
+          </div>
+        </div>
+        <div class="input_wrapper">
+          <form action="">
+            <input
+              type="text"
+              class="my_message-input"
+              placeholder="Сообщение"
+              value=""
+            />
+            <button class="send_message">-></button>
+          </form>
+        </div>
+        <div class="settings_wrapper">
+          <div class="block-settings">
+            <div class="wrapper_settings">
+              <div class="settings">Настройки</div>
+              <button class="close-window">X</button>
+            </div>
+            <div class="name_in_chat">Имя в чате</div>
+            <div class="name-select_wrapper">
+              <input type="text" class="name_input" />
+              <button class="btn_name_in_chat">-></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./js/index.js"></script>
+  </body>
+</html>
