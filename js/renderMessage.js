@@ -21,14 +21,20 @@ function addMessageToDOM (event) {
 		const contentMyMessage = userContent.querySelector(".text__my__SMS")
 		const timeMyMessage = userContent.querySelector(".time__SMS")
 
-		const MySMS = userContent.querySelector(".my__SMS").lastElementChild;
-
 		contentMyMessage.textContent = message;
 		timeMyMessage.textContent = nowTime();
 		
-		MySMS.scrollIntoView();
+		console.log('contentMyMessage: ', contentMyMessage);
+		contentMyMessage.scrollIntoView({block: "end", behavior: "smooth"});
+		// scrollLastElement()
 
 		ELEMENT.CHATCONTAINER.append(userContent);
 		event.target.reset();
 	}
 }
+
+// function scrollLastElement() {
+//     const ELEMENTS = document.querySelector(".chat__Container");
+//     const LAST_MESSAGE = ELEMENTS.lastElementChild;
+//     LAST_MESSAGE.scrollIntoView({block: "end", behavior: "smooth"});
+// }

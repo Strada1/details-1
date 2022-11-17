@@ -71,7 +71,7 @@ body {
 	flex-direction: column;
 	justify-content: flex-end;
 	width: 304px;
-	min-height: 100%
+	min-height: 100%;
 }
 
 .message__completed {
@@ -87,15 +87,16 @@ body {
 	margin-right: 8px;
 	margin-left: 8px;
 	padding-right: 6px;
+	padding-left: 6px;
 	padding-top: 8px;
 	display: flex;
 	justify-content: flex-end;
 	align-items: flex-end;
 	flex-direction: column;
-	min-width: 139px;
-	height: 52px;
+	height: fit-content;
 	width: fit-content;
 	margin-left: auto;
+	word-break: break-all;
 }
 
 .his__SMS {
