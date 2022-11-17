@@ -123,9 +123,29 @@ button {
     margin-bottom: 8px;
     padding: 8px;
     display: flex;
-    flex-direction: column;
-    justify-content: end;
+    flex-direction: column-reverse;
+    /* justify-content: end; */
     align-items: flex-start;
+    overflow-y: auto;
+}
+.chat::-webkit-scrollbar {
+    width: 12px;
+    /* ширина всей полосы прокрутки */
+}
+
+.chat::-webkit-scrollbar-track {
+    background-color: #b6b6b6;
+    border-radius: 6px;
+    /* цвет зоны отслеживания */
+}
+
+.chat::-webkit-scrollbar-thumb {
+    background-color: #868686;
+    /* цвет бегунка */
+    border-radius: 20px;
+    /* округлось бегунка */
+    /* border: 3px solid orange; */
+    /* отступ вокруг бегунка */
 }
 
 .message {
