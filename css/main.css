@@ -21,6 +21,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+	margin-top: 8px;
 	/* padding-right: 8px; */
 }
 
@@ -93,6 +94,8 @@ body {
 	flex-direction: column;
 	min-width: 139px;
 	height: 52px;
+	width: fit-content;
+	margin-left: auto;
 }
 
 .his__SMS {
@@ -104,6 +107,7 @@ body {
 	display: flex;
 	justify-content: flex-start;
 	flex-direction: column;
+	width: fit-content;
 }
 
 .time__SMS {
