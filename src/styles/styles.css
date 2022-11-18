@@ -1,4 +1,5 @@
-body {
+body,
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -8,7 +9,7 @@ body {
 
 .container {
   width: 320px;
-  height: 90vh;
+  height: 93vh;
   margin: 20px auto;
   padding: 10px;
   border: 1px solid #000000;
@@ -125,8 +126,53 @@ body {
   outline: none;
   margin-right: 5px;
   width: 220px;
-  height: 32px;
+  height: 45px;
   border: 1px solid #000000;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.messages {
+  padding: 10px;
+  overflow: auto;
+}
+
+.wrap_message {
+  background-color: #F6F6F6;
+  max-width: 260px;
+  padding: 8px;
+  border-radius: 5px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
+}
+
+.outgoing_message {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.incoming_message {
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: left;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.time_message {
+  text-align: right;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+
+  margin-top: 10px;
 }

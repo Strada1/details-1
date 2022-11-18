@@ -18,10 +18,24 @@
       <button class="btn">Выйти</button>
     </header>
 
-    <div class="messages"></div>
-    <div class="wrap">
-      <input class="input" type="text">
-      <button class="btn">
+    <div class="messages" id="messages">
+
+      <template id="outgoing_message">
+        <div class="outgoing_message">
+          <div class="wrap_message">
+              <span class="name_message" id="name_message"></span>
+              <span>:</span>
+              <span class="text_message" id="text_message"></span>
+              <div class="time_message" id="time_message"></div>
+          </div>
+        </div>
+      </template>
+
+    </div>
+
+    <form class="wrap" id="send_message_form">
+      <input class="input" type="text" placeholder="сообщение" id="text_message_input">
+      <button class="btn" type="submit">
         <svg class="svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="20px" y="20px"
              viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
           <g>
@@ -36,7 +50,7 @@
           </g>
         </svg>
       </button>
-    </div>
+    </form>
 
 
     <div class="modal display_none" id="modal_settings">
@@ -48,17 +62,18 @@
           </button>
         </header>
         <div class="name">Имя в чате:</div>
-        <div class="wrap">
+        <forma class="wrap">
           <input class="input_modal" type="text">
           <button class="btn">
             <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M754.752 480H160a32 32 0 100 64h594.752L521.344 777.344a32 32 0 0045.312 45.312l288-288a32 32 0 000-45.312l-288-288a32 32 0 10-45.312 45.312L754.752 480z"/></svg>
           </button>
-        </div>
+        </forma>
       </div>
     </div>
 
   </div>
 
-  <script src="main.js"></script>
+  <script type="module" src="./src/scripts/modal.js"></script>
+  <script type="module" src="src/scripts/sendMessage.js"></script>
 </body>
 </html>

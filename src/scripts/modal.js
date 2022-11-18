@@ -11,4 +11,3 @@ closeModal.addEventListener('click', () => {
   settingsModal.classList.remove('display_flex');
   settingsModal.classList.add('display_none');
 });
-
