@@ -4,8 +4,7 @@ POPUP.GET_COD.addEventListener('click', sendCod)
 
 async function sendCod(event) {
 	event.preventDefault();
-	const userEmail = POPUP.INPUT.value;
-	console.log('userEmail: ', userEmail);
+	const userEmail = POPUP.INPUT.value.trim();
 
 	const response = await fetch('https://edu.strada.one/api/user', {
 		method: 'POST',
