@@ -1,9 +1,7 @@
-import { settingsButton, popup, closeButton, inputWriteMessage, windowChat, mainForm } from '/values.js'
+import { settingsButton, popup, closeButton, inputWriteMessage, windowChat, mainForm } from './values.js';
+import './authorization.js';
 
-mainForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    inputWriteMessage.value = '';
-});
+
 
 settingsButton.addEventListener("click", function () {
     popup.classList.toggle('active');
@@ -13,14 +11,13 @@ closeButton.addEventListener("click", function () {
     popup.classList.remove('active');
 });
 
-inputWriteMessage.addEventListener("change", function () {
-    const divMessage = document.createElement('div');
-    const divDate = document.createElement('div');
-    const date = new Date();
-    divDate.textContent = `${date.getHours()}:${date.getMinutes()}`;
-    divMessage.className = "message_item";
-    divDate.className = "message_time";
-    divMessage.textContent = inputWriteMessage.value.trim();
-    windowChat.prepend(divMessage);
-    divMessage.append(divDate);
+mainForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const sampleMessage = document.createElement('div');
+    sampleMessage.className = 'message_container user_message';
+    sampleMessage.append(tmpl.content.cloneNode(true));
+    windowChat.prepend(sampleMessage);
+    sampleMessage.querySelector('.message_item').textContent = inputWriteMessage.value.trim();
+    sampleMessage.querySelector('.message_time').textContent = `${new Date().getHours()}:${new Date().getMinutes()}`;
+    inputWriteMessage.value = '';
 });
