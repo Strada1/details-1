@@ -47,10 +47,14 @@ async function getTheCode() {
 
     const responce = await fetch("https://edu.strada.one/api/user", {
         method: "POST",
-        email: emailText
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        },
+        body: JSON.stringify({email: emailText})
     });
 
 }
+
 
 function authorization() {
     const form = document.getElementById(POPUP.CONFIRMATION.FORM_ID);
