@@ -11,7 +11,7 @@
     <div class="container">
       <div class="top">
         <button id="open_settings">Настройки</button>
-        <button id="login">Выйти</button>
+        <button id="open_login">Войти</button>
       </div>
       <div class="chat" id="chat">
         <div class="me">
@@ -42,9 +42,9 @@
           </div>
         </div>
       </div>
-      <form class="bottom" id="sentMessage">
+      <form class="bottom" id="sent_message">
         <input type="text" placeholder="Сообщение...">
-        <button id="send">-></button>
+        <button id="send_message">-></button>
       </form>
     </div>
     <div class="popup" id="settings">
@@ -58,7 +58,41 @@
             <h1>Имя в чате</h1>
             <form>
               <input type="text" placeholder="Имя...">
-              <button id="send">-></button>
+              <button id="send_name">-></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="auth">
+      <div class="popup_container">
+        <div class="auth">
+          <div class="auth_top">
+            <h1>Авторизация</h1>
+            <button class="close" id="close_auth">+</button>
+          </div>
+          <div class="email">
+            <h1>Почта:</h1>
+            <form id="sent_email">
+              <input type="email" placeholder="lichinka@mail.ru">
+              <button id="send_email">Получить код</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="confirm">
+      <div class="popup_container">
+        <div class="confirm">
+          <div class="confirm_top">
+            <h1>Подтверждение</h1>
+            <button class="close" id="close_confirm">+</button>
+          </div>
+          <div class="code">
+            <h1>Код:</h1>
+            <form id="sent_code">
+              <input type="text" placeholder="45613">
+              <button id="send_code">Войти</button>
             </form>
           </div>
         </div>

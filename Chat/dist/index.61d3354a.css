@@ -74,6 +74,10 @@ form input {
   padding: 5px;
 }
 
+h1 {
+  margin-bottom: 5px;
+}
+
 .chat {
   height: 437px;
   border: 1px solid #000;
@@ -146,6 +150,52 @@ form input {
 
 h1 {
   margin-bottom: 5px;
+}
+
+.auth {
+  width: 273px;
+  height: 319px;
+  background-color: #fff;
+  margin: auto;
+  padding: 10px;
+}
+
+.auth_top {
+  justify-content: space-between;
+  margin-bottom: 50px;
+  display: flex;
+}
+
+.email form {
+  flex-direction: column;
+  display: flex;
+}
+
+.email form button {
+  margin-top: 10px;
+}
+
+.confirm {
+  width: 273px;
+  height: 319px;
+  background-color: #fff;
+  margin: auto;
+  padding: 10px;
+}
+
+.confirm_top {
+  justify-content: space-between;
+  margin-bottom: 50px;
+  display: flex;
+}
+
+.code form {
+  flex-direction: column;
+  display: flex;
+}
+
+.code form button {
+  margin-top: 10px;
 }
 
 /*# sourceMappingURL=index.61d3354a.css.map */

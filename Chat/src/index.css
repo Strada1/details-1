@@ -76,6 +76,10 @@ form input {
   border: 1px solid black;
 }
 
+h1 {
+  margin-bottom: 5px;
+}
+
 .chat {
   display: flex;
   flex-direction: column;
@@ -134,7 +138,7 @@ form input {
   height: 100%;
 }
 
-/* POPUP SETTINGS */
+/* SETTINGS */
 
 .settings {
   width: 273px;
@@ -151,4 +155,54 @@ form input {
 
 h1 {
   margin-bottom: 5px;
+}
+
+/* AUTH */
+
+.auth {
+  width: 273px;
+  height: 319px;
+  background-color: white;
+  padding: 10px;
+  margin: auto;
+}
+
+.auth_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.email form {
+  display: flex;
+  flex-direction: column;
+}
+
+.email form button {
+  margin-top: 10px;
+}
+
+/* CONFIRM */
+
+.confirm {
+  width: 273px;
+  height: 319px;
+  background-color: white;
+  padding: 10px;
+  margin: auto;
+}
+
+.confirm_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.code form {
+  display: flex;
+  flex-direction: column;
+}
+
+.code form button {
+  margin-top: 10px;
 }

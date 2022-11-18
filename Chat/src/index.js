@@ -1,21 +1,26 @@
-//TODO:
-//Когда мало сообщений, прилепить их к низу;
-//Реализовать автоматическую прокрутку к началу при
-//добавлении сообщения;
-
 import { getHours, getMinutes } from 'date-fns';
 
 const chat = document.querySelector('#chat');
 const openSettings = document.querySelector('#open_settings');
-const settings = document.querySelector('#settings');
 const closeSettings = document.querySelector('#close_settings');
-const sentMessage = document.querySelector('#sentMessage');
+const openLogin = document.querySelector('#open_login');
+const closeLogin = document.querySelector('#close_auth');
+const closeConfirm = document.querySelector('#close_confirm');
+
+const settings = document.querySelector('#settings');
+const auth = document.querySelector('#auth');
+const confirm = document.querySelector('#confirm');
+
+const sentMessage = document.querySelector('#sent_message');
+const sentEmail = document.querySelector('#sent_email');
+const sentCode = document.querySelector('#sent_code');
+
 const message = document.querySelector('#message');
 
 const myName = 'Я';
 const heName = 'Мой собеседник';
 
-function setMessage(name, text) {
+function sendMessage(name, text) {
   const temp = message.content.cloneNode(true);
   const fetchIsTrue = false;
 
@@ -51,11 +56,48 @@ closeSettings.addEventListener('click', (event) => {
   settings.classList.remove('active');
 });
 
+openLogin.addEventListener('click', (event) => {
+  event.preventDefault();
+  auth.classList.add('active');
+});
+
+closeLogin.addEventListener('click', (event) => {
+  event.preventDefault();
+  auth.classList.remove('active');
+});
+
+closeConfirm.addEventListener('click', (event) => {
+  event.preventDefault();
+  confirm.classList.remove('active');
+});
+
+sentEmail.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const textEmail = sentEmail.children[0].value;
+
+  auth.classList.remove('active');
+  confirm.classList.add('active');
+  fetch('https://edu.strada.one/api/user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+    },
+    body: JSON.stringify({ email: textEmail }),
+  })
+    .then((response) => response.json())
+    .then((result) => console.log(result));
+});
+
+sentCode.addEventListener('submit', (event) => {
+  event.preventDefault();
+  confirm.classList.remove('active');
+});
+
 sentMessage.addEventListener('submit', (event) => {
   event.preventDefault();
   let textMessage = sentMessage.children[0].value;
   if (textMessage.length > 0) {
-    setMessage(myName, textMessage);
+    sendMessage(myName, textMessage);
     sentMessage.children[0].value = '';
   }
 });
