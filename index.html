@@ -12,6 +12,7 @@
 	<div class="container">
 		<header class="header">
 			<button class="settings">Найстройки</button>
+			<button class="authorization">Авторизация</button>
 			<button class="exit">Выйти</button>
 		</header>
 		<main class="main">
@@ -54,21 +55,51 @@
 			</div>
 		</main>
 	</div>
-	<div id="popup" class="popup">
-		<div class="popup__body">
-			<div class="popup__content">
-				<button class="popup__button__exit">+</button>
-				<div class="popup_title">Найстройки</div>
-				<p class="popup_name__chat">Имя в чате</p>
-				<form action="" class="popup__form">
-					<input type="text" class="popup__input">
-					<button type="submit" class="popup__button">-></button>
+	<div id="popupSetings" class="popup__setings">
+		<div class="popup__setings__body">
+			<div class="popup__setings__content">
+				<button class="popup__setings__button__exit">+</button>
+				<div class="popup__setings_title">Найстройки</div>
+				<p class="popup__setings_name__chat">Имя в чате</p>
+				<form action="" class="popup__setings__form">
+					<input type="text" class="popup__setings__input">
+					<button type="submit" class="popup__setings__button">-></button>
 				</form>
 			</div>
 		</div>
 	</div>
+
+	<div id="popupAuthorization" class="popup__authorization">
+		<div class="popup__authorization__body">
+			<div class="popup__authorization__content">
+				<button class="popup__authorization__button__exit">+</button>
+				<div class="popup__authorization_title">Авторизация</div>
+				<p class="popup__authorization_gmail">Почта:</p>
+				<form action="" class="popup__authorization__form">
+					<input type="email" class="popup__authorization__input" placeholder="my@gmail.com" required>
+					<button type="submit" class="popup__authorization__button">Получить код</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id="popupConfirmation" class="popup__confirmation">
+		<div class="popup__confirmation__body">
+			<div class="popup__confirmation__content">
+				<button class="popup__confirmation__button__exit">+</button>
+				<div class="popup__confirmation_title">Подтверждение</div>
+				<p class="popup__confirmation_gmail">Код:</p>
+				<form action="" class="popup__confirmation__form">
+					<input type="text" class="popup__confirmation__input">
+					<button type="submit" class="popup__confirmation__button">Войти</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
 </body>
 <script type="module" src="/js/index.js"></script>
 <script type="module" src="/js/POPUP.js"></script>
 <script type="module" src="/js/renderMessage.js"></script>
+<script type="module" src="/js/authorization.js"></script>
 </html>

@@ -2,7 +2,7 @@ import { format } from 'date-fns'
 import { even } from 'prelude-ls';
 import {ELEMENT} from "./view.js";
 
-ELEMENT.SENDMESSAGE.addEventListener("submit", addMessageToDOM)
+ELEMENT.SEND_MESSAGE.addEventListener("submit", addMessageToDOM)
 
 function nowTime() {
 	const timeNow = format(new Date(), "kk ':' mm")
@@ -11,7 +11,7 @@ function nowTime() {
 
 function addMessageToDOM (event) {
 	event.preventDefault();
-	const message = ELEMENT.INPUTMESSAGE.value;
+	const message = ELEMENT.INPUT_MESSAGE.value;
 
 	if(!message) {
 		alert('Пустая строка, введите сообщение!')
@@ -24,9 +24,7 @@ function addMessageToDOM (event) {
 		contentMyMessage.textContent = message;
 		timeMyMessage.textContent = nowTime();
 		
-		console.log('contentMyMessage: ', contentMyMessage);
-		
-		ELEMENT.CHATCONTAINER.append(userContent);
+		ELEMENT.CHAT_CONTAINER.append(userContent);
 		event.target.reset();
 		scrollLastElement()
 	}
