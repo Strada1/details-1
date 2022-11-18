@@ -1,28 +1,24 @@
-/* const template = document.querySelector('#template-massage');
+import { addMessageUI, ELEMENTS } from './UI';
+import { MODAL, openModal } from './modal';
 
-console.log(template.content);
-
-const newElem = template.content.cloneNode(true);
-
-console.log(newElem.querySelector('.massage__text')); */
-import { addMessageUI, createMessage, ELEMENTS } from './UI';
-
-function getCheckMessage(from) {
-  const message = from.value.trim();
-  if (message.length === 0) {
+function getCheckMessage(message) {
+  if (message.trim().length === 0) {
     throw Error('слишком короткое сообщение');
   }
   if (message.length > 20) {
     throw Error('слишком длинное сообщение');
   }
-  return from.value;
+  return message;
 }
 
 function setMessage(event) {
+  // TODO: добавить проверку на ошибку
   event.preventDefault();
-  const message = getCheckMessage(ELEMENTS.INPUT_MESSAGE);
+  const message = getCheckMessage(ELEMENTS.INPUT_MESSAGE.value);
   ELEMENTS.FORM_MESSAGE.reset();
   addMessageUI('я', message, '18:43');
 }
 
 ELEMENTS.FORM_MESSAGE.addEventListener('submit', (event) => setMessage(event));
+
+openModal(MODAL.AUTHORIZATION);

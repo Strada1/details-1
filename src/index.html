@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <script defer src = 'js/modal.js'></script>
   <script type="module" src="js/index.js"></script>
 </head>
 <body>
@@ -39,12 +38,12 @@
           <input class='chat-form__input'
                  placeholder='сообщение...'
                  type='text'>
-          <button class='chat-form__button' type='submit'> > </button>
+          <button class='chat-form__button' type='submit'> <div> > </div> </button>
         </label>
       </form>
     </div>
 
-    <div class="modal hide">
+    <div id='settings' class="modal hide">
       <div class="modal__dialog">
         <div class="modal__content">
           <div class='modal__header'>
@@ -52,15 +51,59 @@
             <div data-modal-close class="modal__close">&times;</div>
           </div>
           <p class='modal__text'>Введите имя</p>
-          <form class='chat-form' >
-            <label class='chat-form__label'>
-              <input class='chat-form__input' placeholder='текст' type='text'>
-              <button class='chat-form__button' type='submit'> > </button>
+          <form class='modal-form' >
+            <label class='modal-form__label'>
+              <input class='modal-form__input' placeholder='текст' type='text'>
+              <button class='modal-form__button' type='submit'> Отправить </button>
             </label>
           </form>
         </div>
       </div>
     </div>
+
+    <div id='authorization' class="modal hide">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class='modal__header'>
+            <p class='modal__title'>авторизация</p>
+            <div data-modal-close class="modal__close">&times;</div>
+          </div>
+          <p class='modal__text'>Введите почту:</p>
+          <form data-authorization-form class='modal-form' >
+            <label class='modal-form__label'>
+              <input
+                data-authorization-input
+                required
+                class='modal-form__input'
+                placeholder='текст'
+                type='email'>
+              <button data-authorization-button
+                      class='modal-form__button'
+                      type='submit'> Получить код </button>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id='confirmation' class="modal hide">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class='modal__header'>
+            <p class='modal__title'>подтверждение</p>
+            <div data-modal-close class="modal__close">&times;</div>
+          </div>
+          <p class='modal__text'>Код:</p>
+          <form class='modal-form' >
+            <label class='modal-form__label'>
+              <input class='modal-form__input' placeholder='текст' type='text'>
+              <button class='modal-form__button' type='submit'> Войти </button>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <template id="template-massage">
@@ -70,5 +113,7 @@
       <div class='massage__time'></div>
     </div>
   </template>
+
+
 </body>
 </html>

@@ -1,38 +1,57 @@
-const UI = {
-  MODAl_TRIGGERS: document.querySelectorAll('[data-modal]'),
-  MODAl_CLOSE: document.querySelector('[data-modal-close]'),
-  MODAL: document.querySelector('.modal'),
-  SETTINGS: document.querySelector('.chat__settings'),
+export const MODAL = {
+  SETTINGS: document.querySelector('#settings'),
+  AUTHORIZATION: document.querySelector('#authorization'),
+  CONFIRMATION: document.querySelector('#confirmation'),
 };
 
-function openModal() {
-  UI.MODAL.classList.add('show');
-  UI.MODAL.classList.remove('hide');
+export const MODAL_DETAILS = {
+  CLOSES: document.querySelectorAll('[data-modal-close]'),
+  ALL_MODAL: document.querySelectorAll('.modal'),
+  FORM_AUTHORIZATION: document.querySelector('[data-authorization-form]'),
+  INPUT_AUTHORIZATION: document.querySelector('[data-authorization-input]'),
+};
+
+export function openModal(modal) {
+  modal.classList.add('show');
+  modal.classList.remove('hide');
   document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
-  UI.MODAL.classList.add('hide');
-  UI.MODAL.classList.remove('show');
+export function closeModal(modal) {
+  modal.classList.add('hide');
+  modal.classList.remove('show');
   document.body.style.overflow = 'scroll';
 }
+export function closeAllModal() {
+  Object.values(MODAL).forEach((modalItem) => closeModal(modalItem));
+}
 
-UI.MODAl_CLOSE.addEventListener('click', () => closeModal());
+MODAL_DETAILS.CLOSES.forEach((item) => {
+  item.addEventListener('click', () => {
+    closeAllModal();
+  });
+});
 
-UI.MODAL.addEventListener('click', (event) => {
+function closingByClickingOut(event) {
   const checkClicksOutside = event.target.classList.contains('modal');
   if (checkClicksOutside) {
-    closeModal();
+    closeAllModal();
   }
+}
+MODAL_DETAILS.ALL_MODAL.forEach((item) => {
+  item.addEventListener('click', (event) => {
+    closingByClickingOut(event);
+  });
 });
 
-document.addEventListener('keydown', (event) => {
-  const checkPushEscape =
-    UI.MODAL.classList.contains('show') && event.code === 'Escape';
-  if (checkPushEscape) {
-    closeModal();
-  }
-});
+function closingByButton(event) {
+  Object.values(MODAL).forEach((modalItem) => {
+    const checkPushEscape =
+      modalItem.classList.contains('show') && event.code === 'Escape';
+    if (checkPushEscape) {
+      closeAllModal();
+    }
+  });
+}
 
-UI.SETTINGS.addEventListener('click', openModal);
-UI.MODAl_CLOSE.addEventListener('click', closeModal);
+document.addEventListener('keydown', (event) => closingByButton(event));
