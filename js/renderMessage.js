@@ -25,16 +25,15 @@ function addMessageToDOM (event) {
 		timeMyMessage.textContent = nowTime();
 		
 		console.log('contentMyMessage: ', contentMyMessage);
-		contentMyMessage.scrollIntoView({block: "end", behavior: "smooth"});
-		// scrollLastElement()
-
+		
 		ELEMENT.CHATCONTAINER.append(userContent);
 		event.target.reset();
+		scrollLastElement()
 	}
 }
 
-// function scrollLastElement() {
-//     const ELEMENTS = document.querySelector(".chat__Container");
-//     const LAST_MESSAGE = ELEMENTS.lastElementChild;
-//     LAST_MESSAGE.scrollIntoView({block: "end", behavior: "smooth"});
-// }
+function scrollLastElement() {
+    const ELEMENTS = document.querySelector(".chat__Container");
+    const LAST_MESSAGE = ELEMENTS.lastElementChild;
+    LAST_MESSAGE.scrollIntoView(false);
+}
