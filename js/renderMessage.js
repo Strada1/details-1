@@ -1,5 +1,4 @@
 import { format } from 'date-fns'
-import { even } from 'prelude-ls';
 import {ELEMENT} from "./view.js";
 
 ELEMENT.SEND_MESSAGE.addEventListener("submit", addMessageToDOM)
