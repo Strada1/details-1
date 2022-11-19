@@ -1,0 +1,86 @@
+:root {
+  --width-max: 800px;
+  --width-min: 320px;
+
+  --page-padding: 20px;
+  --page-padding-min: 8px;
+  --indent: 12px;
+
+  --ff-default: "Roboto", "Arial", sans-serif;
+  --fz-default: 14px;
+  --fz-small: 12px;
+  --lh-default: 1.17;
+
+  --default-black-color: #000000;
+  --default-white-color: #ffffff;
+  --default-red-color: #ff6347;
+  --default-red-lighter-color: #ff907c;
+  --default-red-darker-color: #f04e31;
+  --additional-color: #5c8ab2;
+  --additional-lighter-color: #6994ba;
+  --additional-darker-color: #265681;
+  --bright-color: #39b54a;
+  --bright-lighter-color: #56cf4c;
+  --bright-darker-color: #208b44;
+  --additional-bright-color: #9edcff;
+  --additional-grey-color: #8d9eac;
+  --additional-grey-lighter-color: #b3bac0;
+  --additional-grey-darker-color: #797f83;
+
+  --border-radius: 20px;
+}
+
+@font-face {
+  font-style: normal;
+  font-weight: 400;
+  font-family: "Roboto";
+
+  font-display: swap;
+  src:
+    url("../fonts/Roboto-Regular.woff2") format("woff2"),
+    url("../fonts/Roboto-Regular.woff") format("woff");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+html {
+  font-style: normal;
+  font-weight: 400;
+  font-size: var(--fz-default);
+  line-height: var(--lh-default);
+  font-family: var(--ff-default);
+  color: var(--default-black-color);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  background-color: var(--default-white-color);
+}
+
+input {
+  border-radius: 0;
+}
+
+input::placeholder {
+  opacity: 1;
+}
+
+input:invalid {
+  box-shadow: none;
+}
+
