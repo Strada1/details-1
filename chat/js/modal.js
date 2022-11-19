@@ -112,9 +112,7 @@ class Modal {
 
     if (this.validateForm(inputValue)) {
       inputElement.classList.remove('error-field');
-      const formData = new FormData()
-      formData.append('email', inputValue);
-      //const formData =  { email: inputValue };
+      const formData =  { email: inputValue };
       this.submitForm(formData);
     } else {
       inputElement.classList.add('error-field');
