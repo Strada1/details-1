@@ -33,12 +33,12 @@
     </div>
 
     <div class='chat__footer'>
-      <form class='chat-form' >
+      <form data-message-form class='chat-form' >
         <label class='chat-form__label'>
-          <input class='chat-form__input'
+          <input data-message-input class='chat-form__input'
                  placeholder='сообщение...'
                  type='text'>
-          <button class='chat-form__button' type='submit'> <div> > </div> </button>
+          <button class='chat-form__button' type='submit'> >  </button>
         </label>
       </form>
     </div>
@@ -114,6 +114,13 @@
     </div>
   </template>
 
-
+  <div class='notification notification__close'>
+    <div class='notification__content'>
+      <img src = 'icon/error.png' alt = 'error icon'>
+      <div class='notification__text'>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam architecto asperiores aspernatur distinctio dolorem ea eius est, fugit harum hic ipsa mollitia omnis pariatur praesentium similique voluptate voluptatem? Ducimus, sunt!
+      </div>
+    </div>
+  </div>
 </body>
 </html>

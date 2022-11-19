@@ -6,7 +6,7 @@ export const HTTP_METHOD = {
   GET: 'GET',
   POST: 'POST',
 };
-
+//TODO: попробовать сделать класс для запросов
 export async function sendRequest(method, URL, body = null) {
   const headers = { 'Content-type': 'application/json; charset=utf-8' };
   const response = await fetch(URL, {

@@ -1,6 +1,7 @@
 import { addMessageUI, ELEMENTS } from './UI';
 import { MODAL, openModal } from './modal';
-
+import { callNotification } from './notification';
+// TODO: добавить в переменные сообщения ошибок
 function getCheckMessage(message) {
   if (message.trim().length === 0) {
     throw Error('слишком короткое сообщение');
@@ -12,13 +13,16 @@ function getCheckMessage(message) {
 }
 
 function setMessage(event) {
-  // TODO: добавить проверку на ошибку
-  event.preventDefault();
-  const message = getCheckMessage(ELEMENTS.INPUT_MESSAGE.value);
-  ELEMENTS.FORM_MESSAGE.reset();
-  addMessageUI('я', message, '18:43');
+  try {
+    event.preventDefault();
+    const message = getCheckMessage(ELEMENTS.INPUT_MESSAGE.value);
+    ELEMENTS.FORM_MESSAGE.reset();
+    addMessageUI('я', message, '18:43');
+  } catch (error) {
+    callNotification(error.message);
+  }
 }
 
 ELEMENTS.FORM_MESSAGE.addEventListener('submit', (event) => setMessage(event));
 
-openModal(MODAL.AUTHORIZATION);
+window.onload = () => openModal(MODAL.AUTHORIZATION);

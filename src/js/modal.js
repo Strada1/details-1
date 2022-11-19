@@ -3,6 +3,10 @@ export const MODAL = {
   AUTHORIZATION: document.querySelector('#authorization'),
   CONFIRMATION: document.querySelector('#confirmation'),
 };
+const MODAL_STATUS = {
+  OPEN: 'show',
+  CLOSE: 'hide',
+};
 
 export const MODAL_DETAILS = {
   CLOSES: document.querySelectorAll('[data-modal-close]'),
@@ -10,16 +14,16 @@ export const MODAL_DETAILS = {
   FORM_AUTHORIZATION: document.querySelector('[data-authorization-form]'),
   INPUT_AUTHORIZATION: document.querySelector('[data-authorization-input]'),
 };
-
+// строки в константы
 export function openModal(modal) {
-  modal.classList.add('show');
-  modal.classList.remove('hide');
+  modal.classList.add(MODAL_STATUS.OPEN);
+  modal.classList.remove(MODAL_STATUS.CLOSE);
   document.body.style.overflow = 'hidden';
 }
 
 export function closeModal(modal) {
-  modal.classList.add('hide');
-  modal.classList.remove('show');
+  modal.classList.add(MODAL_STATUS.CLOSE);
+  modal.classList.remove(MODAL_STATUS.OPEN);
   document.body.style.overflow = 'scroll';
 }
 export function closeAllModal() {
@@ -47,7 +51,8 @@ MODAL_DETAILS.ALL_MODAL.forEach((item) => {
 function closingByButton(event) {
   Object.values(MODAL).forEach((modalItem) => {
     const checkPushEscape =
-      modalItem.classList.contains('show') && event.code === 'Escape';
+      modalItem.classList.contains(MODAL_STATUS.OPEN) &&
+      event.code === 'Escape';
     if (checkPushEscape) {
       closeAllModal();
     }

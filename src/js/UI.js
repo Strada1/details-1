@@ -1,9 +1,10 @@
 import { MODAL, MODAL_DETAILS, openModal, closeAllModal } from './modal';
 import { sendRequest, HTTP_METHOD, URLS } from './request';
-
+import { callNotification } from './notification';
+// TODO: передалать классы
 export const ELEMENTS = {
-  FORM_MESSAGE: document.querySelector('.chat__footer>.chat-form'),
-  INPUT_MESSAGE: document.querySelector('.chat__footer .chat-form__input'),
+  FORM_MESSAGE: document.querySelector('[data-message-form]'),
+  INPUT_MESSAGE: document.querySelector('[data-message-input]'),
   TEMPLATE: document.querySelector('#template-massage'),
   LIST_MESSAGE: document.querySelector('.chat__main'),
   BUTTON_SETTINGS: document.querySelector('.chat__settings'),
@@ -34,6 +35,5 @@ MODAL_DETAILS.FORM_AUTHORIZATION.addEventListener('submit', (event) => {
       closeAllModal();
       openModal(MODAL.CONFIRMATION);
     })
-    // TODO: окно для ошибок
-    .catch((error) => console.log(error));
+    .catch((error) => callNotification(error.message));
 });

@@ -216,4 +216,33 @@ body {
   background-color: rgba(80, 201, 103, 0.8);
 }
 
+.notification {
+  transition: top 1s;
+  padding: 20px;
+  border: 1px solid red;
+  position: absolute;
+  width: 320px;
+  max-height: 100px;
+}
+.notification__content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.notification img {
+  display: block;
+  width: 15%;
+  object-fit: cover;
+}
+.notification__text {
+  max-height: 40px;
+  overflow: hidden;
+}
+.notification__close {
+  top: -100px;
+}
+.notification__active {
+  top: 15px;
+}
+
 /*# sourceMappingURL=index.css.map */
