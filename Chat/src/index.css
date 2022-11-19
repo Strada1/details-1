@@ -1,0 +1,208 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  list-style-type: none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: black;
+}
+
+.delivered {
+  background-color: #e5e5e5;
+}
+
+.sent {
+  background-color: #f7f7f7;
+}
+
+body {
+  height: 100%;
+  background-color: white;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  height: 533px;
+  border: 1px solid black;
+  margin: 200px auto;
+  padding: 10px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: white;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+button:hover {
+  background-color: #e5e5e5;
+  cursor: pointer;
+}
+
+.close {
+  border: none;
+  font-size: 24px;
+  opacity: 0.6;
+  color: black;
+  transform: rotate(-45deg);
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+}
+
+form input {
+  flex: 0.95 0;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 437px;
+  border: 1px solid black;
+  padding: 5px;
+  margin-bottom: 5px;
+  overflow-y: auto;
+}
+
+.chat .me {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.chat .he {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin: 5px;
+  padding: 5px;
+}
+
+.message span {
+  font-weight: 300px;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+/* POPUP */
+.popup {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 2;
+  display: none;
+}
+
+.popup.active {
+  display: block;
+}
+
+.popup_container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+/* SETTINGS */
+
+.settings {
+  width: 273px;
+  height: 319px;
+  background-color: white;
+  padding: 10px;
+  margin: auto;
+}
+
+.settings_top {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+/* AUTH */
+
+.auth {
+  width: 273px;
+  height: 319px;
+  background-color: white;
+  padding: 10px;
+  margin: auto;
+}
+
+.auth_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.email form {
+  display: flex;
+  flex-direction: column;
+}
+
+.email form button {
+  margin-top: 10px;
+}
+
+/* CONFIRM */
+
+.confirm {
+  width: 273px;
+  height: 319px;
+  background-color: white;
+  padding: 10px;
+  margin: auto;
+}
+
+.confirm_top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.code form {
+  display: flex;
+  flex-direction: column;
+}
+
+.code form button {
+  margin-top: 10px;
+}
