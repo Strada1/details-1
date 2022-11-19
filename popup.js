@@ -12,5 +12,4 @@ settingsButton.addEventListener('click', () => {
 popupNameCloseButton.addEventListener('click', () => {
     popupName.classList.add('popup__hidden');
     wrapper.classList.remove('wrapper__dark');
-
 })

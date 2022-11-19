@@ -153,6 +153,7 @@ button {
     background-color: #E5E5E5;
     padding: 8px;
     margin-bottom: 8px;
+    max-width: 270px;
 }
 
 .time {
