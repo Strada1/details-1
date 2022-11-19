@@ -1,3 +1,8 @@
+//TODO:
+//Разбить на модули
+//Автоматическая прокрутка мыши к низу
+//Прижатие маленького кол-ва сообщений к низу
+
 import { getHours, getMinutes } from 'date-fns';
 
 const chat = document.querySelector('#chat');
@@ -14,10 +19,11 @@ const confirm = document.querySelector('#confirm');
 const sentMessage = document.querySelector('#sent_message');
 const sentEmail = document.querySelector('#sent_email');
 const sentCode = document.querySelector('#sent_code');
+const sentName = document.querySelector('#sent_name');
 
 const message = document.querySelector('#message');
 
-const myName = 'Я';
+let myName = 'Я';
 const heName = 'Мой собеседник';
 
 function sendMessage(name, text) {
@@ -44,6 +50,32 @@ function sendMessage(name, text) {
   temp.querySelector('span').textContent = time;
 
   chat.appendChild(temp);
+}
+
+function getToken() {
+  const nameAndToken = document.cookie.split('=');
+  return nameAndToken[1];
+}
+
+function checkToken() {
+  const token = getToken();
+
+  if (token) {
+    openLogin.replaceChildren('Выйти');
+    getName();
+  }
+}
+
+function getName() {
+  fetch('https://edu.strada.one/api/user/me', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: 'Bearer ' + getToken(),
+    },
+  })
+    .then((response) => response.json())
+    .then((result) => (myName = result.name));
 }
 
 openSettings.addEventListener('click', (event) => {
@@ -74,30 +106,61 @@ closeConfirm.addEventListener('click', (event) => {
 sentEmail.addEventListener('submit', (event) => {
   event.preventDefault();
   const textEmail = sentEmail.children[0].value;
-
-  auth.classList.remove('active');
-  confirm.classList.add('active');
   fetch('https://edu.strada.one/api/user', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
+      Authorization: 'Bearer ' + getToken(),
     },
     body: JSON.stringify({ email: textEmail }),
   })
     .then((response) => response.json())
-    .then((result) => console.log(result));
+    .then((result) => {
+      if (result.status > 400) {
+        throw new Error(result.error);
+      } else {
+        auth.classList.remove('active');
+        confirm.classList.add('active');
+      }
+    })
+    .catch((e) => {
+      alert(e.message);
+    });
 });
 
 sentCode.addEventListener('submit', (event) => {
   event.preventDefault();
+  const tokenValue = sentCode.children[0].value;
+  document.cookie = `token=${tokenValue}`;
+  checkToken();
   confirm.classList.remove('active');
+});
+
+sentName.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const newName = sentName.children[0].value;
+  fetch('https://edu.strada.one/api/user', {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      Authorization: 'Bearer ' + getToken(),
+    },
+    body: JSON.stringify({ name: newName }),
+  })
+    .then((response) => response.json())
+    .then((result) => (myName = result.name));
+  getName();
+  settings.classList.remove('active');
 });
 
 sentMessage.addEventListener('submit', (event) => {
   event.preventDefault();
-  let textMessage = sentMessage.children[0].value;
+  const textMessage = sentMessage.children[0].value;
   if (textMessage.length > 0) {
     sendMessage(myName, textMessage);
     sentMessage.children[0].value = '';
   }
 });
+
+getToken();
+checkToken();
