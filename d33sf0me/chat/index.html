@@ -19,7 +19,9 @@
                 
             </div>
             <div>
+
                 <div class="messagesArea">
+                    
                     <div class="message">
                         <div class="message__inner">
                             <p class="message__text">
@@ -47,7 +49,6 @@
                             </p>
                             <p class="message__time">18:45</p>
                         </div>
-
                     </div>
                     <div class="message message--sent">
                         <div class="message__inner">
@@ -56,10 +57,11 @@
                             </p>
                             <p class="message__time">18:45</p>
                         </div>
-                </div>
+                    </div>
+                 
             </div>
             <div>
-                <form action="" class="chat__form">
+                <form action="" class="chat__form" id="myForm">
                     <input type="text" class="chat__input" placeholder="Message">
                     <button class="chat__button"></button>
                 </form>
@@ -78,12 +80,22 @@
                     <h3 class="popup__title" >
                         Имя в чате
                     </h3>
-                    <form action="" class="chat__form" id="ChatName">
-                        <input type="text" class="chat__input" placeholder="Pavel Durov">
+                    <form action="" class="chat__form">
+                        <input type="text" class="ChatName" placeholder="Pavel Durov">
                         <button class="chat__button"></button>
                     </form>
                 </div>
         </div>
     </div>
+<template id="tmpl">
+    <div class="message message--sent">
+        <div class="message__inner">
+            <p class="message__text">
+            </p>
+            <p class="message__time">
+            </p>
+        </div>
+    </div>
+</template>
     <script src="index.js"></script>
 </body>
