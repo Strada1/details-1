@@ -65,4 +65,3 @@ async function getDataUser() {
 }
 
 export { getDataUser }
-

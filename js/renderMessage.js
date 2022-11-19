@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
 import {ELEMENT} from "./view.js";
-import { getDataUser } from "./authorization.js";
+// import { getDataUser } from "./authorization.js";
 
 ELEMENT.SEND_MESSAGE.addEventListener("submit", addMessageToDOM)
 
@@ -12,7 +12,7 @@ function nowTime() {
 function addMessageToDOM (event) {
 	event.preventDefault();
 	const message = ELEMENT.INPUT_MESSAGE.value;
-	const userName = getDataUser().name
+	// const userName = getDataUser().name
 
 	if(!message) {
 		alert('Пустая строка, введите сообщение!')
@@ -22,7 +22,7 @@ function addMessageToDOM (event) {
 		const contentMyMessage = userContent.querySelector(".text__my__SMS")
 		const timeMyMessage = userContent.querySelector(".time__SMS")
 
-		contentMyMessage.textContent = `${userName}: ${message}`;
+		contentMyMessage.textContent = `${message}`;
 		timeMyMessage.textContent = nowTime();
 		
 		ELEMENT.CHAT_CONTAINER.append(userContent);
