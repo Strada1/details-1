@@ -13,6 +13,7 @@ export const POPUP = {
 	GET_COD: document.querySelector('.popup__authorization__button'),
 	INPUT: document.querySelector('.popup__authorization__input'),
 	CLOSE_SETTINGS: document.querySelector('.popup__setings__button__exit'),
+	INPUT_NAME: document.querySelector('.popup__setings__input'),
 	SAVE_NAME: document.querySelector('.popup__setings__button'),
 	CLOSE_AUTHORIZATION: document.querySelector('.popup__authorization__button__exit'),
 	SETTINGS: document.getElementById("popupSetings"),

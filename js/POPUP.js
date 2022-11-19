@@ -14,7 +14,7 @@ export function openPopupSettings() {
 	POPUP.SETTINGS.classList.add('open')
 }
 
-function closePopupSettings() {
+export function closePopupSettings() {
 	POPUP.SETTINGS.className = "popup__setings"
 }
 

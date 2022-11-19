@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
 import { POPUP } from "./view"
-import {openPopupSettings, closePopupConfirmation} from "./POPUP"
+import {openPopupSettings, closePopupSettings, closePopupConfirmation} from "./POPUP"
 
 POPUP.GET_COD.addEventListener('click', sendCod)
 POPUP.LOGIN.addEventListener('click', loginSetCookie)
@@ -35,16 +35,34 @@ function loginSetCookie(event) {
 async function setName(event) {
 	event.preventDefault();
 	console.log("start")
-
+	const name = POPUP.INPUT_NAME.value.trim()
 	const response = await fetch('https://edu.strada.one/api/user', {
 		method: 'PATCH',
 		headers: {
 			'Content-Type': 'application/json',
 			'Authorization': `Bearer ${Cookies.get('authorizationCod')}`
-		}
+		},
+		body: JSON.stringify({ name: `${name}` })
 	})
 	const result = await response.json();
 	console.log('result: ', result);
 	console.log('response: ', response.ok);
+
+	closePopupSettings()
+	getDataUser()
 }
+
+async function getDataUser() {
+	const response = await fetch('https://edu.strada.one/api/user/me', {
+		method: 'GET',
+		headers: {
+			'Content-Type': 'application/json;charset=utf-8',
+			'Authorization': `Bearer ${Cookies.get('authorizationCod')}`
+		}
+	})
+	const result = await response.json();
+	return result
+}
+
+export { getDataUser }
 
