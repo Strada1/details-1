@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import { POPUP } from "./view"
+import { POPUP } from "./const"
 import {openPopupSettings, closePopupSettings, closePopupConfirmation} from "./POPUP"
 
 POPUP.GET_COD.addEventListener('click', sendCod)
@@ -61,7 +61,6 @@ async function getDataUser() {
 		}
 	})
 	const result = await response.json();
-	return result
+	console.log('result: ', result);
+	console.log('response: ', response.ok);
 }
-
-export { getDataUser }

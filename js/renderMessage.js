@@ -1,6 +1,6 @@
 import { format } from 'date-fns'
-import {ELEMENT} from "./view.js";
-// import { getDataUser } from "./authorization.js";
+import {ELEMENT} from "./const.js";
+
 
 ELEMENT.SEND_MESSAGE.addEventListener("submit", addMessageToDOM)
 

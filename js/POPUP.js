@@ -1,5 +1,5 @@
-import {ELEMENT} from "./view.js"
-import { POPUP } from "./view"
+import {ELEMENT} from "./const.js"
+import { POPUP } from "./const"
 
 ELEMENT.SETTINGS.addEventListener('click', openPopupSettings)
 POPUP.CLOSE_SETTINGS.addEventListener('click', closePopupSettings)
