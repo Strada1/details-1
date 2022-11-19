@@ -9,18 +9,22 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Strada1/details-1.git"
+    "url": "git+https://github.com/Strada1/details-1/tree/meVarensev/details-38/Chat"
   },
   "author": "meVarensev",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Strada1/details-1/issues"
   },
-  "homepage": "https://github.com/Strada1/details-1#readme",
+  "homepage": "https://github.com/Strada1/details-1/blob/meVarensev/details-38/Chat/README.md",
   "devDependencies": {
     "eslint": "^8.27.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "js-cookie": "^3.0.1"
   }
 }

@@ -5,7 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/styleAuth.css">
+    <link rel="stylesheet" href="style/styleConfirm.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,41 +17,99 @@
 </head>
 <body>
 
-<div class="container">
+<div class="auth__bg">
+    <div class="auth">
+        <div id="auth-header">
+            <span>Авторизация</span>
+            <button class="close-auth" id="exit-auth">+</button>
+        </div>
 
-    <div class="buttonHeader">
-        <button id="setting">Настройки</button>
-        <button id="exit">Выйти</button>
+        <div class="content-auth">
+            <span>Почта: </span>
+
+            <div>
+                <!--                    action="" method="post"-->
+                <form id="form-auth">
+                    <input class="input-auth" type="email"  placeholder="Введите почту">
+                    <div>
+                        <button class="post-auth" type="submit" >Получить код</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
     </div>
+</div>
 
-    <div class="content">
 
-                <div class="content-message ">
+<div class="confirm__bg">
+    <div class="confirm">
+        <div id="confirm-header">
+            <span>Подтверждение</span>
+            <button class="close-confirm" id="exit-confirm">+</button>
+        </div>
 
-                    <div class="interlocutor">
-                        <span>Собеседник мой: </span><span>А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке </span>
+        <div class="content-auth">
+            <span>Код: </span>
+            <div>
+                <form id="form-confirm" action="" >
+                    <input class="input-confirm" type="text" name="name" placeholder="Введите код">
+                    <div>
+                        <button class="post-confirm" type="submit">Войти</button>
                     </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
-                    <div class="flex-me-end">
-                        <div class="me">
-                            <span>Я: </span><span> Добрый день!</span>
+<div class="container">
+    <div class="chat">
+        <div class="buttonHeader">
+            <button id="setting">Настройки</button>
+            <button id="exit">Выйти</button>
+        </div>
+
+        <div class="content">
+
+            <div class="flex-end">
+                <div class="content-message">
+
+                    <template class="client-message">
+                        <div class="interlocutor">
+                            <span class="no-select">Собеседник мой: </span><span class="client-span-message">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At ducimus explicabo incidunt ipsum iusto officiis provident temporibus vel? Assumenda ipsum laboriosam modi nihil quas repellendus repudiandae saepe sequi temporibus ut!А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке </span>
+                            <p class="date-interlocutor no-select">22:00</p>
                         </div>
-                    </div>
+                    </template>
+
+                    <template class="user-message">
+                        <div class="flex-me-end">
+                            <div class="me">
+                                <span class="no-select">Я:  </span><span class="user-span-message"></span>
+                                <p class="date-me no-select">22:00</p>
+                            </div>
+                        </div>
+                    </template>
 
                 </div>
 
-    </div>
-    <div>
-        <form action="" method="post">
-            <input id="post-name" type="text" name="name" placeholder="сообщение...">
-            <button id="sentMessage" type="submit">-></button>
-        </form>
+            </div>
+
+        </div>
+
+        <div>
+            <!--action="" method="post" type="submit"-->
+            <form  id="setMessage"  type="reset" onsubmit = return false;>
+                <input id="post-name" type="text"  placeholder="сообщение...">
+                <button id="sentMessage"  type="submit">-></button>
+            </form>
+        </div>
     </div>
 
 </div>
 
 <div class="popup__bg">
-    <form class="popup">
+    <div class="popup">
         <div id="popup-header">
             <span>Настройки</span>
             <button class="close-popup" id="exit-popup">+</button>
@@ -58,15 +118,19 @@
         <div class="content-popup">
              <span id="s">Имя в чате</span>
                 <div>
-                    <form id="form-popup" action="" method="post">
+                    <form id="form-popup" action="" >
                         <input class="input-popup" type="text" name="name" placeholder="...">
-                        <button class="post-popup" type="submit">-></button>
+                        <div>
+                            <button class="post-popup" type="submit">-></button>
+                        </div>
                     </form>
                 </div>
         </div>
-    </form>
+    </div>
 </div>
 
-<script src="popup.js"></script>
+<script type="module" src="main.js"></script>
+<script type="module" src="authorization.js"></script>
+<script type="module" src="popup.js"></script>
 </body>
 </html>
