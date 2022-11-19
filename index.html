@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strada Chat</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link type="Image/x-icon" href="./images/chat-bubble.png" rel="icon">
+</head>
+<body>
+    <div class="wrapper">
+        
+        <div class="container-header">
+            <button class="btn btn-setting" type="button">Настройки</button>
+            <img class="chat-img" src="./images/strada.png">
+            <span class="chat-detailes">Strada | Детали #1 <br/>Собственный чат</span>
+            <img class="my-nik-img active" src="./images/my-nik.png">
+            <span class="my-nik-detailes active">Dmitry S</span>
+            <div class="date-container">
+                <span class="date-time"></span>
+                <span class="date-day"></span>
+            </div>
+            <button class="btn btn-exit" type="button">Выйти</button>
+        </div>
+    
+        <div class="container-main active"></div>
+
+        <div class="arrow-down"></div>
+       
+        <svg height="0" width="0">
+            <defs>
+                <clipPath id="svgPathMy">
+                    <path fill="#FFFFFF" d="M20,20H0V0H0A20,20,0,0,0,20,20Z"/>
+                </clipPath>
+            </defs>
+        </svg>
+
+        <svg height="0" width="0">
+            <defs>
+                <clipPath id="svgPath">
+                    <path fill="#FFFFFF" d="M20,0L20,0v20H0C11,20,20,11,20,0z"/>
+                </clipPath>
+            </defs>
+        </svg>
+
+        <form class="container-footer">
+            <input class="message-input" type="text" placeholder=" Написать сообщение..." autofocus/>
+            <button class="btn btn-enter" type="submit">>></button>
+        </form>
+        
+        <div class="pop_up">
+            <div class="pop_up_container">
+                <div class="pop_up_body">
+                    <p class="error_text"></p>
+                    <button class="pop_up_close">
+                        <svg width="17" height="16" viewBox="0 0 17 16" fill="grey" xmlns="http://www.w3.org/2000/svg">
+                            <line y1="-0.5" x2="20.7803" y2="-0.5" transform="matrix(0.710506 0.703691 -0.65218 0.758064 1 1)" stroke="grey"/>
+                            <line y1="-0.5" x2="20.8155" y2="-0.5" transform="matrix(0.693335 -0.720616 0.670126 0.742247 1.56787 16)" stroke="grey"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper-login-box">
+        <div class="login-box">
+            <h2>Авторизация</h2>
+            <form>
+                <div class="user-box">
+                    <input type="email" class="login-mail" required="">
+                    <label>Почта</label>
+                </div>
+                <div class="btn-control">
+                    <a href="#login" class="login">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Получить код              
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="wrapper-signin-box">
+        <div class="login-box">
+            <h2>Подтверждение</h2>
+            <form>
+                <div class="user-box">
+                    <input type="text" class="sign-code" required="">
+                    <label>Код</label>
+                </div>
+                <div class="btn-control">
+                    <a href="#" class="sign-in-toggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Войти
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="wrapper-setting-box">
+        <div class="login-box">
+            <h2>Настройки</h2>
+            <form>
+                <div class="user-box">
+                    <input type="text" class="nik-name" required="">
+                    <label>Имя в чате</label>
+                </div>
+                <div class="btn-control">
+                    <a href="#" class="change">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Установить              
+                    </a>
+                </div>
+            </form>
+                <div class="user-box">
+                    <input type="text" name="" class="chat-theme" required="">
+                    <label>Тема чата</label>
+                </div>
+                <div class="btn-control">
+                    <div class="wrapper-btn-mono">
+                        <span class="poster-theme-mono active">тема монохром</span>
+                        <button  class="btn-theme-mono active"></button>
+                    </div>
+                    <div class="wrapper-btn-color">
+                        <span class="poster-theme-color">цветная тема</span>
+                        <button  class="btn-theme-color"></button>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+</html>
+
+<!-- html генерируемых в js элементов -->
+
+<!-- <div class="message-wrapper">
+    <img src="" class="nik-img" alt="nik-img"/>
+    <div class="incoming-message theme">  
+        <span class="nik-from">Yaroslav Shishkin</span>
+        <span class="message-text">
+            Curabitur euismod porta bubble-message themeum. Proin rutrum in.s pulvinar. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </span>
+        <span class="data-time">11:45</span>
+    </div>
+</div>
+
+<div class="my-message theme" data-time="11:45">
+    <span class="message-text">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+    </span>    
+    <span class="data-time">11:45</span>
+</div>
+ -->
