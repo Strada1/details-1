@@ -1,0 +1,18 @@
+export const ELEMENTS = {
+  SETTINGS_WRAPPER: document.querySelector('.settings_wrapper'),
+  BTN_SETTINGS: document.querySelector('.btn-settings'),
+  CLOSE_WINDOW: document.querySelector('.close-window'),
+  MAIN_BLOCK: document.querySelector('.main-block'),
+  FORM: document.querySelector('form'),
+  MY_MESSAGE_INPUT: document.querySelector('.my_message-input'),
+  TEMPLATE_MY_MESSAGE: document.getElementById('template_my_message'),
+  MESSAGE_WINDOW: document.querySelector('.message-window'),
+  CLOSE_BTNS: document.querySelectorAll('.close-window'),
+  AUTHORIZATION: document.querySelector('.settings_wrapper.sign-in'),
+  MAIL_INPUT: document.querySelector('.mail_input'),
+  BTN_MAIL_SEND: document.querySelector('.btn_mail_send'),
+  CODE_INPUT: document.querySelector('.code_input'),
+  BTN_CODE_SEND: document.querySelector('.btn_code_send'),
+  CODE_WINDOW: document.querySelector('.settings_wrapper.code_window'),
+  URL: 'https://edu.strada.one/api/user',
+};
