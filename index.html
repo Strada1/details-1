@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Chat </title>
+    <link rel="stylesheet" href="./style.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900italic,900' rel='stylesheet' type='text/css'>
+</head>
+<body>
+    <div class="container">
+        <div class="controlling">
+            <div class="settings">
+                <button class="open-popup" id="settings">
+                    <span>Настройки</span>
+                </button>
+            </div>
+            <div class="exit">
+                <button id="exit">
+                    <span>Выход</span>
+                </button>
+            </div>
+        </div>
+        <div class="chat">
+            
+            <div class="friend-message">
+                <div class="message-container">
+                    <span class="friend-message1"> Собеседник: А это второе и, кажется оно очень длинное, чтобы поместиться в одной строчке</span>
+                </div>
+                <div class="time-container">
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="friend-message">
+                <div class="message-container">
+                    <span class="friend-message1"> Собеседник: Добрый день!</span>
+                </div>
+                <div class="time-container">
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+            <div class="my-message">
+                <div class="message-container">
+                    <span class="my-message1"> Я: Добрый день!</span>
+                </div>
+                <div class="time-container">
+                    <span class="time">18:45</span>
+                </div>
+            </div>
+        </div>
+        <div class="message">
+            <form class="form-text">
+                <input id="text-message" placeholder="сообщение..." type="text">
+                <button id="send">
+                    <span> -> </span>
+                </button>
+            </form>
+        </div>
+        <div class="popup__bg"> 
+            <form class="popup">
+                <span class="close-popup"> X </span>
+                <span>Настройки</span>
+            
+                <div class="name-span">
+                    <span>Имя в чате</span>
+                </div>
+
+                <div class="name-inp">
+                    <input id="name-input" placeholder="ваше имя..." type="text">
+                    <button id="name-button">
+                        <span> -> </span>
+                    </button>
+                </div>
+            </form>
+        </div>  
+        <div class="popup__bg_auth"> 
+            <form class="popup_auth">
+                <span class="close-popup-auth"> X </span>
+                <span class="auth">Авторизация</span>
+            
+                <div class="email-span">
+                    <span>Почта</span>
+                </div>
+                <div class="email-inp">
+                    <input id="email-input" placeholder="Введите почту" type="text">
+                    <button id="email-button">
+                        <span> -> </span>
+                    </button>
+                </div>
+            </form>
+        </div> 
+        <div class="popup__bg_kod"> 
+            <form class="popup_kod">
+                <span class="close-popup-kod"> X </span>
+                <span> Подтверждение </span>
+            
+                <div class="kod-span">
+                    <span> Код </span>
+                </div>
+                
+                <div class="kod-inp">
+                    <input id="kod-input" placeholder="Введите почту" type="text">
+                    <button id="kod-button">
+                        <span> -> </span>
+                    </button>
+                </div>                
+            </form>
+        </div> 
+    </div>
+    <template id="my-msg">
+        <div class="my-message">
+            <div class="message-container">
+                <span class="my-message1"> Я: Добрый день!</span>
+            </div>
+            <div class="time-container">
+                <span class="time">18:45</span>
+            </div>
+        </div>
+    </template>
+    <template id="friend-msg">
+        <div class="friend-message">
+            <div class="message-container">
+                <span class="friend-message1"> Собеседник: А это второе и, кажется оно очень длинное, чтобы поместиться в одной строчке</span>
+            </div>
+            <div class="time-container">
+                <span class="time">18:45</span>
+            </div>
+        </div>
+    </template>
+    <script type="module" src="./popup.js"></script>
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
