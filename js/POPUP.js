@@ -10,7 +10,7 @@ POPUP.CLOSE_AUTHORIZATION.addEventListener('click', closePopupAuthorization)
 POPUP.GET_COD.addEventListener('click', openPopupConfirmation)
 POPUP.CLOSE_CONFIRMATION.addEventListener('click', closePopupConfirmation)
 
-function openPopupSettings() {
+export function openPopupSettings() {
 	POPUP.SETTINGS.classList.add('open')
 }
 
@@ -31,7 +31,7 @@ function openPopupConfirmation() {
 	POPUP.CONFIRMATION.classList.add('open')
 }
 
-function closePopupConfirmation() {
+export function closePopupConfirmation() {
 	POPUP.CONFIRMATION.className = "popup__confirmation"
 }
 
