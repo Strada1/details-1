@@ -51,9 +51,12 @@
             <div data-modal-close class="modal__close">&times;</div>
           </div>
           <p class='modal__text'>Введите имя</p>
-          <form class='modal-form' >
+          <form data-settings-form  class='modal-form' >
             <label class='modal-form__label'>
-              <input class='modal-form__input' placeholder='текст' type='text'>
+              <input data-settings-input  required
+                     class='modal-form__input'
+                     placeholder='текст'
+                     type='text'>
               <button class='modal-form__button' type='submit'> Отправить </button>
             </label>
           </form>
@@ -94,9 +97,14 @@
             <div data-modal-close class="modal__close">&times;</div>
           </div>
           <p class='modal__text'>Код:</p>
-          <form class='modal-form' >
+          <form data-confirmation-form class='modal-form' >
             <label class='modal-form__label'>
-              <input class='modal-form__input' placeholder='текст' type='text'>
+              <input
+                required
+                data-confirmation-input
+                class='modal-form__input'
+                placeholder='token'
+                type='text'>
               <button class='modal-form__button' type='submit'> Войти </button>
             </label>
           </form>
@@ -118,7 +126,6 @@
     <div class='notification__content'>
       <img src = 'icon/error.png' alt = 'error icon'>
       <div class='notification__text'>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam architecto asperiores aspernatur distinctio dolorem ea eius est, fugit harum hic ipsa mollitia omnis pariatur praesentium similique voluptate voluptatem? Ducimus, sunt!
       </div>
     </div>
   </div>

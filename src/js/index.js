@@ -1,6 +1,7 @@
 import { addMessageUI, ELEMENTS } from './UI';
 import { MODAL, openModal } from './modal';
 import { callNotification } from './notification';
+import { isTokenAppStart } from './cookie';
 // TODO: добавить в переменные сообщения ошибок
 function getCheckMessage(message) {
   if (message.trim().length === 0) {
@@ -25,4 +26,6 @@ function setMessage(event) {
 
 ELEMENTS.FORM_MESSAGE.addEventListener('submit', (event) => setMessage(event));
 
-window.onload = () => openModal(MODAL.AUTHORIZATION);
+if (!isTokenAppStart()) {
+  window.onload = () => openModal(MODAL.AUTHORIZATION);
+}

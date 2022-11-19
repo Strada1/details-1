@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Strada1/details-1/issues"
   },
-  "homepage": "https://github.com/Strada1/details-1#readme"
+  "homepage": "https://github.com/Strada1/details-1#readme",
+  "dependencies": {
+    "js-cookie": "^3.0.1"
+  }
 }

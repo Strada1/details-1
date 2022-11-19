@@ -13,8 +13,12 @@ export const MODAL_DETAILS = {
   ALL_MODAL: document.querySelectorAll('.modal'),
   FORM_AUTHORIZATION: document.querySelector('[data-authorization-form]'),
   INPUT_AUTHORIZATION: document.querySelector('[data-authorization-input]'),
+  FORM_CONFIRMATION: document.querySelector('[data-confirmation-form]'),
+  INPUT_CONFIRMATION: document.querySelector('[data-confirmation-input]'),
+  FORM_SETTINGS: document.querySelector('[data-settings-form]'),
+  INPUT_SETTINGS: document.querySelector('[data-settings-input]'),
 };
-// строки в константы
+
 export function openModal(modal) {
   modal.classList.add(MODAL_STATUS.OPEN);
   modal.classList.remove(MODAL_STATUS.CLOSE);
