@@ -1,3 +1,5 @@
+import { AUTH } from './auth.js';
+
 window.addEventListener("DOMContentLoaded", () => {
     addListener('.settings');
     addListener('.exit');
@@ -9,7 +11,9 @@ window.addEventListener("DOMContentLoaded", () => {
         msg.value = '';
 
     });
-    showPopUp('.auth');
+    if (!document.cookie) {
+        showPopUp('.auth');
+    }
 });
 
 function showPopUp(className) {
@@ -23,7 +27,24 @@ function showPopUp(className) {
             hidePopUp(className);
             autorize(e);            
         });
+    } else if (className === '.response') {
+        tag.children[2].addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.cookie = `${e.target[0].value}; max-age=60`;
+            hidePopUp(className);
+            setName(e.target[0].value);
+        });
     }
+}
+
+function setName(token) {
+    showPopUp('.settings');
+    document.querySelector('.settings-menu').addEventListener('submit', (e) => {
+        e.preventDefault();
+        hidePopUp('.response');
+        console.log(e.target[0].value);
+        sendUser(token, e.target[0].value);
+    })
 }
 
 function addListener(className) {
@@ -39,15 +60,18 @@ function hidePopUp(className) {
     main.classList.remove('blur');
 }
 
-function autorize(e) {
+async function autorize(e) {
     e.preventDefault();
-    showPopUp('.response');
+    let email = document.querySelector('#autorize').children[0].value;
+    response(email);
+    
 }
 
 function sendMessage(message) {
     const div = createChild('div', 'my_messages');
     const msg = createChild('span', null, `Я: ${message}`);
-    const time = createChild('span', 'time');
+    let date = new Date();
+    const time = createChild('span', 'time', `${date.getHours()}:${date.getMinutes()}`);
     const msgBox = createChild('div', 'message_send');
     div.prepend(msgBox);
     msgBox.prepend(time);
@@ -60,4 +84,46 @@ function createChild(tag, className, content) {
     tag.className = className;
     if (Boolean(content)) tag.textContent = content;
     return tag;
+}
+
+async function response(mail) {
+    let result;
+    try{
+        result = await fetch(AUTH, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8',
+            },
+            body: JSON.stringify({'email': mail}),
+        });
+    } catch(err) {
+        console.log(err);
+    }
+    if (result.ok) {
+        showPopUp('.response');
+    } else {
+        alert(`Произошла ошибка: ${result.message}`)
+    } 
+}
+
+async function sendUser(token, myname) {
+    let result;
+    try {
+        result = await fetch(AUTH, {
+            method: 'PATCH',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({'name': myname}),
+        });
+    } catch (err) {
+        console.log(err);
+    }
+
+    if (result.ok) {
+        hidePopUp('.settings');
+    }
+    else {
+        showPopUp('.auth');
+    }
 }

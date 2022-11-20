@@ -79,12 +79,13 @@ body {
 .my_messages {
     display: flex;
     flex-direction: row-reverse;
-    text-align: right;
     margin: 8px;
+    padding-left: 15px;
 }
 
 .other_messages {
     margin: 8px;
+    padding-right: 15px;
 }
 
 .form {
