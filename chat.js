@@ -1,59 +1,78 @@
+import { cookieGet, cookieSet } from "./cookie.js";
+import {
+  SETTINGS,
+  ELEMENTS,
+  AUTHORIZATION,
+  CONFIRMATION,
+  CHAT,
+} from "./const.js";
 import { closePopups } from "./popup.js";
-import { ELEMENTS } from "./elements.js";
+import { mailRequest, changeNameRequest, userDataRequest } from "./request.js";
+import { USER } from "./const.js";
 
-//ПОЖАЛЙСТА НЕ СМОТРИТЕ НА ЭТО КЛАДБИЩЕ ОБРАБОТЧИКОВ Я ИСПРАВЛЮ
-ELEMENTS.BUTTON_SETTINGS.addEventListener("click", function () {
-  closePopups(ELEMENTS.SETTINGS_WRAPPER);
-});
+CHAT.MESSAGE_FORM.addEventListener("submit", renderMyMessage);
 
-ELEMENTS.BUTTON_CLOSE_SETTINGS.addEventListener("click", function () {
-  closePopups(ELEMENTS.SETTINGS_WRAPPER);
-});
+// SETTINGS.BUTTON_SETTINGS.addEventListener("click", function () {
+//   closePopups(SETTINGS.SETTINGS_WRAPPER);
+// });
 
-ELEMENTS.BUTTON_CLOSE_AUTHORIZATION.addEventListener("click", function () {
-  closePopups(ELEMENTS.AUTHORIZATION_WRAPPER);
-});
+// SETTINGS.BUTTON_CLOSE_SETTINGS.addEventListener("click", function () {
+//   closePopups(SETTINGS.SETTINGS_WRAPPER);
+// });
 
-ELEMENTS.BUTTON_CLOSE_CONFIRMATION.addEventListener("click", function () {
-  closePopups(ELEMENTS.CONFIRMATION_WRAPPER);
-});
+// AUTHORIZATION.BUTTON_CLOSE_AUTHORIZATION.addEventListener("click", function () {
+//   closePopups(AUTHORIZATION.AUTHORIZATION_WRAPPER);
+// });
 
-ELEMENTS.BUTTON_EXIT.addEventListener("click", function () {
-  closePopups(ELEMENTS.AUTHORIZATION_WRAPPER);
-});
+// CONFIRMATION.BUTTON_CLOSE_CONFIRMATION.addEventListener("click", function () {
+//   closePopups(CONFIRMATION.CONFIRMATION_WRAPPER);
+// });
 
-ELEMENTS.BUTTON_GET_CODE.addEventListener("click", function () {
-  closePopups(ELEMENTS.CONFIRMATION_WRAPPER);
-});
+// ELEMENTS.BUTTON_EXIT.addEventListener("click", function () {
+//   closePopups(AUTHORIZATION.AUTHORIZATION_WRAPPER);
+// });
 
-ELEMENTS.MESSAGE_FORM.addEventListener("submit", renderMyMessage);
+// AUTHORIZATION.BUTTON_GET_CODE.addEventListener("click", function () {
+//   closePopups(CONFIRMATION.CONFIRMATION_WRAPPER);
+// });
+
+AUTHORIZATION.AUTHORIZATION_FORM.addEventListener("submit", mailRequest);
+
+CONFIRMATION.FORM_CONFIRMATION.addEventListener("submit", saveUserCode);
+
+SETTINGS.CHANGE_NAME_FORM.addEventListener("submit", changeName);
 
 function renderMyMessage(event) {
   event.preventDefault();
-  if (ELEMENTS.MESSAGE_INPUT.value === "") {
+  if (CHAT.MESSAGE_INPUT.value === "") {
     alert("Введите сообщение!");
   } else {
     const spanMessage =
-      ELEMENTS.MY_MESSAGE_TEMPLATE.content.querySelector(".my_message_view");
-    spanMessage.textContent = ELEMENTS.MESSAGE_INPUT.value;
-    const cloneMessages = ELEMENTS.MY_MESSAGE_TEMPLATE.content.cloneNode(true);
-    ELEMENTS.MY_MESSAGES.append(cloneMessages);
-    ELEMENTS.MESSAGE_INPUT.value = "";
-    ELEMENTS.MY_MESSAGES.scrollTop = ELEMENTS.MY_MESSAGES.scrollHeight;
+      CHAT.MY_MESSAGE_TEMPLATE.content.querySelector(".my_message_view");
+    spanMessage.textContent = CHAT.MESSAGE_INPUT.value;
+    const cloneMessages = CHAT.MY_MESSAGE_TEMPLATE.content.cloneNode(true);
+    CHAT.MY_MESSAGES.append(cloneMessages);
+    CHAT.MY_MESSAGES.scrollTop = CHAT.MY_MESSAGES.scrollHeight;
+    CHAT.MESSAGE_INPUT.value = "";
   }
 }
 
-ELEMENTS.AUTHORIZATION_FORM.addEventListener("submit", mailRequest);
+function saveUserCode(event) {
+  event.preventDefault();
+  const codeInput = CONFIRMATION.CODE_INPUT.value;
+  cookieSet("code", codeInput);
+}
 
-async function mailRequest(event) {
-  event.preventDefault()
-  const url =  'https://edu.strada.one/api/user'
-  const result = await fetch(url, {
-    method: "POST",
-    headers: {
-      'Content-Type': "text/plain;charset=UTF-8",
-  },
-  body: JSON.stringify({email: `${ELEMENTS.INPUT_MAIL.value}`})
-  })
-  console.log(result)
+function changeName(event) {
+  event.preventDefault();
+  const inputName = SETTINGS.CHANGE_NAME_INPUT.value;
+  const cookieCode = cookieGet("code");
+  changeNameRequest(inputName, cookieCode);
+  SETTINGS.CHANGE_NAME_INPUT.value = "";
+  userDataRequest(cookieCode);
+}
+
+export function changeNameMessage(message) {
+  SETTINGS.MESSAGE_CHANGE_NAME.textContent = message;
+  SETTINGS.USER_NAME_NOW_UI.textContent = `Ваше имя:  ${USER.name}`;
 }

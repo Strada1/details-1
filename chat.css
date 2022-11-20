@@ -1,6 +1,6 @@
 * {
   box-sizing: border-box;
-  margin: 0;
+  margin: 1px;
   padding: 0;
 }
 body {
@@ -8,6 +8,7 @@ body {
 }
 span {
   word-break: break-all;
+  font-size: medium;
 }
 input {
   outline: none;
@@ -71,7 +72,7 @@ button {
   padding: 8px;
 }
 
-.other_message-block {
+._message-blocotherk {
   display: flex;
   justify-content: start;
   text-align: left;
@@ -97,6 +98,7 @@ button {
 border: 1px solid black;
 }
 
+/*********************/
 .settings_wrapper, .authorization_wrapper, .confirmation_wrapper{
   height: 100%;
   width: 100%;
@@ -107,8 +109,26 @@ border: 1px solid black;
   background-color: #535353;
   justify-content: center;
   align-items: center;
-  display: none;
+  display: flex;
+  opacity: 1; 
+  visibility: visible;
 }
+
+.settings_wrapper:target {
+  opacity: 0; 
+  visibility: hidden;
+}
+
+.authorization_wrapper:target {
+  opacity: 0; 
+  visibility: hidden;
+}
+
+.confirmation_wrapper:target {
+  opacity: 0; 
+  visibility: hidden;
+}
+/****************************************/
 
 .block-settings, .block-authorization, .block-confirmation{
   background-color: white;
@@ -120,7 +140,6 @@ border: 1px solid black;
 .wrapper_settings, .wrapper_authorization, .wrapper_confirmation{
   display: flex;
   justify-content: space-between;
-
   margin-bottom: 16px;
 }
 
@@ -131,6 +150,7 @@ border: 1px solid black;
 
 .btn_name_in_chat {
   height: 32px;
+  margin-left: -2px;
 }
 
 .display_flex {
@@ -152,8 +172,19 @@ border: 1px solid black;
   border-radius: 30px; 
   border: 3px solid #f6f6f6; 
 }
-
+/***************************/
 .close-window {
 border: 0;
 font-size: larger;
+opacity: 1; 
+visibility: visible;
+}
+
+.close-window:target {
+  opacity: 0; 
+visibility: hidden;
+}
+/************************/
+.allPopup {
+  display: flex;
 }
