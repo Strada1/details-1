@@ -1,0 +1,121 @@
+.main {
+    top: 50px;
+    position: absolute;
+    border: 1px solid black;
+    width: 320px;
+    height: 533px;
+    padding: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    z-index: -1;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.exit {
+    font-size: 24px;
+    font-weight: 800;
+    font-family: Roboto;
+    transform: rotate(45deg);
+}
+
+.blur {
+    transition: 2s;
+    -webkit-filter: blur(20px);
+    filter: blur(20px);
+}
+
+.time {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #333333;
+    text-align: right;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+.messages {
+    border: 1px solid;
+    margin: 5px 0px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: auto;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+
+}
+
+.message_send, .message_delivered {
+    display: flex;
+    flex-flow: column nowrap;
+    width: fit-content;
+    
+}
+
+.message_delivered {
+    background-color: #E5E5E5;
+}
+
+.message_send {
+    background-color: #F6F6F6;
+}
+
+.my_messages {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 8px;
+    padding-left: 15px;
+}
+
+.other_messages {
+    margin: 8px;
+    padding-right: 15px;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+}
+
+.input {
+    width: 87%;
+}
+
+.active-modal {
+    overflow: hidden;
+    transition:0.2s;
+    -webkit-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.menu {
+    /* position: absolute; */
+    display: none;
+}
+
+.modal-show {
+    top: 150px;
+    display: block;
+    position: absolute;
+    border: 1px solid black;
+    width: 320px;
+    height: 319px;
+    padding: 10px;
+
+}
