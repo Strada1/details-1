@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+  margin: 1px;
+  padding: 0;
+}
+body {
+  background-color: #e5e5e5;
+}
+span {
+  word-break: break-all;
+  font-size: medium;
+}
+input {
+  outline: none;
+  border: 1px solid black;
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+button {
+  cursor: pointer;
+}
+.container {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.main-block {
+  width: 320px;
+  height: 533px;
+  padding: 8px;
+  background-color: #f6f6f6;
+  position: relative;
+}
+
+.configuration-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.configuration-wrapper button {
+  padding: 3px 5px;
+  background-color: inherit;
+  border: 1px solid black;
+}
+.delivered-message_color {
+  background-color: #e5e5e5;
+}
+.sent-message_color {
+  background-color: #eeeef3;
+}
+
+.message-window {
+  width: 304px;
+  height: 437px;
+  border: 1px solid black;
+  padding: 0 8px;
+  padding-top: 8px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+}
+
+.my_message-block {
+  display: flex;
+  justify-content: end;
+  margin-right: -1px;
+  text-align: right;
+  margin-bottom: 8px;
+}
+.my_message-wrapper {
+  padding: 8px;
+}
+
+._message-blocotherk {
+  display: flex;
+  justify-content: start;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.other_message-wrapper {
+  padding: 8px;
+}
+
+.time-message {
+  text-align: right;
+}
+
+.my_message-input {
+  width: 267px;
+  height: 32px;
+  margin-right: 4px;
+  outline: none;
+}
+
+.send_message {
+border: 1px solid black;
+}
+
+.settings_wrapper, .authorization_wrapper, .confirmation_wrapper{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background-color: #535353;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.block-settings, .block-authorization, .block-confirmation{
+  background-color: white;
+  width: 273px;
+  height: 319px;
+  padding: 0 14px;
+  padding-top: 16px;
+}
+.wrapper_settings, .wrapper_authorization, .wrapper_confirmation{
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+}
+
+.name_input {
+  width: 207px;
+  height: 32px;
+}
+
+.btn_name_in_chat {
+  height: 32px;
+  margin-left: -2px;
+}
+
+.display_flex {
+  display: flex;
+}
+
+.me {
+  width: 100px;
+}
+
+.message-window::-webkit-scrollbar {
+  width: 10px; 
+}
+.message-window::-webkit-scrollbar-track {
+  background: #f6f6f6; 
+}
+.message-window::-webkit-scrollbar-thumb {
+  background-color: #e5e5e5; 
+  border-radius: 30px; 
+  border: 3px solid #f6f6f6; 
+}
+
+.close-window {
+border: 0;
+font-size: larger;
+}
+
+.allPopup {
+  display: flex;
+}
