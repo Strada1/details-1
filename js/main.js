@@ -1,7 +1,7 @@
 const ELEMENTS = {
   modalButtonName: document.querySelector(".modal-name"),
   modalName: document.querySelector("#modal-name"),
-  modals: document.querySelectorAll("[data-modal"),
+  modals: document.querySelectorAll("[data-modal]"),
   buttonsClose: document.querySelectorAll("[data-modal-close]"),
   modalWindow: document.querySelectorAll(".modal__window"),
   textArea: document.querySelector(".input-message"),
@@ -14,6 +14,17 @@ const ELEMENTS = {
   getCodeButton: document.querySelector("#modal-authorization  .button"),
   authorizationForm: document.querySelector("#modal-authorization .input-data"),
   emailInput: document.querySelector("#modal-authorization .modal__input"),
+  codeForm: document.querySelector("#modal-code .input-data"),
+  code: document.querySelector("#modal-code .modal__input"), 
+  nameForm: document.querySelector("#modal-name .input-data"),
+  name: document.querySelector('#modal-name .modal__input'),
+  URL: 'https://edu.strada.one/api/user',
+  URL_USER: 'https://edu.strada.one/api/user/me',
+  hiddenClass: 'hidden',
+  closestModal: '[data-modal]',
+  codeWarning: document.querySelector('#modal-code .modal__warning'),
+  nameWarning: document.querySelector('#modal-name .modal__warning'),
+
 };
 
 const ELEM_HEIGHTS = {
@@ -24,30 +35,34 @@ const ELEM_HEIGHTS = {
   inputMessagePadding: 42.5,
 };
 
-const lastMessage = ELEMENTS.contentWindow.querySelector(
-  ".message:last-child"
-);
+const METHOD = {
+  POST: 'POST',
+  PATCH: 'PATCH',
+  GET: 'GET',
+}
+
+const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
 
 const set = new Set();
 
 function showModal(modalItem) {
-  modalItem.classList.remove("hidden");
+  modalItem.classList.remove(ELEMENTS.hiddenClass);
 }
 
 function closeModal(modalItem) {
-  modalItem.classList.add("hidden");
+  modalItem.classList.add(ELEMENTS.hiddenClass);
 }
 
 ELEMENTS.buttonsClose.forEach(function (item) {
   item.addEventListener("click", function () {
-    const currentModal = this.closest("[data-modal]");
+    const currentModal = this.closest(ELEMENTS.closestModal);
     closeModal(currentModal);
   });
 });
 
 ELEMENTS.modals.forEach(function (item) {
   item.addEventListener("click", function () {
-    this.classList.add("hidden");
+    this.classList.add(ELEMENTS.hiddenClass);
   });
 });
 
@@ -64,16 +79,16 @@ ELEMENTS.modalButtonName.addEventListener("click", () => {
 function addMessage(event) {
   let div = document.createElement("div");
   div.classList.add(...["message", "message--user-me", "message--sent"]);
-if (ELEMENTS.textArea.value.trim() !== '') {
-  div.append(tmpl.content.cloneNode(true));
-  div.querySelector("p:nth-child(1)").textContent = ELEMENTS.textArea.value;
-  ELEMENTS.contentWrapper.append(div);
-  console.log(div.scrollHeight);
-}
+  if (ELEMENTS.textArea.value.trim() !== "") {
+    div.append(tmpl.content.cloneNode(true));
+    div.querySelector(".message__text").textContent = ELEMENTS.textArea.value;
+    ELEMENTS.contentWrapper.append(div);
+    console.log(div.scrollHeight);
+  }
 
-div.scrollIntoView({
-  behavior: "smooth",
-});
+  div.scrollIntoView({
+    behavior: "smooth",
+  });
 
   ELEMENTS.textArea.value = "";
   ELEMENTS.textArea.style.height = `${ELEM_HEIGHTS.inputMessageHeight}px`;
@@ -136,18 +151,23 @@ ELEMENTS.scrollDown.addEventListener("click", () => {
   });
 });
 
-async function getAuthorizationCode(userEmail) {
+
+async function sendRequest(method, URL, body= {}, headers = {}) {
   try {
-    let response = await fetch("https://edu.strada.one/api/user", {
-      method: "POST",
+    let response = await fetch(URL, {
+      method: method,
       headers: {
         "Content-Type": "application/json",
+        ...headers,
       },
-      body: JSON.stringify({ email: userEmail }),
+      ...body,
     });
 
+    let result = await response.json();
+    console.log(result);
+
     if (!response.ok) {
-      alert(response.status);
+      alert('Ошибка запроса:' + response.status);
     }
   } catch (err) {
     console.log(err);
@@ -156,8 +176,57 @@ async function getAuthorizationCode(userEmail) {
 
 ELEMENTS.authorizationForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  getAuthorizationCode(ELEMENTS.emailInput.value.trim());
+  sendRequest(METHOD.POST, ELEMENTS.URL, {body: JSON.stringify({ email: ELEMENTS.emailInput.value.trim() })});
   ELEMENTS.emailInput.value = "";
   closeModal(ELEMENTS.modalAuthorization);
   showModal(ELEMENTS.modalCode);
 });
+
+// PATCH
+
+function showWarning(element) {
+  element.classList.remove(ELEMENTS.hiddenClass);
+  setTimeout(() => {
+   element.classList.add(ELEMENTS.hiddenClass);
+  }, 3000);
+}
+
+function setCookie(value) {
+if (ELEMENTS.code.value !== ''){
+  document.cookie = `token=${value}; max-age=1728000`;
+  closeModal(ELEMENTS.modalCode);
+} else {
+  showWarning(ELEMENTS.codeWarning);
+}
+}
+
+  ELEMENTS.codeForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    setCookie(ELEMENTS.code.value);
+    ELEMENTS.code.value = '';
+  });
+
+function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp(
+      "(?:^|; )" +
+        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+        "=([^;]*)"
+    )
+  );
+  return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+
+ELEMENTS.nameForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const token = getCookie("token");
+    if(ELEMENTS.name.value !== '') {
+      sendRequest(METHOD.PATCH, ELEMENTS.URL, {body: JSON.stringify({ name: ELEMENTS.name.value.trim() })}, {"Authorization": `Bearer ${token}`});
+    sendRequest(METHOD.GET, ELEMENTS.URL_USER, {}, {"Authorization": `Bearer ${token}`});
+    } else {
+      showWarning(ELEMENTS.nameWarning);
+    }
+   ELEMENTS.name.value = '';
+
+  });

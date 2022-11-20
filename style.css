@@ -304,7 +304,6 @@ body {
   background-color: rgba(0, 14, 8, 0.5);
   opacity: 1;
   transition: opacity 0.3s ease-in, visibility 0s linear;
-  
 }
 
 .modal__header {
@@ -344,8 +343,20 @@ body {
   border-radius: 12px;
   color: #0f0c22;
 }
+.input-data {
+  position: relative;
+}
 
+.modal__warning {
+  position: absolute;
+  top: 95px;
+  font-size: 12px;
+  color: #ea3736;
+}
 
+#modal-name .modal__warning {
+  top: 60px;
+}
 
 .modal__input::placeholder {
   color: #797c7b;
@@ -355,6 +366,7 @@ body {
   display: flex;
   justify-content: space-between;
   margin: 0 0 60px;
+  column-gap: 20px;
 }
 
 #modal-name .modal__input {
@@ -366,7 +378,6 @@ body {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease-in, visibility 0s linear 500ms;
-
 }
 
 /* scroll down */

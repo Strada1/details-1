@@ -35,42 +35,42 @@
       </div>
       <div class="container content__wrapper">
         <div class="message message--user-me">
-          <p>Добрый день!</p>
+          <p class="message__text">Добрый день!</p>
           <p class="message__delivery-time">18:45</p>
         </div>
         <div class="message message--interlocutor">
           <span class="message__user">Собеседник мой:</span>
-          <p>Добрый день!</p>
+          <p class="message__text">Добрый день!</p>
           <p class="message__delivery-time">18:45</p>
         </div>
         <div class="message message--interlocutor">
           <span class="message__user">Собеседник мой:</span>
-          <p>А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</p>
+          <p class="message__text">А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</p>
           <p class="message__delivery-time">18:45</p>
         </div>
         <div class="message message--user-me message--sent">
-          <p>Добрый день!</p>
+          <p class="message__text">Добрый день!</p>
           <p class="message__delivery-time">18:45</p>
         </div>
+<!-- <div class="message message--user-me">
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--interlocutor">
+          <span class="message__user">Собеседник мой:</span>
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--interlocutor">
+          <span class="message__user">Собеседник мой:</span>
+          <p class="message__text">А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--user-me message--sent">
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div> -->
 
-        <div class="message message--user-me">
-          <p>Добрый день!</p>
-          <p class="message__delivery-time">18:45</p>
-        </div>
-        <div class="message message--interlocutor">
-          <span class="message__user">Собеседник мой:</span>
-          <p>Добрый день!</p>
-          <p class="message__delivery-time">18:45</p>
-        </div>
-        <div class="message message--interlocutor">
-          <span class="message__user">Собеседник мой:</span>
-          <p>А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</p>
-          <p class="message__delivery-time">18:45</p>
-        </div>
-        <div class="message message--user-me message--sent">
-          <p>Добрый день!</p>
-          <p class="message__delivery-time">18:45</p>
-        </div>
       </div>
     </div>
     <div class="texting-area">
@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    <div class="modal fade-block" id="modal-authorization">
+    <div class="modal fade-block hidden" id="modal-authorization">
       <div class="modal__window">
         <div class="modal__header">
           <h1 class="title">Авторизация</h1>
@@ -114,7 +114,7 @@
       </div>
     </div>
 
-    <div class="modal fade-block hidden" id="modal-code" data-modal>
+    <div class="modal fade-block" id="modal-code" data-modal>
       <div class="modal__window">
         <div class="modal__header">
           <h1 class="title">Подтверждение</h1>
@@ -129,7 +129,8 @@
         </div>
         <form action="" class="input-data">
           <h2 class="subtitle">Код:</h2>
-          <input type="email" class="input modal__input" placeholder="******" />
+          <input class="input modal__input" placeholder="******" />
+          <div class="modal__warning hidden"><p>Поле пустое, введите код из письма!</p></div>
           <button class="button">Войти</button>
         </form>
       </div>
@@ -150,7 +151,8 @@
         </div>
         <h2 class="subtitle">Имя в чате</h2>
         <form action="" class="input-data">
-          <input type="email" class="modal__input" placeholder="Стив" />
+          <input class="modal__input" placeholder="Стив" />
+          <div class="modal__warning hidden"><p>Поле пустое, введите имя от 2 символов!</p></div>
           <button class="button">
             <img src="./img/icons/continue.png" alt="" height="10" width="10" />
           </button>
@@ -158,7 +160,7 @@
       </div>
     </div>
     <template id="tmpl">
-      <p>Добрый день!</p>
+      <p class="message__text">Добрый день!</p>
       <p class="message__delivery-time">18:45</p>
     </template>
     <script src="./js/main.js"></script>
