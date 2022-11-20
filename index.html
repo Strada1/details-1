@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Nunito:wght@500;700&family=Roboto+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <div class="container">
+        <div class="header__wrapper">
+          <button class="inline-button modal-name" type="button">
+            Настройки
+          </button>
+          <button class="inline-button" type="button">Выйти</button>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="scroll-down">
+        <img
+          src="./img/icons/scroll-down.svg"
+          alt="скролл вниз"
+          width="20"
+          height="20"
+        />
+      </div>
+      <div class="container content__wrapper">
+        <div class="message message--user-me">
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--interlocutor">
+          <span class="message__user">Собеседник мой:</span>
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--interlocutor">
+          <span class="message__user">Собеседник мой:</span>
+          <p class="message__text">А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--user-me message--sent">
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+<!-- <div class="message message--user-me">
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--interlocutor">
+          <span class="message__user">Собеседник мой:</span>
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--interlocutor">
+          <span class="message__user">Собеседник мой:</span>
+          <p class="message__text">А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</p>
+          <p class="message__delivery-time">18:45</p>
+        </div>
+        <div class="message message--user-me message--sent">
+          <p class="message__text">Добрый день!</p>
+          <p class="message__delivery-time">18:45</p>
+        </div> -->
+
+      </div>
+    </div>
+    <div class="texting-area">
+      <div class="container">
+        <form class="texting-area__wrapper">
+          <textarea class="input-message" placeholder="сообщение..."></textarea>
+          <button class="round-button">
+            <img
+              src="./img/icons/icon-send.svg"
+              alt="Отправить сообщение"
+              width="24"
+              height="24"
+            />
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade-block hidden" id="modal-authorization">
+      <div class="modal__window">
+        <div class="modal__header">
+          <h1 class="title">Авторизация</h1>
+          <button class="button-close">
+            <img
+              src="./img/icons/button-close.svg"
+              alt=""
+              width="10"
+              height="10"
+            />
+          </button>
+        </div>
+        <form action="" class="input-data">
+          <h2 class="subtitle">Почта:</h2>
+          <input
+            type="email"
+            class="input modal__input"
+            placeholder="user@mail.com"
+          />
+          <button class="button">Получить код</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade-block" id="modal-code" data-modal>
+      <div class="modal__window">
+        <div class="modal__header">
+          <h1 class="title">Подтверждение</h1>
+          <button class="button-close" data-modal-close>
+            <img
+              src="./img/icons/button-close.svg"
+              alt=""
+              width="10"
+              height="10"
+            />
+          </button>
+        </div>
+        <form action="" class="input-data">
+          <h2 class="subtitle">Код:</h2>
+          <input class="input modal__input" placeholder="******" />
+          <div class="modal__warning hidden"><p>Поле пустое, введите код из письма!</p></div>
+          <button class="button">Войти</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade-block hidden" id="modal-name" data-modal>
+      <div class="modal__window">
+        <div class="modal__header">
+          <h1 class="title">Настройки</h1>
+          <button class="button-close" data-modal-close>
+            <img
+              src="./img/icons/button-close.svg"
+              alt=""
+              width="10"
+              height="10"
+            />
+          </button>
+        </div>
+        <h2 class="subtitle">Имя в чате</h2>
+        <form action="" class="input-data">
+          <input class="modal__input" placeholder="Стив" />
+          <div class="modal__warning hidden"><p>Поле пустое, введите имя от 2 символов!</p></div>
+          <button class="button">
+            <img src="./img/icons/continue.png" alt="" height="10" width="10" />
+          </button>
+        </form>
+      </div>
+    </div>
+    <template id="tmpl">
+      <p class="message__text">Добрый день!</p>
+      <p class="message__delivery-time">18:45</p>
+    </template>
+    <script src="./js/main.js"></script>
+  </body>
+</html>
