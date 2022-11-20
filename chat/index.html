@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="./saas/index.scss" />
+		<link rel="stylesheet" href="./scss/index.scss" />
 		<title>Giga-chat</title>
 	</head>
 	<body>
@@ -117,14 +117,14 @@
 			<form class="chat-form">
 				<input class="send-message" type="text" placeholder="сообщение..." name="" id="" />
 				<button class="send-button" type="submit">
-					<img src="./public/img/arrow.png" alt="" />
+					<img src="public/img/arrow.png" alt="" />
 				</button>
 			</form>
 			<div class="modal hide">
 				<div class="modal__settings">
 					<div class="modal__header">
 						<p>Настройки</p>
-						<img class="modal__settings-close" src="./public/img/close.svg" alt="" />
+						<img class="modal__settings-close" src="public/img/close.png" alt="" />
 					</div>
 					<div class="modal__title">
 						<p>Имя в чате</p>
@@ -132,8 +132,44 @@
 					<form class="modal__form">
 						<input type="text" placeholder="Стив" name="" id="" />
 						<button type="submit">
-							<img src="./public/img/arrow.png" alt="" />
+							<img src="public/img/arrow.png" alt="" />
 						</button>
+					</form>
+				</div>
+			</div>
+			<div class="log-in hide">
+				<div class="log-in__auth">
+					<div class="log-in__header">
+						<p>Авторизация</p>
+						<img class="log-in__settings-close" src="public/img/close.png" alt="" />
+					</div>
+					<div class="log-in__title">
+						<p>Почта</p>
+					</div>
+					<form class="log-in__form">
+						<input class="auth-input" type="text" placeholder="strada@mail.com" name="" id="" />
+						<button type="submit">Получить код</button>
+					</form>
+				</div>
+			</div>
+			<div class="access">
+				<div class="access__auth">
+					<div class="access__header">
+						<p>Подтверждение</p>
+						<img class="access__settings-close" src="public/img/close.png" alt="" />
+					</div>
+					<div class="access__title">
+						<p>Код:</p>
+					</div>
+					<form class="access__form">
+						<input
+							class="auth-input"
+							type="text"
+							placeholder="Введите код из почты"
+							name=""
+							id=""
+						/>
+						<button type="submit">Войти</button>
 					</form>
 				</div>
 			</div>

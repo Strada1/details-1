@@ -1,11 +1,12 @@
 import { format } from 'date-fns';
 
-import { MODAL_VIEW, FORM } from './const';
+import { MODAL_VIEW, FORM, BUTTONS } from './const';
 
-const closeButton = document.querySelector('.modal__settings-close');
-const settingsButton = document.querySelector('.header__settings');
+import { post } from './fetch';
 
-closeButton.addEventListener('click', () => {
+const close = document.querySelector('.modal__settings-close');
+
+BUTTONS.CLOSE_MODAL.addEventListener('click', () => {
 	MODAL_VIEW.SETTINGS.classList.add('hide');
 });
 
@@ -15,8 +16,12 @@ window.addEventListener('keydown', evt => {
 	}
 });
 
-settingsButton.addEventListener('click', () => {
+BUTTONS.SETTINGS.addEventListener('click', () => {
 	MODAL_VIEW.SETTINGS.classList.remove('hide');
+});
+
+BUTTONS.CLOSE_AUTH.addEventListener('click', () => {
+	MODAL_VIEW.AUTH.classList.add('hide');
 });
 
 function createMessage(inputValue, timeValue = new Date()) {
@@ -49,6 +54,16 @@ function createMessage(inputValue, timeValue = new Date()) {
 FORM.SEND_MESSAGE.addEventListener('submit', event => {
 	event.preventDefault();
 
-	createMessage(FORM.MESSAGE.value);
-	FORM.MESSAGE.value = '';
+	createMessage(FORM.MESSAGE_INPUT.value);
+	FORM.MESSAGE_INPUT.value = '';
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+	MODAL_VIEW.AUTH.classList.remove('hide');
+
+	FORM.AUTH.addEventListener('submit', evt => {
+		evt.preventDefault();
+
+		post(FORM.AUTH_INPUT.value);
+	});
 });
