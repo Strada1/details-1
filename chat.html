@@ -13,22 +13,25 @@
   <div class="container">
     <div class="main-block">
       <div class="configuration-wrapper">
-        <button class="btn-settings">Настройки</button>
-        <button class="btn-exit">Выйти</button>
+
+
+        <a href="#settings-popup" class="btn-settings">Настройки</a>
+        <a href="#authorization-popup" class="btn-exit">Выйти</a>
+
+
       </div>
-      <div class="message-window">
+      <div class="message-window" id="message-window">
         <template id="template_my_message">
           <div class="my_message-block">
             <div class="my_message-wrapper delivered-message_color">
-              Я: <span class="my_message_view"></span>
+              <span class="my_message_view"></span>
               <p class="time_message">18:45</p>
             </div>
           </div>
         </template>
         <div class="other_message-block">
           <div class="other_message-wrapper delivered-message_color">
-            Собеседник мой: А это второе и, кажется, оно очень длинное, чтобы
-            поместиться на одной строке
+            <span>очень длинное сообщение пользователя емае, капец блин</span>
             <p class="time-message">18:45</p>
           </div>
         </div>
@@ -39,52 +42,73 @@
           <button class="send_message">→</button>
         </form>
       </div>
-      <div class="settings_wrapper">
+      <div class="allPopup">
+      <div class="settings_wrapper" id="settings-popup">
         <div class="block-settings">
           <div class="wrapper_settings">
             <div class="settings">Настройки</div>
-            <button class="close-window" id="settings-btn">x</button>
+
+
+            <a href="#message-window" class="close-window" id="settings-btn">x</a>
+
+
           </div>
           <div class="name_in_chat">Имя в чате</div>
           <div class="name-select_wrapper">
             <form class="settings-form">
-            <input type="text" class="name_input">
+            <input type="text" class="name_input" id="change-name">
             <button class="btn_name_in_chat">→</button>
+            <p class="result-message"></p>
+            <p class="user-name-now"></p>
             </form>
           </div>
         </div>
       </div>
-      <div class="authorization_wrapper">
+      <div class="authorization_wrapper" id="authorization-popup">
         <div class="block-authorization">
           <div class="wrapper_authorization">
             <div class="authorization">Авторизация</div>
-            <button class="close-window" id="authorization-btn">x</button>
+
+
+            <a href="#message-window" class="close-window" id="authorization-btn">x</a>
+
+
           </div>
           <div class="name_in_chat">Почта:</div>
           <div class="name-select_wrapper">
             <form class="authorization-form">
-            <input type="text" class="name_input" id="input-for-mail">
-            <button class="btn_name_in_chat" id="btn-authorization">Получить код</button>
-            </form>
+            <input type="email" class="name_input" id="input-for-mail">
+
+
+            <a href="#confirmation_wrapper" class="btn_name_in_chat" id="btn-authorization">Получить код</a>
+           
+          
+          </form>
             </div>
           </div>
         </div>
       </div>
-      <div class="confirmation_wrapper">
+      <div class="confirmation_wrapper" id="confirmation_wrapper">
         <div class="block-confirmation">
           <div class="wrapper_confirmation">
             <div class="confirmation">Подтверждение</div>
-            <button class="close-window" id="confirmation-btn">x</button>
+
+
+            <a href="#message-window" class="close-window" id="confirmation-btn">x</a>
+
+            
           </div>
           <div class="name_in_chat">Код:</div>
           <div class="name-select_wrapper">
             <form class="confirmation-form"> 
-            <input type="text" class="name_input">
+            <input type="text" class="name_input" id="input-for-code">
             <button class="btn_name_in_chat">Войти</button>
+            <p class="message-authorization"></p>
             </form>
           </div>
         </div>
       </div>
+    </div>
     </div>
   </div>
   <script type="module" src="/chat.js"></script>
