@@ -49,6 +49,6 @@ export async function userDataRequest(account) {
   const answer = await result.json();
   USER.name = answer.name;
   if (!result.ok) {
-    console.log(result.json());
+    console.log(answer);
   }
 }

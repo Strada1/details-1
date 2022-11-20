@@ -13,14 +13,10 @@
   <div class="container">
     <div class="main-block">
       <div class="configuration-wrapper">
-
-
-        <a href="#settings-popup" class="btn-settings">Настройки</a>
-        <a href="#authorization-popup" class="btn-exit">Выйти</a>
-
-
+        <button class="btn-settings">Настройки</button>
+        <button class="btn-exit">Выйти</button>
       </div>
-      <div class="message-window" id="message-window">
+      <div class="message-window">
         <template id="template_my_message">
           <div class="my_message-block">
             <div class="my_message-wrapper delivered-message_color">
@@ -43,15 +39,11 @@
         </form>
       </div>
       <div class="allPopup">
-      <div class="settings_wrapper" id="settings-popup">
+      <div class="settings_wrapper">
         <div class="block-settings">
           <div class="wrapper_settings">
             <div class="settings">Настройки</div>
-
-
-            <a href="#message-window" class="close-window" id="settings-btn">x</a>
-
-
+            <button class="close-window" id="settings-btn">x</button>
           </div>
           <div class="name_in_chat">Имя в чате</div>
           <div class="name-select_wrapper">
@@ -64,39 +56,28 @@
           </div>
         </div>
       </div>
-      <div class="authorization_wrapper" id="authorization-popup">
+      <div class="authorization_wrapper">
         <div class="block-authorization">
           <div class="wrapper_authorization">
             <div class="authorization">Авторизация</div>
-
-
-            <a href="#message-window" class="close-window" id="authorization-btn">x</a>
-
-
+            <button class="close-window" id="authorization-btn">x</button>
           </div>
           <div class="name_in_chat">Почта:</div>
           <div class="name-select_wrapper">
             <form class="authorization-form">
             <input type="email" class="name_input" id="input-for-mail">
+            <button class="btn_name_in_chat" id="btn-authorization">Получить код</button>
 
-
-            <a href="#confirmation_wrapper" class="btn_name_in_chat" id="btn-authorization">Получить код</a>
-           
-          
-          </form>
+            </form>
             </div>
           </div>
         </div>
       </div>
-      <div class="confirmation_wrapper" id="confirmation_wrapper">
+      <div class="confirmation_wrapper">
         <div class="block-confirmation">
           <div class="wrapper_confirmation">
             <div class="confirmation">Подтверждение</div>
-
-
-            <a href="#message-window" class="close-window" id="confirmation-btn">x</a>
-
-            
+            <button class="close-window" id="confirmation-btn">x</button>
           </div>
           <div class="name_in_chat">Код:</div>
           <div class="name-select_wrapper">

@@ -98,7 +98,6 @@ button {
 border: 1px solid black;
 }
 
-/*********************/
 .settings_wrapper, .authorization_wrapper, .confirmation_wrapper{
   height: 100%;
   width: 100%;
@@ -109,26 +108,8 @@ border: 1px solid black;
   background-color: #535353;
   justify-content: center;
   align-items: center;
-  display: flex;
-  opacity: 1; 
-  visibility: visible;
+  display: none;
 }
-
-.settings_wrapper:target {
-  opacity: 0; 
-  visibility: hidden;
-}
-
-.authorization_wrapper:target {
-  opacity: 0; 
-  visibility: hidden;
-}
-
-.confirmation_wrapper:target {
-  opacity: 0; 
-  visibility: hidden;
-}
-/****************************************/
 
 .block-settings, .block-authorization, .block-confirmation{
   background-color: white;
@@ -140,6 +121,7 @@ border: 1px solid black;
 .wrapper_settings, .wrapper_authorization, .wrapper_confirmation{
   display: flex;
   justify-content: space-between;
+
   margin-bottom: 16px;
 }
 
@@ -172,19 +154,12 @@ border: 1px solid black;
   border-radius: 30px; 
   border: 3px solid #f6f6f6; 
 }
-/***************************/
+
 .close-window {
 border: 0;
 font-size: larger;
-opacity: 1; 
-visibility: visible;
 }
 
-.close-window:target {
-  opacity: 0; 
-visibility: hidden;
-}
-/************************/
 .allPopup {
   display: flex;
 }

@@ -6,41 +6,38 @@ import {
   CONFIRMATION,
   CHAT,
 } from "./const.js";
-import { closePopups } from "./popup.js";
 import { mailRequest, changeNameRequest, userDataRequest } from "./request.js";
 import { USER } from "./const.js";
+import {closePopups} from './popup.js'
 
-CHAT.MESSAGE_FORM.addEventListener("submit", renderMyMessage);
+SETTINGS.BUTTON_SETTINGS.addEventListener("click", function () {
+  closePopups(SETTINGS.SETTINGS_WRAPPER);
+});
 
-// SETTINGS.BUTTON_SETTINGS.addEventListener("click", function () {
-//   closePopups(SETTINGS.SETTINGS_WRAPPER);
-// });
+SETTINGS.BUTTON_CLOSE_SETTINGS.addEventListener("click", function () {
+  closePopups(SETTINGS.SETTINGS_WRAPPER);
+});
 
-// SETTINGS.BUTTON_CLOSE_SETTINGS.addEventListener("click", function () {
-//   closePopups(SETTINGS.SETTINGS_WRAPPER);
-// });
+AUTHORIZATION.BUTTON_CLOSE_AUTHORIZATION.addEventListener("click", function () {
+  closePopups(AUTHORIZATION.AUTHORIZATION_WRAPPER);
+});
 
-// AUTHORIZATION.BUTTON_CLOSE_AUTHORIZATION.addEventListener("click", function () {
-//   closePopups(AUTHORIZATION.AUTHORIZATION_WRAPPER);
-// });
+CONFIRMATION.BUTTON_CLOSE_CONFIRMATION.addEventListener("click", function () {
+  closePopups(CONFIRMATION.CONFIRMATION_WRAPPER);
+});
 
-// CONFIRMATION.BUTTON_CLOSE_CONFIRMATION.addEventListener("click", function () {
-//   closePopups(CONFIRMATION.CONFIRMATION_WRAPPER);
-// });
+ELEMENTS.BUTTON_EXIT.addEventListener("click", function () {
+  closePopups(AUTHORIZATION.AUTHORIZATION_WRAPPER);
+});
 
-// ELEMENTS.BUTTON_EXIT.addEventListener("click", function () {
-//   closePopups(AUTHORIZATION.AUTHORIZATION_WRAPPER);
-// });
-
-// AUTHORIZATION.BUTTON_GET_CODE.addEventListener("click", function () {
-//   closePopups(CONFIRMATION.CONFIRMATION_WRAPPER);
-// });
+AUTHORIZATION.BUTTON_GET_CODE.addEventListener("click", function () {
+  closePopups(CONFIRMATION.CONFIRMATION_WRAPPER);
+});
 
 AUTHORIZATION.AUTHORIZATION_FORM.addEventListener("submit", mailRequest);
-
 CONFIRMATION.FORM_CONFIRMATION.addEventListener("submit", saveUserCode);
-
 SETTINGS.CHANGE_NAME_FORM.addEventListener("submit", changeName);
+CHAT.MESSAGE_FORM.addEventListener("submit", renderMyMessage);
 
 function renderMyMessage(event) {
   event.preventDefault();
