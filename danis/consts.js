@@ -7,6 +7,14 @@ const mainForm = document.querySelector('.hero__block-form');
 const autorizationForm = document.querySelector('.autorization__form');
 const urlPost = 'https://edu.strada.one/api/user';
 const userEmailForAutorization = document.querySelector('.autorization__block-main-input input');
+const inputForm = document.querySelector('.input__form');
+const cookieCode = document.querySelector('.input__block-main-input input');
+const urlGetInfoUser = 'https://edu.strada.one/api/user/me';
+const inputBlock = document.querySelector('.input__block');
+const windowChatBlock = document.querySelector('.chat__block');
+const userName = document.querySelector('.user_user_name');
+const changeNameForm = document.querySelector('.popup__form');
+const inputNewName = document.querySelector('.new_name');
 
 export {
     settingsButton,
@@ -18,4 +26,12 @@ export {
     autorizationForm,
     urlPost,
     userEmailForAutorization,
+    inputForm,
+    cookieCode,
+    urlGetInfoUser,
+    inputBlock,
+    windowChatBlock,
+    userName,
+    changeNameForm,
+    inputNewName,
 }

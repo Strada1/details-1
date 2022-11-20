@@ -11,25 +11,27 @@
 
 <body>
     <div class="hero__block">
-        <div class="hero__block-buttons-head">
-            <div class="hero__block-buttons-head-setings">
-                <button>Настройки</button>
+        <div class="chat__block">
+            <div class="hero__block-buttons-head">
+                <div class="hero__block-buttons-head-setings">
+                    <button>Настройки</button>
+                </div>
+                <div class="hero__block-buttons-head-exit">
+                    <button>Выйти</button>
+                </div>
             </div>
-            <div class="hero__block-buttons-head-exit">
-                <button>Выйти</button>
-            </div>
-        </div>
-        <div class="hero__block_window-chat">
+            <div class="hero__block_window-chat">
 
+            </div>
+            <form class="hero__block-form" action="">
+                <div class="hero__block-buttons-bottom-input">
+                    <input type="text" placeholder="Сообщение...">
+                </div>
+                <div class="hero__block-buttons-bottom-send">
+                    <button>-></button>
+                </div>
+            </form>
         </div>
-        <form class="hero__block-form" action="">
-            <div class="hero__block-buttons-bottom-input">
-                <input type="text" placeholder="Сообщение...">
-            </div>
-            <div class="hero__block-buttons-bottom-send">
-                <button>-></button>
-            </div>
-        </form>
         <div class="popup" action="">
             <div class="popup__buttons_head">
                 <div class="popup__buttons_head-title">
@@ -44,7 +46,7 @@
                     Имя в чате
                 </div>
                 <form action="" class="popup__form" onsubmit="return false;">
-                    <input type="text">
+                    <input class="new_name" type="text">
                     <button>-></button>
                 </form>
             </div>
@@ -100,6 +102,9 @@
 
 
     <template id="tmpl">
+        <div class="user_name">
+            Я:
+        </div>
         <div class="message_item">
         </div>
         <div class="message_time">
