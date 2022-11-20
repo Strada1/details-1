@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Чат</title>
+</head>
+
+<body>
+    <div class="chat">
+        <div class="container">
+            <div class="chat__inner chat__inner--disabled">
+                <div class="chat__top">
+                    <button class="chat__button" id="settingsButton">Настройки</button>
+                    <button class="chat__button" id="exitButton">Выйти</button>
+                </div>
+
+                <div class="chat__main">
+                    <!-- <div class="message">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: Добрый день!
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--interlocutor">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Собеседник мой: Добрый день!
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--interlocutor">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Собеседник мой: А это второе и, кажется, оно очень
+                                длинное, чтобы поместиться на
+                                одной строке
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div>
+                    <div class="message message--sent">
+                        <div class="message__inner">
+                            <p class="message__text">
+                                Я: Добрый день!
+                            </p>
+                            <p class="message__time">18:45</p>
+                        </div>
+                    </div> -->
+                </div>
+
+                <form id="sendMessageForm" action="" class="chat__form">
+                    <div class="chat__input" contenteditable="true"></div>
+                    <p class="chat__input-placeholder">Сообщение..</p>
+                    <button class="chat__button">
+                        ->
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <template id="template">
+        <div class="message message--sent">
+            <div class="message__inner">
+                <p class="message__text">
+                </p>
+                <p class="message__time">
+                </p>
+            </div>
+        </div>
+    </template>
+    <template id="popupTemplate">
+        <div class="popup">
+            <div class="popup__inner">
+                <div class="popup__top">
+                    <h3 class="popup__title">
+                    </h3>
+                    <button class="popup__button--close">
+                        +
+                    </button>
+                </div>
+                <h3 class="popup__input-title">
+                </h3>
+                <form action="" class="popup__form">
+                    <input type="text" class="popup__input">
+                    <button class="popup__button"></button>
+                </form>
+            </div>
+        </div>
+    </template>
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>
