@@ -32,9 +32,8 @@ export function addMessageUI(who, message, time) {
 ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () =>
   openModal(MODAL.SETTINGS)
 );
-// TODO: оф
-MODAL_DETAILS.FORM_AUTHORIZATION.addEventListener('submit', (event) => {
-  event.preventDefault();
+
+function authorization() {
   sendRequest(HTTP_METHOD.POST, URLS.AUTHORIZATION, {
     email: MODAL_DETAILS.INPUT_AUTHORIZATION.value,
   })
@@ -43,8 +42,13 @@ MODAL_DETAILS.FORM_AUTHORIZATION.addEventListener('submit', (event) => {
       openModal(MODAL.CONFIRMATION);
     })
     .catch((error) => callNotification(error.message));
+}
+
+MODAL_DETAILS.FORM_AUTHORIZATION.addEventListener('submit', (event) => {
+  event.preventDefault();
+  authorization();
 });
-// TODO: оф
+
 MODAL_DETAILS.FORM_CONFIRMATION.addEventListener('submit', (event) => {
   event.preventDefault();
   addingTokenCookie(MODAL_DETAILS.INPUT_CONFIRMATION.value);
@@ -52,15 +56,13 @@ MODAL_DETAILS.FORM_CONFIRMATION.addEventListener('submit', (event) => {
   callNotification('Токен сохранен');
 });
 
-MODAL_DETAILS.FORM_SETTINGS.addEventListener('submit', (event) => {
-  event.preventDefault();
-
-  const changeName = { name: MODAL_DETAILS.INPUT_SETTINGS.value };
+function changeNameUser() {
+  const name = { name: MODAL_DETAILS.INPUT_SETTINGS.value };
   sendRequestChangeName(
     HTTP_METHOD.PATCH,
     URLS.AUTHORIZATION,
     Cookies.get(CookieName.AUTHORIZATION_TOKEN),
-    changeName
+    name
   )
     .then(() => {
       closeAllModal();
@@ -69,4 +71,9 @@ MODAL_DETAILS.FORM_SETTINGS.addEventListener('submit', (event) => {
     .catch((error) => {
       callNotification(error.message);
     });
+}
+
+MODAL_DETAILS.FORM_SETTINGS.addEventListener('submit', (event) => {
+  event.preventDefault();
+  changeNameUser();
 });
