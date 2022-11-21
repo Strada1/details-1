@@ -16,7 +16,9 @@
     <div class="container">
       <div class="chat-wrapper">
         <div class="main-interface">
-          <button class="settings-btn common-btn">Настройки</button>
+          <button class="settings-btn common-btn" id="settingsBtn">
+            Настройки
+          </button>
           <button class="logout-btn common-btn">Выход</button>
         </div>
         <div class="message-screen">
@@ -59,12 +61,12 @@
         </div>
       </div>
     </div>
-    <div class="popup-layout">
+    <div class="popup-layout settings" id="settings">
       <div class="popup-wrapper">
         <form action="" class="popup-form">
           <div class="header-block">
             <h3>Настройки</h3>
-            <button class="close-btn"></button>
+            <button class="close-btn" id="settingsCloseBtn"></button>
           </div>
           <div class="input-block">
             <label for="popup-field" class="popup-label">Имя в чате </label>
@@ -75,6 +77,50 @@
               id="popup-field"
             />
             <button type="submit" class="common-btn">-></button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup-layout authorization">
+      <div class="popup-wrapper">
+        <form action="" class="popup-form" id="authForm">
+          <div class="header-block">
+            <h3>Авторизация</h3>
+            <button class="close-btn"></button>
+          </div>
+          <div class="input-block">
+            <label for="popup-field" class="popup-label">Почта </label>
+            <input
+              type="text"
+              class="user-field"
+              placeholder="samuel123@gmail.com"
+              id="authPopupField"
+            />
+            <button type="submit" class="common-btn" id="authSendB">
+              Получить код
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="popup-layout confirm">
+      <div class="popup-wrapper">
+        <form action="" class="popup-form">
+          <div class="header-block">
+            <h3>Подтверждение</h3>
+            <button class="close-btn"></button>
+          </div>
+          <div class="input-block">
+            <label for="popup-field" class="popup-label">Код</label>
+            <input
+              type="text"
+              class="user-field"
+              placeholder="******"
+              id="popup-field"
+            />
+            <button type="submit" class="common-btn">Войти</button>
           </div>
         </form>
       </div>

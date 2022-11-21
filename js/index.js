@@ -1,9 +1,13 @@
-import { ELEMENTS } from './elements';
+import { ELEMENTS, POPUPS } from './elements';
 import { getHours, getMinutes } from 'date-fns';
+import { openSettingsHandler } from './popups';
 
 let user = 'Kai';
 
 ELEMENTS.MESSAGE_FORM.addEventListener('submit', (event) => addMessage(event));
+POPUPS.SETTINGS.addEventListener('click', (event) =>
+  openSettingsHandler(event)
+);
 
 function addMessage(event) {
   event.preventDefault();
@@ -20,6 +24,8 @@ function addMessage(event) {
     ELEMENTS.MESSAGE_LIST.append(template);
     ELEMENTS.MESSAGE_INPUT.value = '';
     scrollToLastMessage();
+  } else {
+    alert('Поле пустое, введите сообщение');
   }
 }
 
