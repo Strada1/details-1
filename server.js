@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import { ELEMENT, URL } from './const.js';
-import { showPopup, closePopup, createClone, createClone, showMessageOther } from './UI.js';
+import { showPopup, closePopup } from './UI.js';
 
 class ServerError extends Error {
     constructor(message) {
@@ -18,7 +18,7 @@ export async function getHistory() {
       const response = await fetch(URL.MESSAGE, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json;charset=utf-8',
           'Authorization': `Bearer ${Cookies.get('authorization')}`
         }
       });
@@ -28,11 +28,7 @@ export async function getHistory() {
       }
   
       const result = await response.json();
-      
-      ELEMENT.TEMPLATE_MESS_OTHER.forEach((template) => {
-        const cloneOther = createClone(template);
-        showMessageOther(cloneOther, result.messages, result.messages.length);
-      })
+      return result;
     } catch (err) {
       if (err instanceof ServerError) {
         console.log(err.message);
@@ -56,7 +52,7 @@ export async function sendEmail(email) {
       if (!response.ok) {
         throw new ServerError('request not sent');
       }
-  
+      
       closePopup(ELEMENT.POPUP_EMAIL);
       showPopup(ELEMENT.POPUP_CODE);
     } catch (err) {
@@ -73,7 +69,7 @@ export async function addName(name) {
       const response = await fetch(URL.ACCEPT, {
         method: 'PATCH',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json;charset=utf-8',
           'Authorization': `Bearer ${Cookies.get('authorization')}`
         },
         body: JSON.stringify({ name })
@@ -84,7 +80,6 @@ export async function addName(name) {
       }
   
       closePopup(ELEMENT.POPUP_NAME);
-      getUser();
     } catch (err) {
       if (err instanceof ServerError) {
         console.log(err.message);

@@ -1,10 +1,21 @@
 import { ELEMENT, POPUP_BUTTONS} from './const.js';
 import { showPopup, closePopup, createClone, createClone, showMessageOwn, showMessageOther } from './UI.js';
 import { getUser, addName, sendEmail, getHistory, saveCode } from './server.js';
+import Cookies from 'js-cookie';
 
-ELEMENT.BODY.onload = function () {
+window.onload = function () {
   getUser();
-  getHistory();
+
+  getHistory().then((history) => {
+    ELEMENT.TEMPLATE_MESS_OTHER.forEach((template) => {
+        const cloneOther = createClone(template);
+        showMessageOther(cloneOther, history.messages, history.messages.length);
+      })
+  });
+
+  if (!Cookies.get('authorization')) {
+    showPopup(ELEMENT.POPUP_EMAIL)
+  }
 }
 
 ELEMENT.EXIT.addEventListener('click', () => showPopup(ELEMENT.POPUP_EMAIL));
