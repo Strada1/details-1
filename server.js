@@ -31,7 +31,7 @@ export async function getHistory() {
       
       ELEMENT.TEMPLATE_MESS_OTHER.forEach((template) => {
         const cloneOther = createClone(template);
-        showMessageOther(cloneOther, result.messages);
+        showMessageOther(cloneOther, result.messages, result.messages.length);
       })
     } catch (err) {
       if (err instanceof ServerError) {

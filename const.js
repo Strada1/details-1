@@ -22,17 +22,23 @@ export const ELEMENT = {
   CLOSE_CODE: document.querySelector('#close-code'),
   CLOSE_NAME: document.querySelector('#close-name'),
 };
+
 export const POPUP_BUTTONS = {SETTINGS: 'Настройки', CODE: 'Получить код', EXIT: 'Выйти'};
+
 export const URL =  {
   ACCEPT: 'https://edu.strada.one/api/user',
   ME: 'https://edu.strada.one/api/user/me',
   MESSAGE: 'https://edu.strada.one/api/messages/'
 }
+
 export const CLASS = {
   ACTIVE: 'popup--active',
   OWN_TEXT: '.main__message-own-text',
   OTHER_TEXT: '.main__message-other-text',
 }
+
 export const ID = {
   OTHER_TIME: '#other-time',
 }
+
+export const INDEX_SEARCH = 1;

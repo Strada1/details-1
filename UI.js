@@ -1,4 +1,4 @@
-import {  ELEMENT, CLASS, ID } from './const.js';
+import {  ELEMENT, CLASS, ID, INDEX_SEARCH } from './const.js';
 import { format } from 'date-fns';
 
 export  function showPopup(element) {
@@ -20,10 +20,13 @@ export  function showMessageOwn(clone){
     }
   }
   
-  export  function showMessageOther(clone, history) {
-    if (history[0].text) {
-      clone.querySelectorAll(CLASS.OTHER_TEXT).forEach((message) => message.textContent = `${history[0].user.name}: ${history[0].text}`);
-      clone.querySelectorAll(ID.OTHER_TIME).forEach((message) => message.textContent = format(new Date(history[0].updatedAt), 'HH:mm'));
-      ELEMENT.MAIN.prepend(clone);
-    }
+  export  function showMessageOther(clone, history, index) {
+    if (index < 0) return index;
+    
+    const newIndex = showMessageOther(clone, history, index - INDEX_SEARCH) + INDEX_SEARCH;
+
+    clone.querySelectorAll(CLASS.OTHER_TEXT).forEach((message) => message.textContent = `${history[newIndex].user.name}: ${history[newIndex].text}`);
+    clone.querySelectorAll(ID.OTHER_TIME).forEach((message) => message.textContent = format(new Date(history[newIndex].updatedAt), 'HH:mm'));
+    ELEMENT.MAIN.prepend(clone);
+    
   }
