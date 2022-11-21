@@ -13,8 +13,8 @@ function addMessage(event) {
   const messageDate = `${hour}:${minute}`;
   if (messagevalue.length) {
     const template = ELEMENTS.MESSAGE_TEMPLATE.content.cloneNode(true);
-    template.querySelector('.author').textContent = `${user}`;
-    template.querySelector('.message-text').textContent = messagevalue;
+    template.querySelector('.author').textContent = `${user}: `;
+    template.querySelector('.message-text').append(messagevalue);
     template.querySelector('.message-date').textContent = messageDate;
 
     ELEMENTS.MESSAGE_LIST.append(template);
