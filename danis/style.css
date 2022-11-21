@@ -91,6 +91,9 @@
     padding: 1rem;
     width: fit-content;
     max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .hero__block_window-chat .message_item:nth-last-child(odd) {
@@ -105,6 +108,10 @@
 
 .user_message {
     margin-left: auto;
+}
+
+.message_container.user_message.another {
+    margin-left: unset;
 }
 
 .autorization__block,

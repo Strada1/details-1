@@ -15,6 +15,7 @@ const windowChatBlock = document.querySelector('.chat__block');
 const userName = document.querySelector('.user_user_name');
 const changeNameForm = document.querySelector('.popup__form');
 const inputNewName = document.querySelector('.new_name');
+const getHistoryMessageUrl = 'https://edu.strada.one/api/messages/';
 
 export {
     settingsButton,
@@ -34,4 +35,5 @@ export {
     userName,
     changeNameForm,
     inputNewName,
+    getHistoryMessageUrl,
 }

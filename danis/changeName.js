@@ -1,4 +1,4 @@
-import {urlGetInfoUser} from './consts.js'
+import { urlGetInfoUser } from './consts.js'
 
 export async function changeName(newName) {
     const promise = await fetch(urlGetInfoUser, {
@@ -10,5 +10,4 @@ export async function changeName(newName) {
     });
     const result = await promise.json();
     result.name = newName;
-    console.log(result);
 }

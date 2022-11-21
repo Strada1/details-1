@@ -9,11 +9,16 @@ import {
     inputBlock,
     windowChatBlock,
     changeNameForm,
-    inputNewName
+    inputNewName,
+    cookieCode,
+    inputWriteMessage,
 } from './consts.js';
 import { sendEmailForm } from './authorization.js';
 import { createMessage } from './createMessage.js';
 import { changeName } from './changeName.js';
+import { loandingHistoryMessage } from './historyMessage.js';
+import { setName } from './confirmation.js';
+
 
 settingsButton.addEventListener("click", function () {
     popup.classList.toggle('active');
@@ -32,13 +37,16 @@ autorizationForm.addEventListener("submit", async function (event) {
 
 mainForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    createMessage();
+    createMessage(inputWriteMessage.value.trim());
+    inputWriteMessage.value="";
 });
 
 inputForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     inputBlock.style.display = 'none';
     windowChatBlock.style.display = 'flex';
+    setName(cookieCode.value.trim(), userEmailForAutorization.value.trim())
+    loandingHistoryMessage();
 });
 
 changeNameForm.addEventListener("submit", function (event) {
