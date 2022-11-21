@@ -1,10 +1,10 @@
 * {
     box-sizing: border-box;
-    margin: 1px;
+    margin: 0px;
     padding: 0;
   }
   body {
-    background-color: #e5e5e5;
+    background-color: #535353;
   }
   span {
     word-break: break-all;
@@ -81,10 +81,18 @@
   
   .other_message-wrapper {
     padding: 8px;
+    margin-bottom: 8px;
   }
   
   .time-message {
     text-align: right;
+    color: #535353;
+    font-style: italic;
+    font-size: x-small;
+  }
+
+  .companion-name {
+    font-size: small;
   }
   
   .my_message-input {
@@ -98,7 +106,7 @@
   border: 1px solid black;
   }
   
-  .settings_wrapper, .authorization_wrapper, .confirmation_wrapper{
+  .settings_wrapper, .confirmation_wrapper{
     height: 100%;
     width: 100%;
     position: absolute;
@@ -110,6 +118,20 @@
     align-items: center;
     display: none;
   }
+
+  .authorization_wrapper {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%);
+    background-color: #535353;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }  
+  
   
   .block-settings, .block-authorization, .block-confirmation{
     background-color: white;
@@ -121,7 +143,6 @@
   .wrapper_settings, .wrapper_authorization, .wrapper_confirmation{
     display: flex;
     justify-content: space-between;
-  
     margin-bottom: 16px;
   }
   
@@ -132,9 +153,14 @@
   
   .btn_name_in_chat {
     height: 32px;
-    margin-left: -2px;
+    margin-left: 0px;
   }
   
+  .btn-get-code {
+    height: 32px;
+    margin-left: 0px;
+  }
+
   .display_flex {
     display: flex;
   }
@@ -158,8 +184,4 @@
   .close-window {
   border: 0;
   font-size: larger;
-  }
-  
-  .allPopup {
-    display: flex;
   }

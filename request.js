@@ -1,8 +1,10 @@
-import { changeNameMessage } from "./chat.js";
+import { changeNameMessage, renderOtherMessage } from "./chat.js";
 import { AUTHORIZATION, USER } from "./const.js";
+import { comeChat } from "./popup.js";
 
 const urlStrada = "https://edu.strada.one/api/user";
 const urlStradaMe = "https://edu.strada.one/api/user/me";
+const urlStradaMessages = "https://edu.strada.one/api/messages/";
 
 export async function mailRequest(event) {
   event.preventDefault();
@@ -32,9 +34,9 @@ export async function changeNameRequest(name, account) {
     body: JSON.stringify({ name: name }),
   });
   if (result.ok) {
-    changeNameMessage("Ваше имя успешно сменилось.");
+    changeNameMessage("Ваше имя успешно сменилось на:", name);
   } else {
-    changeNameMessage("Ошибка! Имя не сменилось.");
+    changeNameMessage("Ошибка! Имя не сменилось на:", name);
   }
 }
 
@@ -48,7 +50,27 @@ export async function userDataRequest(account) {
   });
   const answer = await result.json();
   USER.name = answer.name;
+  USER.email = answer.email;
   if (!result.ok) {
     console.log(answer);
+  }
+}
+
+export async function messageDataRequest(account) {
+  const result = await fetch(urlStradaMessages, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Authorization: `Bearer ${account}`,
+    },
+  });
+  const answer = await result.json();
+  if (result.ok) {
+    answer.messages.forEach((item) => {
+      renderOtherMessage(item.text, item.user.name, item.createdAt)
+    });
+    comeChat();
+  } else {
+    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Произошла ошибка!";
   }
 }
