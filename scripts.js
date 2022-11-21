@@ -67,13 +67,19 @@ async function autorize(e) {
     response(email);
     
 }
+function fixDate(date) {
+    const currentTime = new Date();
+    date = new Date(date);
+    if (currentTime.getDate() === date.getDate() && currentTime.getMonth() === date.getMonth()) {
+        return `${currentTime.getHours()}:${currentTime.getMinutes()}`;
+    }else return `${date.getMonth()}/${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`;
+}
 
 async function sendMessage(message, user, date) {
     let messageClassName = user ? 'other_messages' : 'my_messages'
     const div = createChild('div', messageClassName);
     const msg = createChild('span', null, user ? `${user}: ${message}` : 'Я: ' + message);
-    date = date ? new Date(date) : new Date();
-    const time = createChild('span', 'time', `${date.getHours()}:${date.getMinutes()}`);
+    const time = createChild('span', 'time', () => fixDate(date));
     const msgBox = createChild('div', user ? 'message_delivered' : 'message_send');
     div.prepend(msgBox);
     msgBox.prepend(time);
