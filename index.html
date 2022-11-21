@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./main.css" />
+    <title>Чат</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        <button class="nav__settings btn" id="setting">Настройки</button>
+
+        <button class="nav__exit btn">Войти</button>
+      </div>
+
+      <div class="main">
+        <template class="temlate-message-own">
+          <div class="main__message-own message">
+            <p class="main__message-own-text">Я: Добрый день!</p>
+            <p class="main__time">18:45</p>
+          </div>
+        </template>
+
+        <template class="temlate-message-other">
+          <div class="main__message-other message read">
+            <p class="main__message-other-text">Собеседник мой: Добрый день!</p>
+            <p class="main__time" id="other-time">18:45</p>
+          </div>
+        </template>
+      </div>
+
+      <form class="form-message">
+        <input type="text" class="form-message__input input" placeholder="сообщение.." />
+        <button type="submit" class="form-message__btn btn">-></button>
+      </form>
+
+      <div class="popup"  id="email">
+        <div class="popup__inner">
+          <div class="popup-email__top">
+            <h3 class="popup__title">Авторизация</h3>
+            <button class="popup__button" id="close-email">+</button>
+          </div>
+          <h3 class="popup__title">Почта:</h3>
+
+          <form action="" class="chat__form">
+            <input type="email" class="chat-email__input input"/>
+            <button type="submit" class="chat__button btn">Получить код</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="code">
+        <div class="popup__inner">
+          <div class="popup-code__top">
+            <h3 class="popup__title">Подтверждение</h3>
+            <button class="popup__button" id="close-code">+</button>
+          </div>
+          <h3 class="popup__title">Код:</h3>
+  
+          <form action="" class="chat__form">
+            <input type="text" class="chat-code__input input"/>
+            <button type="submit" class="chat__button btn" id="enter">Войти</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="name">
+        <div class="popup__inner">
+          <div class="popup__top">
+            <h3 class="popup__title">Настройки</h3>
+            <button class="popup__button" id="close-name">+</button>
+          </div>
+          <h3 class="popup__title">Имя в чате</h3>
+
+          <form action="" class="chat__form">
+            <input type="text" class="chat__input input" placeholder="Стив" />
+            <button type="submit" class="chat__button btn" id="name-btn">-></button>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+        
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
