@@ -7,7 +7,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.querySelector('.form').addEventListener('submit', (message) => {
         message.preventDefault();
         const msg = document.querySelector('.input');
-        sendMessage(msg.value);
+        msg.value ? sendMessage(msg.value) : alert("ошибка отправки пустого сообщения");
         msg.value = '';
 
     });
@@ -69,17 +69,16 @@ async function autorize(e) {
 }
 function fixDate(date) {
     const currentTime = new Date();
+    if (!date) return `${currentTime.getHours()}:${currentTime.getMinutes()}`;
     date = new Date(date);
-    if (currentTime.getDate() === date.getDate() && currentTime.getMonth() === date.getMonth()) {
-        return `${currentTime.getHours()}:${currentTime.getMinutes()}`;
-    }else return `${date.getMonth()}/${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`;
+    return `${date.getDate()}/${date.getMonth()} - ${date.getHours()}:${date.getMinutes()}`;
 }
 
 async function sendMessage(message, user, date) {
     let messageClassName = user ? 'other_messages' : 'my_messages'
     const div = createChild('div', messageClassName);
     const msg = createChild('span', null, user ? `${user}: ${message}` : 'Я: ' + message);
-    const time = createChild('span', 'time', () => fixDate(date));
+    const time = createChild('span', 'time', fixDate(date));
     const msgBox = createChild('div', user ? 'message_delivered' : 'message_send');
     div.prepend(msgBox);
     msgBox.prepend(time);
