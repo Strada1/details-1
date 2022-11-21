@@ -1,0 +1,364 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  list-style-type: none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: black;
+}
+
+
+.content {
+    height: 533px;
+    width: 320px;
+    left: -293px;
+    top: -303px;
+    border-radius: 0px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+.top {
+    height: 47px;
+    width: 319px;
+    left: -293px;
+    top: -303px;
+}
+
+.open_settings {
+    height: 32px;
+    width: 98px;
+    left: -293px;
+    top: -303px;
+    float: left;
+    margin-top: 8px;
+    margin-left: 9px;
+    border-radius: 0px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+#settingsBtn {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    font-style:normal;
+    margin-bottom: 7px;
+    margin-left: 8px;
+    margin-top: 6px;
+} 
+
+.quit {
+    height: 32px;
+    width: 66px;
+    left: -293px;
+    top: -303px;
+    float: right;
+    margin-top: 8px;
+    margin-right: 8px;
+    border-radius: 0px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+#quitBtn {
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    font-style:normal;
+    margin-bottom: 7px;
+    margin-left: 8px;
+    margin-top: 7px;
+    vertical-align: top;
+}
+
+/*-----------------------------------------------*/
+
+.center {
+    height: 437px;
+    width: 319px;
+    left: -293px;
+    top: -303px;
+    
+}
+
+.chatScreen {
+    overflow-y: scroll;
+    scroll-snap-align:center;
+    height: 437px;
+    width: 304px;
+    left: -293px;
+    top: -303px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border-radius: 0px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+.sentMessage {
+    min-height: 52px;
+    max-height: fit-content;
+    max-width: 288px;
+    margin: 8px;
+    float: right;
+    border-radius: 0px;
+    background: #F6F6F6;
+    border: 1px solid #000000;
+}
+
+.sentMessageText {
+    min-height: 16px;
+    max-height: fit-content;
+    min-width: 125px;
+    max-width: 239px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    font-style:normal;
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+}
+
+.sentMessageTime {
+    height: 16px;
+    width: 34px;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 14px;
+    font-style:italic;
+    float: right;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+
+.receivedMessage {
+    min-height: 52px;
+    max-height: fit-content;
+    max-width: 254px;
+    margin: 8px;
+    float: left;
+    border-radius: 0px;
+    background: #E5E5E5;
+    border: 1px solid #000000;
+}
+
+.receivedMessageText {
+    min-height: 16px;
+    max-height: fit-content;
+    min-width: 125px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    font-style:normal;
+    margin-left: 8px;
+    margin-top: 8px;
+    margin-right: 6px;
+    margin-bottom: 4px;
+}
+
+.receivedMessageTime {
+    height: 16px;
+    width: 34px;
+    font-family: Roboto;
+    font-weight: 300;
+    font-size: 14px;
+    font-style:italic;
+    float: right;
+    margin-bottom: 8px;
+    margin-right: 8px;
+    vertical-align: bottom;
+}
+/*-----------------------------------------------*/
+
+.bottom {
+    height: 49px;
+    width: 320px;
+    left: -293px;
+    top: -303px;
+    
+}
+
+.textInput {
+    height: 30px;
+    width: 265px;
+    left: -293px;
+    top: -303px;
+    float: left;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    border-radius: 0px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+#inputMessage {
+    height: 17px;
+    width: 93px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    font-style:normal;
+    margin-bottom: 7px;
+    margin-left: 7px;
+    margin-top: 6px;
+    vertical-align: top;
+    border: none;
+}
+
+.send {
+    height: 30px;
+    width: 27px;
+    left: -293px;
+    top: -303px;
+    float: right;
+    margin-top: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    border-radius: 0px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+#sendBtn {
+    height: 19px;
+    width: 13px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    font-style: regular;
+    margin-bottom: 7px;
+    margin-left: 8px;
+    margin-top: 6px;
+    vertical-align: top;
+    border: none;
+}
+/*-----------------------------------------------*/
+
+
+/* POPUP */
+.popup {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 2;
+    display: none;
+  }
+  
+  .popup.active {
+    display: block;
+  }
+  
+  .popup_container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* POPUP SETTINGS */
+  
+  .settings {
+    width: 273px;
+    height: 319px;
+    background-color: white;
+    padding: 10px;
+    margin: auto;
+  }
+  
+  .settings_top {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+  
+  #closeSettingsBtn, #closeAuthorizationBtn, #closeConfirmBtn {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+  }
+
+
+  h1 {
+    margin-bottom: 5px;
+  }
+
+  form input {
+    flex: 0.95 0;
+    padding: 5px;
+    border: 1px solid black;
+  }
+
+  .profileName {
+    height: 30px;
+    width: 27px;
+    left: -293px;
+    top: -303px;
+    float: right;
+    margin-top: 0px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    border-radius: 0px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+  #profileNameBtn {
+    height: 19px;
+    width: 13px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    font-style: regular;
+    margin-bottom: 7px;
+    margin-left: 8px;
+    margin-top: 6px;
+    vertical-align: top;
+    border: none;
+}
+
+.getAuthCode, .signIn {
+    height: 34px;
+    width: 120px;
+    left: -22px;
+    top: -303px;
+    float: left;
+    margin-top: 8px;
+    margin-right: 8px;
+    margin-bottom:3px;
+    margin-left:0px;
+    border-radius: 0px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+}
+
+  #getAuthCodeBtn, #signInBtn {
+    height: 20px;
+    width: 119px;
+    font-family: Roboto;
+    font-weight: 400;
+    font-size: 16px;
+    font-style: regular;
+    margin-bottom: 7px;
+    margin-left:3px;
+    margin-top: 6px;
+    vertical-align: top;
+    border: none;
+}
