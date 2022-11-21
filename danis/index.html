@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="hero__block">
+        <div class="chat__block">
+            <div class="hero__block-buttons-head">
+                <div class="hero__block-buttons-head-setings">
+                    <button>Настройки</button>
+                </div>
+                <div class="hero__block-buttons-head-exit">
+                    <button>Выйти</button>
+                </div>
+            </div>
+            <div class="hero__block_window-chat">
+
+            </div>
+            <form class="hero__block-form" action="">
+                <div class="hero__block-buttons-bottom-input">
+                    <input type="text" placeholder="Сообщение...">
+                </div>
+                <div class="hero__block-buttons-bottom-send">
+                    <button>-></button>
+                </div>
+            </form>
+        </div>
+        <div class="popup" action="">
+            <div class="popup__buttons_head">
+                <div class="popup__buttons_head-title">
+                    Настройки
+                </div>
+                <div class="popup__buttons_head-close">
+                    <button>X</button>
+                </div>
+            </div>
+            <div class="popup__hero">
+                <div class="popup__hero-title">
+                    Имя в чате
+                </div>
+                <form action="" class="popup__form" onsubmit="return false;">
+                    <input class="new_name" type="text">
+                    <button>-></button>
+                </form>
+            </div>
+        </div>
+        <div class="autorization__block">
+            <div class="autorization__block-container">
+                <div class="autorization__block-head">
+                    <div class="autorization__block-head-title">
+                        Авторизация
+                    </div>
+                    <div class="autorization__block-head-close">
+                        X
+                    </div>
+                </div>
+                <div class="autorization__block-main">
+                    <div class="autorization__block-main-title">
+                        Почта:
+                    </div>
+                    <form action="" class="autorization__form">
+                        <div class="autorization__block-main-input">
+                            <input type="email">
+                        </div>
+                        <input type="submit" class="autorization__block-main-button" value="Получить код">
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="input__block">
+            <div class="input__block-container">
+                <div class="input__block-head">
+                    <div class="input__block-head-title">
+                        Подтверждение
+                    </div>
+                    <div class="input__block-head-close">
+                        X
+                    </div>
+                </div>
+                <div class="input__block-main">
+                    <div class="input__block-main-title">
+                        Код:
+                    </div>
+                    <form action="" class="input__form">
+                        <div class="input__block-main-input">
+                            <input type="text">
+                        </div>
+                        <input type="submit" class="input__block-main-button" value="Войти">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <template id="tmpl">
+        <div class="user_name">
+        </div>
+        <div class="message_item">
+        </div>
+        <div class="message_time">
+        </div>
+    </template>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
