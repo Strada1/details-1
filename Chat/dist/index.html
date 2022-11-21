@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/index.61d3354a.css">
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <button id="open_settings">Настройки</button>
+        <button id="open_login" class="active">Войти</button>
+        <button id="open_logout">Выйти</button>
+      </div>
+      <div class="chat" id="chat"></div>
+      <form class="bottom" id="sent_message">
+        <input type="text" placeholder="Сообщение...">
+        <button id="send_message">-></button>
+      </form>
+    </div>
+    <div class="popup" id="settings">
+      <div class="popup_container">
+        <div class="settings">
+          <div class="settings_top">
+            <h1>Настройки</h1>
+            <button class="close" id="close_settings">+</button>
+          </div>
+          <div class="settings_1">
+            <h1>Имя в чате</h1>
+            <form id="sent_name">
+              <input type="text" placeholder="Имя...">
+              <button id="send_name">-></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="auth">
+      <div class="popup_container">
+        <div class="auth">
+          <div class="auth_top">
+            <h1>Авторизация</h1>
+            <button class="close" id="close_auth">+</button>
+          </div>
+          <div class="email">
+            <h1>Почта:</h1>
+            <form id="sent_email">
+              <input type="email" placeholder="lichinka@mail.ru">
+              <button id="send_email">Получить код</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popup" id="confirm">
+      <div class="popup_container">
+        <div class="confirm">
+          <div class="confirm_top">
+            <h1>Подтверждение</h1>
+            <button class="close" id="close_confirm">+</button>
+          </div>
+          <div class="code">
+            <h1>Код:</h1>
+            <form id="sent_code">
+              <input type="text" placeholder="45613">
+              <button id="send_code">Войти</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <template id="message">
+      <div>
+        <div class="message delivered">
+          <p></p>
+          <span></span>
+        </div>
+      </div>
+    </template>
+    <script src="/index.975ef6c8.js" defer=""></script>
+  </body>
+</html>
