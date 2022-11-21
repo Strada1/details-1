@@ -1,9 +1,9 @@
-import {DATA} from "./constUrlEmail.js";
+import {DATA} from "./const.js";
 import Cookies from "js-cookie";
 
 export async function setToken(email){
     try {
-        await fetch(DATA.url, {
+      const response =  await fetch(DATA.urlPost, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
@@ -11,13 +11,16 @@ export async function setToken(email){
             body: JSON.stringify({email})
         });
 
+        const result = await response.json();
+        console.log('Post: ', result);
+
     } catch (e) {
         throw new Error (e.message);
     }
 }
 
-export async function getDataUser() {
-    const response = await fetch(DATA.url, {
+export async function getDataUser(url) {
+    const response = await fetch(url, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json;charset=utf-8',
@@ -27,20 +30,24 @@ export async function getDataUser() {
     const result = await response.json();
     console.log('result: ', result);
     console.log('response: ', response.ok);
-
+    return result;
 }
 
-export async function setUserName(userName){
+export async function setUserName(name){
     try {
         const cookies =  Cookies.get("email");
-        await fetch(DATA.url, {
+        const response = await fetch(DATA.urlPost, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json;charset=utf-8',
                 Authorization: `Bearer ${cookies}`,
             },
-            body: JSON.stringify({ userName })
+            body: JSON.stringify({ name } )
         });
+
+        const result = await response.json();
+        console.log('result: ', result);
+        console.log('response: ', response.ok);
 
     } catch (e) {
         throw new Error(e.message);

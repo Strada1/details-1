@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie'
-import {DATA} from "./constUrlEmail.js";
-import {setToken} from "./requests.js";
+import {DATA} from "./const.js";
+import {getDataUser, setToken, setUserName} from "./requests.js";
 
 const confirmBg = document.querySelector(".confirm__bg");
 const confirm = document.querySelector(".confirm");
@@ -36,6 +36,8 @@ function confirmPopupStyle() {
 function submitConfirm (event){
     event.preventDefault();
     Cookies.set("email",inputConfirm.value , { expires: 7 })
+    getDataUser(DATA.urlGet);
+
     confirmPopupStyle();
 }
 formConfirm.addEventListener("submit", submitConfirm );

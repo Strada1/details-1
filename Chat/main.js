@@ -1,10 +1,16 @@
 import { format } from 'date-fns';
 import {getDataUser, setUserName} from "./requests.js";
-import {inputValue} from "./constUrlEmail.js";
+import {DATA, inputValue} from "./const.js";
 
 const formMessage = document.querySelector('#setMessage');
 const inputMessage = document.querySelector('#post-name');
 const contentMessages = document.querySelector('.content-message');
+
+function scrollLastElement() {
+    const ELEMENTS = document.querySelector('.content-message');
+    const LAST_MESSAGE = ELEMENTS.lastElementChild;
+    LAST_MESSAGE.scrollIntoView({ block: 'end', behavior: 'smooth' });
+}
 
 function renderMessage(event) {
   event.preventDefault();
@@ -27,11 +33,30 @@ function renderMessage(event) {
 
 formMessage.addEventListener('submit', renderMessage);
 
-function scrollLastElement() {
-  const ELEMENTS = document.querySelector('.content-message');
-  const LAST_MESSAGE = ELEMENTS.lastElementChild;
-  LAST_MESSAGE.scrollIntoView({ block: 'end', behavior: 'smooth' });
+
+
+async function render() {
+    const response = await getDataUser(DATA.urlMessage);
+    const array  =  response.messages;
+
+    const HTMLTemplateElements = document.querySelector('.client-message');
+    const cloneNodes = HTMLTemplateElements.content.cloneNode(true);
+    const message = cloneNodes.querySelector('.client-span-message');
+    const date = cloneNodes.querySelector('.date-interlocutor');
+    const clientName = cloneNodes.querySelector(".no-select");
+
+    array.forEach((obj) => {
+        clientName.textContent = `${obj.user.name}: `;
+        message.textContent =  obj.text;
+        date.textContent = format(new Date(obj.createdAt), 'k:m');
+    });
+
+    contentMessages.append(cloneNodes);
+    console.log(response.text)
+    scrollLastElement();
 }
+
+render();
 
 // function renderMessage (event){
 //     event.preventDefault();

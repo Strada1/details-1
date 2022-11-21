@@ -1,23 +1,23 @@
-const popupBg = document.querySelector('.popup__bg');
-const popup = document.querySelector('.popup');
-const openPopupButton = document.querySelector('#setting');
-const closePopupButton = document.querySelector('.close-popup');
+import {buttonSetting} from "./const.js";
 
-openPopupButton.addEventListener('click', (e) => {
+buttonSetting.openPopupButton.addEventListener('click', (e) => {
   e.preventDefault();
-  popupBg.classList.add('active');
-  popup.classList.add('active');
+  buttonSetting.popupBg.classList.add('active');
+  buttonSetting.popup.classList.add('active');
 });
 
-closePopupButton.addEventListener('click', (e) => {
+function removePopup() {
+  buttonSetting.popupBg.classList.remove('active');
+  buttonSetting.popup.classList.remove('active');
+}
+
+buttonSetting.closePopupButton.addEventListener('click', (e) => {
   e.preventDefault();
-  popupBg.classList.remove('active');
-  popup.classList.remove('active');
+  removePopup();
 });
 
 document.addEventListener('click', (e) => {
-  if (e.target === popupBg) {
-    popupBg.classList.remove('active');
-    popup.classList.remove('active');
+  if (e.target === buttonSetting.popupBg) {
+    removePopup();
   }
 });
