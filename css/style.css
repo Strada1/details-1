@@ -44,6 +44,9 @@ body {
     border: 1px solid #000;
     padding: 10px;
     margin-bottom: 8px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 440px;
 }
 
 .message-list {
@@ -53,7 +56,9 @@ body {
     justify-content: flex-end;
     align-content: stretch;
     align-items: flex-start;
-    height: 440px;
+    min-height: 440px;
+
+
 }
 
 .message-item {

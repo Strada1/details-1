@@ -12,7 +12,6 @@ function addMessage(event) {
   const minute = getMinutes(new Date());
   const messageDate = `${hour}:${minute}`;
   if (messagevalue.length) {
-    console.log(ELEMENTS.MESSAGE_TEMPLATE);
     const template = ELEMENTS.MESSAGE_TEMPLATE.content.cloneNode(true);
     template.querySelector('.author').textContent = `${user}`;
     template.querySelector('.message-text').textContent = messagevalue;
@@ -20,7 +19,13 @@ function addMessage(event) {
 
     ELEMENTS.MESSAGE_LIST.append(template);
     ELEMENTS.MESSAGE_INPUT.value = '';
+    scrollToLastMessage();
   }
+}
+
+function scrollToLastMessage() {
+  const lastMessage = ELEMENTS.MESSAGE_LIST.lastElementChild;
+  lastMessage.scrollIntoView(false);
 }
 
 // function checkMessage(text) {
