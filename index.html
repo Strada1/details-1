@@ -1,105 +1,118 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Чат</title>
-	<link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/main.css">
-</head>
-<body>
-	<div class="container">
-		<header class="header">
-			<button class="settings">Найстройки</button>
-			<button class="authorization">Авторизация</button>
-			<button class="exit">Выйти</button>
-		</header>
-		<main class="main">
-			<div class="container-scroll">
-				<div class="chat__Container">
-					<template id="template">
-						<div class="my__SMS message__completed">
-							<div id="contentMyMessage" class="text__my__SMS" ></div>
-							<div class="time__SMS"></div>
-						</div>
-					</template>
-					<div class="my__SMS message__completed">
-						<div class="text__my_SMS">Я: Добрый день!</div>
-						<div class="time__SMS">18:45</div>
-					</div>
-	
-					<div class="his__SMS message__completed">
-						<div class="text__his_SMS">Собеседник мой: Добрый день!</div>
-						<div class="time__SMS">18:45</div>
-					</div>
-	
-					<div class="his__SMS message__completed">
-						<div class="text__his_SMS">Собеседник мой: А это второе и, кажется, оно очень 
-							длинное, чтобы поместиться на 
-							одной строке</div>
-						<div class="time__SMS">18:45</div>
-					</div>
-	
-					<div class="my__SMS message__sent">
-						<div class="text__my_SMS">Я: Добрый день!</div>
-						<div class="time__SMS">18:45</div>
-					</div>	
-				</div>
-			</div>
-			<div class="send__SMS__container">
-				<form action="" class="chat__form">
-					<input type="text" placeholder="сообщение" class="input__message">
-					<button type="submit" class="button__send__message">-></button>
-				</form>
-			</div>
-		</main>
-	</div>
-	<div id="popupSetings" class="popup__setings">
-		<div class="popup__setings__body">
-			<div class="popup__setings__content">
-				<button class="popup__setings__button__exit">+</button>
-				<div class="popup__setings_title">Найстройки</div>
-				<p class="popup__setings_name__chat">Имя в чате</p>
-				<form action="" class="popup__setings__form">
-					<input type="text" class="popup__setings__input">
-					<button type="submit" class="popup__setings__button">-></button>
-				</form>
-			</div>
-		</div>
-	</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Чат</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <button class="settings">Найстройки</button>
+        <button class="authorization">Авторизация</button>
+        <button class="exit">Выйти</button>
+      </header>
+      <main class="main">
+        <div class="container-scroll">
+          <div class="chat__Container">
+            <template id="template">
+              <div class="my__SMS message__completed">
+                <div id="contentMyMessage" class="text__my__SMS"></div>
+                <div class="time__SMS"></div>
+              </div>
+            </template>
+            <div class="my__SMS message__completed">
+              <div class="text__my_SMS">Я: Добрый день!</div>
+              <div class="time__SMS">18:45</div>
+            </div>
 
-	<div id="popupAuthorization" class="popup__authorization">
-		<div class="popup__authorization__body">
-			<div class="popup__authorization__content">
-				<button class="popup__authorization__button__exit">+</button>
-				<div class="popup__authorization_title">Авторизация</div>
-				<p class="popup__authorization_gmail">Почта:</p>
-				<form action="" class="popup__authorization__form">
-					<input type="email" class="popup__authorization__input" placeholder="my@gmail.com" required>
-					<button type="submit" class="popup__authorization__button">Получить код</button>
-				</form>
-			</div>
-		</div>
-	</div>
+            <div class="his__SMS message__completed">
+              <div class="text__his_SMS">Собеседник мой: Добрый день!</div>
+              <div class="time__SMS">18:45</div>
+            </div>
 
-	<div id="popupConfirmation" class="popup__confirmation">
-		<div class="popup__confirmation__body">
-			<div class="popup__confirmation__content">
-				<button class="popup__confirmation__button__exit">+</button>
-				<div class="popup__confirmation_title">Подтверждение</div>
-				<p class="popup__confirmation_gmail">Код:</p>
-				<form action="" class="popup__confirmation__form">
-					<input type="text" class="popup__confirmation__input">
-					<button type="submit" class="popup__confirmation__button">Войти</button>
-				</form>
-			</div>
-		</div>
-	</div>
+            <div class="his__SMS message__completed">
+              <div class="text__his_SMS">
+                Собеседник мой: А это второе и, кажется, оно очень длинное,
+                чтобы поместиться на одной строке
+              </div>
+              <div class="time__SMS">18:45</div>
+            </div>
 
-</body>
-<script type="module" src="/js/index.js"></script>
-<script type="module" src="/js/POPUP.js"></script>
-<script type="module" src="/js/renderMessage.js"></script>
-<script type="module" src="/js/authorization.js"></script>
+            <div class="my__SMS message__sent">
+              <div class="text__my_SMS">Я: Добрый день!</div>
+              <div class="time__SMS">18:45</div>
+            </div>
+          </div>
+        </div>
+        <div class="send__SMS__container">
+          <form action="" class="chat__form">
+            <input type="text" placeholder="сообщение" class="input__message" />
+            <button type="submit" class="button__send__message">-></button>
+          </form>
+        </div>
+      </main>
+    </div>
+    <div id="popupSetings" class="popup__setings">
+      <div class="popup__setings__body">
+        <div class="popup__setings__content">
+          <button class="popup__setings__button__exit">+</button>
+          <div class="popup__setings_title">Найстройки</div>
+          <p class="popup__setings_name__chat">Имя в чате</p>
+          <form action="" class="popup__setings__form">
+            <input type="text" class="popup__setings__input" />
+            <button type="submit" class="popup__setings__button">-></button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="popupAuthorization" class="popup__authorization">
+      <div class="popup__authorization__body">
+        <div class="popup__authorization__content">
+          <button class="popup__authorization__button__exit">+</button>
+          <div class="popup__authorization_title">Авторизация</div>
+          <p class="popup__authorization_gmail">Почта:</p>
+          <form action="" class="popup__authorization__form">
+            <input
+              type="email"
+              class="popup__authorization__input"
+              placeholder="my@gmail.com"
+              required
+            />
+            <button type="submit" class="popup__authorization__button">
+              Получить код
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="popupConfirmation" class="popup__confirmation">
+      <div class="popup__confirmation__body">
+        <div class="popup__confirmation__content">
+          <button class="popup__confirmation__button__exit">+</button>
+          <div class="popup__confirmation_title">Подтверждение</div>
+          <p class="popup__confirmation_gmail">Код:</p>
+          <form action="" class="popup__confirmation__form">
+            <input type="text" class="popup__confirmation__input" />
+            <button type="submit" class="popup__confirmation__button">
+              Войти
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="module" src="/js/index.js"></script>
+  <script type="module" src="/js/POPUP.js"></script>
+  <script type="module" src="/js/renderMessage.js"></script>
+  <script type="module" src="/js/authorization.js"></script>
+  <script type="module" src="/js/loadingHistory.js"></script>
 </html>

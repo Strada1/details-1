@@ -1,38 +1,41 @@
-import { format } from 'date-fns'
-import {ELEMENT} from "./const.js";
+import { format } from "date-fns";
+import { ELEMENT, CLASS_NAME } from "./const.js";
 
-
-ELEMENT.SEND_MESSAGE.addEventListener("submit", addMessageToDOM)
+ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
 
 function nowTime() {
-	const timeNow = format(new Date(), "kk ':' mm")
-	return timeNow;
+  const timeNow = format(new Date(), "kk ':' mm");
+  return timeNow;
 }
 
-function addMessageToDOM (event) {
-	event.preventDefault();
-	const message = ELEMENT.INPUT_MESSAGE.value;
-	// const userName = getDataUser().name
+function getMessageInput(event) {
+  event.preventDefault();
+  const message = ELEMENT.INPUT_MESSAGE.value;
 
-	if(!message) {
-		alert('Пустая строка, введите сообщение!')
-	} else {
-		const userContent = document.createElement('div');
-		userContent.append(ELEMENT.TEMPLATE.content.cloneNode(true));
-		const contentMyMessage = userContent.querySelector(".text__my__SMS")
-		const timeMyMessage = userContent.querySelector(".time__SMS")
+  if (!message) {
+    alert("Пустая строка, введите сообщение!");
+  } else {
+    event.target.reset();
+    const time = nowTime();
+    addMessageToDOM(message, time);
+  }
+}
 
-		contentMyMessage.textContent = `${message}`;
-		timeMyMessage.textContent = nowTime();
-		
-		ELEMENT.CHAT_CONTAINER.append(userContent);
-		event.target.reset();
-		scrollLastElement()
-	}
+export function addMessageToDOM(message, time) {
+  const userContent = document.createElement("div");
+  userContent.append(ELEMENT.TEMPLATE.content.cloneNode(true));
+  const contentMyMessage = userContent.querySelector(".text__my__SMS");
+  const timeMyMessage = userContent.querySelector(".time__SMS");
+
+  contentMyMessage.textContent = `${message}`;
+  timeMyMessage.textContent = time;
+
+  ELEMENT.CHAT_CONTAINER.append(userContent);
+  scrollLastElement();
 }
 
 function scrollLastElement() {
-    const ELEMENTS = document.querySelector(".chat__Container");
-    const LAST_MESSAGE = ELEMENTS.lastElementChild;
-    LAST_MESSAGE.scrollIntoView(false);
+  const ELEMENTS = document.querySelector(".chat__Container");
+  const LAST_MESSAGE = ELEMENTS.lastElementChild;
+  LAST_MESSAGE.scrollIntoView(false);
 }
