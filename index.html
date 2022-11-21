@@ -82,12 +82,12 @@
       </div>
     </div>
 
-    <div class="popup-layout authorization">
+    <div class="popup-layout authorization" id="authorizationBlock">
       <div class="popup-wrapper">
         <form action="" class="popup-form" id="authForm">
           <div class="header-block">
             <h3>Авторизация</h3>
-            <button class="close-btn"></button>
+            <button class="close-btn" id="authClothBtn"></button>
           </div>
           <div class="input-block">
             <label for="popup-field" class="popup-label">Почта </label>
@@ -105,12 +105,12 @@
       </div>
     </div>
 
-    <div class="popup-layout confirm">
+    <div class="popup-layout confirm" id="confirmBlock">
       <div class="popup-wrapper">
-        <form action="" class="popup-form">
+        <form action="" class="popup-form" id="confirmForm">
           <div class="header-block">
             <h3>Подтверждение</h3>
-            <button class="close-btn"></button>
+            <button class="close-btn" id="confirmCloseBtn"></button>
           </div>
           <div class="input-block">
             <label for="popup-field" class="popup-label">Код</label>
@@ -118,7 +118,7 @@
               type="text"
               class="user-field"
               placeholder="******"
-              id="popup-field"
+              id="confirmPopupField"
             />
             <button type="submit" class="common-btn">Войти</button>
           </div>
