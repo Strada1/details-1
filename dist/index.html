@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link href="/index.1303bb05.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="windowChat">
+            <div class="settings">
+                <button type="button" id="btnSettings">Настройки</button>
+                <button type="button" id="btnExit">Выйти</button>
+            </div>
+
+            <div id="main">
+
+                <div class="msgContainer msgReceived msgOut">
+                    <div>
+                        <span class="msgContainer-author">Я</span>:<span class="msgContainer-text">Добрый
+                            день!</span>
+                    </div>
+                    <div class="msgContainerTime">18:45</div>
+                </div>
+
+                <div class="msgContainer msgReceived msgIn">
+                    <div>
+                        <span class="msgContainer-author">Собеседник мой</span>:<span class="msgContainer-text">Добрый
+                            день!</span>
+                    </div>
+                    <div class="msgContainerTime">18:45</div>
+                </div>
+
+                <div class="msgContainer msgReceived msgIn">
+                    <div>
+                        <span class="msgContainer-author">Собеседник мой</span>:<span class="msgContainer-text"> А это
+                            второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</span>
+                    </div>
+                    <div class="msgContainerTime">18:45</div>
+                </div>
+
+                <div class="msgContainer  msgOut">
+                    <div>
+                        <span class="msgContainer-author msgOut">Я</span>:<span class="msgContainer-text">Добрый
+                            день!</span>
+                    </div>
+                    <div class="msgContainerTime">18:45</div>
+                </div>
+
+            </div>
+            <form id="msgEnterForm">
+                <div class="messages">
+                    <input type="text" class="inputText" name="inputMessage" placeholder="Сообщение">
+                    <input type="submit" class="sendButton" id="btnSendMessage" value="->">
+                </div>
+            </form>
+        </div>
+        <!-- Окно настроек -->
+        <div id="windowSettings">
+            <div class="windowSettingsWripper">
+                <div class="windowSettingsHeader">
+                    <span>Настройки</span>
+                    <button type="button" id="btnWindowSettingsExit">X</button>
+                </div>
+                <p>Имя в Чате</p>
+                <div class="windowSettingsMain">
+                    <input type="text" class="inputText" id="windowSettingsMainInputName" placeholder="Имя">
+                    <input type="submit" class="sendButton" id="windowSettingsMainSendName" value="->">
+                </div>
+
+            </div>
+        </div>
+        <script src="/index.3d214d75.js" defer=""></script>
+    </div>
+</body>
+
+</html>

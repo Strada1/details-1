@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+}
+
+.wrapper {
+  height: 533px;
+  width: 320px;
+  margin: 10vh auto auto;
+  position: relative;
+}
+
+.windowChat {
+  height: 100%;
+  background-color: #0ff;
+  flex-direction: column;
+  padding: 8px;
+  display: flex;
+}
+
+.settings, .messages {
+  min-height: 48px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+}
+
+#main {
+  border: 1px solid #000;
+  flex-direction: column;
+  flex: 1;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.inputText {
+  width: 75%;
+}
+
+.sendButton {
+  width: 20%;
+}
+
+.msgContainer {
+  text-align: right;
+  margin: 8px;
+}
+
+.msgReceived {
+  background-color: #e5e5e5;
+}
+
+.msgIn {
+  text-align: left;
+}
+
+.msgOut {
+  text-align: right;
+}
+
+#windowSettings {
+  z-index: 9999;
+  height: 100%;
+  width: 100%;
+  background-color: #535353;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.windowSettingsWripper {
+  width: 273px;
+  height: 319px;
+  background-color: #fff;
+  padding: 16px 14px 0;
+}
+
+.windowSettingsHeader, .windowSettingsMain {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: flex;
+}
+
+/*# sourceMappingURL=index.1303bb05.css.map */
