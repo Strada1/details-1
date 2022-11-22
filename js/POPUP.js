@@ -18,7 +18,7 @@ export function closePopupSettings() {
   POPUP.SETTINGS.className = "popup__setings";
 }
 
-function openPopupAuthorization() {
+export function openPopupAuthorization() {
   POPUP.AUTHORIZATION.classList.add("open");
 }
 

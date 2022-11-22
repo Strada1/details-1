@@ -4,7 +4,7 @@ import { ELEMENT, CLASS_NAME } from "./const.js";
 ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
 
 function nowTime() {
-  const timeNow = format(new Date(), "kk ':' mm");
+  const timeNow = format(new Date(), "kk':'mm");
   return timeNow;
 }
 
@@ -28,6 +28,19 @@ export function addMessageToDOM(message, time) {
   const timeMyMessage = userContent.querySelector(".time__SMS");
 
   contentMyMessage.textContent = `${message}`;
+  timeMyMessage.textContent = time;
+
+  ELEMENT.CHAT_CONTAINER.append(userContent);
+  scrollLastElement();
+}
+
+export function companionMessageToDOM(message, time, name) {
+  const userContent = document.createElement("div");
+  userContent.append(ELEMENT.TEMPLATE_COMPANION.content.cloneNode(true));
+  const contentMyMessage = userContent.querySelector(".text__his_SMS");
+  const timeMyMessage = userContent.querySelector(".time__SMS");
+
+  contentMyMessage.textContent = `${name}: ${message}`;
   timeMyMessage.textContent = time;
 
   ELEMENT.CHAT_CONTAINER.append(userContent);

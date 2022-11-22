@@ -2,9 +2,11 @@ import Cookies from "js-cookie";
 import { POPUP } from "./const";
 import {
   openPopupSettings,
+  openPopupAuthorization,
   closePopupSettings,
   closePopupConfirmation,
 } from "./POPUP";
+// import { myName } from "./authorization.js";
 
 POPUP.GET_COD.addEventListener("click", sendCod);
 POPUP.LOGIN.addEventListener("click", loginSetCookie);
@@ -22,9 +24,11 @@ async function sendCod(event) {
     },
     body: JSON.stringify({ email: `${userEmail}` }),
   });
-  const result = await response.json();
-  console.log("result: ", result);
-  console.log("response: ", response.ok);
+  if (!response.ok) {
+    alert("Email не коректный, поробуйте снова");
+    closePopupConfirmation();
+    openPopupAuthorization();
+  }
 }
 
 function loginSetCookie(event) {
@@ -56,7 +60,7 @@ async function setName(event) {
   getDataUser();
 }
 
-async function getDataUser() {
+export async function getDataUser() {
   const response = await fetch("https://edu.strada.one/api/user/me", {
     method: "GET",
     headers: {
@@ -65,6 +69,6 @@ async function getDataUser() {
     },
   });
   const result = await response.json();
-  console.log("result: ", result);
   console.log("response: ", response.ok);
+  return result.name;
 }

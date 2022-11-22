@@ -1,18 +1,18 @@
 export const CLASS_NAME = {
-  settings: ".settings",
+  SETTINGS: ".settings",
   authorization: ".authorization",
   chatForm: ".chat__form",
-  MY_MESSAGE: ".text__my__SMS",
 };
 
 export const ELEMENT = {
-  SETTINGS: document.querySelector(CLASS_NAME.settings),
+  SETTINGS: document.querySelector(CLASS_NAME.SETTINGS),
   AUTHORIZATION: document.querySelector(CLASS_NAME.authorization),
   SEND_MESSAGE: document.querySelector(CLASS_NAME.chatForm),
   INPUT_MESSAGE: document.querySelector(".input__message"),
   TEXT_MESSAGE: document.querySelector(".text__my__SMS"),
   CHAT_CONTAINER: document.querySelector(".chat__Container"),
   TEMPLATE: document.getElementById("template"),
+  TEMPLATE_COMPANION: document.getElementById("templateCompanion"),
   SCROl: document.querySelector(".container-scroll"),
 };
 
