@@ -9,8 +9,9 @@ const MODAL_TYPES = new Map([
       content: {
         title: 'Авторизация',
         label: 'Почта',
-        buttonText: 'Получить код'
+        buttonText: 'Получить код',
       },
+      inputType: 'email',
       template: modalTemplate
     }
   ],
@@ -22,6 +23,7 @@ const MODAL_TYPES = new Map([
         label: 'Код',
         buttonText: 'Войти'
       },
+      inputType: 'text',
       template: modalTemplate
     }
   ],
@@ -33,6 +35,7 @@ const MODAL_TYPES = new Map([
         label: 'Имя в чате',
         buttonText: 'Подтвердить'
       },
+      inputType: 'text',
       template: modalTemplate
     }
   ]
@@ -40,7 +43,7 @@ const MODAL_TYPES = new Map([
 
 
 class Modal {
-  constructor({content, template}, submitCallback, validateCallback) {
+  constructor({content, inputType, template}, submitCallback, validateCallback) {
     if (!content || !template) {
       return;
     }
@@ -51,12 +54,19 @@ class Modal {
     this.setTitle(content.title);
     this.setLabel(content.label);
     this.setButtonText(content.buttonText);
+    this.setInputType(inputType);
 
     this.closeModal = this.closeModal.bind(this);
     this.modalClickHandler = this.modalClickHandler.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
     this.submitForm = submitCallback.bind(this);
-    this.validateForm = validateCallback.bind(this);
+    this.setInputValue = this.setInputValue.bind(this);
+    this.disableButton = this.disableButton.bind(this);
+    this.enableButton = this.enableButton.bind(this);
+
+    if (validateCallback) {
+      this.validateForm = validateCallback.bind(this);
+    }
 
     this.setModalClosure();
     this.setFormSubmit();
@@ -83,6 +93,23 @@ class Modal {
     }
   }
 
+  setInputType(inputType) {
+    this.input = this.modalElement.querySelector('.modal__input');
+    this.input.setAttribute('type', inputType);
+  }
+
+  setInputValue(value) {
+    this.input.value = value;
+  }
+
+  disableButton() {
+    this.button.setAttribute('disabled', true);
+  }
+
+  enableButton() {
+    this.button.removeAttribute('disabled');
+  }
+
   closeModal() {
     this.modalElement.classList.remove('is-visible');
     setTimeout(() => {
@@ -106,16 +133,14 @@ class Modal {
 
   formSubmitHandler(e) {
     e.preventDefault();
-    const form = e.target;
-    const inputElement = form.querySelector('.modal__input');
-    const inputValue = inputElement.value.trim();
+    const inputValue = this.input.value.trim();
 
-    if (this.validateForm(inputValue)) {
-      inputElement.classList.remove('error-field');
-      const formData =  { email: inputValue };
-      this.submitForm(formData);
+    if (!this.validateForm || (this.validateForm && this.validateForm(inputValue))) {
+      this.button.setAttribute('disabled', 'disabled');
+      this.input.classList.remove('error-field');
+      this.submitForm(inputValue);
     } else {
-      inputElement.classList.add('error-field');
+      this.input.classList.add('error-field');
     }
   }
 
@@ -127,10 +152,13 @@ class Modal {
     this.formElement.addEventListener('submit', this.formSubmitHandler);
   }
 
-  addModal() {
+  openModal() {
     if (this.modalElement) {
       document.body.append(this.modalElement);
-      this.modalElement.classList.add('is-visible');
+      this.button.removeAttribute('disabled');
+      setTimeout(() => {
+        this.modalElement.classList.add('is-visible');
+      }, 100);
     }
   }
 }

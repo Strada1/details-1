@@ -1,26 +1,42 @@
-const sendData = async (onSucess, onFail, body, url, errorText = 'Ошибка соединения') => {
+const sendData = async (onSuccess, onFail, body, url, method = 'POST', headers = {}, errorText = 'Ошибка соединения') => {
   try {
     const response = await fetch(
       url,
       {
-        method: 'POST',
-        headers: { 'Content-Type': 'multipart/form-data' },
+        method,
+        headers,
         body
       }
     );
-
-    console.log(body);
-    console.log(url);
-    console.log(response);
 
     if (!response.ok) {
       throw new Error(errorText);
     }
 
-    onSucess();
+    onSuccess();
   } catch (error) {
-    onFail(error.message)
+    onFail(error.message);
   }
 };
 
-export { sendData };
+const getData = async (onSuccess, onFail, url, headers = {}, errorText = 'Ошибка соединения') => {
+  try {
+    const response = await fetch(
+      url,
+      {
+        method: 'GET',
+        headers
+      });
+
+    if (!response.ok) {
+      throw new Error(errorText);
+    }
+
+    const result = await response.json();
+    onSuccess(result);
+  } catch (error) {
+    onFail(error.message);
+  }
+};
+
+export { sendData, getData };

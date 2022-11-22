@@ -52,17 +52,26 @@
   box-shadow: none;
 }
 
+.button:disabled,
+.button:disabled:hover,
+.button:disabled:focus,
+.button:disabled:active {
+  background-color: var(--additional-grey-lighter-color);
+  box-shadow: none;
+  cursor: auto;
+}
+
 .button--menu {
-  background-color: var(--additional-grey-color);
+  background-color: var(--additional-color);
 }
 
 .button--menu:hover {
-  background-color: var(--additional-grey-lighter-color);
+  background-color: var(--additional-lighter-color);
   box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);
 }
 
 .button--menu:active {
-  background-color: var(--additional-grey-darker-color);
+  background-color: var(--additional-medium-color);
   box-shadow: none;
 }
 
@@ -92,18 +101,20 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, auto);
-  justify-content: start;
+  justify-content: flex-start;
+  align-self: flex-start;
   row-gap: 6px;
   padding: 6px calc(var(--page-padding) + 5px) 10px var(--page-padding);
   color: var(--default-black-color);
   background-color: var(--default-white-color);
-  border-radius: 24px 24px 4px 24px;
+  border-radius: 24px 24px 24px 4px;
   box-shadow: 0 3px 10px -5px var(--default-black-color);
 }
 
-.message--incoming {
-  align-self: start;
-  border-radius: 24px 24px 24px 4px;
+.message--my {
+  align-self: flex-end;
+  border-radius: 24px 24px 4px 24px;
+  background-color: var(--additional-pale-color);
 }
 
 .message__nick,
@@ -119,11 +130,19 @@
   grid-row: 1 / 2;
 }
 
+.message--my .message__nick {
+  display: none;
+}
+
 .message__time {
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   justify-self: end;
   font-style: italic;
+}
+
+.message--my .message__time {
+  color: var(--additional-lighter-color);
 }
 
 .message__text {
@@ -230,7 +249,7 @@
   padding: var(--page-padding);
   background-color: rgba(0, 0, 0, 0.7);
   opacity: 0;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 
 .modal__content {
@@ -335,6 +354,8 @@
   opacity: 0;
 }
 
-.error-field {
+.error-field,
+.error-field:hover,
+.error-field:focus {
   border-color: var(--default-red-color);
 }

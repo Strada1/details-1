@@ -18,5 +18,7 @@ const validateEmail = (email) => {
   return EMAIL_REGEXP.test(email);
 };
 
+const isNotEmptyField = (value) => String(value).trim().length > 0;
 
-export { validateMessage, validateEmail };
+
+export { validateMessage, validateEmail, isNotEmptyField };

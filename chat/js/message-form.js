@@ -15,10 +15,10 @@ const sendMessage = (message) => {
   const messageTimeElement = messageElement.querySelector('.message__time');
   const messageTextElement = messageElement.querySelector('.message__text');
 
-  const nick = 'Неопознанный енот';
+  const name = 'Неопознанный енот';
   const time = '18:45';
 
-  messageNickElement.textContent = nick;
+  messageNickElement.textContent = name;
   messageTimeElement.textContent = time;
   messageTextElement.textContent = message;
 
