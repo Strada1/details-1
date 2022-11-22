@@ -6,16 +6,17 @@ import Cookies from 'js-cookie';
 window.onload = function () {
   getUser();
 
-  getHistory().then((history) => {
-    ELEMENT.TEMPLATE_MESS_OTHER.forEach((template) => {
-        const cloneOther = createClone(template);
-        showMessageOther(cloneOther, history.messages, history.messages.length);
-      })
-  });
-
   if (!Cookies.get('authorization')) {
     showPopup(ELEMENT.POPUP_EMAIL)
   }
+
+  getHistory().then((history) => {
+
+    ELEMENT.TEMPLATE_MESS_OTHER.forEach((template) => {
+        const cloneOther = createClone(template);
+        showMessageOther(cloneOther, history.messages, history.messages.length - 1, template);
+      })
+  });
 }
 
 ELEMENT.EXIT.addEventListener('click', () => showPopup(ELEMENT.POPUP_EMAIL));
