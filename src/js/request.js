@@ -4,6 +4,7 @@ import { CookieName } from './cookie';
 export const URLS = {
   AUTHORIZATION: new URL('https://edu.strada.one/api/user'),
   USER: new URL('https://edu.strada.one/api/user/me'),
+  MESSAGES: 'https://edu.strada.one/api/messages/',
 };
 
 export const HTTP_METHOD = {
@@ -39,6 +40,20 @@ export async function sendRequestChangeName(method, URL, token, body = null) {
 }
 
 export async function getRequestName(method, URL, token) {
+  const headers = {
+    'Content-type': 'application/json; charset=utf-8',
+    Authorization: `Bearer ${token}`,
+  };
+  const response = await fetch(URL, {
+    method,
+    headers,
+  });
+  if (response.ok) {
+    return response.json();
+  }
+}
+
+export async function getMessageHistory(method, URL, token) {
   const headers = {
     'Content-type': 'application/json; charset=utf-8',
     Authorization: `Bearer ${token}`,

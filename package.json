@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Strada1/details-1#readme",
   "dependencies": {
+    "date-fns": "^2.29.3",
     "js-cookie": "^3.0.1"
   }
 }
