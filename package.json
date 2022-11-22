@@ -45,6 +45,7 @@
     "import-fresh": "^3.3.0",
     "is-arrayish": "^0.2.1",
     "is-json": "^2.0.1",
+    "js-cookie": "^3.0.1",
     "js-tokens": "^4.0.0",
     "json-parse-even-better-errors": "^2.3.1",
     "json5": "^2.2.1",

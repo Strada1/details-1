@@ -9,6 +9,8 @@ export const POPUPS = {
   SETTINGS: document.querySelector('#settingsBtn'),
   SETTINGS_POPUP: document.querySelector('#settings'),
   SETTINGS_CLOSE_BTN: document.querySelector('#settingsCloseBtn'),
+  SETTINGS_SEND: document.querySelector('#settingForm'),
+  SETTINGS_FIELD: document.querySelector('#settingsPopupField'),
 
   AUTHORIZATION_BLOCK: document.querySelector('#authorizationBlock'),
   AUTHORIZATION_SEND: document.querySelector('#authForm'),
@@ -19,4 +21,13 @@ export const POPUPS = {
   CONFIRM_SEND: document.querySelector('#confirmForm'),
   CONFIRM_FIELD: document.querySelector('#confirmPopupField'),
   CONFIRM_CLOSE_BTN: document.querySelector('#confirmCloseBtn'),
+};
+
+export const URLS = {
+  USER: 'https://edu.strada.one/api/user',
+  AUTHORIZATION_USER: 'https://edu.strada.one/api/user/me',
+};
+
+export const USERS = {
+  USER_NAME: 'Kai',
 };

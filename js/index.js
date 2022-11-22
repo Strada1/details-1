@@ -1,8 +1,8 @@
-import { ELEMENTS, POPUPS } from './elements';
+import { ELEMENTS, POPUPS, USERS } from './elements';
 import { getHours, getMinutes } from 'date-fns';
 import { openSettingsHandler } from './popups';
 
-let user = 'Kai';
+let user = USERS.USER_NAME;
 
 ELEMENTS.MESSAGE_FORM.addEventListener('submit', (event) => addMessage(event));
 POPUPS.SETTINGS.addEventListener('click', (event) =>
