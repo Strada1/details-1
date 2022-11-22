@@ -17,7 +17,8 @@ export const OTHER_MESSAGES = {
 TEMPLATE: document.querySelector('#template_other_message'),
 MESSAGE_BLOCK: document.querySelector('.other_message-block'),
 TIME: document.querySelector('.time_message'),
-COMPANION_NAME: document.querySelector('.companion-name')
+COMPANION_NAME: document.querySelector('.companion-name'),
+ALL_MESSAGES: document.querySelectorAll('.other_message-wrapper')
 }
 
 export const SETTINGS = {

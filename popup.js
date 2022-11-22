@@ -1,6 +1,7 @@
-import {SETTINGS, CONFIRMATION, ELEMENTS, AUTHORIZATION} from './const.js'
+import {SETTINGS, CONFIRMATION, ELEMENTS, AUTHORIZATION,} from './const.js'
+import {deleteAccountHistory} from './chat.js'
 
-//ментор, не стреляй в колени пж, да это плохо, что сток обработчиков но оно работает...
+//ментор, не стреляй в колени пж, да это плохо, что сток обработчиков, но оно работает...
 //сделала из своих слез
 
 SETTINGS.BUTTON_SETTINGS.addEventListener("click", function () {
@@ -12,6 +13,7 @@ SETTINGS.BUTTON_CLOSE_SETTINGS.addEventListener("click", function () {
 });
 
 ELEMENTS.BUTTON_EXIT.addEventListener("click", function () {
+  deleteAccountHistory()
   closePopups(AUTHORIZATION.AUTHORIZATION_WRAPPER);
 });
 

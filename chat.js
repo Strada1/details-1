@@ -2,6 +2,7 @@ import { cookieGet, cookieSet } from "./cookie.js";
 import { SETTINGS, AUTHORIZATION, CONFIRMATION, MY_MESSAGES, OTHER_MESSAGES } from "./const.js";
 import { mailRequest, changeNameRequest, userDataRequest, messageDataRequest } from "./request.js";
 import { format } from 'date-fns'
+import Cookies from "js-cookie";
 
 AUTHORIZATION.AUTHORIZATION_FORM.addEventListener("submit", mailRequest);
 CONFIRMATION.FORM_CONFIRMATION.addEventListener("submit", saveUserCode);
@@ -28,7 +29,7 @@ export function renderOtherMessage(value, name, time) {
 const message = OTHER_MESSAGES.TEMPLATE.content.querySelector('.other_message_view')
 message.textContent = value
 const timeMessage = OTHER_MESSAGES.TEMPLATE.content.querySelector('.time-message')
-timeMessage.textContent = format(new Date(time), 'k:m')
+timeMessage.textContent = format(new Date(time), 'k:mm')
 OTHER_MESSAGES.COMPANION_NAME.textContent = name
 
 const cloneMessages = OTHER_MESSAGES.TEMPLATE.content.cloneNode(true);
@@ -58,5 +59,7 @@ export function changeNameMessage(message, name) {
   SETTINGS.MESSAGE_CHANGE_NAME.textContent = `${message} ${name}` ;
 }
 
-
-
+export function deleteAccountHistory() {
+  document.location.reload();  
+  Cookies.remove('code');
+}
