@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <link rel="preload" href="./fonts/Roboto-Medium.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+  <link rel="preload" href="./fonts/Roboto-Bold.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Обратный отсчёт</title>
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <main class="main">
+    <section class="countdown">
+      <form class="countdown__form">
+        <label class="countdown__label title">Введите дату:</label>
+        <div class="countdown__wrapper">
+          <input class="countdown__date" type="date">
+          <button class="countdown__button countdown__button--submit" type="submit">Узнать</button>
+          <button class="countdown__button countdown__button--reset countdown__button--disabled" type="reset" disabled>Сбросить</button>
+        </div>
+      </form>
+
+      <div class="countdown__info">
+        <p class="countdown__title title">До даты осталось:</p>
+        <div class="countdown__time">
+          <p class="countdown__time-item">
+            <span class="countdown__time-label">лет</span>
+            <span class="countdown__time-value" id="years">00</span>
+          </p>
+          <p class="countdown__time-item">
+            <span class="countdown__time-label">дней</span>
+            <span class="countdown__time-value" id="days">00</span>
+          </p>
+          <p class="countdown__time-item">
+            <span class="countdown__time-label">часов</span>
+            <span class="countdown__time-value" id="hours">00</span>
+          </p>
+          <p class="countdown__time-item">
+            <span class="countdown__time-label">минут</span>
+            <span class="countdown__time-value" id="minutes">00</span>
+          </p>
+          <p class="countdown__time-item">
+            <span class="countdown__time-label">секунд</span>
+            <span class="countdown__time-value" id="seconds">00</span>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="./js/main.js" type="module"></script>
+</body>
+
+</html>

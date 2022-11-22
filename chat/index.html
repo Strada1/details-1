@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <link rel="preload" href="./fonts/Roboto-Regular.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+  <link rel="preload" href="./fonts/Roboto-Regular.woff" type="font/woff" as="font" crossorigin="anonymous">
+
+  <meta charset="utf-8">
+  <title>Чат</title>
+
+  <link rel="stylesheet" href="./styles/reboot.css"></link>
+  <link rel="stylesheet" href="./styles/style.css"></link>
+</head>
+<body>
+  <section class="messenger">
+    <h1 class="visually-hidden">Чат.</h1>
+    <div class="messenger__menu">
+      <button class="messenger__settings-button button button--menu" type="button">Настройки</button>
+      <button class="messenger__exit-button button button--menu" type="button">Выйти</button>
+    </div>
+
+    <div class="messenger__message-list"></div>
+
+    <form class="messenger__form">
+      <input class="messenger__input" type="text" placeholder="Напишите что-нибудь">
+      <button class="messenger__submit button" type="submit">Отправить</button>
+    </form>
+  </section>
+
+  <template id="message-template">
+    <div class="messenger__message message">
+      <p class="message__nick"></p>
+      <p class="message__time"></p>
+      <p class="message__text"></p>
+      <!--
+      <button class="message__delete">
+        <span class="visually-hidden"></span>
+      </button>
+      -->
+    </div>
+  </template>
+
+  <template id="modal-template">
+    <div class="modal" data-close-modal>
+      <div class="modal__content">
+        <header class="modal__header">
+          <h2 class="modal__title"></h2>
+          <button class="modal__close" data-close-modal></button>
+        </header>
+        <form class="modal__form" method="post" action="" enctype="multipart/form-data" >
+          <label class="modal__label" for="input-nick"></label>
+          <input class="modal__input" id="input-nick" type="text" value="">
+          <button class="modal__submit button"></button>
+        </form>
+      </div>
+    </div>
+  </template>
+
+  <script src="./js/main.js" type="module"></script>
+</body>
+</html>
