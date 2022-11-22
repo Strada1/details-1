@@ -5,6 +5,7 @@
 body {}
 
 .wrapper {
+    position: relative;
     margin: auto;
     margin-top: 10vh;
     height: 533px;
@@ -27,9 +28,10 @@ body {}
     flex-wrap: wrap;
 }
 
-.main {
+#main {
     border: solid black 1px;
     flex: 1;
+    flex-direction: column;
     margin-top: 8px;
     margin-bottom: 8px;
 }
@@ -51,12 +53,24 @@ body {}
     background-color: #E5E5E5;
 }
 
+.msgIn {
+    text-align: left;
+}
+
+.msgOut {
+    text-align: right;
+}
+
 /* Окно настроек */
 
-.windowSettings {
+#windowSettings {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 9999;
     background-color: #535353;
     height: 100%;
-    display: flex;
+    width: 100%;
     justify-content: center;
     align-items: center;
     display: none;
