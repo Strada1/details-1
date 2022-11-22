@@ -5,13 +5,14 @@ import { MODAL, openModal } from './modal';
 import { callNotification } from './notification';
 import { CookieName, isTokenAppStart } from './cookie';
 import { getMessageHistory, HTTP_METHOD, URLS } from './request';
-// TODO: добавить в переменные сообщения ошибок
+import { ERROR_MESSAGES, ValidationError } from './error/ValidationError';
+
 function getCheckMessage(message) {
   if (message.trim().length === 0) {
-    throw Error('слишком короткое сообщение');
+    throw new ValidationError(ERROR_MESSAGES.INPUT_NOTHING);
   }
-  if (message.length > 20) {
-    throw Error('слишком длинное сообщение');
+  if (message.length > 15) {
+    throw new ValidationError(ERROR_MESSAGES.INPUT_FULL);
   }
   return message;
 }
@@ -23,7 +24,11 @@ function setMessage(event) {
     ELEMENTS.FORM_MESSAGE.reset();
     addMessageUI('я', message, '18:43');
   } catch (error) {
-    callNotification(error.message);
+    if (error instanceof ValidationError) {
+      callNotification(error.message);
+    } else {
+      throw error;
+    }
   }
 }
 

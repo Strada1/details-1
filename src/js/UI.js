@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
 import { MODAL, MODAL_DETAILS, openModal, closeAllModal } from './modal';
 import {
-  sendRequest,
+  sendRequestAuthorization,
   HTTP_METHOD,
   URLS,
   sendRequestChangeName,
@@ -34,14 +34,16 @@ ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () =>
 );
 
 function authorization() {
-  sendRequest(HTTP_METHOD.POST, URLS.AUTHORIZATION, {
+  sendRequestAuthorization(HTTP_METHOD.POST, URLS.AUTHORIZATION, {
     email: MODAL_DETAILS.INPUT_AUTHORIZATION.value,
   })
     .then(() => {
       closeAllModal();
       openModal(MODAL.CONFIRMATION);
     })
-    .catch((error) => callNotification(error.message));
+    .catch((error) => {
+      callNotification(error.message);
+    });
 }
 
 MODAL_DETAILS.FORM_AUTHORIZATION.addEventListener('submit', (event) => {
