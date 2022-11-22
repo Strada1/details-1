@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang = 'ru'>
+<head>
+  <meta charset = 'UTF-8'>
+  <title>chat</title>
+  <link rel = 'stylesheet' href = 'css/index.css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <script type="module" src="js/index.js"></script>
+</head>
+<body>
+  <section class='chat' >
+
+    <div class='chat__header'>
+      <div class='chat__settings'>настройки</div>
+      <div class='chat__exit'>выйти</div>
+    </div>
+
+    <div class='chat__main'>
+
+<!--      <div class='massage massage-right'>
+        <div class='massage__name'>Я</div>
+        <p class='massage__text'>Добрый день </p>
+        <div class='massage__time'>18:45</div>
+      </div>
+
+      <div class='massage massage-left'>
+        <div class='massage__name'>Собеседник</div>
+        <p class='massage__text'>Здрартуй </p>
+        <div class='massage__time '>18:45</div>
+      </div>-->
+    </div>
+
+    <div class='chat__footer'>
+      <form data-message-form class='chat-form' >
+        <label class='chat-form__label'>
+          <input data-message-input class='chat-form__input'
+                 placeholder='сообщение...'
+                 type='text'>
+          <button class='chat-form__button' type='submit'> >  </button>
+        </label>
+      </form>
+    </div>
+
+    <div id='settings' class="modal hide">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class='modal__header'>
+            <p class='modal__title'>настройки</p>
+            <div data-modal-close class="modal__close">&times;</div>
+          </div>
+          <p class='modal__text'>Введите имя</p>
+          <form data-settings-form  class='modal-form' >
+            <label class='modal-form__label'>
+              <input data-settings-input  required
+                     class='modal-form__input'
+                     placeholder='текст'
+                     type='text'>
+              <button class='modal-form__button' type='submit'> Отправить </button>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id='authorization' class="modal hide">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class='modal__header'>
+            <p class='modal__title'>авторизация</p>
+            <div data-modal-close class="modal__close">&times;</div>
+          </div>
+          <p class='modal__text'>Введите почту:</p>
+          <form data-authorization-form class='modal-form' >
+            <label class='modal-form__label'>
+              <input
+                data-authorization-input
+                required
+                class='modal-form__input'
+                placeholder='текст'
+                type='email'>
+              <button data-authorization-button
+                      class='modal-form__button'
+                      type='submit'> Получить код </button>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id='confirmation' class="modal hide">
+      <div class="modal__dialog">
+        <div class="modal__content">
+          <div class='modal__header'>
+            <p class='modal__title'>подтверждение</p>
+            <div data-modal-close class="modal__close">&times;</div>
+          </div>
+          <p class='modal__text'>Код:</p>
+          <form data-confirmation-form class='modal-form' >
+            <label class='modal-form__label'>
+              <input
+                required
+                data-confirmation-input
+                class='modal-form__input'
+                placeholder='token'
+                type='text'>
+              <button class='modal-form__button' type='submit'> Войти </button>
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <template id="template-massage">
+    <div class='massage massage-right'>
+      <div class='massage__name'></div>
+      <p class='massage__text'></p>
+      <div class='massage__time'></div>
+    </div>
+  </template>
+
+  <div class='notification notification__close'>
+    <div class='notification__content'>
+      <img src = 'icon/error.png' alt = 'error icon'>
+      <div class='notification__text'>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

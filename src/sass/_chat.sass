@@ -1,0 +1,65 @@
+.chat
+  padding: 10px
+  border: 1px solid black
+  width: 320px
+  height: 533px
+  display: flex
+  flex-direction: column
+  &__header
+    display: flex
+    justify-content: space-between
+    margin-bottom: 10px
+  &__settings
+    transition: color 0.6s
+    cursor: pointer
+    width: 100px
+    height: 32px
+    border: 1px solid black
+    display: flex
+    justify-content: center
+    align-items: center
+    &:hover
+      border: 1px solid rgba(61, 97, 239, 0.7)
+      color: rgba(61, 97, 239, 0.7)
+  &__exit
+    transition: color 0.6s
+    cursor: pointer
+    width: 100px
+    height: 32px
+    border: 1px solid black
+    display: flex
+    justify-content: center
+    align-items: center
+    &:hover
+      border: 1px solid rgba(239, 61, 78, 0.7)
+      color: rgba(239, 61, 78, 0.7)
+  &__main
+    overflow-y: auto
+    display: flex
+    flex-direction: column-reverse
+    padding: 10px
+    margin-bottom: 10px
+    height: 100%
+    border: 1px solid black
+
+.chat-form
+  &__label
+    gap: 5px
+    display: flex
+  &__input
+    border: 1px solid black
+    padding-left: 5px
+    padding-right: 5px
+    min-height: 32px
+    width: 100%
+  &__button
+    transition: color 0.6s
+    border: 1px solid black
+    background-color: white
+    height: 32px
+    min-width: 36px
+    &:hover
+      border: 1px solid  rgba(80, 201, 103, 0.8)
+      color:  rgba(80, 201, 103, 0.8)
+
+
