@@ -8,6 +8,9 @@ import {
 } from './request';
 import { callNotification } from './notification';
 import { addingTokenCookie, CookieName } from './cookie';
+import { getCheckMessage } from './helps';
+import { socket } from './WebSocket';
+import { ValidationError } from './error/ValidationError';
 
 export const ELEMENTS = {
   FORM_MESSAGE: document.querySelector('[data-message-form]'),
@@ -17,16 +20,40 @@ export const ELEMENTS = {
   BUTTON_SETTINGS: document.querySelector('.chat__settings'),
 };
 
-export function createMessage(who, message, time) {
+export function setMessage(event) {
+  try {
+    event.preventDefault();
+    const message = getCheckMessage(ELEMENTS.INPUT_MESSAGE.value);
+    ELEMENTS.FORM_MESSAGE.reset();
+    socket.send(JSON.stringify({ text: message }));
+  } catch (error) {
+    if (error instanceof ValidationError) {
+      callNotification(error.message);
+    } else {
+      throw error;
+    }
+  }
+}
+
+ELEMENTS.FORM_MESSAGE.addEventListener('submit', (event) => setMessage(event));
+
+export function createMessage(user, message, time, isMessageClient) {
   const elemMessage = ELEMENTS.TEMPLATE.content.cloneNode(true);
+  if (isMessageClient) {
+    elemMessage.querySelector('.massage').classList.remove('massage-left');
+    elemMessage.querySelector('.massage').classList.add('massage-right');
+  }
   elemMessage.querySelector('.massage__text').textContent = message;
-  elemMessage.querySelector('.massage__name').textContent = who;
+  elemMessage.querySelector('.massage__name').textContent = user;
   elemMessage.querySelector('.massage__time').textContent = time;
   return elemMessage;
 }
 
-export function addMessageUI(who, message, time) {
-  ELEMENTS.LIST_MESSAGE.prepend(createMessage(who, message, time));
+export function addMessageUI(user, message, time, userEmail) {
+  const isMessageClient = userEmail === Cookies.get(CookieName.CLIENT_EMAIL);
+  ELEMENTS.LIST_MESSAGE.prepend(
+    createMessage(user, message, time, isMessageClient)
+  );
 }
 
 ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () =>
@@ -57,7 +84,7 @@ MODAL_DETAILS.FORM_CONFIRMATION.addEventListener('submit', (event) => {
   closeAllModal();
   callNotification('Токен сохранен');
 });
-
+// TODO: убрать строку
 function changeNameUser() {
   const name = { name: MODAL_DETAILS.INPUT_SETTINGS.value };
   sendRequestChangeName(

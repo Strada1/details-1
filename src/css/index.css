@@ -72,7 +72,7 @@ body {
   color: rgba(239, 61, 78, 0.7);
 }
 .chat__main {
-  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column-reverse;
   padding: 10px;

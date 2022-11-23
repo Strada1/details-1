@@ -2,6 +2,7 @@ import Cookies from 'js-cookie';
 
 export const CookieName = {
   AUTHORIZATION_TOKEN: 'authorizationToken',
+  CLIENT_EMAIL: 'email_user',
 };
 
 export function addingTokenCookie(token) {

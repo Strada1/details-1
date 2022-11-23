@@ -78,5 +78,5 @@ getRequestName(
   URLS.USER,
   Cookies.get(CookieName.AUTHORIZATION_TOKEN)
 )
-  .then((res) => console.log(res))
+  .then((res) => Cookies.set(CookieName.CLIENT_EMAIL, res.email))
   .catch((error) => callNotification(error.message));
