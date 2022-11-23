@@ -15,7 +15,7 @@
 			</nav>
 			<main class="content">
 				<div class="content__chat">
-					<div class="content__me message">
+					<!-- <div class="content__me message">
 						<div class="content__message">
 							<p>
 								Я: Добрый день!
@@ -25,8 +25,8 @@
 								<span>18:45</span>
 							</div>
 						</div>
-					</div>
-					<div class="content__companion message">
+					</div> -->
+					<!-- <div class="content__companion message">
 						<div class="content__message">
 							<p>Собеседник мой: Добрый день!</p>
 							<div class="content__time">
@@ -111,11 +111,11 @@
 								<span>18:45</span>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</main>
 			<form class="chat-form">
-				<input class="send-message" type="text" placeholder="сообщение..." name="" id="" />
+				<input class="send-message" type="text" placeholder="Написать..." name="" id="" />
 				<button class="send-button" type="submit">
 					<img src="public/img/arrow.png" alt="" />
 				</button>
@@ -130,7 +130,7 @@
 						<p>Имя в чате</p>
 					</div>
 					<form class="modal__form">
-						<input type="text" placeholder="Стив" name="" id="" />
+						<input class="modal-input" type="text" placeholder="Стив" name="" id="" />
 						<button type="submit">
 							<img src="public/img/arrow.png" alt="" />
 						</button>
@@ -147,12 +147,19 @@
 						<p>Почта</p>
 					</div>
 					<form class="log-in__form">
-						<input class="auth-input" type="text" placeholder="strada@mail.com" name="" id="" />
+						<input
+							class="auth-input"
+							type="email"
+							placeholder="strada@mail.com"
+							name=""
+							id=""
+							required
+						/>
 						<button type="submit">Получить код</button>
 					</form>
 				</div>
 			</div>
-			<div class="access">
+			<div class="access hide">
 				<div class="access__auth">
 					<div class="access__header">
 						<p>Подтверждение</p>
@@ -163,11 +170,12 @@
 					</div>
 					<form class="access__form">
 						<input
-							class="auth-input"
+							class="access-input"
 							type="text"
 							placeholder="Введите код из почты"
 							name=""
 							id=""
+							required
 						/>
 						<button type="submit">Войти</button>
 					</form>
