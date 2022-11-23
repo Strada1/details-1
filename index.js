@@ -1,5 +1,5 @@
 import { ELEMENT, POPUP_BUTTONS} from './const.js';
-import { showPopup, closePopup, createClone, createClone, showMessageOwn, showMessageOther } from './UI.js';
+import { showPopup, closePopup, createClone, createClone, showMessageOwn, showMessageOther, showHistoryMessageOther } from './UI.js';
 import { getUser, addName, sendEmail, getHistory, saveCoockies } from './server.js';
 import Cookies from 'js-cookie';
 
@@ -14,8 +14,23 @@ window.onload = function () {
     showPopup(ELEMENT.POPUP_EMAIL)
   }
 
-  getHistory();
+  checkHistory();
 }
+
+function checkHistory() {
+  getHistory().then((history) => {
+    history.messages.forEach((historyUser) => {
+      if (historyUser.user.email === Cookies.get('email')) {
+        const cloneOwn = createClone(ELEMENT.TEMPLATE_MESS_OWN);
+        showMessageOwn(cloneOwn, historyUser);
+        return;
+      }
+      const cloneOther = createClone(ELEMENT.TEMPLATE_MESS_OTHER);
+      showMessageOther(cloneOther, historyUser);
+    })
+  });
+}
+
 
 ELEMENT.EXIT.addEventListener('click', () => showPopup(ELEMENT.POPUP_EMAIL));
 
