@@ -6,7 +6,6 @@ import {
   closePopupSettings,
   closePopupConfirmation,
 } from "./POPUP";
-// import { myName } from "./authorization.js";
 
 POPUP.GET_COD.addEventListener("click", sendCod);
 POPUP.LOGIN.addEventListener("click", loginSetCookie);
@@ -69,6 +68,7 @@ export async function getDataUser() {
     },
   });
   const result = await response.json();
-  console.log("response: ", response.ok);
-  return result.name;
+  // console.log('result: ', result);
+  // console.log("response: ", response.ok);
+  return result;
 }

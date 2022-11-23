@@ -1,7 +1,26 @@
 import { format } from "date-fns";
-import { ELEMENT, CLASS_NAME } from "./const.js";
+import { ELEMENT } from "./const.js";
+import {getDataUser} from "./authorization.js"
 
-ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
+// ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
+ELEMENT.SEND_MESSAGE.addEventListener("submit", sendMessageWebSocet);
+async function getToken() {
+  let token = await getDataUser()
+  token = token.token
+  return token
+}
+
+const socket = new WebSocket(`ws://edu.strada.one/websockets?${ getToken()}`);
+
+function sendMessageWebSocet(event) {
+  event.preventDefault();
+  alert("start")
+  const messageee = ELEMENT.INPUT_MESSAGE.value;
+  console.log('messageee: ', messageee);
+	socket.send(JSON.stringify({ text: `${messageee}` }));
+}
+
+socket.onmessage = function(event) { console.log("event.data: ", event.data) };
 
 function nowTime() {
   const timeNow = format(new Date(), "kk':'mm");
@@ -15,6 +34,7 @@ function getMessageInput(event) {
   if (!message) {
     alert("Пустая строка, введите сообщение!");
   } else {
+    sendMessageWebSocet(message)
     event.target.reset();
     const time = nowTime();
     addMessageToDOM(message, time);
@@ -52,3 +72,5 @@ function scrollLastElement() {
   const LAST_MESSAGE = ELEMENTS.lastElementChild;
   LAST_MESSAGE.scrollIntoView(false);
 }
+
+

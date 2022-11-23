@@ -7,7 +7,7 @@ export const CLASS_NAME = {
 export const ELEMENT = {
   SETTINGS: document.querySelector(CLASS_NAME.SETTINGS),
   AUTHORIZATION: document.querySelector(CLASS_NAME.authorization),
-  SEND_MESSAGE: document.querySelector(CLASS_NAME.chatForm),
+  SEND_MESSAGE: document.querySelector(".chat__form"),
   INPUT_MESSAGE: document.querySelector(".input__message"),
   TEXT_MESSAGE: document.querySelector(".text__my__SMS"),
   CHAT_CONTAINER: document.querySelector(".chat__Container"),
@@ -37,6 +37,7 @@ export const POPUP = {
 
 export const URL = {
   HISTORY_SERVER: "https://edu.strada.one/api/messages/",
+  SOCET: "ws://edu.strada.one/websockets?"
 };
 
 export const MESSAGE = {};
