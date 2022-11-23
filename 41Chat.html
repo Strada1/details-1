@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <title>Chat</title>  
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="content">
+                <div class="popup" id="settings">
+                    <div class="popup_container">
+                      <div class="settings">
+                        <div class="settings_top">
+                          <h1>Настройки</h1>
+                          <button class="close" id="closeSettingsBtn">x</button>
+                        </div>
+                        <div class="settings_1">
+                          <h1>Имя в чате</h1>
+                          <form id="changeUserForm">
+                            <input type="text" id="inputName" placeholder="Имя...">
+                            <div class="profileName">
+                                <div id="profileNameBtn">-></div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="popup" id="autorization">
+                    <div class="popup_container">
+                      <div class="settings">
+                        <div class="settings_top">
+                          <h1>Авторизация</h1>
+                          <button class="close" id="closeAuthorizationBtn">x</button>
+                        </div>
+                        <div class="settings_1">
+                          <h1>Почта</h1>
+                          <form id="authorizationForm">
+                            <input type="text" id="inputEmail" placeholder="Имя...">
+                            <div class="getAuthCode">
+                                <div id="getAuthCodeBtn">Получить код</div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="popup" id="confirm">
+                    <div class="popup_container">
+                      <div class="settings">
+                        <div class="settings_top">
+                          <h1>Подтверждение</h1>
+                          <button class="close" id="closeConfirmBtn">x</button>
+                        </div>
+                        <div class="settings_1">
+                          <h1>Код</h1>
+                          <form id="confirmationForm">
+                            <input type="text" id="inputCode" placeholder="Введите код...">
+                            <div class="signIn">
+                                <div id="signInBtn">Войти</div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+                <div class="main" id="mainScreen">
+                    <div class="top">
+                        <div class="open_settings">
+                            <div id="settingsBtn">Настройки</div>
+                        </div>
+                        <div class="userName">
+                            <div id="getUserName">Имя</div>
+                        </div>
+                        <div class="quit">
+                            <div id="quitBtn">Войти</div>
+                        </div>           
+                    </div> 
+                    <div class="center">
+                        <div class="chatScreen">
+                            <template id="tmpl">
+                                <div class="sentMessageContainer">
+                                    <div class="sentMessage">
+                                        <div class="sentMessageText">Я: Хэлло!</div>
+                                        <div class="sentMessageTime">21:33</div>
+                                    </div>
+                                </div>
+                            </template>
+                            
+                            <div class="receivedMessageContainer">
+                                <div class="receivedMessage">
+                                    <div class="receivedMessageText">Собеседник мой: Добрый день!</div>
+                                    <div class="receivedMessageTime">18:46</div>
+                                </div>
+                            </div>
+                            <div class="sentMessageContainer">
+                                <div class="sentMessage">
+                                    <div class="sentMessageText">Я: Добрый день!</div>
+                                    <div class="sentMessageTime">18:45</div>
+                                </div>
+                            </div>
+                            <div class="sentMessageContainer">
+                                <div class="sentMessage">
+                                    <div class="sentMessageText">Я: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</div>
+                                    <div class="sentMessageTime">18:45</div>
+                                </div>
+                            </div>
+                            <div class="receivedMessageContainer">
+                                <div class="receivedMessage">
+                                    <div class="receivedMessageText">Собеседник мой: А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке</div>
+                                    <div class="receivedMessageTime">18:46</div>
+                                </div>
+                            </div>
+                            <div class="sentMessageContainer">
+                                <div class="sentMessage">
+                                    <div class="sentMessageText">Я: Добрый день!</div>
+                                    <div class="sentMessageTime">18:45</div>
+                                </div>
+                            </div>
+                            <div class="sentMessageContainer">
+                                <div class="sentMessage">
+                                    <div class="sentMessageText">Я: Добрый день!</div>
+                                    <div class="sentMessageTime">18:45</div>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                    <form class = bottom id="sendMessageForm">
+                        <div class="textInput">
+                            <input type="text" id="inputMessage" placeholder="сообщение..">
+                        </div>   
+                        <div class="send">
+                            <div id="sendMessageBtn">-></div>
+                        </div>
+                    </form>
+                </div>
+                
+                
+            </div>
+        </div>
+        <script type="module" src="./index.js"></script>
+    </body>
+</html>
