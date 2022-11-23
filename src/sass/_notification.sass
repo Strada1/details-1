@@ -1,0 +1,22 @@
+.notification
+  transition: top 1s
+  padding: 20px
+  border: 1px solid red
+  position: absolute
+  width: 320px
+  max-height: 100px
+  &__content
+    display: flex
+    align-items: center
+    gap: 15px
+  img
+    display: block
+    width: 15%
+    object-fit: cover
+  &__text
+    max-height: 40px
+    overflow: hidden
+  &__close
+    top: -100px
+  &__active
+    top: 15px
