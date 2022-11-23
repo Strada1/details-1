@@ -1,4 +1,4 @@
-import { changeNameMessage, renderOtherMessage } from "./chat.js";
+import { changeNameMessage, RenderMesLive} from "./chat.js";
 import { AUTHORIZATION, USER } from "./const.js";
 import { comeChat } from "./popup.js";
 
@@ -21,6 +21,8 @@ export async function mailRequest(event) {
   });
   if (!result.ok) {
     AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Произошла ошибка!";
+  } else {
+    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Код на почте";
   }
 }
 
@@ -48,12 +50,6 @@ export async function userDataRequest(account) {
       Authorization: `Bearer ${account}`,
     },
   });
-  const answer = await result.json();
-  USER.name = answer.name;
-  USER.email = answer.email;
-  if (!result.ok) {
-    console.log(answer);
-  }
 }
 
 export async function messageDataRequest(account) {
@@ -67,7 +63,7 @@ export async function messageDataRequest(account) {
   const answer = await result.json();
   if (result.ok) {
     answer.messages.forEach((item) => {
-      renderOtherMessage(item.text, item.user.name, item.createdAt);
+      RenderMesLive(item);
     });
     comeChat();
   } else {

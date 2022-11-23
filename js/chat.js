@@ -3,14 +3,12 @@ import {
   SETTINGS,
   AUTHORIZATION,
   CONFIRMATION,
-  MY_MESSAGES,
-  OTHER_MESSAGES,
+  MESSAGES,
 } from "./const.js";
 
 import {
   mailRequest,
   changeNameRequest,
-  userDataRequest,
   messageDataRequest,
 } from "./request.js";
 
@@ -20,45 +18,50 @@ import Cookies from "js-cookie";
 AUTHORIZATION.AUTHORIZATION_FORM.addEventListener("submit", mailRequest);
 CONFIRMATION.FORM_CONFIRMATION.addEventListener("submit", saveUserCode);
 SETTINGS.CHANGE_NAME_FORM.addEventListener("submit", changeName);
-MY_MESSAGES.MESSAGE_FORM.addEventListener("submit", renderMyMessage);
 
-function renderMyMessage(event) {
-  event.preventDefault();
-  if (MY_MESSAGES.MESSAGE_INPUT.value === "") {
-    alert("Введите сообщение!");
+
+export function RenderMesLive(data) {
+  MESSAGES.MESSAGE_INPUT.value = ''
+  const authorMessage =  MESSAGES.TEMPLATE.content.querySelector('.other-name-message')
+  if (data.user.email === 'sonalavrushina@gmail.com') {
+    authorMessage.style.color = 'palevioletred'
   } else {
-    const spanMessage =
-      MY_MESSAGES.TEMPLATE.content.querySelector(".my_message_view");
-    spanMessage.textContent = MY_MESSAGES.MESSAGE_INPUT.value;
-    const cloneMessages = MY_MESSAGES.TEMPLATE.content.cloneNode(true);
-    MY_MESSAGES.MY_MESSAGES.append(cloneMessages);
-    MY_MESSAGES.MY_MESSAGES.scrollTop = MY_MESSAGES.MY_MESSAGES.scrollHeight;
-    MY_MESSAGES.MESSAGE_INPUT.value = "";
-  }
+    authorMessage.style.color = 'olive'
+  } 
+  const message =  MESSAGES.TEMPLATE.content.querySelector(".other_message_view");
+  message.textContent = data.text;
+
+  const timeMessage =  MESSAGES.TEMPLATE.content.querySelector(".time-message");
+  timeMessage.textContent = format(new Date(data.createdAt), "k:mm");
+  authorMessage.textContent = data.user.name
+  const cloneMessages =  MESSAGES.TEMPLATE.content.cloneNode(true);
+  MESSAGES.MESSAGE_BLOCK.append(cloneMessages);
+  MESSAGES.MESSAGE_BLOCK.scrollIntoView(false);
 }
 
-export function renderOtherMessage(value, name, time) {
-  const message = OTHER_MESSAGES.TEMPLATE.content.querySelector(
-    ".other_message_view"
-  );
-  message.textContent = value;
-  const timeMessage =
-    OTHER_MESSAGES.TEMPLATE.content.querySelector(".time-message");
-  timeMessage.textContent = format(new Date(time), "k:mm");
-  OTHER_MESSAGES.COMPANION_NAME.textContent = name;
 
-  const cloneMessages = OTHER_MESSAGES.TEMPLATE.content.cloneNode(true);
-  OTHER_MESSAGES.MESSAGE_BLOCK.append(cloneMessages);
-  OTHER_MESSAGES.MESSAGE_BLOCK.scrollTop =
-    OTHER_MESSAGES.MESSAGE_BLOCK.scrollHeight;
-}
 
 function saveUserCode(event) {
   event.preventDefault();
   const codeInput = CONFIRMATION.CODE_INPUT.value;
   cookieSet("code", codeInput);
   const cookieCode = cookieGet("code");
-  messageDataRequest(cookieCode);
+    messageDataRequest(cookieCode);
+}
+
+MESSAGES.MESSAGE_FORM.addEventListener("submit", sendMessage);
+
+const cookieCode = cookieGet("code");
+const socket = new WebSocket(`wss://edu.strada.one/websockets?${cookieCode}`);
+socket.onmessage = function (event) {
+  RenderMesLive(JSON.parse(event.data));
+  console.log(event.data)
+};
+
+function sendMessage(event) {
+  event.preventDefault();
+  const message =  MESSAGES.MESSAGE_INPUT.value;
+  socket.send(JSON.stringify({ text: message }));
 }
 
 function changeName(event) {
@@ -67,7 +70,6 @@ function changeName(event) {
   const cookieCode = cookieGet("code");
   changeNameRequest(inputName, cookieCode);
   SETTINGS.CHANGE_NAME_INPUT.value = "";
-  userDataRequest(cookieCode);
 }
 
 export function changeNameMessage(message, name) {

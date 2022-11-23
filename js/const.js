@@ -4,21 +4,15 @@ export const ELEMENTS = {
   ALL_POPUP: document.querySelector(".allPopup"),
 };
 
-export const MY_MESSAGES = {
-  MAIN_BLOCK: document.querySelector(".main-block"),
+export const MESSAGES = {
   MESSAGE_FORM: document.querySelector(".message_form"),
   MESSAGE_INPUT: document.querySelector(".my_message-input"),
-  MY_MESSAGES: document.querySelector(".message-window"),
-  TEMPLATE: document.querySelector("#template_my_message"),
-  CHAT_WRAPPER: document.querySelector(".configuration-wrapper"),
-};
-
-export const OTHER_MESSAGES = {
   TEMPLATE: document.querySelector("#template_other_message"),
   MESSAGE_BLOCK: document.querySelector(".other_message-block"),
   TIME: document.querySelector(".time_message"),
   COMPANION_NAME: document.querySelector(".companion-name"),
   ALL_MESSAGES: document.querySelectorAll(".other_message-wrapper"),
+  AUTHOR_MESSAGE: document.querySelector('.name-message')
 };
 
 export const SETTINGS = {
