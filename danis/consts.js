@@ -17,6 +17,8 @@ const changeNameForm = document.querySelector('.popup__form');
 const inputNewName = document.querySelector('.new_name');
 const getHistoryMessageUrl = 'https://edu.strada.one/api/messages/';
 const getUrlSocket = 'ws://edu.strada.one/websockets?';
+const getNameUserCoockie = 'user';
+const getNameUserEmail = 'userEmail';
 
 
 export {
@@ -38,5 +40,7 @@ export {
     changeNameForm,
     inputNewName,
     getHistoryMessageUrl,
-    getUrlSocket
+    getUrlSocket,
+    getNameUserCoockie,
+    getNameUserEmail
 }
