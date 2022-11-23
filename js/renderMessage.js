@@ -1,9 +1,10 @@
-import { format } from "date-fns";
+// import { format } from "date-fns";
 import { ELEMENT } from "./const.js";
 import {getDataUser} from "./authorization.js"
 
 // ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
-ELEMENT.SEND_MESSAGE.addEventListener("submit", sendMessageWebSocet);
+ELEMENT.SEND_MESSAGE.addEventListener("submit", sendMessage);
+console.log('ELEMENT.SEND_MESSAGE: ', ELEMENT.SEND_MESSAGE);
 async function getToken() {
   let token = await getDataUser()
   token = token.token
@@ -12,18 +13,26 @@ async function getToken() {
 
 const socket = new WebSocket(`ws://edu.strada.one/websockets?${ getToken()}`);
 
-function sendMessageWebSocet(event) {
-  event.preventDefault();
+function sendMessage() {
   alert("start")
-  const messageee = ELEMENT.INPUT_MESSAGE.value;
-  console.log('messageee: ', messageee);
-	socket.send(JSON.stringify({ text: `${messageee}` }));
-}
+  const message = ELEMENT.INPUT_MESSAGE.value;
+  socket.send(JSON.stringify({ 
+      text: message,
+  }));   
+};
+
+// function sendMessageWebSocet(event) {
+//   event.preventDefault();
+//   alert("start")
+//   const messageee = ELEMENT.INPUT_MESSAGE.value;
+//   console.log('messageee: ', messageee);
+// 	socket.send(JSON.stringify({ text: `${messageee}` }));
+// }
 
 socket.onmessage = function(event) { console.log("event.data: ", event.data) };
 
 function nowTime() {
-  const timeNow = format(new Date(), "kk':'mm");
+  // const timeNow = format(new Date(), "kk':'mm");
   return timeNow;
 }
 

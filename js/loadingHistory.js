@@ -1,4 +1,4 @@
-import { format } from "date-fns";
+// import { format } from "date-fns";
 import { URL } from "./const";
 import Cookies from "js-cookie";
 import { addMessageToDOM, companionMessageToDOM } from "./renderMessage";
@@ -37,7 +37,7 @@ async function getMessagesResult(lengthArray, result, myEmail) {
     let userEmail = result[lengthArray].user.email;
     let userName = result[lengthArray].user.name;
 
-    time = format(new Date(time), "kk':'mm");
+    // time = format(new Date(time), "kk':'mm");
     if (userEmail == myEmail) {
       addMessageToDOM(message, time);
     } else {
