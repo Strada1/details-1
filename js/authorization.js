@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import { POPUP } from "./const";
+import { POPUP } from "./const.js";
 import {
   openPopupSettings,
   openPopupAuthorization,

@@ -1,9 +1,9 @@
-// import { format } from "date-fns";
+import { format } from "date-fns";
 import { ELEMENT } from "./const.js";
-import {getDataUser} from "./authorization.js"
+import { getDataUser } from "./authorization.js"
 
-// ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
-ELEMENT.SEND_MESSAGE.addEventListener("submit", sendMessage);
+ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
+// ELEMENT.SEND_MESSAGE.addEventListener("submit", sendMessage);
 console.log('ELEMENT.SEND_MESSAGE: ', ELEMENT.SEND_MESSAGE);
 async function getToken() {
   let token = await getDataUser()
@@ -32,18 +32,19 @@ function sendMessage() {
 socket.onmessage = function(event) { console.log("event.data: ", event.data) };
 
 function nowTime() {
-  // const timeNow = format(new Date(), "kk':'mm");
+  const timeNow = format(new Date(), "kk':'mm");
   return timeNow;
 }
 
 function getMessageInput(event) {
   event.preventDefault();
+  alert('start')
   const message = ELEMENT.INPUT_MESSAGE.value;
 
   if (!message) {
     alert("Пустая строка, введите сообщение!");
   } else {
-    sendMessageWebSocet(message)
+    // sendMessageWebSocet(message)
     event.target.reset();
     const time = nowTime();
     addMessageToDOM(message, time);

@@ -1,5 +1,5 @@
 import { ELEMENT } from "./const.js";
-import { POPUP } from "./const";
+import { POPUP } from "./const.js";
 
 ELEMENT.SETTINGS.addEventListener("click", openPopupSettings);
 POPUP.CLOSE_SETTINGS.addEventListener("click", closePopupSettings);
