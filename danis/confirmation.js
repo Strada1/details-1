@@ -1,7 +1,7 @@
 import {urlPost} from './consts.js'
 
 export async function setName(cookieCode, nameUser) {
-    document.cookie = cookieCode;
+    document.cookie = `user=${cookieCode}`;
     await fetch(urlPost, {
         method: 'PATCH',
         headers: {
