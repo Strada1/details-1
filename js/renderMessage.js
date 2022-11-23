@@ -1,9 +1,12 @@
+alert('start')
+
+
 import { format } from "date-fns";
 import { ELEMENT } from "./const.js";
 import { getDataUser } from "./authorization.js"
 
 ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
-// ELEMENT.SEND_MESSAGE.addEventListener("submit", sendMessage);
+ELEMENT.SEND_MESSAGE.addEventListener("submit", sendMessage);
 console.log('ELEMENT.SEND_MESSAGE: ', ELEMENT.SEND_MESSAGE);
 async function getToken() {
   let token = await getDataUser()
@@ -14,7 +17,7 @@ async function getToken() {
 const socket = new WebSocket(`ws://edu.strada.one/websockets?${ getToken()}`);
 
 function sendMessage() {
-  alert("start")
+  alert("start sendMessage")
   const message = ELEMENT.INPUT_MESSAGE.value;
   socket.send(JSON.stringify({ 
       text: message,
