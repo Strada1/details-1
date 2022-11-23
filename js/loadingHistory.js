@@ -6,8 +6,9 @@ import { getDataUser } from "./authorization.js";
 
 window.addEventListener("load", getHistory);
 
-async function getHistory(event) {
-  event.preventDefault();
+export async function getHistory(event) {
+  // event.preventDefault();
+  console.log('start gethistory')
 
   const response = await fetch(URL.HISTORY_SERVER, {
     method: "GET",

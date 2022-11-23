@@ -1,38 +1,21 @@
-alert('start')
-
-
+console.log("start render meseged ор ")
+getHistory()
 import { format } from "date-fns";
 import { ELEMENT } from "./const.js";
-import { getDataUser } from "./authorization.js"
+import Cookies from "js-cookie";
+import {getHistory} from "./loadingHistory.js"
 
 ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
-ELEMENT.SEND_MESSAGE.addEventListener("submit", sendMessage);
-console.log('ELEMENT.SEND_MESSAGE: ', ELEMENT.SEND_MESSAGE);
-async function getToken() {
-  let token = await getDataUser()
-  token = token.token
-  return token
+
+const socket = new WebSocket(`ws://edu.strada.one/websockets?${Cookies.get("authorizationCod")}`);
+console.log('socket: ', socket);
+
+function sendMessageWebSocet(message) {
+  console.log('message WebSocet: ', message);
+	socket.send(JSON.stringify({ text: `${message}` }));
 }
 
-const socket = new WebSocket(`ws://edu.strada.one/websockets?${ getToken()}`);
-
-function sendMessage() {
-  alert("start sendMessage")
-  const message = ELEMENT.INPUT_MESSAGE.value;
-  socket.send(JSON.stringify({ 
-      text: message,
-  }));   
-};
-
-// function sendMessageWebSocet(event) {
-//   event.preventDefault();
-//   alert("start")
-//   const messageee = ELEMENT.INPUT_MESSAGE.value;
-//   console.log('messageee: ', messageee);
-// 	socket.send(JSON.stringify({ text: `${messageee}` }));
-// }
-
-socket.onmessage = function(event) { console.log("event.data: ", event.data) };
+socket.onmessage = function(event) { getHistory() };
 
 function nowTime() {
   const timeNow = format(new Date(), "kk':'mm");
@@ -40,14 +23,13 @@ function nowTime() {
 }
 
 function getMessageInput(event) {
-  event.preventDefault();
-  alert('start')
   const message = ELEMENT.INPUT_MESSAGE.value;
+  console.log('message: ', message);
 
   if (!message) {
     alert("Пустая строка, введите сообщение!");
   } else {
-    // sendMessageWebSocet(message)
+    sendMessageWebSocet(message)
     event.target.reset();
     const time = nowTime();
     addMessageToDOM(message, time);
