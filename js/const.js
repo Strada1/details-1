@@ -18,13 +18,13 @@
     code: document.querySelector("#modal-code .modal__input"),
     nameForm: document.querySelector("#modal-name .input-data"),
     name: document.querySelector("#modal-name .modal__input"),
-    URL: "https://edu.strada.one/api/user",
-    URL_USER: "https://edu.strada.one/api/user/me",
+    URL: "https://edu.strada.one/api",
     hiddenClass: "hidden",
     closestModal: "[data-modal]",
     codeWarning: document.querySelector("#modal-code .modal__warning"),
     nameWarning: document.querySelector("#modal-name .modal__warning"),
     myMessages: ["message", "message--user-me", "message--sent"],
+    interlocutorMessages: ["message", "message--interlocutor"],
   };
   
  export const ELEM_HEIGHTS = {

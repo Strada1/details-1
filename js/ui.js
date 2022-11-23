@@ -1,6 +1,5 @@
 import { ELEMENTS, ELEM_HEIGHTS } from "./const.js";
 
-const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
 
 export function showModal(modalItem) {
   modalItem.classList.remove(ELEMENTS.hiddenClass);
@@ -47,6 +46,7 @@ export function changeTextAreaSize(event) {
 }
 
 function addScrollIcon() {
+  const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
   const scrollBottom =
     ELEMENTS.contentWrapper.scrollHeight -
     ELEMENTS.contentWrapper.clientHeight -
@@ -63,6 +63,7 @@ function addScrollIcon() {
 ELEMENTS.contentWrapper.addEventListener("scroll", addScrollIcon);
 
 ELEMENTS.scrollDown.addEventListener("click", () => {
+  const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
   lastMessage.scrollIntoView({
     behavior: "smooth",
   });

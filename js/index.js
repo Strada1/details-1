@@ -1,4 +1,4 @@
-import { ELEMENTS, ELEM_HEIGHTS, METHOD } from "./const.js";
+import { ELEMENTS, METHOD } from "./const.js";
 import {
   showModal,
   closeModal,
@@ -18,7 +18,7 @@ function addMessage(userClass, text, time, userName) {
   if (text.trim() !== "") {
     div.append(tmpl.content.cloneNode(true));
     div.querySelector(".message__text").textContent = text;
-    div.querySelector(".message__delivery-time").textContent = time;
+    div.querySelector(".message__delivery-time").textContent = format(Date.parse(time), "HH:mm");
     ELEMENTS.contentWrapper.append(div);
   }
 
@@ -34,38 +34,10 @@ function addMessage(userClass, text, time, userName) {
   });
 }
 
-ELEMENTS.textArea.addEventListener("keydown", (event) => {
-  set.add(event.key);
-
-  if (set.has("Enter") && !set.has("Shift")) {
-    addMessage(
-      ELEMENTS.myMessages,
-      ELEMENTS.textArea.value,
-      format(new Date(), "HH:mm")
-    );
-    returnTextAreaSie();
-    event.preventDefault();
-  }
-});
-
-ELEMENTS.textArea.addEventListener("keyup", (event) => {
-  set.clear();
-  changeTextAreaSize(event);
-});
-
-ELEMENTS.messageForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  addMessage(
-    ELEMENTS.myMessages,
-    ELEMENTS.textArea.value,
-    format(new Date(), "HH:mm")
-  );
-  returnTextAreaSie();
-});
-
 ELEMENTS.authorizationForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  sendRequest(METHOD.POST, ELEMENTS.URL, {
+  setCookie('thisUser', ELEMENTS.emailInput.value.trim());
+  sendRequest(METHOD.POST, ELEMENTS.URL + '/user', {
     body: JSON.stringify({ email: ELEMENTS.emailInput.value.trim() }),
   });
   ELEMENTS.emailInput.value = "";
@@ -75,8 +47,9 @@ ELEMENTS.authorizationForm.addEventListener("submit", (event) => {
 
 ELEMENTS.codeForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  setCookie(ELEMENTS.code.value);
+  setCookie('token', ELEMENTS.code.value.trim());
   ELEMENTS.code.value = "";
+  closeModal(ELEMENTS.modalCode)
 });
 
 ELEMENTS.nameForm.addEventListener("submit", (event) => {
@@ -85,13 +58,13 @@ ELEMENTS.nameForm.addEventListener("submit", (event) => {
   if (ELEMENTS.name.value !== "") {
     sendRequest(
       METHOD.PATCH,
-      ELEMENTS.URL,
+      ELEMENTS.URL + '/user',
       { body: JSON.stringify({ name: ELEMENTS.name.value.trim() }) },
       { Authorization: `Bearer ${token}` }
     );
     sendRequest(
       METHOD.GET,
-      ELEMENTS.URL_USER,
+      ELEMENTS.URL + '/user/me',
       {},
       { Authorization: `Bearer ${token}` }
     );
@@ -104,21 +77,25 @@ ELEMENTS.nameForm.addEventListener("submit", (event) => {
 window.onload = function showHistory() {
   const responseResult = sendRequest(
     METHOD.GET,
-    "https://edu.strada.one/api/messages/",
+    ELEMENTS.URL + '/messages/',
     {},
     { Authorization: `Bearer ${getCookie("token")}` }
   );
   console.log(responseResult);
   responseResult.then((result) => {
-    const user = result.messages[0].user.name;
-    const text = result.messages[0].text;
-    const time = format(new Date(result.messages[0].updatedAt), "HH:mm");
-    getMessages(result.messages, text, time, user);
+    getMessages(result.messages);
   });
 };
 
-function getMessages(arr, text, time, user, index = 0) {
-  addMessage(["message", "message--interlocutor"], text, time, user);
+function getMessages(arr, index = 0) {
+  const user = arr[index].user.name;
+  const text = arr[index].text;
+  const time = arr[index].updatedAt;
+  if (arr[index].user.email === getCookie('thisUser')){
+    addMessage(ELEMENTS.myMessages, text, time);
+  } else {
+    addMessage(ELEMENTS.interlocutorMessages, text, time, user);
+  }
 
   if (index >= arr.length) {
     return;
@@ -126,3 +103,51 @@ function getMessages(arr, text, time, user, index = 0) {
     getMessages(arr, ++index);
   }
 }
+
+const socket = new WebSocket(`ws://edu.strada.one/websockets?${getCookie("token")}`);
+socket.onopen = function(e) {
+  console.log("[open] Соединение установлено");
+};
+
+ELEMENTS.textArea.addEventListener("keydown", (event) => {
+  set.add(event.key);
+
+  if (set.has("Enter") && !set.has("Shift")) {
+    // addMessage(
+    //   ELEMENTS.myMessages,
+    //   ELEMENTS.textArea.value,
+    //   format(new Date(), "HH:mm")
+    // );
+    socket.send(JSON.stringify({ text: ELEMENTS.textArea.value }));
+    returnTextAreaSie();
+    event.preventDefault();
+  }
+});
+
+ELEMENTS.textArea.addEventListener("keyup", (event) => {
+  set.clear();
+  changeTextAreaSize(event);
+});
+
+ELEMENTS.messageForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  // addMessage(
+  //   ELEMENTS.myMessages,
+  //   ELEMENTS.textArea.value,
+  //   format(new Date(), "HH:mm")
+  // );
+  socket.send(JSON.stringify({ text: ELEMENTS.textArea.value }));
+  returnTextAreaSie();
+});
+
+socket.onmessage = function(event) { 
+  const data = JSON.parse(event.data);
+  console.log(data);
+
+  if (getCookie('thisUser') === data.user.email) {
+    addMessage(ELEMENTS.myMessages, data.text, data.createdAt);
+  } else {
+    addMessage(ELEMENTS.interlocutorMessages, data.text, data.createdAt, data.user.name);
+  }
+
+ };

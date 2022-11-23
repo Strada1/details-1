@@ -1,9 +1,8 @@
-import { ELEMENTS} from "./const";
+import {ELEMENTS} from "./const";
 
-export function setCookie(value) {
-  if (ELEMENTS.code.value !== "") {
-    document.cookie = `token=${value}; max-age=1728000`;
-    closeModal(ELEMENTS.modalCode);
+export function setCookie(name, value) {
+  if (value !== "") {
+    document.cookie = `${name}=${value}; max-age=1728000`;
   } else {
     showWarning(ELEMENTS.codeWarning);
   }
