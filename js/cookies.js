@@ -8,7 +8,7 @@ function setCookie(name, value, options = {}) {
   };
 
   if (options.expires instanceof Date) {
-    ons.expires = options.expires.toUTCString();
+    options.expires = options.expires.toUTCString();
   }
 
   let updatedCookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);

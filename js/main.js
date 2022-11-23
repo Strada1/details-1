@@ -1,17 +1,20 @@
 import { UI, DATE_FORMAT } from "./view.js";
 import { Storage } from "./storage.js";
-import { DATA_MESSAGES } from "./data_messages.js";
 import { MEMBERS } from "./members.js";
-import {  } from "./ui_service.js";
+import { } from "./ui_service.js";
+import { sendMessage } from "./network.js";
 import { renderCurrentMessage, renderMyMessage, renderOutMessage, renderPeriod, dateFormation } from "./render.js";
+
+export { renderMessages, userStorage };
 
 let user = {};
 let booleanResult;
-let publicDate = DATA_MESSAGES[0].date;
+let publicDate = "2022-11-04T12:28:53.553Z";
 let membersStorage = new Storage('members', 'local');
-let messagesStorage = new Storage ('messages', 'session');
+let messagesStorage = new Storage('messages', 'session');
+let userStorage = new Storage('user', 'local');
 
-const arrMembers = ['Daria Ovsiannykova 🌱', 'Danis', 'ᅠ', 'соня', 'илназ','Egor Sychev','Павел Строгов','Timofey Tarasov','Михаил', 'боря китаев','Michael Korolev', 'Kseniya','Alex Rusakov', 'Vitalik', 'Banan 🍌 Baldja','Ya Rolly 🔱', 'Artem Dimitrov', 'Yaroslav Shishkin'];
+const arrMembers = ['art@strada.one', 'dariannyko@gmail.com','hollywood7878@yandex.ru', 'ᅠ', 'соня', "sonalavrushina@gmail.com",'kamkinaz64@gmail.com',"ilnazrt@mail.ru",'hunky@list.ru', 'tighineanu00@mail.ru','hamit.magic@gmail.com', '237x237@gmail.com','Egor Sychev','Павел Строгов', 'timofiei.tarasov@gmail.com','Михаил', 'боря китаев','Michael Korolev', 'Kseniya','Alex Rusakov', 'Vitalik', 'Banan 🍌 Baldja','Ya Rolly 🔱', 'Artem Dimitrov', 'Yaroslav Shishkin'];
 
 for(let i = 0; i < arrMembers.length; i++) {
     assignIcon(arrMembers[i]);
@@ -20,7 +23,6 @@ for(let i = 0; i < arrMembers.length; i++) {
 UI.CHAT.INPUT.addEventListener('submit', (event) => handlerGetMessage(event));
 
 UI.CHAT.EXIT.click();
-renderMessages();
 
 function handlerGetMessage(event) {
     event.preventDefault();
@@ -30,30 +32,28 @@ function handlerGetMessage(event) {
         return;
     }
     let message = UI.CHAT.MESSAGE.value;
-    renderCurrentMessage(message);
-    const letter = {id: new Date(), name: message};
-    let myMessages = messagesStorage.get();
-    messagesStorage.isEmpty()
-    ? myMessages = [letter]
-    : myMessages = [...myMessages, letter];
-    messagesStorage.set(myMessages);
+    // const myMessage = renderCurrentMessage(message);
+    sendMessage(message);
+    UI.CHAT.MESSAGE.value = '';
+    UI.CHAT.MESSAGE.focus();
+    // messagesStorage.set(myMessage);
 };
 
-function renderMessages() {
-    renderPeriod(dateFormation(publicDate));
-    DATA_MESSAGES.forEach(message => {
-        dateDetection(message);
-        if(message.nikName === 'Dmitry S') {
+function renderMessages(MESSAGES) {
+    // renderPeriod(dateFormation(publicDate));
+    MESSAGES.forEach(message => {
+        publicDate = dateDetection(message, publicDate);
+        if(message.user.email === userStorage.get()) {
             renderMyMessage(message);
         } else {
             const chatMembers = membersStorage.get();
             renderOutMessage(message, chatMembers);
         }
-    })
+    });
 };
 
-function dateDetection(message) {
-    const currentDate = message.date;
+function dateDetection(message, publicDate) {
+    const currentDate = message.createdAt;
     if(new Date(publicDate).getMonth() < new Date(currentDate).getMonth() ||
         new Date(publicDate).getMonth() === new Date(currentDate).getMonth() &&
         new Date(publicDate).getDate() < new Date(currentDate).getDate()) {
@@ -61,6 +61,7 @@ function dateDetection(message) {
         renderPeriod(dateFormation(publicDate));
         return publicDate;
     }
+    return publicDate;
 };
 
 function assignIcon(nameReceived) {
@@ -96,4 +97,19 @@ function getCurrentTime() {
 
 getCurrentTime();
 setInterval(getCurrentTime, 1000);
+
+// function recursionRender(DATA_MESSAGES, publicDate, count) {
+//     const lengthList = DATA_MESSAGES.length;
+//     const message = DATA_MESSAGES[count];
+//     if (count === lengthList) return;
+//     dateDetection(message, publicDate);
+//     if(message.user.name === 'Dmitry S') {
+//         renderMyMessage(message);
+//     } else {
+//         const chatMembers = membersStorage.get();
+//         renderOutMessage(message, chatMembers);
+//     }
+//     count++
+//     recursionRender(DATA_MESSAGES, publicDate, count);
+// }
 

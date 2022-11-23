@@ -121,7 +121,7 @@ body {
   display: flex;
   justify-content: flex-start;
   align-items: flex-end;
-  flex-direction: column;
+  flex-direction: column-reverse;
   width: 702px;
   height: 100%;
   background-size: contain;
@@ -250,6 +250,11 @@ body {
   color: rgb(150, 195, 243);
   opacity: .85;
 }
+/* .check-receved {
+  content: '✔';
+  font-size: 18px;
+  color: rgb(150, 195, 243);
+} */
 .container-footer {
   display: flex;
   flex-direction: row;
@@ -261,6 +266,7 @@ body {
   border: 1px solid rgb(118, 118, 118);
   border-left: none;
   border-right: none;
+  z-index: 3;
 }
 .message-input {
   position: relative;
@@ -621,7 +627,7 @@ body {
 .arrow-down::before {
   content: '⌵';
   font-size: 36px;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   color: rgb(173, 180, 186);
 }
 .arrow-down.active {

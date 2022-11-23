@@ -28,4 +28,3 @@ class Storage {
         return Boolean(!trueFalse);
     }
 }
-

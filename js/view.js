@@ -10,12 +10,12 @@ const UI = {
         EXIT: document.querySelector('.btn-exit'),
         MYNIK: document.querySelector('.my-nik-img'),
         MYNIK_DETAILS: document.querySelector('.my-nik-detailes'),
-        CHANGE: document.querySelector('.change'),
         SETTING: document.querySelector('.btn-setting'),
     },
     AUTH: {
         CODE_BOX: document.querySelector('.wrapper-login-box'),
         GET_CODE: document.querySelector('.login'),
+        CODE_INSTOCK: document.querySelector('.code-instock'),
         LOGIN_MAIL: document.querySelector('.login-mail'),
     },
     CONFIRM: {
@@ -26,6 +26,7 @@ const UI = {
     NIKNAME: {
         SETTING: document.querySelector('.wrapper-setting-box'),
         GETNAME: document.querySelector('.nik-name'),
+        CHANGE: document.querySelector('.change'),
         BUTTON_MONO: document.querySelector('.btn-theme-mono'),
         BUTTON_COLOR: document.querySelector('.btn-theme-color'),
         WRAPPER_MONO: document.querySelector('.wrapper-btn-mono'),
@@ -52,7 +53,11 @@ const ERROR_LIST = {
         const errorText = `Неудачный запрос на сервер \n Код ошибки ${errorCode}`
         popUpError(errorText);
         return;
-    }
+    },
+    wrong_token () {
+        const errorText = 'Неправильно указан токен\n Необходимо пройти авторизацию'
+        popUpError(errorText);
+    },
 }
 
 function popUpError (error) {
@@ -63,7 +68,7 @@ function popUpError (error) {
     errorText.innerText = error
     const timerId = setTimeout(() => { 
         popUp.classList.remove('pop-up-active');
-        UI.AUTH.CODE_BOX.classList.add('active');
+        UI.AUTH.CODE_BOX.classList.add();
     }, 10000)
     popUpClose.addEventListener('click', (event) => {
         event.preventDefault()

@@ -11,22 +11,24 @@ function renderCurrentMessage(message) {
     const timeMessage = timeFormation();  
     dataTime.innerText = timeMessage;
     renderMyMessage.append(dataTime);
-    UI.CHAT.CONTAINER.append(renderMyMessage);
+    UI.CHAT.CONTAINER.prepend(renderMyMessage);
     renderMyMessage.scrollIntoView();
     UI.CHAT.MESSAGE.value = '';
     UI.CHAT.MESSAGE.focus();
+    console.log(renderMyMessage);
+    return renderMyMessage;
 }
 
 function renderMyMessage(message) {
     const renderMyMessage = document.createElement('div');
     renderMyMessage.classList = ('my-message theme');
-    renderMyMessage.innerText = message.textMessage;
-    UI.CHAT.CONTAINER.append(renderMyMessage);
+    renderMyMessage.innerText = message.text;
     const dataTime = document.createElement('span');
     dataTime.classList = ('data-mytime');
-    const timeMessage = timeFormation(message.date);
-    dataTime.innerText = timeMessage;
+    const timeMessage = timeFormation(message.createdAt);
+    dataTime.innerText = timeMessage  + ' ' + ' ✔';
     renderMyMessage.append(dataTime);
+    UI.CHAT.CONTAINER.prepend(renderMyMessage);
     renderMyMessage.scrollIntoView();
 }
 
@@ -44,10 +46,10 @@ function renderOutMessage(message, chatMembers) {
     messageTheme.classList = ('incoming-message theme');
     const nikFrom = document.createElement('span');
     nikFrom.classList = ('nik-from');
-    nikFrom.innerText = message.nikName;
+    nikFrom.innerText = message.user.name;
     nikFrom.style.color = COLOR_THEME[backgroundColor];
     chatMembers.forEach(member => {
-        if(message.nikName === member.name) {
+        if(message.user.email === member.name) {
             nikImg.src = `./images/icon_members/${member.icon}.jpg`;
             nikImg.style.border = `1px solid rgb(12, 16, 28)`;
             nikFrom.style.color = member.color;
@@ -56,17 +58,17 @@ function renderOutMessage(message, chatMembers) {
     });   
     const messageText = document.createElement('span');
     messageText.classList = ('message-text');
-    messageText.innerText = message.textMessage;
+    messageText.innerText = message.text;
     const dataTime = document.createElement('span');
     dataTime.classList = ('data-time');
-    const timeMessage = timeFormation(message.date);
+    const timeMessage = timeFormation(message.createdAt);
     dataTime.innerText = timeMessage;
     messageTheme.append(nikFrom);
     messageTheme.append(messageText);
     messageTheme.append(dataTime);
     renderOutMessage.append(nikImg);
     renderOutMessage.append(messageTheme);
-    UI.CHAT.CONTAINER.append(renderOutMessage);
+    UI.CHAT.CONTAINER.prepend(renderOutMessage);
     renderOutMessage.scrollIntoView();
 }
 
@@ -74,7 +76,7 @@ function renderPeriod(dateForRender) {
     const renderDate = document.createElement('div');
     renderDate.classList = ('date-message');
     renderDate.innerText = dateForRender;
-    UI.CHAT.CONTAINER.append(renderDate);
+    UI.CHAT.CONTAINER.prepend(renderDate);
 }
 
 function dateFormation(date = new Date()) {
