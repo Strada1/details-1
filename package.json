@@ -1,0 +1,25 @@
+{
+  "name": "details-1",
+  "version": "1.0.0",
+  "description": "Репозиторий для первого потока \"Детали\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Strada1/details-1.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Strada1/details-1/issues"
+  },
+  "homepage": "https://github.com/Strada1/details-1#readme",
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "js-cookie": "^3.0.1"
+  }
+}
