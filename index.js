@@ -19,7 +19,7 @@ window.onload = function () {
 
 function checkHistory() {
   getHistory().then((history) => {
-    history.messages.forEach((historyUser) => {
+    history.messages.reverse().forEach((historyUser) => {
       if (historyUser.user.email === Cookies.get('email')) {
         const cloneOwn = createClone(ELEMENT.TEMPLATE_MESS_OWN);
         showMessageOwn(cloneOwn, historyUser);
