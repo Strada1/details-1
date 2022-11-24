@@ -1,26 +1,30 @@
-import { POPUPS, URLS, USERS } from './elements';
+import { POPUPS, URLS, USERS } from './constants';
 import Cookies from 'js-cookie';
+import { showPopup, hidePopup } from './helpers';
 
-export async function authorizationSendHandler(event) {
+export function authorizationSendHandler(event) {
   event.preventDefault();
   const userEmail = POPUPS.AUTHORIZATION_FIELD.value.trim();
-  console.log(userEmail);
 
+  if (userEmail) {
+    hidePopup(POPUPS.AUTHORIZATION_BLOCK);
+    showPopup(POPUPS.CONFIRM_BLOCK);
+    sendEmail(userEmail);
+  }
+}
+
+async function sendEmail(email) {
   const response = await fetch(URLS.USER, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
     },
-    body: JSON.stringify({ email: `${userEmail}` }),
+    body: JSON.stringify({ email: `${email}` }),
   });
 
   const result = await response.json();
   console.log(`RESULT: ${result}`);
   console.log(`RESPONSE ${response.ok}`);
-  if (response.ok) {
-    POPUPS.AUTHORIZATION_BLOCK.style.display = 'none';
-    POPUPS.CONFIRM_BLOCK.style.display = 'block';
-  }
 }
 
 export function confirmSendHandler(event) {
@@ -29,8 +33,8 @@ export function confirmSendHandler(event) {
 
   Cookies.set('authorizationCode', `${userCode}`);
   console.log('COOKIES', Cookies.get());
-  POPUPS.CONFIRM_BLOCK.style.display = 'none';
-  POPUPS.SETTINGS_POPUP.style.display = 'block';
+  hidePopup(POPUPS.CONFIRM_BLOCK);
+  showPopup(POPUPS.SETTINGS_POPUP);
 }
 
 export async function changeNameHandler(event) {
@@ -51,12 +55,12 @@ export async function changeNameHandler(event) {
   console.log(`RESULT: ${result}`);
   console.log(`RESPONSE ${response.ok}`);
   if (response.ok) {
-    POPUPS.SETTINGS_POPUP.style.display = 'none';
+    hidePopup(POPUPS.SETTINGS_POPUP);
     updateUserData();
   }
 }
 
-async function getUserData() {
+export async function getUserData() {
   const response = await fetch(URLS.AUTHORIZATION_USER, {
     method: 'GET',
     headers: {
@@ -69,6 +73,20 @@ async function getUserData() {
 
   return response;
 }
+
+async function getMessageHistory() {
+  const response = await fetch(URLS.MESSAGE_HISTORY, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+      Authorization: `Bearer ${Cookies.get('authorizationCode')}`,
+    },
+  });
+  const result = await response.json();
+  console.log(result);
+}
+
+getMessageHistory();
 
 async function updateUserData() {
   const userData = getUserData();

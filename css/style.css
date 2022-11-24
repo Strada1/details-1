@@ -132,8 +132,13 @@ body {
 }
 
 .settings,
-.confirm  {
+.confirm,
+.authorization  {
     display: none;
+}
+
+.show-popup {
+    display: block;
 }
 
 .confirm .user-field,

@@ -1,15 +1,14 @@
-import { POPUPS } from './elements';
+import { POPUPS, STYLES } from './constants';
 import {
   authorizationSendHandler,
   confirmSendHandler,
   changeNameHandler,
 } from './data';
 
+import { showPopup, hidePopup } from './helpers';
+
 POPUPS.SETTINGS_CLOSE_BTN.addEventListener('click', (event) =>
   settingsCloseHandler(event)
-);
-POPUPS.AUTHORIZATION_SEND.addEventListener('submit', (event) =>
-  authorizationSendHandler(event)
 );
 
 POPUPS.CONFIRM_CLOSE_BTN.addEventListener('click', (event) =>
@@ -18,6 +17,10 @@ POPUPS.CONFIRM_CLOSE_BTN.addEventListener('click', (event) =>
 
 POPUPS.AUTHORIZATION_CLOSE_BTN.addEventListener('click', (event) =>
   authCloseHandler(event)
+);
+
+POPUPS.AUTHORIZATION_SEND.addEventListener('submit', (event) =>
+  authorizationSendHandler(event)
 );
 
 POPUPS.CONFIRM_SEND.addEventListener('submit', (event) =>
@@ -29,20 +32,20 @@ POPUPS.SETTINGS_SEND.addEventListener('submit', (event) =>
 );
 
 export function openSettingsHandler() {
-  POPUPS.SETTINGS_POPUP.style.display = 'block';
+  showPopup(POPUPS.SETTINGS_POPUP);
 }
 
 function settingsCloseHandler(event) {
   event.preventDefault();
-  POPUPS.SETTINGS_POPUP.style.display = 'none';
+  hidePopup(POPUPS.SETTINGS_POPUP);
 }
 
 function confirmCloseHandler(event) {
   event.preventDefault();
-  POPUPS.CONFIRM_BLOCK.style.display = 'none';
+  hidePopup(POPUPS.CONFIRM_BLOCK);
 }
 
 function authCloseHandler(event) {
   event.preventDefault();
-  POPUPS.AUTHORIZATION_BLOCK.style.display = 'none';
+  hidePopup(POPUPS.AUTHORIZATION_BLOCK);
 }

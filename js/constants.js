@@ -3,6 +3,7 @@ export const ELEMENTS = {
   MESSAGE_INPUT: document.querySelector('#messageInput'),
   MESSAGE_TEMPLATE: document.querySelector('#messageTemplate'),
   MESSAGE_LIST: document.querySelector('#messageList'),
+  AUTHORIZATION_BTN: document.querySelector('#authBtn'),
 };
 
 export const POPUPS = {
@@ -15,7 +16,8 @@ export const POPUPS = {
   AUTHORIZATION_BLOCK: document.querySelector('#authorizationBlock'),
   AUTHORIZATION_SEND: document.querySelector('#authForm'),
   AUTHORIZATION_FIELD: document.querySelector('#authPopupField'),
-  AUTHORIZATION_CLOSE_BTN: document.querySelector('#authClothBtn'),
+
+  AUTHORIZATION_CLOSE_BTN: document.querySelector('#authCloseBtn'),
 
   CONFIRM_BLOCK: document.querySelector('#confirmBlock'),
   CONFIRM_SEND: document.querySelector('#confirmForm'),
@@ -26,8 +28,13 @@ export const POPUPS = {
 export const URLS = {
   USER: 'https://edu.strada.one/api/user',
   AUTHORIZATION_USER: 'https://edu.strada.one/api/user/me',
+  MESSAGE_HISTORY: 'https://edu.strada.one/api/messages/',
 };
 
 export const USERS = {
   USER_NAME: 'Kai',
+};
+
+export const STYLES = {
+  SHOW_POPUP: 'show-popup',
 };

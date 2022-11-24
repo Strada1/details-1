@@ -1,13 +1,36 @@
-import { ELEMENTS, POPUPS, USERS } from './elements';
+import { ELEMENTS, POPUPS, USERS } from './constants';
 import { getHours, getMinutes } from 'date-fns';
 import { openSettingsHandler } from './popups';
+import { showPopup } from './helpers';
+import Cookies from 'js-cookie';
+import { getUserData } from './data';
 
 let user = USERS.USER_NAME;
+
+window.addEventListener('load', renderApp);
 
 ELEMENTS.MESSAGE_FORM.addEventListener('submit', (event) => addMessage(event));
 POPUPS.SETTINGS.addEventListener('click', (event) =>
   openSettingsHandler(event)
 );
+
+function renderApp() {
+  showPopup(POPUPS.AUTHORIZATION_BLOCK);
+  renderButtons(true);
+}
+
+function renderButtons(authorization) {
+  if (!authorization) {
+    ELEMENTS.AUTHORIZATION_BTN.addEventListener('click', () =>
+      showPopup(POPUPS.AUTHORIZATION_BLOCK)
+    );
+    ELEMENTS.AUTHORIZATION_BTN.textContent = 'Войти';
+    return;
+  }
+  ELEMENTS.AUTHORIZATION_BTN.textContent = 'Выход';
+  let result = Cookies.get();
+  console.log(result);
+}
 
 function addMessage(event) {
   event.preventDefault();
