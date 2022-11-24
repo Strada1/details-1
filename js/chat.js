@@ -55,7 +55,6 @@ const cookieCode = cookieGet("code");
 const socket = new WebSocket(`wss://edu.strada.one/websockets?${cookieCode}`);
 socket.onmessage = function (event) {
   RenderMesLive(JSON.parse(event.data));
-  console.log(event.data)
 };
 
 function sendMessage(event) {
