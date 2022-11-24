@@ -46,7 +46,7 @@ body {}
 
 .msgContainer {
     margin: 8px;
-    text-align: right;
+    /* text-align: right; */
 }
 
 .msgReceived {
@@ -67,7 +67,7 @@ body {}
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 9999;
+    z-index: 9;
     background-color: #535353;
     height: 100%;
     width: 100%;
@@ -76,16 +76,50 @@ body {}
     display: none;
 }
 
-.windowSettingsWripper {
+.windowWripper {
     width: 273px;
     height: 319px;
     background-color: #fff;
     padding: 16px 14px 0 14px;
 }
 
-.windowSettingsHeader,
-.windowSettingsMain {
+.windowHeader,
+.windowMain {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.height48px {
+    min-height: 48px;
+}
+
+/* Окно авторизация */
+
+#windowAuthorization {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    background-color: #535353;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+/* Окно подтверждение */
+
+#windowVerification {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 11;
+    background-color: #535353;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: none;
 }

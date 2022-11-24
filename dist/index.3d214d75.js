@@ -533,20 +533,36 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"bB7Pu":[function(require,module,exports) {
 var _dateFns = require("date-fns");
-const btnSettings = document.getElementById("btnSettings");
-const btnWindowSettingsExit = document.getElementById("btnWindowSettingsExit");
 const windowChat = document.getElementsByClassName("windowChat");
 const windowSettings = document.getElementById("windowSettings");
-btnSettings.addEventListener("click", ()=>{
+// const btnWindowAuthorizationExit = document.getElementById('btnWindowAuthorizationExit');
+btnSettings.onclick = ()=>{
     windowSettings.style.display = "flex";
-});
-btnWindowSettingsExit.addEventListener("click", ()=>{
+};
+btnWindowSettingsExit.onclick = ()=>{
     windowSettings.style.display = "none";
-});
-document.getElementById("msgEnterForm").onsubmit = function() {
+};
+btnAuthorization.onclick = ()=>{
+    windowAuthorization.style.display = "flex";
+};
+btnWindowAuthorizationExit.onclick = ()=>{
+    windowAuthorization.style.display = "none";
+};
+msgEnterForm.onsubmit = function() {
     sendMessage(this.inputMessage.value);
     this.inputMessage.value = "";
     return false;
+};
+emailEnterForm.onsubmit = function() {
+    sendEmail(this.inputEmail.value);
+    this.inputEmail.value = "";
+    return false;
+};
+btnVerification.onclick = ()=>{
+    windowVerification.style.display = "flex";
+};
+btnWindowVerificationExit.onclick = ()=>{
+    windowVerification.style.display = "none";
 };
 const messages = [];
 function Message(text) {
@@ -569,6 +585,21 @@ function showMessage(message) {
          <div class="msgContainerTime">${(0, _dateFns.format)(message.date, "HH:MM")}</div>
     </div>`;
     document.getElementById("main").insertAdjacentHTML("beforeend", template);
+}
+async function sendEmail(emailText) {
+    let user = {
+        email: ""
+    };
+    user.email = emailText;
+    let response = await fetch("https://edu.strada.one/api/user", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json;charset=utf-8"
+        },
+        body: JSON.stringify(user)
+    });
+    let result = await response.json();
+    alert(result.message);
 }
 
 },{"date-fns":"9yHCA"}],"9yHCA":[function(require,module,exports) {

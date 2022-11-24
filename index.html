@@ -15,6 +15,8 @@
         <div class="windowChat">
             <div class="settings">
                 <button type="button" id="btnSettings">Настройки</button>
+                <button type="button" id="btnAuthorization">Авт.</button>
+                <button type="button" id="btnVerification">Подтв.</button>
                 <button type="button" id="btnExit">Выйти</button>
             </div>
 
@@ -62,19 +64,47 @@
         </div>
         <!-- Окно настроек -->
         <div id="windowSettings">
-            <div class="windowSettingsWripper">
-                <div class="windowSettingsHeader">
+            <div class="windowWripper">
+                <div class="windowHeader">
                     <span>Настройки</span>
                     <button type="button" id="btnWindowSettingsExit">X</button>
                 </div>
                 <p>Имя в Чате</p>
-                <div class="windowSettingsMain">
+                <div class="windowMain height48px">
                     <input type="text" class="inputText" id="windowSettingsMainInputName" placeholder="Имя">
                     <input type="submit" class="sendButton" id="windowSettingsMainSendName" value="->"></input>
                 </div>
-
             </div>
         </div>
+        <!-- Авторизация -->
+        <div id="windowAuthorization">
+            <div class="windowWripper">
+                <div class="windowHeader">
+                    <span>Авторизация</span>
+                    <button type="button" id="btnWindowAuthorizationExit">X</button>
+                </div>
+                <form id="emailEnterForm">
+                    <p>Почта:</p>
+                    <input type="text" name="inputEmail" class="inputText height48px" placeholder="Почта">
+                    <input type="submit" class="sendButton height48px" value="Получить код"></input>
+                </form>
+            </div>
+        </div>
+        <!-- Подтверждение -->
+        <div id="windowVerification">
+            <div class="windowWripper">
+                <div class="windowHeader">
+                    <span>Подтверждение</span>
+                    <button type="button" id="btnWindowVerificationExit">X</button>
+                </div>
+                <form id="codeEnterForm">
+                    <p>Код:</p>
+                    <input type="text" name="inputCode" class="inputText height48px" placeholder="Код">
+                    <input type="submit" class="sendButton height48px" value="Войти"></input>
+                </form>
+            </div>
+        </div>
+
         <script type="module" src="./index.js"></script>
     </div>
 </body>

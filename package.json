@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/Strada1/details-1/issues"
   },
-  "homepage": "https://github.com/Strada1/details-1#readme"
+  "homepage": "https://github.com/Strada1/details-1#readme",
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3"
+  }
 }

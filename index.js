@@ -1,14 +1,20 @@
 import { format } from 'date-fns'
 
-const btnSettings = document.getElementById('btnSettings');
-const btnWindowSettingsExit = document.getElementById('btnWindowSettingsExit');
 const windowChat = document.getElementsByClassName('windowChat');
 const windowSettings = document.getElementById('windowSettings');
 
-btnSettings.addEventListener("click", () => { windowSettings.style.display = 'flex'; });
-btnWindowSettingsExit.addEventListener("click", () => { windowSettings.style.display = 'none'; });
+// const btnWindowAuthorizationExit = document.getElementById('btnWindowAuthorizationExit');
 
-document.getElementById("msgEnterForm").onsubmit = function () { sendMessage(this.inputMessage.value); this.inputMessage.value = ""; return false };
+btnSettings.onclick = () => { windowSettings.style.display = 'flex'; };
+btnWindowSettingsExit.onclick = () => { windowSettings.style.display = 'none'; };
+btnAuthorization.onclick = () => { windowAuthorization.style.display = 'flex'; };
+btnWindowAuthorizationExit.onclick = () => { windowAuthorization.style.display = 'none'; };
+
+msgEnterForm.onsubmit = function () { sendMessage(this.inputMessage.value); this.inputMessage.value = ""; return false };
+emailEnterForm.onsubmit = function () { sendEmail(this.inputEmail.value); this.inputEmail.value = ""; return false };
+
+btnVerification.onclick = () => { windowVerification.style.display = 'flex'; };
+btnWindowVerificationExit.onclick = () => { windowVerification.style.display = 'none'; };
 
 const messages = [];
 
@@ -39,4 +45,24 @@ function showMessage(message) {
 
     document.getElementById("main").insertAdjacentHTML('beforeend', template);
 
+}
+
+async function sendEmail(emailText) {
+
+    let user = {
+        email: ""
+    };
+
+    user.email = emailText;
+
+    let response = await fetch('https://edu.strada.one/api/user', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(user)
+    });
+
+    let result = await response.json();
+    alert(result.message);
 }
