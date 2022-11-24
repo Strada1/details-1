@@ -2,7 +2,8 @@ const popupName = document.getElementById('popupName');
 const settingsButton = document.querySelector('.settings');
 const popupNameCloseButton = document.querySelector('.popupName__close-btn');
 const wrapper = document.querySelector('.wrapper');
-
+const popupMail = document.getElementById('popupMail');
+const popupMailForm = document.getElementById('popupMailForm');
 
 settingsButton.addEventListener('click', () => {
     popupName.classList.remove('popup__hidden');
@@ -12,4 +13,8 @@ settingsButton.addEventListener('click', () => {
 popupNameCloseButton.addEventListener('click', () => {
     popupName.classList.add('popup__hidden');
     wrapper.classList.remove('wrapper__dark');
+})
+
+popupMail.addEventListener('submit', (e) => {
+    
 })
