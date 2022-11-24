@@ -1,5 +1,6 @@
 import { ELEMENTS } from './elements.js';
 import { format, parseISO } from 'date-fns';
+import { getCookie } from './cookiesFunc.js';
 
 export function renderMyMessage(messages) {
   let elem = document.createElement('div');
@@ -14,7 +15,7 @@ export function renderMyMessage(messages) {
 }
 
 export function renderOtherMessage(messages) {
-  if (messages.user.email !== 'inal-lukyaev@mail.ru') {
+  if (messages.user.email !== getCookie('email')) {
     let elem = document.createElement('div');
     elem.append(ELEMENTS.TEMPLATE_OTHER_MESSAGE.content.cloneNode(true));
     const otherMessageView = elem.querySelector('.message_other');

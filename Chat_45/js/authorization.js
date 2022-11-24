@@ -14,6 +14,7 @@ export function signIn(getEmail) {
   }).then((resp) => {
     if (resp.ok) {
       viewModal(ELEMENTS.AUTHORIZATION, ELEMENTS.CODE_WINDOW);
+      setCookie('email', getEmail);
     }
     ELEMENTS.BTN_CODE_SEND.addEventListener('click', () => {
       ELEMENTS.CODE_WINDOW.classList.add('hidden');
