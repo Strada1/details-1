@@ -3,7 +3,7 @@ import { showPopup, closePopup, createClone, createClone, showMessageOwn, showMe
 import { getUser, addName, sendEmail, getHistory, saveCoockies } from './server.js';
 import Cookies from 'js-cookie';
 
-const socket = new WebSocket(`ws://edu.strada.one/websockets?${Cookies.get('authorization')}`);
+const socket = new WebSocket(`wss://edu.strada.one/websockets?${Cookies.get('authorization')}`);
 
 window.onload = function () {
   getUser().then((user) => {
@@ -71,7 +71,7 @@ ELEMENT.BUTTON_NAME.addEventListener('click', function (event) {
 ELEMENT.FORM_MESSAGE.onsubmit = function (event) {
   event.preventDefault();
   sendMessage();
-  
+  ELEMENT.FORM_MESSAGE.reset();
 };
 
 function sendMessage() {
