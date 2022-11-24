@@ -56,6 +56,9 @@ const socket = new WebSocket(`wss://edu.strada.one/websockets?${cookieCode}`);
 socket.onmessage = function (event) {
   RenderMesLive(JSON.parse(event.data));
 };
+socket.onopen = function() {
+  alert("[open] Соединение установлено");
+}
 
 function sendMessage(event) {
   event.preventDefault();
@@ -78,4 +81,11 @@ export function changeNameMessage(message, name) {
 export function deleteAccountHistory() {
   document.location.reload();
   Cookies.remove("code");
+}
+
+export function renderHistory(array) {
+  array.messages.reverse()
+  array.messages.forEach((item) => {
+    RenderMesLive(item);
+  });
 }

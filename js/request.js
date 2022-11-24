@@ -1,4 +1,4 @@
-import { changeNameMessage, RenderMesLive} from "./chat.js";
+import { changeNameMessage, RenderMesLive, renderHistory} from "./chat.js";
 import { AUTHORIZATION, USER } from "./const.js";
 import { comeChat } from "./popup.js";
 
@@ -62,9 +62,7 @@ export async function messageDataRequest(account) {
   });
   const answer = await result.json();
   if (result.ok) {
-    answer.messages.forEach((item) => {
-      RenderMesLive(item);
-    });
+    renderHistory(answer)
     comeChat();
   } else {
     AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Произошла ошибка!";
