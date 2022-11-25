@@ -154,7 +154,7 @@ console.log(ELEMENTS.buttonExit);
 ELEMENTS.buttonExit.addEventListener("click", () => {
   socket.close();
   showModal(ELEMENTS.modalAuthorization);
-  setCookie("token", 'token', -1);
-  setCookie("thisUser", 'user', -1);
+  setCookie("token", "token", -1);
+  setCookie("thisUser", "user", -1);
   localStorage.removeItem("history");
 });

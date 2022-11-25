@@ -19,7 +19,6 @@ export function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-
 export async function sendRequest(method, URL, body = {}, headers = {}) {
   try {
     let response = await fetch(URL, {
