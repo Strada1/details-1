@@ -25,7 +25,7 @@ const url = `https://edu.strada.one/api/user`;
 function changeName(e) {
   e.preventDefault();
   fetch(url, {
-    method: 'POST',
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       'Authorization': `Bearer ${ getCookie('token') }`
