@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c2d4ffe94c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Chat</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="window">
+            <div class="panel" id="header">
+                <button class="setting"><a href="#set-popup">Настройки</a></button>
+                <button class="exit"><a href="#login-popup">Войти</a></button>
+            </div>
+            <div class="screen_chat">
+                <div class="messages">
+                    <div class="message my-message">
+                        <div class="text">Я: Добрый день!</div>
+                        <div class="time">18:45</div>
+                    </div>
+                    <div class="message other-message">
+                        <div class="text">Собеседник мой: Добрый день!</div>
+                        <div class="time">18:45</div>
+                    </div>
+                    <div class="message other-message">
+                        <div class="text">Собеседник мой: А это второе и,
+                            кажется, оно очень длинное, чтобы поместиться на одной строке</div>
+                        <div class="time">18:45</div>
+                    </div>
+                    <div class="message my-message">
+                        <div class="text">Я: Добрый день!</div>
+                        <div class="time">18:45</div>
+                    </div>
+                </div>
+            </div>
+            <form class="input-message">
+                <input type="text" class="form-message" placeholder="  сообщение..."/>
+                <button type="submit" class="send-message"><i class="fas fa-arrow-circle-right"></i></button>
+            </form>
+            <div class="popup" id="set-popup">
+                <a href="#header" class="popup_area"></a>
+                <div class="popup_body">
+                    <div class="popup_content">
+                        <div class="popup_title">Настройки</div>
+                        <a href="#header" class="popup_close">x</a>
+                        <div class="popup_text">
+                            <p>Имя в чате:</p>
+                            <form class="input-name">
+                                <input type="text" class="form-name" placeholder="Ваше имя" />
+                                <button type="submit" class="send-name"><i class="fas fa-arrow-circle-right"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup" id="login-popup">
+                <a href="#header" class="popup_area"></a>
+                <div class="popup_body">
+                    <div class="popup_content">
+                        <div class="popup_title">Авторизация</div>
+                        <a href="#header" class="popup_close">x</a>
+                        <div class="popup_text">
+                            <p>Почта:</p>
+                            <form class="input-mail">
+                                <input type="text" class="form form-mail" placeholder="Ваша почта" />
+                                <button type="submit" class="send send-mail">Получить код</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="popup" id="code-popup">
+                <a href="#header" class="popup_area"></a>
+                <div class="popup_body">
+                    <div class="popup_content">
+                        <div class="popup_title">Подтверждение</div>
+                        <a href="#header" class="popup_close">x</a>
+                        <div class="popup_text">
+                            <p>Код:</p>
+                            <form class="input-code">
+                                <input type="text" class="form form-code" placeholder="" />
+                                <button type="submit" class="send send-code">Войти</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <template class="tpl-message">
+        <div class="message">
+            <div class="text">Собеседник мой: Добрый день!</div>
+            <div class="time">18:45</div>
+        </div>
+    </template>
+    <script type="module" src="./js/index.js"></script>
+
+</body>
+
+</html>
