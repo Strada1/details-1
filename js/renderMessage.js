@@ -1,38 +1,37 @@
-console.log("start render meseged ор ")
-getHistory()
 import { format } from "date-fns";
 import { ELEMENT } from "./const.js";
 import Cookies from "js-cookie";
-import {getHistory} from "./loadingHistory.js"
-
 ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
 
-const socket = new WebSocket(`ws://edu.strada.one/websockets?${Cookies.get("authorizationCod")}`);
-console.log('socket: ', socket);
+const socket = new WebSocket(`wss://edu.strada.one/websockets?${Cookies.get("authorizationCod")}`);
 
 function sendMessageWebSocet(message) {
-  console.log('message WebSocet: ', message);
 	socket.send(JSON.stringify({ text: `${message}` }));
 }
 
-socket.onmessage = function(event) { getHistory() };
-
-function nowTime() {
-  const timeNow = format(new Date(), "kk':'mm");
-  return timeNow;
-}
+socket.onmessage = async function(event) {
+  let myEmail = Cookies.get("email")
+  let message = JSON.parse(event.data)
+  let text = message.text
+  let userEmail = message.user.email;
+  let time = message.createdAt;
+  let userName = message.user.name;
+  time = format(new Date(time), "kk':'mm");
+  if (userEmail == myEmail) {
+    addMessageToDOM(text, time);
+  } else {
+    companionMessageToDOM(text, time, userName);
+  }
+};
 
 function getMessageInput(event) {
+  event.preventDefault()
   const message = ELEMENT.INPUT_MESSAGE.value;
-  console.log('message: ', message);
-
   if (!message) {
     alert("Пустая строка, введите сообщение!");
   } else {
     sendMessageWebSocet(message)
     event.target.reset();
-    const time = nowTime();
-    addMessageToDOM(message, time);
   }
 }
 
@@ -46,7 +45,7 @@ export function addMessageToDOM(message, time) {
   timeMyMessage.textContent = time;
 
   ELEMENT.CHAT_CONTAINER.append(userContent);
-  scrollLastElement();
+  // scrollLastElement();
 }
 
 export function companionMessageToDOM(message, time, name) {
@@ -59,7 +58,7 @@ export function companionMessageToDOM(message, time, name) {
   timeMyMessage.textContent = time;
 
   ELEMENT.CHAT_CONTAINER.append(userContent);
-  scrollLastElement();
+  // scrollLastElement();
 }
 
 function scrollLastElement() {

@@ -2,7 +2,13 @@ export const CLASS_NAME = {
   SETTINGS: ".settings",
   authorization: ".authorization",
   chatForm: ".chat__form",
+  SCROLL: ".container-scroll"
 };
+
+export const NUMBERS = {
+  TWENTY: 20,
+  ZERO: 0
+}
 
 export const ELEMENT = {
   SETTINGS: document.querySelector(CLASS_NAME.SETTINGS),
@@ -13,7 +19,7 @@ export const ELEMENT = {
   CHAT_CONTAINER: document.querySelector(".chat__Container"),
   TEMPLATE: document.getElementById("template"),
   TEMPLATE_COMPANION: document.getElementById("templateCompanion"),
-  SCROl: document.querySelector(".container-scroll"),
+  SCROl: document.querySelector(CLASS_NAME.SCROLL),
 };
 
 export const POPUP = {
