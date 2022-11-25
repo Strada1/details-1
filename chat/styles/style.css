@@ -1,0 +1,115 @@
+@import url("./null.css");
+html,
+body {
+  height: 100%;
+}
+
+.container {
+  max-width: 900px;
+  padding: 20px;
+  margin: 0 auto;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.control {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+.control__settings {
+}
+.control__exit {
+}
+.chat {
+  width: 100%;
+  border: 1px solid #000;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  height: 500px;
+  overflow-y: scroll;
+}
+.chat-container {
+}
+.chate__message {
+  background-color: #f7f7f7;
+  padding: 10px;
+  align-self: end;
+}
+.chate__message_out {
+  background-color: #e5e5e5;
+  padding: 10px;
+  align-self: start;
+}
+.message__text {
+  font-size: 24px;
+}
+.message__time {
+  font-size: 16px;
+}
+.chate__message_in .message__time {
+  float: right;
+}
+.sending {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.sending__input {
+  flex: 1 1 auto;
+}
+.sending__button {
+  padding: 0 10px;
+}
+
+.popup.active {
+  display: block;
+}
+.popup {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.popup__container {
+  max-width: 300px;
+  height: 320px;
+  padding: 20px 10px;
+  background-color: #fff;
+}
+.popup__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.popup__name {
+}
+.popup__close {
+  font-size: 20px;
+  cursor: pointer;
+}
+.form-settings__name {
+  margin-bottom: 10px;
+}
+.form-settings__actions {
+  gap: 10px;
+}
+.form-settings__input {
+  border: 1px solid #000;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.warning {
+  color: red;
+}
+
+.finish-message {
+  text-align: center;
+  border-color: wheat;
+  padding: 10px 20px;
+  color: brown;
+}

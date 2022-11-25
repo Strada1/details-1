@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/style.css">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="control">
+      <button class="control__settings">Настройки</button>
+      <button class="control__exit">Выйти</button>
+    </div>
+    <main class="chat">
+      <template>
+        <div class="chate__message">
+          <p class="message__text"></p>
+          <p class="message__time"></p>
+        </div>
+      </template>
+    </main>
+    <form class="sending">
+      <input type="text" class="sending__input" placeholder="Сообщение...">
+      <button class="sending__button">></button>
+    </form>
+  </div>
+  <div class="popup authorization">
+    <div class="popup__container">
+      <div class="popup__header">
+        <div class="popup__name">Авторизация</div>
+        <div class="popup__close">X</div>
+      </div>
+      <form id="authorization" action="submit" class="popup-setting__form form-settings">
+        <div class="form-settings__name">Почта:</div>
+        <div class="form-settings__actions">
+          <input type="text" class="form-settings__input">
+          <button type="submit" class="form-settings__button">Получить код</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="popup confirm">
+    <div class="popup__container">
+      <div class="popup__header">
+        <div class="popup__name">Подтверждение</div>
+        <div class="popup__close">X</div>
+      </div>
+      <form id="confirm" action="submit" class="popup-setting__form form-settings">
+        <div class="form-settings__name">Код:</div>
+        <div class="form-settings__actions">
+          <input type="text" class="form-settings__input">
+          <button type="submit" class="form-settings__button">Войти</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="popup name">
+    <div class="popup__container">
+      <div class="popup__header">
+        <div class="popup__name">Настройки</div>
+        <div class="popup__close">X</div>
+      </div>
+      <form id="getName" action="submit" class="popup-setting__form form-settings">
+        <div class="form-settings__name">Имя в чате</div>
+        <div class="form-settings__actions">
+          <input type="text" class="form-settings__input">
+          <button type="submit" class="form-settings__button">></button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+  <script type="module" src="./js/script.js"></script>
+</body>
+
+</html>
