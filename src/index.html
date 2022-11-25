@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/styles.css">
+  <title>Starda</title>
+</head>
+<body>
+<div class="container">
+  <header class="header">
+    <button class="btn" id="settings">Настройки</button>
+    <button class="btn" id="exit">Выйти</button>
+  </header>
+
+  <div class="messages" id="messages">
+    <template id="outgoing_message">
+      <div class="outgoing_message">
+        <div class="wrap_message">
+          <span class="name_message" id="name_message"></span>
+          <span>:</span>
+          <span class="text_message" id="text_message"></span>
+          <div class="time_message" id="time_message"></div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+  <form class="wrap" id="send_message_form">
+    <input class="input" type="text" placeholder="сообщение" id="text_message_input">
+    <button class="btn" type="submit">
+      <svg class="svg" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="20px" y="20px"
+           viewBox="0 0 512.001 512.001" style="enable-background:new 0 0 512.001 512.001;" xml:space="preserve">
+          <g>
+            <g>
+              <path d="M483.927,212.664L66.967,25.834C30.95,9.695-7.905,42.023,1.398,80.368l21.593,89.001
+                c3.063,12.622,11.283,23.562,22.554,30.014l83.685,47.915c6.723,3.85,6.738,13.546,0,17.405l-83.684,47.915
+                c-11.271,6.452-19.491,17.393-22.554,30.015l-21.594,89c-9.283,38.257,29.506,70.691,65.569,54.534l416.961-186.83
+                C521.383,282.554,521.333,229.424,483.927,212.664z M359.268,273.093l-147.519,66.1c-9.44,4.228-20.521,0.009-24.752-9.435
+                c-4.231-9.44-0.006-20.523,9.434-24.752l109.37-49.006l-109.37-49.006c-9.44-4.231-13.665-15.313-9.434-24.752
+                c4.229-9.44,15.309-13.666,24.752-9.435l147.519,66.101C373.996,245.505,374.007,266.49,359.268,273.093z"/>
+            </g>
+          </g>
+        </svg>
+    </button>
+  </form>
+
+
+  <div class="modal display_none" id="modal_settings">
+    <div class="modal_inner">
+      <header class="header_modal">
+        <span class="modal_span">Настройки</span>
+        <button class="close" id="close_modal">
+          <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>
+        </button>
+      </header>
+      <div class="name">Имя в чате:</div>
+      <form class="wrap" id="form_settings">
+        <input class="input_modal" type="text" id="input_settings">
+        <button class="btn">
+          <svg width="20px" height="20px" viewBox="0 0 1024 1024" class="icon" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M754.752 480H160a32 32 0 100 64h594.752L521.344 777.344a32 32 0 0045.312 45.312l288-288a32 32 0 000-45.312l-288-288a32 32 0 10-45.312 45.312L754.752 480z"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal display_none" id="modal_auth">
+    <div class="modal_inner">
+      <header class="header_modal">
+        <span class="modal_span">Авторизация</span>
+        <button class="close" id="close_modal_auth">
+          <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>
+        </button>
+      </header>
+      <div class="name">Почта:</div>
+      <form class="wrap_auth" id="form_auth">
+        <input class="input_modal_auth" type="text" id="input_email" required>
+        <button class="btn_auth" type="submit" id="btn_auth">
+          Получить код
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal display_none" id="modal_code">
+    <div class="modal_inner">
+      <header class="header_modal">
+        <span class="modal_span">Подтверждение</span>
+        <button class="close" id="close_modal_code">
+          <svg width="20px" height="20px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g data-name="Layer 2"><g data-name="close"><rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"/><path d="M13.41 12l4.3-4.29a1 1 0 1 0-1.42-1.42L12 10.59l-4.29-4.3a1 1 0 0 0-1.42 1.42l4.3 4.29-4.3 4.29a1 1 0 0 0 0 1.42 1 1 0 0 0 1.42 0l4.29-4.3 4.29 4.3a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42z"/></g></g></svg>
+        </button>
+      </header>
+      <div class="name">Код: </div>
+      <form class="wrap_auth" id="form_code">
+        <input class="input_modal_auth" type="text" id="input_code">
+        <button type="submit" class="btn_auth" id="btn_code">
+          Войти
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>
+
+<script type="module" src="js/startApp.js"></script>
+<script type="module" src="js/modal_settings.js"></script>
+<script type="module" src="js/getCode.js"></script>
+<script type="module" src="js/saveCode.js"></script>
+<script type="module" src="js/modal_auth.js"></script>
+<script type="module" src="js/changeName.js"></script>
+<script type="module" src="js/addMessage.js"></script>
+<script type="module" src="js/const.js"></script>
+</body>
+</html>
