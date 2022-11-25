@@ -5,6 +5,10 @@ import { showPopup } from './helpers';
 import Cookies from 'js-cookie';
 import { getUserData, saveCookies, getMessageHistory } from './data';
 
+const socket = new WebSocket(
+  `ws://edu.strada.one/websockets?${Cookies.get('authorizationCode')}`
+);
+
 let user = getUserData().then((user) => saveCookies('name', user.name));
 
 window.addEventListener('load', renderApp);
@@ -49,13 +53,30 @@ function addMessage(event) {
   const messagevalue = ELEMENTS.MESSAGE_INPUT.value.trim();
 
   if (messagevalue.length) {
-    renderMessage(messagevalue, STYLES.MY_MESSAGE, Cookies.get('name'));
+    // renderMessage(messagevalue, STYLES.MY_MESSAGE, Cookies.get('name'));
+    sendMessage(messagevalue);
     ELEMENTS.MESSAGE_INPUT.value = '';
     scrollToLastMessage();
   } else {
     alert('Поле пустое, введите сообщение');
   }
 }
+
+function sendMessage(message) {
+  socket.send(JSON.stringify({ text: message }));
+}
+
+socket.onmessage = function (event) {
+  const message = JSON.parse(event.data);
+  console.log(message);
+
+  if (message.user.email === Cookies.get('email')) {
+    renderMessage(message.text, STYLES.MY_MESSAGE, message.user.name);
+    return;
+  }
+  renderMessage(message.text, STYLES.COMPANION_MESSAGE, message.user.name);
+};
+
 function renderMessage(message, style, author) {
   const messageDate = format(new Date(), 'HH:mm');
   const template = cloneTemplate(ELEMENTS.MESSAGE_TEMPLATE);
@@ -71,9 +92,12 @@ function renderMessage(message, style, author) {
 function useHistory() {
   getMessageHistory().then((history) => {
     history.messages.reverse().forEach((currentUser) => {
-      console.log(currentUser.user.email);
       if (currentUser.user.email === Cookies.get('email')) {
-        renderMessage(currentUser.text, STYLES.MY_MESSAGE, currentUser.name);
+        renderMessage(
+          currentUser.text,
+          STYLES.MY_MESSAGE,
+          currentUser.user.name
+        );
         scrollToLastMessage();
         return;
       }
@@ -82,6 +106,7 @@ function useHistory() {
         STYLES.COMPANION_MESSAGE,
         currentUser.user.name
       );
+
       scrollToLastMessage();
     });
   });
