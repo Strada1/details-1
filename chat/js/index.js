@@ -15,28 +15,11 @@ ELEMENTS.body.onload = function () {
     console.log(result);
     loadHistory(result.email, token);
   });
-
-  // const list = ELEMENTS.listMessages;
-  // list.parentNode.removeChild(list);
 };
 
 const list = [];
-
-function addHistory() {
-  let del = list.splice(0, 20);
-  if (!del.length) {
-    let end =  document.querySelector(".end");
-    if(!end) {
-    let div = document.createElement("div");
-    div.classList.add("end")
-    div.textContent = "Вся история загружена";
-    ELEMENTS.listMessages.append(div);
-    }
-  }
-  del.forEach((obj) => render(obj, "history"));
-}
-
 let email;
+
 function loadHistory(mymail, token) {
   email = mymail;
   requestServer(SERVER.histMessages, token).then((result) => {
@@ -52,12 +35,27 @@ function loadHistory(mymail, token) {
   });
 }
 
+function addHistory() {
+  let partArr = list.splice(0, 20);
+  if (!partArr.length) {
+    let end =  document.querySelector(".end");
+    if(!end) {
+    let div = document.createElement("div");
+    div.classList.add("end")
+    div.textContent = "Вся история загружена";
+    ELEMENTS.listMessages.append(div);
+    }
+  }
+  partArr.forEach((obj) => render(obj, "history"));
+}
+
 function connection() {
   socket.onmessage = function (event) {
     const obj = JSON.parse(event.data);
     render(obj);
   };
 }
+
 function render(obj, history) {
   const text = obj.text;
   let nameUser = obj.user.name;
@@ -81,6 +79,14 @@ function addMessage(text, nameUser, time, history) {
   }
 }
 
+ELEMENTS.listMessages.addEventListener("scroll", function () {
+  let top = ELEMENTS.listMessages.scrollTop;
+  let high = -(
+    ELEMENTS.listMessages.scrollHeight - ELEMENTS.listMessages.clientHeight
+  );
+  if (top === high) addHistory();
+});
+
 ELEMENTS.formMessage.addEventListener("submit", function (event) {
   event.preventDefault();
   const value = ELEMENTS.textMessage.value;
@@ -95,7 +101,7 @@ ELEMENTS.btnSendMail.addEventListener("submit", function (event) {
   if (!mail) return;
   if (!mail.includes("@")) return;
   event.target.reset();
-  // sendMail(mail);
+  sendMail(mail);
   window.location.hash = "#code-popup";
 });
 
@@ -118,10 +124,4 @@ ELEMENTS.btnChangeName.addEventListener("submit", function (event) {
   changeName(nameUser, token);
 });
 
-ELEMENTS.listMessages.addEventListener("scroll", function () {
-  let top = ELEMENTS.listMessages.scrollTop;
-  let high = -(
-    ELEMENTS.listMessages.scrollHeight - ELEMENTS.listMessages.clientHeight
-  );
-  if (top === high) addHistory();
-});
+
