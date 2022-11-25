@@ -1,0 +1,9 @@
+body{
+  background-color: #858C90;
+}
+
+.container{
+  width: 300px;
+  margin: 60px auto;
+  text-align: center;
+}
