@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { URL, ELEMENT } from "./const.js";
+import { URL, ELEMENT, NUMBERS } from "./const.js";
 import Cookies from "js-cookie";
 import { addMessageToDOM, companionMessageToDOM } from "./renderMessage.js";
 import { getDataUser } from "./authorization.js";
@@ -7,9 +7,7 @@ import { getDataUser } from "./authorization.js";
 window.addEventListener("load", getHistory);
 ELEMENT.SCROl.addEventListener('scroll', loadScroll)
 
-
 export async function getHistory(event) {
-  // event.preventDefault();
   console.log('start gethistory')
 
   const response = await fetch(URL.HISTORY_SERVER, {
@@ -23,17 +21,22 @@ export async function getHistory(event) {
   console.log("result: ", result);
   console.log("response: ", response.ok);
 
-  let lengthArray = result.messages.length;
-  lengthArray = Number(lengthArray) - 1;
-  result = result.messages
-  //.reverse();
   let myEmail = await getDataUser();
   myEmail = myEmail.email
-  sliceArray(result)
-  getMessagesResult(lengthArray, result, myEmail);
+  localStorage.setItem('myEmail', myEmail)
+
+  let lengthArray = result.messages.length;
+  lengthArray = Number(lengthArray) - 1;
+
+  result = result.messages
+  localStorage.setItem('result', JSON.stringify(result))
+  // getMessagesResult(result, lengthArray, myEmail)
+  localStorage.setItem('number1', 0)
+  localStorage.setItem('number2', 20)
+  sliceArray(result, 0, 20)
 }
 
-async function getMessagesResult(lengthArray, result, myEmail) {
+async function getMessagesResult(result, lengthArray, myEmail) {
   if (lengthArray == -1) {
     return;
   } else {
@@ -44,24 +47,60 @@ async function getMessagesResult(lengthArray, result, myEmail) {
 
      time = format(new Date(time), "kk':'mm");
     if (userEmail == myEmail) {
-      addMessageToDOM(message, time);
+      if(+localStorage.getItem("number1") == 0) {
+        let push = 1
+        addMessageToDOM(message, time, push);
+      } else {
+        let push = 0
+        addMessageToDOM(message, time, push);
+      }
+      
     } else {
-      companionMessageToDOM(message, time, userName);
+      if(+localStorage.getItem("number1") == 0) {
+        let push = 1
+        companionMessageToDOM(message, time, userName, push);
+      } else {
+        let push = 0
+        companionMessageToDOM(message, time, userName, push);
+      }
+      
     }
     lengthArray--;
-    getMessagesResult(lengthArray, result, myEmail);
+    getMessagesResult(result, lengthArray, myEmail);
   }
 }
 
-function loadScroll() {
+async function loadScroll(event) {
   let topBorder = ELEMENT.SCROl.scrollTop
   topBorder = Number(topBorder)
-  if(topBorder === 0) {
-    alert("Вся история загружена")
+  console.log('topBorder: ', topBorder);
+  if(topBorder == 0) {
+    let result = JSON.parse(localStorage.getItem('result'))
+    let number1 = 0;
+    let number2 = 20;
+    localStorage.setItem('number1', +localStorage.getItem('number1') + 20)
+    localStorage.setItem('number2', +localStorage.getItem('number2') + 20)
+    sliceArray(result, localStorage.getItem('number1'), localStorage.getItem('number2'))
   }
 }
 
-function sliceArray(array) {
-  const first_array = array.slice(0, 20)
-  console.log('first_array: ', first_array);
+async function sliceArray(array, number1, number2) {
+  const new_array = array.slice(number1, number2)
+  let lengthArray = new_array.length;
+  lengthArray = Number(lengthArray) - 1;
+
+  let myEmail = await getDataUser();
+  myEmail = myEmail.email
+
+  console.log('new_array: ', new_array);
+  if(!(+localStorage.getItem("number1") == 0)) {
+    new_array.reverse();
+  }
+
+  if(new_array.length == 0) {
+    alert("Вся история загружена")
+  }
+
+  getMessagesResult(new_array, lengthArray, myEmail)
 }
+

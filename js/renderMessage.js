@@ -18,9 +18,11 @@ socket.onmessage = async function(event) {
   let userName = message.user.name;
   time = format(new Date(time), "kk':'mm");
   if (userEmail == myEmail) {
-    addMessageToDOM(text, time);
+    let push  = 1;
+    addMessageToDOM(text, time, push);
   } else {
-    companionMessageToDOM(text, time, userName);
+    let push  = 1;
+    companionMessageToDOM(text, time, userName, push);
   }
 };
 
@@ -35,7 +37,7 @@ function getMessageInput(event) {
   }
 }
 
-export function addMessageToDOM(message, time) {
+export function addMessageToDOM(message, time, push) {
   const userContent = document.createElement("div");
   userContent.append(ELEMENT.TEMPLATE.content.cloneNode(true));
   const contentMyMessage = userContent.querySelector(".text__my__SMS");
@@ -44,11 +46,17 @@ export function addMessageToDOM(message, time) {
   contentMyMessage.textContent = `${message}`;
   timeMyMessage.textContent = time;
 
-  ELEMENT.CHAT_CONTAINER.append(userContent);
-   scrollLastElement();
+  if(push) {
+    ELEMENT.CHAT_CONTAINER.append(userContent);
+    scrollLastElement();
+  } else {
+    ELEMENT.CHAT_CONTAINER.prepend(userContent);
+    scrollRenderElement()
+  }
+   
 }
 
-export function companionMessageToDOM(message, time, name) {
+export function companionMessageToDOM(message, time, name , push) {
   const userContent = document.createElement("div");
   userContent.append(ELEMENT.TEMPLATE_COMPANION.content.cloneNode(true));
   const contentMyMessage = userContent.querySelector(".text__his_SMS");
@@ -57,14 +65,24 @@ export function companionMessageToDOM(message, time, name) {
   contentMyMessage.textContent = `${name}: ${message}`;
   timeMyMessage.textContent = time;
 
-  ELEMENT.CHAT_CONTAINER.append(userContent);
-   scrollLastElement();
+  if(push) {
+    ELEMENT.CHAT_CONTAINER.append(userContent);
+    scrollLastElement();
+  } else {
+    ELEMENT.CHAT_CONTAINER.prepend(userContent);
+    scrollRenderElement()
+  }
+   
 }
 
 function scrollLastElement() {
   const ELEMENTS = document.querySelector(".chat__Container");
   const LAST_MESSAGE = ELEMENTS.lastElementChild;
   LAST_MESSAGE.scrollIntoView(false);
+}
+
+function scrollRenderElement() {
+  ELEMENT.SCROl.scrollTop = 890
 }
 
 
