@@ -3,6 +3,7 @@
     modalName: document.querySelector("#modal-name"),
     modals: document.querySelectorAll("[data-modal]"),
     buttonsClose: document.querySelectorAll("[data-modal-close]"),
+    buttonExit: document.querySelector('.inline-button-exit'),
     modalWindow: document.querySelectorAll(".modal__window"),
     textArea: document.querySelector(".input-message"),
     contentWindow: document.querySelector(".content"),

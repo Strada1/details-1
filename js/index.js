@@ -27,6 +27,7 @@ ELEMENTS.codeForm.addEventListener("submit", (event) => {
   setCookie("token", ELEMENTS.code.value.trim());
   ELEMENTS.code.value = "";
   closeModal(ELEMENTS.modalCode);
+  document.location.reload();
 });
 
 ELEMENTS.nameForm.addEventListener("submit", (event) => {
@@ -39,17 +40,47 @@ ELEMENTS.nameForm.addEventListener("submit", (event) => {
       { body: JSON.stringify({ name: ELEMENTS.name.value.trim() }) },
       { Authorization: `Bearer ${token}` }
     );
-    sendRequest(
-      METHOD.GET,
-      ELEMENTS.URL + "/user/me",
-      {},
-      { Authorization: `Bearer ${token}` }
-    );
   } else {
     showWarning(ELEMENTS.nameWarning);
   }
   ELEMENTS.name.value = "";
 });
+
+window.onload = function showCurrentHistory() {
+  if (!getCookie("token")) {
+    showModal(ELEMENTS.modalAuthorization);
+    return;
+  }
+  const responseResult = sendRequest(
+    METHOD.GET,
+    ELEMENTS.URL + "/messages/",
+    {},
+    { Authorization: `Bearer ${getCookie("token")}` }
+  );
+
+  responseResult.then((result) => {
+    localStorage.setItem("history", JSON.stringify(result.messages));
+    console.log(result.messages);
+    const messagesList = result.messages;
+    for (let i = 0; i <= MESSAGE.step - 1; i++) {
+      if (messagesList[i].user.email === getCookie("thisUser")) {
+        addMessage(
+          ELEMENTS.myMessages,
+          messagesList[i].text,
+          messagesList[i].updatedAt
+        );
+      } else {
+        addMessage(
+          ELEMENTS.interlocutorMessages,
+          messagesList[i].text,
+          messagesList[i].updatedAt,
+          messagesList[i].user.name
+        );
+      }
+    }
+    ELEMENTS.contentWrapper.scrollTop = ELEMENTS.contentWrapper.scrollHeight;
+  });
+};
 
 let count = MESSAGE.step;
 
@@ -117,3 +148,13 @@ socket.onmessage = function (event) {
     );
   }
 };
+
+console.log(ELEMENTS.buttonExit);
+
+ELEMENTS.buttonExit.addEventListener("click", () => {
+  socket.close();
+  showModal(ELEMENTS.modalAuthorization);
+  setCookie("token", 'token', -1);
+  setCookie("thisUser", 'user', -1);
+  localStorage.removeItem("history");
+});

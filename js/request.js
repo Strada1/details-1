@@ -1,8 +1,8 @@
-import {ELEMENTS} from "./const";
+import { ELEMENTS } from "./const";
 
-export function setCookie(name, value) {
+export function setCookie(name, value, age = 1728000) {
   if (value !== "") {
-    document.cookie = `${name}=${value}; max-age=1728000`;
+    document.cookie = `${name}=${value}; max-age= ${age}`;
   } else {
     showWarning(ELEMENTS.codeWarning);
   }
@@ -18,6 +18,7 @@ export function getCookie(name) {
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
+
 
 export async function sendRequest(method, URL, body = {}, headers = {}) {
   try {

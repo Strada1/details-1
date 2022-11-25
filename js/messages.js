@@ -1,5 +1,5 @@
 import { ELEMENTS, MESSAGE, METHOD } from "./const.js";
-import { sendRequest, getCookie } from "./request.js";
+import { getCookie } from "./request.js";
 import { format } from "date-fns";
 import { showEndHistory } from "./ui.js";
 
@@ -33,38 +33,6 @@ export function addMessage(userClass, text, time, userName, insert) {
     });
   }
 }
-
-window.onload = function showCurrentHistory() {
-  const responseResult = sendRequest(
-    METHOD.GET,
-    ELEMENTS.URL + "/messages/",
-    {},
-    { Authorization: `Bearer ${getCookie("token")}` }
-  );
-
-  responseResult.then((result) => {
-    localStorage.setItem("history", JSON.stringify(result.messages));
-    console.log(result.messages);
-    const messagesList = result.messages;
-    for (let i = 0; i <= MESSAGE.step - 1; i++) {
-      if (messagesList[i].user.email === getCookie("thisUser")) {
-        addMessage(
-          ELEMENTS.myMessages,
-          messagesList[i].text,
-          messagesList[i].updatedAt
-        );
-      } else {
-        addMessage(
-          ELEMENTS.interlocutorMessages,
-          messagesList[i].text,
-          messagesList[i].updatedAt,
-          messagesList[i].user.name
-        );
-      }
-    }
-    ELEMENTS.contentWrapper.scrollTop = ELEMENTS.contentWrapper.scrollHeight;
-  });
-};
 
 export function downloadHistory(count) {
   const history = JSON.parse(localStorage.getItem("history"));

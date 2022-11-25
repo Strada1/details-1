@@ -554,24 +554,38 @@ const set = new Set();
     (0, _requestJs.setCookie)("token", (0, _constJs.ELEMENTS).code.value.trim());
     (0, _constJs.ELEMENTS).code.value = "";
     (0, _uiJs.closeModal)((0, _constJs.ELEMENTS).modalCode);
+    document.location.reload();
 });
 (0, _constJs.ELEMENTS).nameForm.addEventListener("submit", (event)=>{
     event.preventDefault();
     const token = (0, _requestJs.getCookie)("token");
-    if ((0, _constJs.ELEMENTS).name.value !== "") {
-        (0, _requestJs.sendRequest)((0, _constJs.METHOD).PATCH, (0, _constJs.ELEMENTS).URL + "/user", {
-            body: JSON.stringify({
-                name: (0, _constJs.ELEMENTS).name.value.trim()
-            })
-        }, {
-            Authorization: `Bearer ${token}`
-        });
-        (0, _requestJs.sendRequest)((0, _constJs.METHOD).GET, (0, _constJs.ELEMENTS).URL + "/user/me", {}, {
-            Authorization: `Bearer ${token}`
-        });
-    } else (0, _uiJs.showWarning)((0, _constJs.ELEMENTS).nameWarning);
+    if ((0, _constJs.ELEMENTS).name.value !== "") (0, _requestJs.sendRequest)((0, _constJs.METHOD).PATCH, (0, _constJs.ELEMENTS).URL + "/user", {
+        body: JSON.stringify({
+            name: (0, _constJs.ELEMENTS).name.value.trim()
+        })
+    }, {
+        Authorization: `Bearer ${token}`
+    });
+    else (0, _uiJs.showWarning)((0, _constJs.ELEMENTS).nameWarning);
     (0, _constJs.ELEMENTS).name.value = "";
 });
+window.onload = function showCurrentHistory() {
+    if (!(0, _requestJs.getCookie)("token")) {
+        (0, _uiJs.showModal)((0, _constJs.ELEMENTS).modalAuthorization);
+        return;
+    }
+    const responseResult = (0, _requestJs.sendRequest)((0, _constJs.METHOD).GET, (0, _constJs.ELEMENTS).URL + "/messages/", {}, {
+        Authorization: `Bearer ${(0, _requestJs.getCookie)("token")}`
+    });
+    responseResult.then((result)=>{
+        localStorage.setItem("history", JSON.stringify(result.messages));
+        console.log(result.messages);
+        const messagesList = result.messages;
+        for(let i = 0; i <= (0, _constJs.MESSAGE).step - 1; i++)if (messagesList[i].user.email === (0, _requestJs.getCookie)("thisUser")) (0, _messages.addMessage)((0, _constJs.ELEMENTS).myMessages, messagesList[i].text, messagesList[i].updatedAt);
+        else (0, _messages.addMessage)((0, _constJs.ELEMENTS).interlocutorMessages, messagesList[i].text, messagesList[i].updatedAt, messagesList[i].user.name);
+        (0, _constJs.ELEMENTS).contentWrapper.scrollTop = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight;
+    });
+};
 let count = (0, _constJs.MESSAGE).step;
 (0, _constJs.ELEMENTS).contentWrapper.addEventListener("scroll", ()=>{
     if ((0, _constJs.ELEMENTS).contentWrapper.scrollTop === 0) {
@@ -612,6 +626,14 @@ socket.onmessage = function(event) {
     if ((0, _requestJs.getCookie)("thisUser") === data.user.email) (0, _messages.addMessage)((0, _constJs.ELEMENTS).myMessages, data.text, data.createdAt, undefined, "append");
     else (0, _messages.addMessage)((0, _constJs.ELEMENTS).interlocutorMessages, data.text, data.createdAt, data.user.name, "append");
 };
+console.log((0, _constJs.ELEMENTS).buttonExit);
+(0, _constJs.ELEMENTS).buttonExit.addEventListener("click", ()=>{
+    socket.close();
+    (0, _uiJs.showModal)((0, _constJs.ELEMENTS).modalAuthorization);
+    (0, _requestJs.setCookie)("token", "token", -1);
+    (0, _requestJs.setCookie)("thisUser", "user", -1);
+    localStorage.removeItem("history");
+});
 
 },{"./const.js":"hKAsx","./ui.js":"1hWqh","./request.js":"7c4ZJ","./messages":"cV4xq"}],"hKAsx":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -625,6 +647,7 @@ const ELEMENTS = {
     modalName: document.querySelector("#modal-name"),
     modals: document.querySelectorAll("[data-modal]"),
     buttonsClose: document.querySelectorAll("[data-modal-close]"),
+    buttonExit: document.querySelector(".inline-button-exit"),
     modalWindow: document.querySelectorAll(".modal__window"),
     textArea: document.querySelector(".input-message"),
     contentWindow: document.querySelector(".content"),
@@ -786,8 +809,8 @@ parcelHelpers.export(exports, "setCookie", ()=>setCookie);
 parcelHelpers.export(exports, "getCookie", ()=>getCookie);
 parcelHelpers.export(exports, "sendRequest", ()=>sendRequest);
 var _const = require("./const");
-function setCookie(name, value) {
-    if (value !== "") document.cookie = `${name}=${value}; max-age=1728000`;
+function setCookie(name, value, age = 1728000) {
+    if (value !== "") document.cookie = `${name}=${value}; max-age= ${age}`;
     else showWarning((0, _const.ELEMENTS).codeWarning);
 }
 function getCookie(name) {
@@ -840,19 +863,6 @@ function addMessage(userClass, text, time, userName, insert) {
         behavior: "smooth"
     });
 }
-window.onload = function showCurrentHistory() {
-    const responseResult = (0, _requestJs.sendRequest)((0, _constJs.METHOD).GET, (0, _constJs.ELEMENTS).URL + "/messages/", {}, {
-        Authorization: `Bearer ${(0, _requestJs.getCookie)("token")}`
-    });
-    responseResult.then((result)=>{
-        localStorage.setItem("history", JSON.stringify(result.messages));
-        console.log(result.messages);
-        const messagesList = result.messages;
-        for(let i = 0; i <= (0, _constJs.MESSAGE).step - 1; i++)if (messagesList[i].user.email === (0, _requestJs.getCookie)("thisUser")) addMessage((0, _constJs.ELEMENTS).myMessages, messagesList[i].text, messagesList[i].updatedAt);
-        else addMessage((0, _constJs.ELEMENTS).interlocutorMessages, messagesList[i].text, messagesList[i].updatedAt, messagesList[i].user.name);
-        (0, _constJs.ELEMENTS).contentWrapper.scrollTop = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight;
-    });
-};
 function downloadHistory(count) {
     const history = JSON.parse(localStorage.getItem("history"));
     for(let i = count; i <= count + (0, _constJs.MESSAGE).step; i++)if (i <= history.length - 1) {
