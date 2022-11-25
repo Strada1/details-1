@@ -86,3 +86,12 @@ export function returnTextAreaSie() {
       ELEM_HEIGHTS.inputMessageHeight)
   }px`;
 }
+
+export function showEndHistory() {
+  let div = document.createElement("div");
+  div.classList.add("messages-warning");
+  let p = document.createElement("p");
+  p.innerHTML = "Вся история загружена:)";
+  div.append(p);
+  ELEMENTS.contentWrapper.prepend(div);
+}

@@ -1,4 +1,4 @@
-import { ELEMENTS, METHOD } from "./const.js";
+import { ELEMENTS, METHOD, MESSAGE } from "./const.js";
 import {
   showModal,
   closeModal,
@@ -7,35 +7,9 @@ import {
   returnTextAreaSie,
 } from "./ui.js";
 import { setCookie, getCookie, sendRequest } from "./request.js";
-import { format } from "date-fns";
+import { addMessage, downloadHistory } from "./messages";
 
 const set = new Set();
-
-function addMessage(userClass, text, time, userName) {
-  let div = document.createElement("div");
-  div.classList.add(...userClass);
-
-  if (text.trim() !== "") {
-    div.append(tmpl.content.cloneNode(true));
-    div.querySelector(".message__text").textContent = text;
-    div.querySelector(".message__delivery-time").textContent = format(
-      Date.parse(time),
-      "HH:mm"
-    );
-    ELEMENTS.contentWrapper.append(div);
-  }
-
-  if (userName) {
-    let span = document.createElement("span");
-    span.classList.add("message__user");
-    div.prepend(span);
-    span.textContent = userName;
-  }
-
-  div.scrollIntoView({
-    behavior: "smooth",
-  });
-}
 
 ELEMENTS.authorizationForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -77,32 +51,27 @@ ELEMENTS.nameForm.addEventListener("submit", (event) => {
   ELEMENTS.name.value = "";
 });
 
-window.onload = function showHistory() {
-  const responseResult = sendRequest(
-    METHOD.GET,
-    ELEMENTS.URL + "/messages/",
-    {},
-    { Authorization: `Bearer ${getCookie("token")}` }
-  );
+let count = MESSAGE.step;
 
-  responseResult.then((result) => {
-    result.messages.forEach((item) => {
-      const user = item.user.name;
-      const text = item.text;
-      const time = item.updatedAt;
-      if (item.user.email === getCookie("thisUser")) {
-        addMessage(ELEMENTS.myMessages, text, time);
-      } else {
-        addMessage(ELEMENTS.interlocutorMessages, text, time, user);
-      }
-    });
-  });
-};
+ELEMENTS.contentWrapper.addEventListener("scroll", () => {
+  if (ELEMENTS.contentWrapper.scrollTop === 0) {
+    const currentContentHeight = ELEMENTS.contentWrapper.scrollHeight;
+    downloadHistory(count);
+    if (
+      count <=
+      JSON.parse(localStorage.getItem("history")).length - MESSAGE.step
+    ) {
+      count += MESSAGE.step;
+    }
+    const newContentHeight = ELEMENTS.contentWrapper.scrollHeight;
+    ELEMENTS.contentWrapper.scrollTop = newContentHeight - currentContentHeight;
+  }
+});
 
 const socket = new WebSocket(
-  `ws://edu.strada.one/websockets?${getCookie("token")}`
+  `wss://edu.strada.one/websockets?${getCookie("token")}`
 );
-socket.onopen = function (e) {
+socket.onopen = function () {
   console.log("[open] Соединение установлено");
 };
 
@@ -110,11 +79,6 @@ ELEMENTS.textArea.addEventListener("keydown", (event) => {
   set.add(event.key);
 
   if (set.has("Enter") && !set.has("Shift")) {
-    // addMessage(
-    //   ELEMENTS.myMessages,
-    //   ELEMENTS.textArea.value,
-    //   format(new Date(), "HH:mm")
-    // );
     socket.send(JSON.stringify({ text: ELEMENTS.textArea.value }));
     returnTextAreaSie();
     event.preventDefault();
@@ -128,11 +92,6 @@ ELEMENTS.textArea.addEventListener("keyup", (event) => {
 
 ELEMENTS.messageForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  // addMessage(
-  //   ELEMENTS.myMessages,
-  //   ELEMENTS.textArea.value,
-  //   format(new Date(), "HH:mm")
-  // );
   socket.send(JSON.stringify({ text: ELEMENTS.textArea.value }));
   returnTextAreaSie();
 });
@@ -141,13 +100,20 @@ socket.onmessage = function (event) {
   const data = JSON.parse(event.data);
 
   if (getCookie("thisUser") === data.user.email) {
-    addMessage(ELEMENTS.myMessages, data.text, data.createdAt);
+    addMessage(
+      ELEMENTS.myMessages,
+      data.text,
+      data.createdAt,
+      undefined,
+      "append"
+    );
   } else {
     addMessage(
       ELEMENTS.interlocutorMessages,
       data.text,
       data.createdAt,
-      data.user.name
+      data.user.name,
+      "append"
     );
   }
 };

@@ -188,10 +188,6 @@ body {
   white-space: pre-wrap;
 }
 
-.message:nth-child(1) {
-  margin: 15px 0 15px auto;
-}
-
 .message--user-me {
   background-color: #20a090;
   color: #fff;
@@ -390,4 +386,11 @@ body {
   margin: 0 5px 5px 0;
   background-color: #a1a4a3;
   border-radius: 50%;
+}
+
+.messages-warning {
+  margin: 15px 0;
+  font-size: 14px;
+  color: #797C7B;
+  text-align: center;
 }

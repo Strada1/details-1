@@ -157,10 +157,6 @@ body {
   white-space: pre-wrap;
 }
 
-.message:nth-child(1) {
-  margin: 15px 0 15px auto;
-}
-
 .message--user-me {
   color: #fff;
   background-color: #20a090;
@@ -352,6 +348,13 @@ body {
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.messages-warning {
+  color: #797c7b;
+  text-align: center;
+  margin: 15px 0;
+  font-size: 14px;
 }
 
 /*# sourceMappingURL=index.3a01df49.css.map */

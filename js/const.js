@@ -34,6 +34,10 @@
     inputMessageHeight: 50,
     inputMessagePadding: 42.5,
   };
+
+  export const MESSAGE = {
+    step: 20,
+  }
   
  export const METHOD = {
     POST: "POST",
