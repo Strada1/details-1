@@ -45,7 +45,7 @@ export function addMessageToDOM(message, time) {
   timeMyMessage.textContent = time;
 
   ELEMENT.CHAT_CONTAINER.append(userContent);
-  // scrollLastElement();
+   scrollLastElement();
 }
 
 export function companionMessageToDOM(message, time, name) {
@@ -58,7 +58,7 @@ export function companionMessageToDOM(message, time, name) {
   timeMyMessage.textContent = time;
 
   ELEMENT.CHAT_CONTAINER.append(userContent);
-  // scrollLastElement();
+   scrollLastElement();
 }
 
 function scrollLastElement() {
