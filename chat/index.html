@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHAT</title>
+    <script src="main.js" defer></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+
+    <div class="chat_form">
+      <!--Шапка - "Настройки" и "Выход"-->
+      <div class="top">
+        <button id="settings">Настройки</button>
+        <button id="autorization">Авторизация</button>
+        <button id="confirmation">Подтверждение</button>
+        <button id="exit">Выйти</button>
+      </div>
+      <!--Центр - Чат, исходящие и входящие-->
+      <div class="middle">
+        <template id="outgoing_message">
+          <div class='outgoing_message'>
+            <div class="message">Я:</div>
+            <div class="time"></div>
+          </div>
+        </template>
+        <template id="incoming_message">
+          <div class="incoming_message">
+            <div class="message">Я:</div>
+            <div class="time"></div>
+          </div>
+        </template>
+      </div>
+      <!--Подвал - форма отправки и кнопка "Отправить"-->
+      <form class="bottom">
+        <input id='enter_message' placeholder="сообщение.." type="text">
+        <button id="send_message">-></button>
+      </form>
+    </div>
+    
+    <!--Модальное окно настроек-->
+    <div id='settingsModal'>
+      <div class="top">
+        <h1>Настройки</h1>
+        <button id="close">x</button>
+      </div>
+      <br>
+      <div>
+        <h2>Имя в чате</h2>
+      </div>
+      <form id="name">
+        <input id='enter_name' placeholder="Введите имя" type="text">
+        <button id="set_name">-></button>
+      </form>
+    </div>
+        <!--Модальное окно авторизация-->
+        <div id='autorizationModal'>
+          <div class="top">
+            <h1>Авторизация</h1>
+            <button id="close">x</button>
+          </div>
+          <br>
+          <div>
+            <h2>Почта</h2>
+          </div>
+          <form id="email">
+            <input id='enter_email' type="text">
+            <button id="set_name">Получить код</button>
+          </form>
+        </div>
+            <!--Модальное окно подтверждение-->
+            <div id='confirmationModal'>
+              <div class="top">
+                <h1>Подтверждение</h1>
+                <button id="close">x</button>
+              </div>
+              <br>
+              <div>
+                <h2>Код</h2>
+              </div>
+              <form id="email_confirm">
+                <input id='enter_confirm' type="text">
+                <button id="set_name">Войти</button>
+              </form>
+            </div>
+
+</body>
+</html>

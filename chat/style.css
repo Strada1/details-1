@@ -1,0 +1,127 @@
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: rgb(237, 181, 249);
+      position: relative;
+
+    }
+
+    .chat_form {
+      display: flex;
+      flex-direction: column;
+      padding: 8px;
+      background-color: white;
+    }
+
+    .top {
+      height: 32px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    #settings,  #autorization, #confirmation {
+      border: 1px solid;
+      width: auto;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    #exit {
+      border: 1px solid;
+      width: 66px;
+      font-family: 'Roboto';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+    }
+
+    .middle {
+      padding: 10px;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 10px;
+      overflow-y: auto;
+      border: 1px solid;
+      margin: 8px 0;
+      height: calc(100vh - 160px)
+    }
+
+    .outgoing_message {
+      align-self: end;
+      ;
+      background-color: bisque;
+    }
+
+    .incoming_message {
+      background-color: rgb(255, 140, 0);
+    }
+
+    .outgoing_message,
+    .incoming_message {
+      position: relative;
+      padding: 10px 10px 20px;
+      width: fit-content;
+      max-width: 80%;
+    }
+
+    .time {
+      position: absolute;
+      right: 4px;
+      bottom: 2px;
+    }
+
+    .outgoing_message .time {
+      color: darkgrey;
+    }
+
+    .incoming_message .time {
+      color: white;
+    }
+
+    .bottom {
+      height: 32px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+
+    #enter_message {
+      border: 1px solid;
+      width: 100%;
+      padding: 8px;
+
+    }
+
+    #send_message {
+      border: 1px solid;
+      flex-shrink: 0;
+      padding: 8px;
+      background: none;
+    }
+
+
+    #settingsModal,
+    #autorizationModal,
+    #confirmationModal {
+      display: none;
+    }
+
+    #settingsModal.active,
+    #autorizationModal.active,
+    #confirmationModal.active {
+      position: absolute;
+      display: block;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 10px;
+      background-color: white;
+    }
