@@ -37,4 +37,7 @@ export const USERS = {
 
 export const STYLES = {
   SHOW_POPUP: 'show-popup',
+  MESSAGE_TEMPLATE: 'companion-message',
+  MY_MESSAGE: 'user-message',
+  COMPANION_MESSAGE: 'companion-message',
 };

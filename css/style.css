@@ -78,12 +78,14 @@ body {
     justify-content: flex-end;
     align-content: stretch;
     align-items: flex-start;
+
+}
+
+.user-message {
     align-self: flex-end;
 }
 .companion-message {
-    display: flex;
     align-self: flex-start;
-
 }
 
 .message-text {

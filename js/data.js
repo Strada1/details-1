@@ -20,6 +20,7 @@ async function sendEmail(email) {
       'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify({ email: `${email}` }),
+    Authorization: `Bearer ${Cookies.get('authorizationCode')}`,
   });
 
   const result = await response.json();
@@ -31,7 +32,7 @@ export function confirmSendHandler(event) {
   event.preventDefault();
   const userCode = POPUPS.CONFIRM_FIELD.value.trim();
 
-  Cookies.set('authorizationCode', `${userCode}`);
+  saveCookies('authorizationCode', userCode);
   console.log('COOKIES', Cookies.get());
   hidePopup(POPUPS.CONFIRM_BLOCK);
   showPopup(POPUPS.SETTINGS_POPUP);
@@ -71,10 +72,11 @@ export async function getUserData() {
 
   console.log(`RESPONSE ${response.ok}`);
 
-  return response;
+  const result = await response.json();
+  return result;
 }
 
-async function getMessageHistory() {
+export async function getMessageHistory() {
   const response = await fetch(URLS.MESSAGE_HISTORY, {
     method: 'GET',
     headers: {
@@ -83,17 +85,17 @@ async function getMessageHistory() {
     },
   });
   const result = await response.json();
-  console.log(result);
+  return result;
 }
-
-getMessageHistory();
 
 async function updateUserData() {
   const userData = getUserData();
-  userData
-    .then((response) => response.json())
-    .then((user) => {
-      USERS.USER_NAME = user.name;
-      console.log(USERS.USER_NAME);
-    });
+  userData.then((user) => {
+    USERS.USER_NAME = user.name;
+    console.log(USERS.USER_NAME);
+  });
+}
+
+export function saveCookies(key, value) {
+  Cookies.set(key, `${value}`);
 }
