@@ -2,6 +2,7 @@ export const ELEMENTS = {
   BUTTON_EXIT: document.querySelector(".btn-exit"),
   CLOSE_BUTTON: document.querySelectorAll(".close-window"),
   ALL_POPUP: document.querySelector(".allPopup"),
+  SCROLL_BLOCK: document.querySelector('.message-window')
 };
 
 export const MESSAGES = {

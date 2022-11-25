@@ -4,6 +4,7 @@ import {
   AUTHORIZATION,
   CONFIRMATION,
   MESSAGES,
+  ELEMENTS
 } from "./const.js";
 
 import {
@@ -21,7 +22,6 @@ SETTINGS.CHANGE_NAME_FORM.addEventListener("submit", changeName);
 
 
 export function RenderMesLive(data) {
-  MESSAGES.MESSAGE_INPUT.value = ''
   const authorMessage =  MESSAGES.TEMPLATE.content.querySelector('.other-name-message')
   if (data.user.email === 'sonalavrushina@gmail.com') {
     authorMessage.style.color = 'palevioletred'
@@ -38,8 +38,6 @@ export function RenderMesLive(data) {
   MESSAGES.MESSAGE_BLOCK.append(cloneMessages);
   MESSAGES.MESSAGE_BLOCK.scrollIntoView(false);
 }
-
-
 
 function saveUserCode(event) {
   event.preventDefault();
@@ -64,6 +62,7 @@ function sendMessage(event) {
   event.preventDefault();
   const message =  MESSAGES.MESSAGE_INPUT.value;
   socket.send(JSON.stringify({ text: message }));
+  MESSAGES.MESSAGE_INPUT.value = ''
 }
 
 function changeName(event) {
@@ -85,7 +84,21 @@ export function deleteAccountHistory() {
 
 export function renderHistory(array) {
   array.messages.reverse()
-  array.messages.forEach((item) => {
-    RenderMesLive(item);
-  });
+  for (let i = 250; i < 300; i++) {
+    RenderMesLive(array.messages[i])
+  }
+  ELEMENTS.SCROLL_BLOCK.addEventListener('scroll', function() {
+    scrollRender(array)
+  })
+}
+
+function scrollRender(array) {
+  if (ELEMENTS.SCROLL_BLOCK.scrollTop === 0) {
+    alert('Сообщения выгружены!')
+   for (let i = 0; i <= 250; i++) {
+     RenderMesLive(array.messages[i]);
+   } 
+   array.messages.reverse()
+   renderHistory(array)
+ } 
 }
