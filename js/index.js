@@ -9,8 +9,6 @@ const socket = new WebSocket(
   `ws://edu.strada.one/websockets?${Cookies.get('authorizationCode')}`
 );
 
-let user = getUserData().then((user) => saveCookies('name', user.name));
-
 window.addEventListener('load', renderApp);
 
 ELEMENTS.MESSAGE_FORM.addEventListener('submit', (event) => addMessage(event));
@@ -53,7 +51,6 @@ function addMessage(event) {
   const messagevalue = ELEMENTS.MESSAGE_INPUT.value.trim();
 
   if (messagevalue.length) {
-    // renderMessage(messagevalue, STYLES.MY_MESSAGE, Cookies.get('name'));
     sendMessage(messagevalue);
     ELEMENTS.MESSAGE_INPUT.value = '';
     scrollToLastMessage();
@@ -68,21 +65,21 @@ function sendMessage(message) {
 
 socket.onmessage = function (event) {
   const message = JSON.parse(event.data);
-  console.log(message);
 
   if (message.user.email === Cookies.get('email')) {
-    renderMessage(message.text, STYLES.MY_MESSAGE, message.user.name);
+    renderMessage(message, STYLES.MY_MESSAGE);
     return;
   }
-  renderMessage(message.text, STYLES.COMPANION_MESSAGE, message.user.name);
+  renderMessage(message, STYLES.COMPANION_MESSAGE);
 };
 
-function renderMessage(message, style, author) {
-  const messageDate = format(new Date(), 'HH:mm');
+function renderMessage(data, style) {
+  let message = data.text ?? data;
+  const messageDate = format(new Date(data.updatedAt), 'HH:mm');
   const template = cloneTemplate(ELEMENTS.MESSAGE_TEMPLATE);
   const element = document.createElement('li');
   element.classList.add('message-item', `${style}`);
-  template.querySelector('.author').textContent = `${author}: `;
+  template.querySelector('.author').textContent = `${data.user.name}: `;
   template.querySelector('.message-text').append(message);
   template.querySelector('.message-date').textContent = messageDate;
   element.append(template);
@@ -93,19 +90,12 @@ function useHistory() {
   getMessageHistory().then((history) => {
     history.messages.reverse().forEach((currentUser) => {
       if (currentUser.user.email === Cookies.get('email')) {
-        renderMessage(
-          currentUser.text,
-          STYLES.MY_MESSAGE,
-          currentUser.user.name
-        );
+        renderMessage(currentUser, STYLES.MY_MESSAGE);
+
         scrollToLastMessage();
         return;
       }
-      renderMessage(
-        currentUser.text,
-        STYLES.COMPANION_MESSAGE,
-        currentUser.user.name
-      );
+      renderMessage(currentUser, STYLES.COMPANION_MESSAGE);
 
       scrollToLastMessage();
     });
