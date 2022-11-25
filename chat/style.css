@@ -1,0 +1,270 @@
+body {
+    background-color: #DCDCDC;
+    width: 100%;
+    height: 100%;
+}
+
+.window {
+    background-color: #fafafa;
+    height: auto;
+    width: 320px;
+    margin: 50px;
+    margin-left: 150px;
+    padding: 8px;
+    border-radius: 6px;
+}
+
+.panel {
+    display: flex;
+    justify-content: space-between;
+    font-family: sans-serif;
+    margin-bottom: 8px;
+    font-weight: 100;
+}
+
+.setting, .exit {
+    border: 2px solid #708090;
+    background-color: #f4ecec00;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 6px 8px;
+}
+
+.setting:hover, .exit:hover {
+    background: transparent;
+    color: #222;
+    border-color: #4682B4;
+    background-color: #fafafa;
+}
+
+
+.screen_chat {
+    border: 1px solid #708090;
+    height: 440px;
+    position: relative;
+    border-radius: 4px;
+    overflow: hidden;
+    width: auto;
+}
+
+.messages {
+    height: 430px;
+    width: 97%;
+    font-size: 14px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    overflow-y: auto;
+    overflow-x: inherit;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(83, 83, 83);
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    margin: 5px;
+}
+
+
+.message {
+    height: 100%;
+    width: 100%;
+    padding: 8px;
+    background-color: #e6f0fa;
+    margin: 4px;
+    border-radius: 4px;
+    height: fit-content;
+    width: fit-content;
+
+}
+
+.my-message {
+    margin-left: auto;
+    background-color: #e6e8fa;
+
+}
+
+.other-message {
+    margin-right: 4px;
+}
+
+.end {
+    margin: 4px;
+    width: 92%;
+    padding: 8px;
+    text-align: center;
+    border-radius: 4px;
+    background-color: #FFEFD5;
+}
+
+.time {
+    text-align: right;
+    color: #333333;
+    font-size: 10px;
+}
+
+.input-message {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 11px;
+    width: 100%;
+    border-radius: 4px;
+
+}
+
+i {
+    font-size: 30px;
+    color: #708090;
+    transition: 0.1s;
+}
+
+i:hover {
+    color: #4682B4;
+}
+
+.send-message, .send-name {
+    border: none;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    cursor: default;
+}
+
+.form-message {
+    margin-right: 8px;
+    width: 83%;
+    height: auto;
+    resize: none;
+    overflow-y: hidden;
+    padding: 5px;
+
+}
+
+.popup {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease 0s;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, 'Roboto', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.popup:target {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup_body {
+    display: flex;
+    min-height: 100%;
+    margin-top: 110px;
+    margin-left: 176px;
+}
+
+.popup_content {
+    background-color: #fafafa;
+    color: black;
+    width: 260px;
+    height: 200px;
+    padding: 20px;
+    border-radius: 5px;
+    position: relative;
+
+}
+
+.input-name {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 11px;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.form-name {
+    width: 78%;
+    height: auto;
+    padding: 5px;
+}
+
+.popup_close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0px 3px;
+    margin-top: 3px;
+    margin-right: 10px;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular',
+        'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #333333;
+}
+
+.popup_close:hover {
+    color: rgb(45, 122, 215);
+    transition: 200ms;
+}
+
+.popup_area {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.popup_title {
+    font-size: 17px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.popup_text {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+p {
+    width: 100%;
+    font-size: 16px;
+}
+
+.input-mail {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 4px;
+}
+
+.form {
+    width: 100%;
+    margin-bottom: 7px;
+    padding: 6px;
+    font-size: 14px;
+}
+
+
+.send {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f6f4f4;
+    font-weight: 500;
+    border: 2px solid #708090;
+    border-radius: 4px;
+    padding: 6px;
+    position: relative;
+    right: 0;
+}
+
+.send:hover {
+    background: transparent;
+    color: #222;
+    border-color: #4682B4;
+}
+
+#code-popup {
+    transition: all 0s ease 0s;
+}

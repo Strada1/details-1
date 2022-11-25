@@ -1,0 +1,19 @@
+{
+  "name": "npm-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "author": "PankJK",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "js-cookie": "^3.0.1"
+  }
+}
