@@ -5,7 +5,7 @@ import { showPopup, closePopup, initPopup } from './ui/popup.js';
 import { registryUser, changeUserName, getUserInfo, getMessages } from './server/requests.js';
 import { URL_DIRECTORY, getUrl, WEBSOKETS_URL } from './server/url.js'
 import { AUTHORIZATION_COOKIE_KEY, authorizationToken, getAuthorizationToken } from './authorization.js';
-import { setItemInSessionStorage, getItemFromSessionStorage, STORAGE_KEY} from '../sessionStorage.js';
+import { setItemInSessionStorage, getItemFromSessionStorage, STORAGE_KEY} from './sessionStorage.js';
 import { counter } from './helpers/couter.js';
 import Cookies from 'js-cookie';
 
