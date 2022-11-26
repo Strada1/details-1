@@ -8,6 +8,11 @@ const NOTIFICATION_STATUS = {
   CLOSE: 'notification__close',
 };
 
+export const NOTIFICATION_MESSAGE = {
+  SAVE_TOKEN: 'Токен сохранен',
+  NAME_CHANGE: 'Имя изменено',
+};
+
 function closeNotification() {
   NOTIFICATION_UI.BOX.classList.add(NOTIFICATION_STATUS.CLOSE);
   NOTIFICATION_UI.BOX.classList.remove(NOTIFICATION_STATUS.ACTIVE);
