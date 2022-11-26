@@ -1,4 +1,4 @@
-import {  ELEMENT, CLASS, ID, HISTORY_MESSAGE, NUMBER } from './const.js';
+import {  ELEMENT, CLASS, ID, HISTORY_MESSAGE, NUMBER, NEW_ELEMENT, METHOD } from './const.js';
 import { format } from 'date-fns';
 import Cookies from 'js-cookie';
 
@@ -17,29 +17,39 @@ export function createClone(template) {
   return template.content.cloneNode(true);
 }
   
-export  function showMessageOwn(clone, user) {
+export  function showMessageOwn(clone, user, method) {
     clone.querySelectorAll(CLASS.OWN_TEXT).forEach((message) => message.textContent = user.text);
     clone.querySelectorAll(ID.OWN_TIME).forEach((message) => message.textContent = format(new Date(user.updatedAt), 'HH:mm'));
-    ELEMENT.MAIN.append(clone);
+
+    if (method === METHOD.APPEND) {
+      ELEMENT.MAIN.append(clone);
+      return;
+    }
+    ELEMENT.MAIN.prepend(clone);
 }
   
-export  function showMessageOther(clone, user) {
+export  function showMessageOther(clone, user, method) {
   clone.querySelectorAll(CLASS.OTHER_TEXT).forEach((message) => message.textContent = `${user.user.name}: ${user.text}`);
   clone.querySelectorAll(ID.OTHER_TIME).forEach((message) => message.textContent = format(new Date(user.updatedAt), 'HH:mm'));
-  ELEMENT.MAIN.append(clone);
-}
 
-export  function showCurrentMessageOwn(clone, user) {
-  clone.querySelectorAll(CLASS.OWN_TEXT).forEach((message) => message.textContent = user.text);
-  clone.querySelectorAll(ID.OWN_TIME).forEach((message) => message.textContent = format(new Date(user.updatedAt), 'HH:mm'));
+  if (method === METHOD.APPEND) {
+    ELEMENT.MAIN.append(clone);
+    return;
+  }
   ELEMENT.MAIN.prepend(clone);
 }
 
-export  function showCurrentMessageOther(clone, user) {
-clone.querySelectorAll(CLASS.OTHER_TEXT).forEach((message) => message.textContent = `${user.user.name}: ${user.text}`);
-clone.querySelectorAll(ID.OTHER_TIME).forEach((message) => message.textContent = format(new Date(user.updatedAt), 'HH:mm'));
-ELEMENT.MAIN.prepend(clone);
-}
+// export  function showCurrentMessageOwn(clone, user) {
+//   clone.querySelectorAll(CLASS.OWN_TEXT).forEach((message) => message.textContent = user.text);
+//   clone.querySelectorAll(ID.OWN_TIME).forEach((message) => message.textContent = format(new Date(user.updatedAt), 'HH:mm'));
+//   ELEMENT.MAIN.prepend(clone);
+// }
+
+// export  function showCurrentMessageOther(clone, user) {
+// clone.querySelectorAll(CLASS.OTHER_TEXT).forEach((message) => message.textContent = `${user.user.name}: ${user.text}`);
+// clone.querySelectorAll(ID.OTHER_TIME).forEach((message) => message.textContent = format(new Date(user.updatedAt), 'HH:mm'));
+// ELEMENT.MAIN.prepend(clone);
+// }
 
 
 export function checkPosition() {
@@ -56,7 +66,7 @@ export function sliceArray(historyMessage) {
   checkHistory(history);
 
   if (0 === history.length) {
-    alert('Вся история загружена');
+    showEndMessage();
    }
 }
 
@@ -64,11 +74,22 @@ export function checkHistory(history) {
   history.forEach((history) => {
     if (history.user.email === Cookies.get('email')) {
       const cloneOwn = createClone(ELEMENT.TEMPLATE_MESS_OWN);
-      showMessageOwn(cloneOwn, history);
+      showMessageOwn(cloneOwn, history, METHOD.APPEND);
     } else {
       const cloneOther = createClone(ELEMENT.TEMPLATE_MESS_OTHER);
-      showMessageOther(cloneOther, history);
+      showMessageOther(cloneOther, history, METHOD.APPEND);
     }
   })
 }
 
+function showEndMessage() {
+  if(!document.querySelector(NEW_ELEMENT.CLASS_END)) {
+    let div = document.createElement(NEW_ELEMENT.DIV);
+    div.classList.add(NEW_ELEMENT.NEW_CLASS_END);
+    
+    let p = document.createElement(NEW_ELEMENT.P);
+    p.textContent = NEW_ELEMENT.TEXT;
+    div.append(p);
+    ELEMENT.MAIN.append(div);
+  }
+}

@@ -49,4 +49,19 @@ export const NUMBER = {
   NEXT_INDEX: 20,
 }
 
+export const NEW_ELEMENT = {
+  CLASS_END: '.messages-end',
+  NEW_CLASS_END: 'messages-end',
+  DIV: 'div',
+  P: 'p',
+  TEXT: 'Вся история загружена'
+} 
+
+export const METHOD = {
+  PREPEND: 'prepend',
+  APPEND: 'append'
+}
+
+
+
 

@@ -156,3 +156,9 @@ body {
   width: 209px;
   margin-bottom: 7px;
 }
+
+.messages-end {
+  margin-right: auto;
+  margin-left: auto;
+  padding-bottom: 10px;
+}

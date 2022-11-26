@@ -1,5 +1,5 @@
-import { ELEMENT, POPUP_BUTTONS } from './const.js';
-import { showPopup, closePopup, createClone, createClone, checkPosition, checkHistory, showCurrentMessageOwn, showCurrentMessageOther } from './UI.js';
+import { ELEMENT, POPUP_BUTTONS, METHOD } from './const.js';
+import { showPopup, closePopup, createClone, createClone, checkPosition, checkHistory, showMessageOwn, showMessageOther } from './UI.js';
 import { getUser, addName, sendEmail, getHistory, saveCoockies } from './server.js';
 import Cookies from 'js-cookie';
 
@@ -71,7 +71,7 @@ ELEMENT.FORM_MESSAGE.onsubmit = function (event) {
 };
 
 function sendMessage() {
-    socket.send(JSON.stringify({ text: ELEMENT.INPUT_MESSAGE.value })); 
+  socket.send(JSON.stringify({ text: ELEMENT.INPUT_MESSAGE.value })); 
 }
 
 
@@ -80,9 +80,9 @@ socket.onmessage = function(event) {
   
   if (message.user.email === Cookies.get('email')) {
     const cloneOwn = createClone(ELEMENT.TEMPLATE_MESS_OWN);
-    showCurrentMessageOwn(cloneOwn, message);
+    showMessageOwn(cloneOwn, message, METHOD.PREPEND);
     return;
   } 
   const cloneOther = createClone(ELEMENT.TEMPLATE_MESS_OTHER);
-  showCurrentMessageOther(cloneOther, message);
+  showMessageOther(cloneOther, message, METHOD.PREPEND);
 };
