@@ -1,226 +1,240 @@
-*{
-    font-family: Roboto;
+* {
+  font-family: Roboto;
 }
 
 span {
-    vertical-align: middle;
-    text-align: center;
+  vertical-align: middle;
+  text-align: center;
 }
 
 .container {
-    margin: 0 auto;      
-    width: 520px;  
-    height: 790px;
-    display: flexbox;
+  margin: 0 auto;
+  width: 520px;
+  height: 760px;
+  display: flexbox;
 }
 
 .controlling {
-    display: flex;
+  display: flex;
 }
 .message {
-    width: 500px;
-    display: flex;
+  width: 500px;
+  display: flex;
 }
 .form-text {
-    display: flex; 
+  display: flex;
 }
 
 .settings {
-    outline: 2px solid black;
-    width: 200px;
-    height: 40px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    padding: 8px;
+  outline: 2px solid black;
+  width: 200px;
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 8px;
 }
 
 .exit {
-    outline: 2px solid black;
-    width: 100px;
-    height: 40px;
-    margin-top: 8px;
-    margin-bottom: 8px;
-    margin-right: 8px;
-    margin-left: 200px;
-    padding: 8px;
+  outline: 2px solid black;
+  width: 100px;
+  height: 40px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  margin-left: 200px;
+  padding: 8px;
 }
 
-#text-message, #exit, #settings {
-    font-size: 28px;
-    border: none;
-    outline: none;
-    background-color: white;
+#text-message,
+#exit,
+#settings {
+  font-size: 28px;
+  border: none;
+  outline: none;
+  background-color: white;
 }
 
-#name-input, #email-input, #name-button, #email-button, #kod-input, #kod-input {
-    font-size: 24px;
-    border: none;
-    outline: 2px solid black;
-    background-color: white;
-    padding: 8px;
-    margin: 8px;
-    margin-left: 0;
+#name-input,
+#email-input,
+#name-button,
+#email-button,
+#kod-input,
+#kod-button {
+  font-size: 24px;
+  border: none;
+  outline: 2px solid black;
+  background-color: white;
+  padding: 8px;
+  margin: 8px;
+  margin-left: 0;
 }
-#name-input, #email-input {
-    width: 320px;
+
+#name-input,
+#email-input {
+  width: 320px;
 }
-#email-button {
-    width: 44px;
-    height: 44px;
+#email-button,
+#kod-button,
+#name-button {
+  width: 44px;
+  height: 44px;
 }
-#send, #text-message {
-    outline: 2px solid black;
-    padding: 8px;
-    margin: 8px; 
-    margin-left: 0;  
+#send,
+#text-message {
+  outline: 2px solid black;
+  padding: 8px;
+  margin: 8px;
+  margin-left: 0;
 }
 #text-message {
-    width: 425px;
+  width: 425px;
 }
 #send {
-    width: 55px;
-    font-size: 28px;
-    border: none;
-    background-color: white;
-    margin-left: 8px;
-    margin-right: 0;
+  width: 55px;
+  font-size: 28px;
+  border: none;
+  background-color: white;
+  margin-left: 8px;
+  margin-right: 0;
 }
 
 .chat {
-    outline: 2px solid black;
-    width: 496px;
-    height: 650px;
-    margin: 8px;
-    margin-left: 0;
-    padding: 8px;
-    overflow: auto;
-    display: flex;
-    flex-direction: column-reverse;
-    flex-wrap: nowrap;
+  outline: 2px solid black;
+  width: 496px;
+  height: 650px;
+  margin: 8px;
+  margin-left: 0;
+  padding: 8px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: nowrap;
 }
 
-.my-message, .friend-message {
-    background-color: #E5E5E5;
-    width: 60%;
-    margin: 8px;
-    padding: 8px;
-    margin-top: 8px;
-    
-    bottom: 0;
+.my-message,
+.friend-message {
+  background-color: #e5e5e5;
+  margin: 8px;
+  padding: 8px; 
+  margin-top: 8px;
+  max-width: 93.5%;
+  bottom: 0;
+  display: inline-block;
+  vertical-align: top;
 }
 .friend-message {
-    margin-right: auto;
-    margin-left: 8px;
-    margin-top: 8px;
-    max-width: 100%;
-    overflow-wrap: break-word;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: auto;
+  overflow-wrap: break-word;
 }
 
 .my-message {
-    margin-left: auto;
-    margin-right: 8px;
-    max-width: 100%;
-    overflow-wrap: break-word;
+  margin-left: auto;
+  overflow-wrap: break-word;
 }
 
 .message-container {
-    padding: 8px;
-    font-size: 24px;
-}
-.time-container, .time {
-    padding-right: 8px;
-    text-align: right;
-    font-size: 18px;
-    font-style: italic;
-    margin-bottom: 8px;
+  padding: 8px;
+  font-size: 24px;
 }
 
-.name-inp, .email-inp {
-    width: 100%;
+.time-container,
+.time {
+  padding-right: 8px;
+  text-align: right;
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 8px;
 }
-.name-container, .email-container{
-    display: flex;
+
+.name-inp,
+.email-inp {
+  width: 100%;
+}
+.name-container,
+.email-container {
+  display: flex;
 }
 .name-btn {
-    outline: 2px solid black;
-}
-#name-button{
-    font-size: 24px;
-    margin-left: 8px;
-    border: none;
-    outline: none;
-    background-color: white;
+  outline: 2px solid black;
 }
 
+
 .close-button {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    border: none;
-    background: none;
-    opacity: 0.7;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  border: none;
+  background: none;
+  opacity: 0.7;
 }
 
 .close-button:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
-.close-popup-auth, .close-popup, .close-popup-kod {
-    padding: 10px;
-    margin: 10px;
-    font-size: 18px;
+.close-popup-auth,
+.close-popup,
+.close-popup-kod {
+  padding: 10px;
+  margin: 10px;
+  font-size: 18px;
 }
 .auth {
-    padding-bottom: 40px;
-    margin-bottom: 40px;
+  padding-bottom: 40px;
+  margin-bottom: 40px;
 }
 .email-span {
-    padding-top: 40px;
-    margin-top: 40px;
+  padding-top: 40px;
+  margin-top: 40px;
 }
-.popup__bg, .popup__bg_auth, .popup__bg_kod {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(0,0,0,0.5);
-    opacity: 0; 
-    pointer-events: none; 
-    font-size: 24px;
-
-}
-
-.popup__bg.active, .popup__bg_auth.active, .popup__bg_kod.active { 
-    opacity: 1; 
-    pointer-events: all; 
-    
+.popup__bg,
+.popup__bg_auth,
+.popup__bg_kod {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  font-size: 24px;
 }
 
-.popup, .popup_auth, .popup_kod {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0); 
-    background: #fff;
-    width: 410px;
-    height: 560px;
-    padding: 25px;
-    
+.popup__bg.active,
+.popup__bg_auth.active,
+.popup__bg_kod.active {
+  opacity: 1;
+  pointer-events: all;
 }
 
-.popup.active, .popup_auth.active, .popup_kod.active { 
-    transform: translate(-50%, -50%) scale(1); 
-    transition: 0.5s all;
+.popup,
+.popup_auth,
+.popup_kod {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: #fff;
+  width: 410px;
+  height: 560px;
+  padding: 25px;
 }
 
-.close-popup, .close-popup-auth, .close-popup-kod {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
+.popup.active,
+.popup_auth.active,
+.popup_kod.active {
+  transform: translate(-50%, -50%) scale(1);
+  transition: 0.5s all;
 }
 
-
-
-
+.close-popup,
+.close-popup-auth,
+.close-popup-kod {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

@@ -1,30 +1,61 @@
-const popupBg = document.querySelector('.popup__bg'); // Фон попап окна
-const popup = document.querySelector('.popup'); // Само окно
-const openPopupButtons = document.querySelectorAll('.open-popup'); // Кнопки для показа окна
-const closePopupButton = document.querySelector('.close-popup'); // Кнопка для скрытия окна
+export const ACTIVE = "active";
+export const REMOVE = "remove";
+export const ADD = "add";
 
-export const popupBgAuth = document.querySelector('.popup__bg_auth');
-export const popupAuth = document.querySelector('.popup_auth')
-export const closePopupButtonAuth = document.querySelector('.close-popup-auth');
+export const POPUPELEMENTS = {
+  popupBg: document.querySelector(".popup__bg"),
+  popup: document.querySelector(".popup"),
+  openPopupButtons: document.querySelectorAll(".open-popup"),
+  closePopupButton: document.querySelector(".close-popup"),
+  popupBgAuth: document.querySelector(".popup__bg_auth"),
+  popupAuth: document.querySelector(".popup_auth"),
+  closePopupButtonAuth: document.querySelector(".close-popup-auth"),
+  popupBgKod: document.querySelector(".popup__bg_kod"),
+  popupKod: document.querySelector(".popup_kod"),
+  closePopupButtonKod: document.querySelector(".close-popup-kod"),
+};
 
+export function authPopUp(action) {
+  if (action === REMOVE) {
+    POPUPELEMENTS.popupAuth.classList.remove(ACTIVE);
+    POPUPELEMENTS.popupBgAuth.classList.remove(ACTIVE);
+  }
+  if (action === ADD) {
+    POPUPELEMENTS.popupBgAuth.classList.add(ACTIVE);
+    POPUPELEMENTS.popupAuth.classList.add(ACTIVE);
+  }
+}
 
-openPopupButtons.forEach((button) => { // Перебираем все кнопки
-    button.addEventListener('click', (e) => { // Для каждой вешаем обработчик событий на клик
-        e.preventDefault(); // Предотвращаем дефолтное поведение браузера
-        popupBg.classList.add('active'); // Добавляем класс 'active' для фона
-        popup.classList.add('active'); // И для самого окна
-    })
+export function kodPopUp(action) {
+  if (action === REMOVE) {
+    POPUPELEMENTS.popupBgKod.classList.remove(ACTIVE);
+    POPUPELEMENTS.popupKod.classList.remove(ACTIVE);
+  }
+  if (action === ADD) {
+    POPUPELEMENTS.popupBgKod.classList.add(ACTIVE);
+    POPUPELEMENTS.popupKod.classList.add(ACTIVE);
+  }
+}
+
+POPUPELEMENTS.openPopupButtons.forEach((button) => {
+  button.addEventListener("click", (event) => {
+    event.preventDefault();
+    POPUPELEMENTS.popupBg.classList.add(ACTIVE);
+    POPUPELEMENTS.popup.classList.add(ACTIVE);
+  });
 });
 
-closePopupButton.addEventListener('click',() => { // Вешаем обработчик на крестик
-    popupBg.classList.remove('active'); // Убираем активный класс с фона
-    popup.classList.remove('active'); // И с окна
+function removeActive() {
+  POPUPELEMENTS.popupBg.classList.remove(ACTIVE);
+  POPUPELEMENTS.popup.classList.remove(ACTIVE);
+}
+
+POPUPELEMENTS.closePopupButton.addEventListener("click", () => {
+  removeActive();
 });
 
-document.addEventListener('click', (e) => { // Вешаем обработчик на весь документ
-    if(e.target === popupBg) { // Если цель клика - фот, то:
-        popupBg.classList.remove('active'); // Убираем активный класс с фона
-        popup.classList.remove('active'); // И с окна
-    }
+document.addEventListener("click", (event) => {
+  if (event.target === POPUPELEMENTS.popupBg) {
+    removeActive();
+  }
 });
-
