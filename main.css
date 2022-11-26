@@ -54,9 +54,10 @@ body {
   margin-bottom: 8px;
   padding: 8px;
 }
-
 .main__message-own {
   align-self: flex-end;
+  word-wrap: break-word;
+  max-width: 250px;
 }
 
 .read {
@@ -70,6 +71,8 @@ body {
 }
 .main__message-other {
   align-self: flex-start;
+  word-wrap: break-word;
+  max-width: 250px;
 }
 
 .form-message {

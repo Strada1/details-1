@@ -39,19 +39,6 @@ export  function showMessageOther(clone, user, method) {
   ELEMENT.MAIN.prepend(clone);
 }
 
-// export  function showCurrentMessageOwn(clone, user) {
-//   clone.querySelectorAll(CLASS.OWN_TEXT).forEach((message) => message.textContent = user.text);
-//   clone.querySelectorAll(ID.OWN_TIME).forEach((message) => message.textContent = format(new Date(user.updatedAt), 'HH:mm'));
-//   ELEMENT.MAIN.prepend(clone);
-// }
-
-// export  function showCurrentMessageOther(clone, user) {
-// clone.querySelectorAll(CLASS.OTHER_TEXT).forEach((message) => message.textContent = `${user.user.name}: ${user.text}`);
-// clone.querySelectorAll(ID.OTHER_TIME).forEach((message) => message.textContent = format(new Date(user.updatedAt), 'HH:mm'));
-// ELEMENT.MAIN.prepend(clone);
-// }
-
-
 export function checkPosition() {
   let scrollBottom = ELEMENT.MAIN.scrollHeight - Math.abs(ELEMENT.MAIN.scrollTop) - ELEMENT.MAIN.clientHeight;
   if (scrollBottom === 0) {
