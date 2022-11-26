@@ -533,6 +533,7 @@ function hmrAcceptRun(bundle, id) {
 
 },{}],"bB7Pu":[function(require,module,exports) {
 var _dateFns = require("date-fns");
+var _constJs = require("./const.js");
 const windowChat = document.getElementsByClassName("windowChat");
 const windowSettings = document.getElementById("windowSettings");
 // const btnWindowAuthorizationExit = document.getElementById('btnWindowAuthorizationExit');
@@ -564,6 +565,16 @@ btnVerification.onclick = ()=>{
 btnWindowVerificationExit.onclick = ()=>{
     windowVerification.style.display = "none";
 };
+codeEnterForm.onsubmit = function() {
+    setCookie(this.inputCode.value);
+};
+nameEnterForm.onsubmit = function() {
+    sendName(this.inputName.value);
+    return false;
+};
+btnGetNam.onclick = function() {
+    getName();
+};
 const messages = [];
 function Message(text) {
     this.text = text;
@@ -587,11 +598,12 @@ function showMessage(message) {
     document.getElementById("main").insertAdjacentHTML("beforeend", template);
 }
 async function sendEmail(emailText) {
+    if (emailText === "") return;
     let user = {
         email: ""
     };
     user.email = emailText;
-    let response = await fetch("https://edu.strada.one/api/user", {
+    let response = await fetch((0, _constJs.URL_USER_REGISTRATION), {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8"
@@ -601,8 +613,57 @@ async function sendEmail(emailText) {
     let result = await response.json();
     alert(result.message);
 }
+function setCookie(codeToken) {
+    if (codeToken === "") return;
+    document.cookie = `token=${encodeURIComponent(codeToken)}; max-age=86400`;
+}
+function getCookie(name) {
+    let cookie = document.cookie;
+    if (cookie === "") return;
+    return cookie.replace("token=", "");
+}
+async function sendName(nameText) {
+    if (nameText === "") return;
+    let token = getCookie("token");
+    if (token === "") {
+        alert("Code is empty.");
+        return;
+    }
+    let user = {
+        name: ""
+    };
+    user.name = nameText;
+    console.log(user);
+    let response = await fetch((0, _constJs.URL_USER_REGISTRATION), {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(user)
+    });
+    let result = await response.json();
+    console.log(result);
+}
+async function getName() {
+    console.log("hhh");
+    let token = getCookie("token");
+    if (token === "") {
+        alert("Code is empty.");
+        return;
+    }
+    let response = await fetch((0, _constJs.URL_USER_INFORMATION), {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    let result = await response.json();
+    console.log(result);
+}
 
-},{"date-fns":"9yHCA"}],"9yHCA":[function(require,module,exports) {
+},{"date-fns":"9yHCA","./const.js":"d9LpT"}],"9yHCA":[function(require,module,exports) {
 // This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -3469,6 +3530,14 @@ var secondsInWeek = secondsInDay * 7;
 var secondsInYear = secondsInDay * daysInYear;
 var secondsInMonth = secondsInYear / 12;
 var secondsInQuarter = secondsInMonth * 3;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d9LpT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "URL_USER_REGISTRATION", ()=>URL_USER_REGISTRATION);
+parcelHelpers.export(exports, "URL_USER_INFORMATION", ()=>URL_USER_INFORMATION);
+const URL_USER_REGISTRATION = "https://edu.strada.one/api/user";
+const URL_USER_INFORMATION = "https://edu.strada.one/api/user/me";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire25d8")
 

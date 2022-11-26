@@ -69,11 +69,14 @@
                     <span>Настройки</span>
                     <button type="button" id="btnWindowSettingsExit">X</button>
                 </div>
-                <p>Имя в Чате</p>
-                <div class="windowMain height48px">
-                    <input type="text" class="inputText" id="windowSettingsMainInputName" placeholder="Имя">
-                    <input type="submit" class="sendButton" id="windowSettingsMainSendName" value="->"></input>
-                </div>
+                <form id="nameEnterForm">
+                    <p>Имя в Чате</p>
+                    <div class="windowMain height48px">
+                        <input type="text" name="inputName" class="inputText" id="windowSettingsMainInputName"
+                            value="Vasynn" placeholder="Имя">
+                        <input type="submit" class="sendButton" id="windowSettingsMainSendName" value="->"></input>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- Авторизация -->
@@ -101,6 +104,7 @@
                     <p>Код:</p>
                     <input type="text" name="inputCode" class="inputText height48px" placeholder="Код">
                     <input type="submit" class="sendButton height48px" value="Войти"></input>
+                    <button type="button" id="btnGetNam">Get Name</button>
                 </form>
             </div>
         </div>
