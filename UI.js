@@ -51,7 +51,6 @@ export function checkPosition() {
 
 export function sliceArray(historyMessage) {
   const history = historyMessage.slice(minIndex, maxIndex);
-  console.log(historyMessage.slice(minIndex, maxIndex));
   minIndex+=NUMBER.NEXT_INDEX;
   maxIndex+=NUMBER.NEXT_INDEX;
   checkHistory(history);
