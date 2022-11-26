@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<div class="container">
+    
+    <div class="chat-window">
+        <div class="top">
+            <div class="top__settings">
+                <button class="settings__btn">
+                    Настройки
+                </button>
+            </div>
+            <div class="top__exit">
+                <button class="exit__btn">
+                    Выйти
+                </button>
+            </div>
+        </div>
+        <div class="mid_overflow">
+            <div class="mid">
+
+            </div>
+        </div>
+        <div class="bot">
+            <div class="send">
+                <form class="send__form-message">
+                    <input class="send__input" autocomplete="off" type="text" name="message-text" placeholder="сообщение...">
+                    <button class="send__btn" type="submit">
+                        ->
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+<div class="popup_bg popup_bg-set">
+    <div class="popup popup-set">
+        <div class="popup__top">
+            <div class="popup__title">
+                Настройки
+            </div>
+            <button class="popup__close popup-set__btn">
+                +
+            </button>
+        </div>
+        <div class="popup__label-set">
+            Имя в чате
+        </div>
+            <form class="send__form-nickname">
+                <input class="popup__input-set" type="text" name="nickname" autocomplete="off">
+                <button type="submit" class="popup__btn_next">
+                    ->
+                </button>
+            </form>
+    </div>
+</div>
+
+
+<div class="popup_bg popup_bg-auth">
+    <div class="popup popup-auth">
+        <div class="popup__top">
+            <div class="popup__title">
+                Авторизация
+            </div>
+            <button class="popup__close popup-auth__btn">
+                +
+            </button>
+        </div>
+        <div class="popup__label-auth">
+            Почта
+        </div>
+        <form class="send__form-auth">
+            <input class="popup__input-auth" type="email" name="email">
+            <button type="submit" class="popup__btn_get-code">
+                Получить код
+            </button>
+        </form>
+        <p class="popup-auth__textError"></p>
+    </div>
+</div>
+
+
+<div class="popup_bg popup_bg-verif">
+    <div class="popup popup-verif">
+        <div class="popup__top">
+            <div class="popup__title">
+                Подтверждение
+            </div>
+            <button class="popup__close popup-verif__btn">
+                +
+            </button>
+        </div>
+        <div class="popup__label-verif">
+            Код
+        </div>
+        <form class="send__form-verif">
+            <input class="popup__input-verif" type="text" name="code" autocomplete="off">
+            <button type="submit" class="popup__btn_entry">
+                Войти
+            </button>
+        </form>
+    </div>
+</div>
+
+
+
+<template class="template-message">
+    <div class="mid__message status-delivered">
+        <p class="message__text"></p>
+        <p class="message__time"></p>
+    </div>
+</template>
+
+
+</div>
+
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
