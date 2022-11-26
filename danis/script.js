@@ -17,10 +17,10 @@ import {
 } from './consts.js';
 import { sendEmailForm } from './authorization.js';
 import { changeName } from './changeName.js';
-import { loandingHistoryMessage } from './historyMessage.js';
+import {setMessagesLocalStorage} from './setMessagesLocalStorage.js';
 import { setName } from './confirmation.js';
 import { postMessageToServer } from './socket.js';
-
+import './virtualization.js';
 
 settingsButton.addEventListener("click", function () {
     popup.classList.toggle('active');
@@ -40,13 +40,9 @@ export function existsCookie(name) {
 
 if (existsCookie(getNameUserCoockie)) {
     windowChatBlock.style.display = 'flex';
-    loandingHistoryMessage(existsCookie(getNameUserCoockie));
 } else {
     document.querySelector('.autorization__block').style.display = 'block';
 }
-
-
-
 
 autorizationForm.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -58,19 +54,17 @@ autorizationForm.addEventListener("submit", async function (event) {
 
 mainForm.addEventListener("submit", function (event) {
     event.preventDefault();
-    postMessageToServer(inputWriteMessage.value)
+    setMessagesLocalStorage(existsCookie(getNameUserCoockie));
+    postMessageToServer(inputWriteMessage.value);
     inputWriteMessage.value = "";
 });
-
 
 inputForm.addEventListener("submit", async function (event) {
     event.preventDefault();
     inputBlock.style.display = 'none';
     windowChatBlock.style.display = 'flex';
-    setName(cookieCode.value.trim(), userEmailForAutorization.value.trim())
-    loandingHistoryMessage(existsCookie(getNameUserCoockie));
-
-
+    setName(cookieCode.value.trim(), userEmailForAutorization.value.trim());
+    setMessagesLocalStorage(existsCookie(getNameUserCoockie));
 });
 
 changeNameForm.addEventListener("submit", function (event) {

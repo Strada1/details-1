@@ -35,8 +35,8 @@
     height: 30rem;
     overflow: hidden;
     display: flex;
-    flex-direction: column-reverse;
-    overflow: auto;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
 .hero__block-buttons-bottom-input input {
