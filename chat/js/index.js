@@ -24,9 +24,9 @@ function loadHistory(mymail, token) {
   email = mymail;
   requestServer(SERVER.histMessages, token).then((result) => {
     const arr = result.messages;
-    for (let i = 0; i < 59; i++) {
+    for (let i = 0; i < arr.length; i++) {
       if (i < 20) {
-        render(arr[i], "history");
+        convert(arr[i], "history");
       } else {
         list.push(arr[i]);
       }
@@ -38,25 +38,25 @@ function loadHistory(mymail, token) {
 function addHistory() {
   let partArr = list.splice(0, 20);
   if (!partArr.length) {
-    let end =  document.querySelector(".end");
-    if(!end) {
-    let div = document.createElement("div");
-    div.classList.add("end")
-    div.textContent = "Вся история загружена";
-    ELEMENTS.listMessages.append(div);
+    let end = document.querySelector(".end");
+    if (!end) {
+      let div = document.createElement("div");
+      div.classList.add("end");
+      div.textContent = "Вся история загружена";
+      ELEMENTS.listMessages.append(div);
     }
   }
-  partArr.forEach((obj) => render(obj, "history"));
+  partArr.forEach((obj) => convert(obj, "history"));
 }
 
 function connection() {
   socket.onmessage = function (event) {
     const obj = JSON.parse(event.data);
-    render(obj);
+    convert(obj);
   };
 }
 
-function render(obj, history) {
+function convert(obj, history) {
   const text = obj.text;
   let nameUser = obj.user.name;
   const time = format(new Date(obj.createdAt), "HH:mm");
@@ -123,5 +123,3 @@ ELEMENTS.btnChangeName.addEventListener("submit", function (event) {
   if (!token) return;
   changeName(nameUser, token);
 });
-
-
