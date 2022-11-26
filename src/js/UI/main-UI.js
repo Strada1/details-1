@@ -7,6 +7,8 @@ import {
   changeName,
   processingResultsAuthorization,
 } from '../requests/processingResultsRequest';
+import { renderMessage } from './messages';
+import { filterNumberMessages } from '../helps';
 
 export const ELEMENTS = {
   FORM_MESSAGE: document.querySelector('[data-message-form]'),
@@ -50,4 +52,21 @@ ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () =>
 
 ELEMENTS.BUTTON_ENTER.addEventListener('click', () => {
   openModal(MODAL.AUTHORIZATION);
+});
+
+ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () => {
+  renderMessage(filterNumberMessages());
+});
+
+ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () => {
+  renderMessage(filterNumberMessages());
+});
+
+ELEMENTS.LIST_MESSAGE.addEventListener('scroll', (event) => {
+  const isScrollHeight =
+    (event.currentTarget.scrollHeight / 100) * 60 <
+    Math.abs(event.currentTarget.scrollTop);
+  if (isScrollHeight) {
+    renderMessage(filterNumberMessages());
+  }
 });

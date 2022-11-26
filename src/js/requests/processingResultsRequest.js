@@ -1,9 +1,9 @@
-import { format } from 'date-fns';
 import { request } from './requests';
 import { closeAllModal, MODAL, openModal } from '../UI/modal';
 import { callNotification, NOTIFICATION_MESSAGE } from '../UI/notification';
 import { filterNumberMessages } from '../helps';
-import { addMessageUI } from '../UI/messages';
+import { renderMessage } from '../UI/messages';
+import { setLocalStorage, LOCAL_STORAGE } from '../localStorage';
 
 export async function processingResultsAuthorization(email) {
   try {
@@ -20,15 +20,9 @@ export async function processingResultsAuthorization(email) {
 export async function addMessageHistory(token) {
   try {
     const historyMessages = await request.getMessageHistory(token);
-    const filerHistory = filterNumberMessages(historyMessages.messages);
-    filerHistory.forEach((message) => {
-      addMessageUI(
-        message.user.name,
-        message.text,
-        format(new Date(message.createdAt), 'HH:mm'),
-        message.user.email
-      );
-    });
+    setLocalStorage(LOCAL_STORAGE.HISTORY_MESSAGE, historyMessages.messages);
+    const filerHistory = filterNumberMessages();
+    renderMessage(filerHistory);
   } catch (error) {
     callNotification(error.message);
   }

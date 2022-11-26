@@ -1,6 +1,12 @@
 import Cookies from 'js-cookie';
+import { format } from 'date-fns';
 import { ELEMENTS } from './main-UI';
 import { CookieName } from '../cookie';
+
+const MESSAGES_ELEMENTS = {
+  TEMPLATE: document.querySelector('#template-massage'),
+  LIST_MESSAGE: document.querySelector('.chat__main'),
+};
 
 export function createMessage(user, message, time, isMessageClient) {
   const elemMessage = ELEMENTS.TEMPLATE.content.cloneNode(true);
@@ -17,7 +23,18 @@ export function createMessage(user, message, time, isMessageClient) {
 // TODO: добавить скролл вниз про добавлении сообщений
 export function addMessageUI(user, message, time, userEmail) {
   const isMessageClient = userEmail === Cookies.get(CookieName.CLIENT_EMAIL);
-  ELEMENTS.LIST_MESSAGE.prepend(
+  ELEMENTS.LIST_MESSAGE.append(
     createMessage(user, message, time, isMessageClient)
   );
+}
+
+export function renderMessage(array) {
+  array.forEach((message) => {
+    addMessageUI(
+      message.user.name,
+      message.text,
+      format(new Date(message.createdAt), 'HH:mm'),
+      message.user.email
+    );
+  });
 }

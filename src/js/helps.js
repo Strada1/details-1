@@ -1,9 +1,17 @@
 import Cookies from 'js-cookie';
 import { ERROR_MESSAGES, ValidationError } from './error/ValidationError';
 import { CookieName } from './cookie';
-
-export function filterNumberMessages(array) {
-  return array.splice(0, 20).reverse();
+import {
+  getLocalStorage,
+  LOCAL_STORAGE,
+  setLocalStorage,
+} from './localStorage';
+// TODO: поменять имя функции
+export function filterNumberMessages() {
+  const array = getLocalStorage(LOCAL_STORAGE.HISTORY_MESSAGE);
+  const filteredArray = array.splice(0, 20);
+  setLocalStorage(LOCAL_STORAGE.HISTORY_MESSAGE, array);
+  return filteredArray;
 }
 
 export function getCheckMessage(message) {
