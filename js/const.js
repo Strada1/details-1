@@ -33,3 +33,7 @@ export const CONFIRMATION = {
   CONFIRMATION_WRAPPER: document.querySelector(".confirmation_wrapper"),
   FORM_CONFIRMATION: document.querySelector(".confirmation-form"),
 };
+
+export const user = {
+  email: AUTHORIZATION.INPUT_MAIL.value,
+};

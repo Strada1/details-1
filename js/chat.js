@@ -12,21 +12,21 @@ import { mailRequest, changeNameRequest, messagesRequest } from "./request.js";
 import { format } from "date-fns";
 import Cookies from "js-cookie";
 
-AUTHORIZATION.AUTHORIZATION_FORM.addEventListener("submit", mailRequest);
+AUTHORIZATION.AUTHORIZATION_FORM.addEventListener("submit", (event) => {
+  event.preventDefault();
+  mailRequest();
+});
 CONFIRMATION.FORM_CONFIRMATION.addEventListener("submit", saveUserCode);
 SETTINGS.CHANGE_NAME_FORM.addEventListener("submit", changeName);
 MESSAGES.MESSAGE_FORM.addEventListener("submit", sendMessage);
-
 
 export function RenderMessages(data, whereInsert) {
   const authorMessage = MESSAGES.TEMPLATE.content.querySelector(
     ".other-name-message"
   );
-  if (data.user.email === "sonalavrushina@gmail.com") {
-    authorMessage.style.color = "palevioletred";
-  } else {
-    authorMessage.style.color = "olive";
-  }
+  data.user.email === "sonalavrushina@gmail.com"
+    ? (authorMessage.style.color = "palevioletred")
+    : (authorMessage.style.color = "olive");
   const message = MESSAGES.TEMPLATE.content.querySelector(
     ".other_message_view"
   );
@@ -99,7 +99,7 @@ export function loadHistoryMessage(array) {
 let start = 20;
 let end = 40;
 
-//scrollTop = 600, чтобы во время рендера истории скрол спускался чуть вниз, 
+//scrollTop = 600, чтобы во время рендера истории скрол спускался чуть вниз,
 //а не осталавался на месте.
 
 function scrollRender(array) {

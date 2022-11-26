@@ -1,28 +1,24 @@
 import { changeNameMessage, loadHistoryMessage} from "./chat.js";
-import { AUTHORIZATION, USER } from "./const.js";
+import { AUTHORIZATION} from "./const.js";
 import { comeChat } from "./popup.js";
 
 const urlStrada = "https://edu.strada.one/api/user";
 const urlStradaMe = "https://edu.strada.one/api/user/me";
 const urlStradaMessages = "https://edu.strada.one/api/messages/";
 
-export async function mailRequest(event) {
-  event.preventDefault();
-  const user = {
-    email: AUTHORIZATION.INPUT_MAIL.value,
-  };
 
+export async function mailRequest() {
   const result = await fetch(urlStrada, {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
     },
-    body: JSON.stringify(user),
+    body: JSON.stringify({email: `${AUTHORIZATION.INPUT_MAIL.value}`}),
   });
-  if (!result.ok) {
+  if (!(result.ok)) {
     AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Произошла ошибка!";
   } else {
-    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Код на почте";
+    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Код на почте!";
   }
 }
 
