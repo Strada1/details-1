@@ -1,8 +1,8 @@
-import { newKey } from "./localstorage.js";
+import { newKey } from "./storage.js";
 import { ELEMENTS} from "./const.js";
 import {getDataUser, changeName, sendEmail} from "./request.js";
+
 export function popUp(button ) {
-    const saveKey = {}
     const nowPOP = {}
     if(button == 'popupSettings') {
         nowPOP.thisPopUp = document.querySelector(`#${button}`)
@@ -10,9 +10,13 @@ export function popUp(button ) {
 
         ELEMENTS.CHANGE_NAME.addEventListener('click' , (e) => {
             e.preventDefault()
-            changeName(ELEMENTS.NAME_VALUE.value)
+            if(ELEMENTS.NAME_VALUE.value.trim()) {
+                changeName(ELEMENTS.NAME_VALUE.value)
+                ELEMENTS.NAME_VALUE.value = ''
+            } else {
+                alert('Введите имя!')
+            }
         })
-
         ELEMENTS.POPUP_CLOSE_BUTTONS.forEach((button) => {
             button.addEventListener('click' , (e) => {
             e.preventDefault()
@@ -48,11 +52,9 @@ export function popUp(button ) {
     } else if(button == 'code') {
         nowPOP.thisPopUp = document.querySelector(`#${button}`)
         if(ELEMENTS.CHAT_CODE.value.trim()) {
-        saveKey.key = ELEMENTS.CHAT_CODE.value
         newKey.set(ELEMENTS.CHAT_CODE.value)
         getDataUser()
         ELEMENTS.CHAT_CODE.value = ''
-  
         return
         } else {
             alert('Введите код!')
