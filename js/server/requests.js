@@ -69,7 +69,7 @@ export async function getUserInfo(url, token) {
 	}
 }
 
-export async function getMessages(url, token) {
+export async function getMessages(url, token, from, to) {
 	const options = {
 		method: 'GET',
 		headers: {
@@ -85,8 +85,22 @@ export async function getMessages(url, token) {
 		}
 
 		const body = await response.json();
+
+		const chunkSize = 20;
+		let chunk = [];
+
+		const messagesHistory = body.messages.reduce((acc, item) => {
+			chunk.push(item);
+
+			if(chunk.length === chunkSize) {
+				acc.push(chunk);
+				chunk = [];
+			}
+
+			return acc;
+		}, [])
 		
-		return body.messages;
+		return messagesHistory;
 
 	} catch(error) {
 		alert(error);

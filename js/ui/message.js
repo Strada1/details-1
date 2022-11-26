@@ -36,6 +36,7 @@ export function renderMessage({ message, name, date, email, currentUserEmail }, 
 }
 
 export function renderMessagesHistory(array, index = 0, currentUserEmail) {
+	if (!array) return;
 	if (array.length === index) return;
 
 	const { createdAt: date, text: message, user: { name, email } } = array[index];
