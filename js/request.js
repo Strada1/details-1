@@ -1,4 +1,4 @@
-import { changeNameMessage, RenderMesLive, renderHistory} from "./chat.js";
+import { changeNameMessage, loadHistoryMessage} from "./chat.js";
 import { AUTHORIZATION, USER } from "./const.js";
 import { comeChat } from "./popup.js";
 
@@ -50,9 +50,9 @@ export async function userDataRequest(account) {
       Authorization: `Bearer ${account}`,
     },
   });
-}
+ }
 
-export async function messageDataRequest(account) {
+export async function messagesRequest(account) {
   const result = await fetch(urlStradaMessages, {
     method: "GET",
     headers: {
@@ -62,7 +62,7 @@ export async function messageDataRequest(account) {
   });
   const answer = await result.json();
   if (result.ok) {
-    renderHistory(answer)
+    loadHistoryMessage(answer)
     comeChat();
   } else {
     AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Произошла ошибка!";
