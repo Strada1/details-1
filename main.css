@@ -1,0 +1,161 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	line-height: 19px;
+	color: #000;
+}
+
+.wrapper {
+	max-width: 304px;
+	width: 100%;
+	height: 516px;
+}
+
+
+.messenger {
+	position: relative;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	row-gap: 8px;
+	height: 100%;
+}
+
+.user-actions {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+}
+
+.display {
+	border: 1px solid #000;
+	overflow: hidden;
+}
+
+.display__inner {
+	display: flex;
+	flex-direction: column-reverse;
+	align-items: flex-end;
+	gap: 8px;
+	padding: 8px;
+	height: 100%;
+	overflow: auto;
+}
+
+.message {
+	padding: 8px;
+	background-color: #F7F7F7;
+	width: fit-content;
+}
+
+.message:last-child {
+	margin-top: auto;
+}
+
+.message--delivered {
+	background-color: #E5E5E5;
+}
+
+.message--incoming {
+	align-self: flex-start;
+}
+
+.message__name:after {
+	content: ":";
+}
+
+.message__time {
+	margin-top: 4px;
+	text-align: right;
+	font-size: 14px;
+	font-style: italic;
+	color: #333333;
+}
+
+input {
+	border: 1px solid #000;
+	font-size: inherit;
+	padding: 8px;
+	flex: 1;
+	font-family: inherit;
+}
+
+.button {
+	padding: 8px;
+	font-size: inherit;
+	border: 1px solid #000;
+	font-family: inherit;
+	cursor: pointer;
+	background-color: transparent;
+	flex-shrink: 0;
+}
+
+.action-box__title {
+	margin-bottom: 70px;
+}
+
+.action-box__caption {
+	margin-bottom: 10px;
+}
+
+.popup {
+	position: absolute;
+	top: 0;
+	z-index: 100;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background-color: #535353;
+	display: none;
+}
+
+.popup--active {
+	display: flex;
+}
+
+.popup__content {
+	position: relative;
+	margin: auto;
+	animation-duration: 0.2s;
+	background-color: #fff;
+	max-width: 273px;
+	width: 100%;
+	min-height: 320px;
+	padding: 14px;
+}
+
+.popup__close {
+	position: absolute;
+	right: 5px;
+	top: 8px;
+	display: flex;
+	width: 30px;
+	height: 30px;
+	padding: 5px;
+	background-color: transparent;
+	border: none;
+	z-index: 20;
+	cursor: pointer;
+	font-size: 16px;
+	align-items: center;
+	justify-content: center;
+}
+
+.popup__close svg {
+	width: 100%;
+	height: 100%;
+	fill: #000000;
+}
+
+.form {
+	display: flex;
+	gap: 8px;
+}
