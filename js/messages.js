@@ -1,4 +1,4 @@
-import { ELEMENTS, MESSAGE, METHOD } from "./const.js";
+import { ELEMENTS, MESSAGE } from "./const.js";
 import { getCookie } from "./request.js";
 import { format } from "date-fns";
 import { showEndHistory } from "./ui.js";
@@ -34,23 +34,23 @@ export function addMessage(userClass, text, time, userName, insert) {
   }
 }
 
-export function downloadHistory(count) {
-  const history = JSON.parse(localStorage.getItem("history"));
-  for (let i = count; i <= count + MESSAGE.step; i++) {
-    if (i <= history.length - 1) {
-      if (history[i].email === getCookie("thisUser")) {
-        addMessage(ELEMENTS.myMessages, history[i].text, history[i].updatedAt);
-      } else {
-        addMessage(
-          ELEMENTS.interlocutorMessages,
-          history[i].text,
-          history[i].updatedAt,
-          history[i].user.name
-        );
-      }
+export function downloadHistory() {
+  const messagesList = JSON.parse(localStorage.getItem("history"));
+  messagesList.slice(0, MESSAGE.step).forEach((item) => {
+    if (item.user.email === getCookie("thisUser")) {
+      addMessage(ELEMENTS.myMessages, item.text, item.updatedAt);
+    } else {
+      addMessage(
+        ELEMENTS.interlocutorMessages,
+        item.text,
+        item.updatedAt,
+        item.user.name
+      );
     }
-  }
-  if (count === history.length - MESSAGE.step) {
+  });
+  const history = messagesList.filter((item, index) => index >= MESSAGE.step);
+  localStorage.setItem("history", JSON.stringify(history));
+  if (messagesList.length <= MESSAGE.step) {
     showEndHistory();
   }
 }

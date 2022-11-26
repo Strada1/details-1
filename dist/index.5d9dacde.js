@@ -579,19 +579,17 @@ window.onload = function showCurrentHistory() {
     });
     responseResult.then((result)=>{
         localStorage.setItem("history", JSON.stringify(result.messages));
-        console.log(result.messages);
-        const messagesList = result.messages;
-        for(let i = 0; i <= (0, _constJs.MESSAGE).step - 1; i++)if (messagesList[i].user.email === (0, _requestJs.getCookie)("thisUser")) (0, _messages.addMessage)((0, _constJs.ELEMENTS).myMessages, messagesList[i].text, messagesList[i].updatedAt);
-        else (0, _messages.addMessage)((0, _constJs.ELEMENTS).interlocutorMessages, messagesList[i].text, messagesList[i].updatedAt, messagesList[i].user.name);
+        (0, _messages.downloadHistory)();
         (0, _constJs.ELEMENTS).contentWrapper.scrollTop = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight;
     });
 };
-let count = (0, _constJs.MESSAGE).step;
+(0, _constJs.ELEMENTS).scrollDown.hidden = true;
 (0, _constJs.ELEMENTS).contentWrapper.addEventListener("scroll", ()=>{
+    (0, _uiJs.addScrollIcon)();
+    const messagesList = JSON.parse(localStorage.getItem("history"));
     if ((0, _constJs.ELEMENTS).contentWrapper.scrollTop === 0) {
         const currentContentHeight = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight;
-        (0, _messages.downloadHistory)(count);
-        if (count <= JSON.parse(localStorage.getItem("history")).length - (0, _constJs.MESSAGE).step) count += (0, _constJs.MESSAGE).step;
+        if (messagesList.length >= (0, _constJs.MESSAGE).step) (0, _messages.downloadHistory)();
         const newContentHeight = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight;
         (0, _constJs.ELEMENTS).contentWrapper.scrollTop = newContentHeight - currentContentHeight;
     }
@@ -626,7 +624,6 @@ socket.onmessage = function(event) {
     if ((0, _requestJs.getCookie)("thisUser") === data.user.email) (0, _messages.addMessage)((0, _constJs.ELEMENTS).myMessages, data.text, data.createdAt, undefined, "append");
     else (0, _messages.addMessage)((0, _constJs.ELEMENTS).interlocutorMessages, data.text, data.createdAt, data.user.name, "append");
 };
-console.log((0, _constJs.ELEMENTS).buttonExit);
 (0, _constJs.ELEMENTS).buttonExit.addEventListener("click", ()=>{
     socket.close();
     (0, _uiJs.showModal)((0, _constJs.ELEMENTS).modalAuthorization);
@@ -730,6 +727,7 @@ parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "showModal", ()=>showModal);
 parcelHelpers.export(exports, "closeModal", ()=>closeModal);
 parcelHelpers.export(exports, "changeTextAreaSize", ()=>changeTextAreaSize);
+parcelHelpers.export(exports, "addScrollIcon", ()=>addScrollIcon);
 parcelHelpers.export(exports, "showWarning", ()=>showWarning);
 parcelHelpers.export(exports, "returnTextAreaSie", ()=>returnTextAreaSie);
 parcelHelpers.export(exports, "showEndHistory", ()=>showEndHistory);
@@ -775,7 +773,6 @@ function addScrollIcon() {
         return scrollBottom;
     } else (0, _constJs.ELEMENTS).scrollDown.hidden = false;
 }
-(0, _constJs.ELEMENTS).contentWrapper.addEventListener("scroll", addScrollIcon);
 (0, _constJs.ELEMENTS).scrollDown.addEventListener("click", ()=>{
     const lastMessage = (0, _constJs.ELEMENTS).contentWindow.querySelector(".message:last-child");
     lastMessage.scrollIntoView({
@@ -863,13 +860,15 @@ function addMessage(userClass, text, time, userName, insert) {
         behavior: "smooth"
     });
 }
-function downloadHistory(count) {
-    const history = JSON.parse(localStorage.getItem("history"));
-    for(let i = count; i <= count + (0, _constJs.MESSAGE).step; i++)if (i <= history.length - 1) {
-        if (history[i].email === (0, _requestJs.getCookie)("thisUser")) addMessage((0, _constJs.ELEMENTS).myMessages, history[i].text, history[i].updatedAt);
-        else addMessage((0, _constJs.ELEMENTS).interlocutorMessages, history[i].text, history[i].updatedAt, history[i].user.name);
-    }
-    if (count === history.length - (0, _constJs.MESSAGE).step) (0, _uiJs.showEndHistory)();
+function downloadHistory() {
+    const messagesList = JSON.parse(localStorage.getItem("history"));
+    messagesList.slice(0, (0, _constJs.MESSAGE).step).forEach((item)=>{
+        if (item.user.email === (0, _requestJs.getCookie)("thisUser")) addMessage((0, _constJs.ELEMENTS).myMessages, item.text, item.updatedAt);
+        else addMessage((0, _constJs.ELEMENTS).interlocutorMessages, item.text, item.updatedAt, item.user.name);
+    });
+    const history = messagesList.filter((item, index)=>index >= (0, _constJs.MESSAGE).step);
+    localStorage.setItem("history", JSON.stringify(history));
+    if (messagesList.length <= (0, _constJs.MESSAGE).step) (0, _uiJs.showEndHistory)();
 }
 
 },{"./const.js":"hKAsx","./request.js":"7c4ZJ","date-fns":"9yHCA","./ui.js":"1hWqh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {

@@ -5,6 +5,7 @@ import {
   showWarning,
   changeTextAreaSize,
   returnTextAreaSie,
+  addScrollIcon
 } from "./ui.js";
 import { setCookie, getCookie, sendRequest } from "./request.js";
 import { addMessage, downloadHistory } from "./messages";
@@ -60,39 +61,19 @@ window.onload = function showCurrentHistory() {
 
   responseResult.then((result) => {
     localStorage.setItem("history", JSON.stringify(result.messages));
-    console.log(result.messages);
-    const messagesList = result.messages;
-    for (let i = 0; i <= MESSAGE.step - 1; i++) {
-      if (messagesList[i].user.email === getCookie("thisUser")) {
-        addMessage(
-          ELEMENTS.myMessages,
-          messagesList[i].text,
-          messagesList[i].updatedAt
-        );
-      } else {
-        addMessage(
-          ELEMENTS.interlocutorMessages,
-          messagesList[i].text,
-          messagesList[i].updatedAt,
-          messagesList[i].user.name
-        );
-      }
-    }
+    downloadHistory()
     ELEMENTS.contentWrapper.scrollTop = ELEMENTS.contentWrapper.scrollHeight;
   });
 };
 
-let count = MESSAGE.step;
-
+ELEMENTS.scrollDown.hidden = true;
 ELEMENTS.contentWrapper.addEventListener("scroll", () => {
+  addScrollIcon();
+  const messagesList = JSON.parse(localStorage.getItem("history"));
   if (ELEMENTS.contentWrapper.scrollTop === 0) {
     const currentContentHeight = ELEMENTS.contentWrapper.scrollHeight;
-    downloadHistory(count);
-    if (
-      count <=
-      JSON.parse(localStorage.getItem("history")).length - MESSAGE.step
-    ) {
-      count += MESSAGE.step;
+    if (messagesList.length >= MESSAGE.step) {
+      downloadHistory();
     }
     const newContentHeight = ELEMENTS.contentWrapper.scrollHeight;
     ELEMENTS.contentWrapper.scrollTop = newContentHeight - currentContentHeight;
@@ -148,8 +129,6 @@ socket.onmessage = function (event) {
     );
   }
 };
-
-console.log(ELEMENTS.buttonExit);
 
 ELEMENTS.buttonExit.addEventListener("click", () => {
   socket.close();

@@ -45,7 +45,7 @@ export function changeTextAreaSize(event) {
   }
 }
 
-function addScrollIcon() {
+export function addScrollIcon() {
   const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
   const scrollBottom =
     ELEMENTS.contentWrapper.scrollHeight -
@@ -59,8 +59,6 @@ function addScrollIcon() {
     ELEMENTS.scrollDown.hidden = false;
   }
 }
-
-ELEMENTS.contentWrapper.addEventListener("scroll", addScrollIcon);
 
 ELEMENTS.scrollDown.addEventListener("click", () => {
   const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
