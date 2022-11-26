@@ -45,4 +45,8 @@ export const ID = {
 
 export const HISTORY_MESSAGE = JSON.parse(localStorage.getItem('messages'));
 
+export const NUMBER = {
+  NEXT_INDEX: 20,
+}
+
 

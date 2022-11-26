@@ -1,5 +1,5 @@
 import { ELEMENT, POPUP_BUTTONS } from './const.js';
-import { showPopup, closePopup, createClone, createClone, showMessageOwn, showMessageOther, checkPosition, checkHistory, sliceArray } from './UI.js';
+import { showPopup, closePopup, createClone, createClone, checkPosition, checkHistory, showCurrentMessageOwn, showCurrentMessageOther } from './UI.js';
 import { getUser, addName, sendEmail, getHistory, saveCoockies } from './server.js';
 import Cookies from 'js-cookie';
 
@@ -19,7 +19,7 @@ window.onload = function () {
  
 function saveHistoryStorage() {
   getHistory().then((history) => {
-    localStorage.setItem('messages', JSON.stringify(history.messages.reverse()));
+    localStorage.setItem('messages', JSON.stringify(history.messages));
     const HISTORY = JSON.parse(localStorage.getItem('messages')).splice(0, 20);
     checkHistory(HISTORY);
   });
@@ -80,9 +80,9 @@ socket.onmessage = function(event) {
   
   if (message.user.email === Cookies.get('email')) {
     const cloneOwn = createClone(ELEMENT.TEMPLATE_MESS_OWN);
-    showMessageOwn(cloneOwn, message);
+    showCurrentMessageOwn(cloneOwn, message);
     return;
   } 
   const cloneOther = createClone(ELEMENT.TEMPLATE_MESS_OTHER);
-  showMessageOther(cloneOther, message);
+  showCurrentMessageOther(cloneOther, message);
 };
