@@ -62,6 +62,10 @@ export const METHOD = {
   APPEND: 'append'
 }
 
+export const INDEX_ARRAY = {
+  MIN: 0,
+  MAX: 19
+}
 
 
 

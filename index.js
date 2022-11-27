@@ -1,4 +1,4 @@
-import { ELEMENT, POPUP_BUTTONS, METHOD } from './const.js';
+import { ELEMENT, POPUP_BUTTONS, METHOD, INDEX_ARRAY } from './const.js';
 import { showPopup, closePopup, createClone, createClone, checkPosition, checkHistory, showMessageOwn, showMessageOther } from './UI.js';
 import { getUser, addName, sendEmail, getHistory, saveCoockies } from './server.js';
 import Cookies from 'js-cookie';
@@ -20,7 +20,10 @@ window.onload = function () {
 function saveHistoryStorage() {
   getHistory().then((history) => {
     localStorage.setItem('messages', JSON.stringify(history.messages));
-    const HISTORY = JSON.parse(localStorage.getItem('messages')).slice(0, 20);
+
+    const HISTORY = JSON.parse(localStorage.getItem('messages')).filter((item, index) => {
+      if (INDEX_ARRAY.MIN <= index && index < INDEX_ARRAY.MAX) return item;
+    });
     checkHistory(HISTORY);
   });
 }
