@@ -9,32 +9,37 @@ import { format } from "date-fns";
 import Cookie from "js-cookie";
 import { ADD, REMOVE, authPopUp, kodPopUp } from "./popup.js";
 
+// сделать обработку ошибок
+
+async function dataRequests() {
+  getData(HISTORY_URL);
+  await getHistoryData();
+}
+async function setDataKodForm(event) {
+  event.preventDefault();
+  const token = ELEMENTS.KOD_INPUT.value;
+  Cookie.set("Authorization", `Bearer ${token}`, { expires: 3 });
+  Cookie.set("token", `${token}`);
+  kodPopUp(REMOVE);
+  await dataRequests();
+}
+function setDataEmailForm(event) {
+  event.preventDefault();
+  authPopUp(REMOVE);
+  kodPopUp(ADD);
+  const email = ELEMENTS.EMAIL_INPUT.value;
+  getCodeRequest(email);
+  ELEMENTS.EMAIL_INPUT.value = "";
+  ELEMENTS.KOD_FORM.addEventListener("submit", setDataKodForm);
+}
 async function onLoadWindow() {
   if (Cookie.get("Authorization")) {
     authPopUp(REMOVE);
     kodPopUp(REMOVE);
-    getData(HISTORY_URL);
-    await getHistoryData();
+    await dataRequests();
   } else {
     authPopUp(ADD);
-    ELEMENTS.EMAIL_FORM.addEventListener("submit", (event) => {
-      event.preventDefault();
-      authPopUp(REMOVE);
-      kodPopUp(ADD);
-      const email = ELEMENTS.EMAIL_INPUT.value;
-      getCodeRequest(email);
-      ELEMENTS.EMAIL_INPUT.value = "";
-      ELEMENTS.KOD_FORM.addEventListener("submit", async function (event) {
-        event.preventDefault();
-        const token = ELEMENTS.KOD_INPUT.value;
-        Cookie.set("Authorization", `Bearer ${token}`, { expires: 1 });
-        Cookie.set("token", `${token}`);
-        kodPopUp(REMOVE);
-        getData(HISTORY_URL);
-        await getHistoryData();
-        // сделать открывание настроек при первом запуске/после подтверждения кода
-      });
-    });
+    ELEMENTS.EMAIL_FORM.addEventListener("submit", setDataEmailForm);
   }
 }
 window.onload = onLoadWindow();
@@ -48,14 +53,6 @@ function halfRender(array) {
 }
 
 function renderMessagesFromHistory(array) {
-  // if (array.length === 0) {                  //через рекурсию xD
-  //   console.log('История сообщений загружена');
-  //   return;
-  // } else {
-  //   messageRendering(array[array.length - 1]);
-  //   array.length--;
-  //   renderMessagesFromHistory(array);
-  // }
   halfRender(array);
   ELEMENTS.CHAT.addEventListener("scroll", (event) => {
     event.preventDefault();
@@ -85,7 +82,7 @@ async function getUserName() {
   const data = await getData(USER_URL);
   return data.name;
 }
-
+// переделать запросы в одну функцию
 async function getData(url) {
   const response = await fetch(url, {
     method: "GET",
@@ -107,7 +104,7 @@ async function getCodeRequest(email) {
   });
 }
 
-async function kodRequest(name) {
+async function kodFormRequest(name) {
   const response = await fetch(STRADA_URL, {
     method: "PATCH",
     headers: {
@@ -134,8 +131,8 @@ function messageRendering(data, onmessage = "history") {
   messageSpan.textContent = `${name}: ${message}`;
   const timeSpanFriend = messageTemplate.content.querySelector("#time");
   timeSpanFriend.textContent = time;
-  const placementMethod = onmessage === "new" ? true : false;
-  if (placementMethod) {
+  const insertMethod = onmessage === "new" ? true : false;
+  if (insertMethod) {
     ELEMENTS.CHAT.prepend(messageTemplate.content.cloneNode(true));
   } else {
     ELEMENTS.CHAT.append(messageTemplate.content.cloneNode(true));
@@ -149,7 +146,7 @@ socket.onmessage = function (event) {
 };
 
 // создать проверки и класс ошибок
-// через socket onmessege сделать рендер каждого нового сообщения, брать с помощью JSON parce
+
 function sendMessageHandler(event) {
   event.preventDefault();
   const text = ELEMENTS.MESSAGE_INPUT.value;
@@ -161,7 +158,7 @@ ELEMENTS.MESSAGE_FORM.addEventListener("submit", sendMessageHandler);
 async function changeNickname(event) {
   event.preventDefault();
   const newUserName = ELEMENTS.SETTING_INPUT.value;
-  kodRequest(newUserName);
+  kodFormRequest(newUserName);
   const currentName = await getUserName();
   ELEMENTS.SETTING_NAME.textContent = `Имя в чате - ${currentName}`;
   ELEMENTS.SETTING_INPUT.value = "";
