@@ -1,0 +1,262 @@
+@charset "UTF-8";
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(255, 165, 0, 0);
+}
+
+/* цвет дорожки */
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.36);
+  /* цвет плашки */
+  border-radius: 20px;
+  border: 2px solid white;
+}
+
+/* padding вокруг плашки */
+.chat {
+  padding: 10px;
+  border: 1px solid black;
+  width: 320px;
+  height: 533px;
+  display: flex;
+  flex-direction: column;
+}
+.chat__header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.chat__settings {
+  transition: color 0.6s;
+  cursor: pointer;
+  width: 90px;
+  height: 32px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat__settings:hover {
+  border: 1px solid rgba(61, 97, 239, 0.7);
+  color: rgba(61, 97, 239, 0.7);
+}
+.chat__enter {
+  transition: color 0.6s;
+  cursor: pointer;
+  width: 90px;
+  height: 32px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat__enter:hover {
+  border: 1px solid rgba(80, 201, 103, 0.8);
+  color: rgba(80, 201, 103, 0.8);
+}
+.chat__exit {
+  transition: color 0.6s;
+  cursor: pointer;
+  width: 90px;
+  height: 32px;
+  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chat__exit:hover {
+  border: 1px solid rgba(239, 61, 78, 0.7);
+  color: rgba(239, 61, 78, 0.7);
+}
+.chat__main {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 10px;
+  margin-bottom: 10px;
+  height: 100%;
+  border: 1px solid black;
+}
+
+.chat-form__label {
+  gap: 5px;
+  display: flex;
+}
+.chat-form__input {
+  border: 1px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
+  min-height: 32px;
+  width: 100%;
+}
+.chat-form__button {
+  transition: color 0.6s;
+  border: 1px solid black;
+  background-color: white;
+  height: 32px;
+  min-width: 36px;
+}
+.chat-form__button:hover {
+  border: 1px solid rgba(80, 201, 103, 0.8);
+  color: rgba(80, 201, 103, 0.8);
+}
+
+.massage {
+  width: fit-content;
+  margin-top: 5px;
+  padding: 5px;
+  font-weight: 300;
+}
+.massage__name {
+  font-weight: 500;
+}
+.massage__time {
+  font-style: italic;
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.massage-left {
+  border-radius: 10px 10px 10px 0;
+  background-color: rgba(138, 43, 226, 0.67);
+}
+
+.massage-right {
+  border-radius: 10px 10px 0 10px;
+  align-self: flex-end;
+  justify-content: left;
+  text-align: left;
+  background-color: rgba(80, 201, 103, 0.8);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modal__content {
+  text-align: center;
+  max-width: 500px;
+  position: relative;
+  width: 100%;
+  padding: 10px 60px 60px 60px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.modal__header {
+  color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+.modal__text {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.modal__close {
+  transition: transform 0.5s;
+  position: absolute;
+  top: 0;
+  right: 13px;
+  font-size: 30px;
+  color: #000;
+  opacity: 0.5;
+  font-weight: 700;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.modal__close:hover {
+  transform: rotate(45deg);
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: flex;
+}
+
+.modal-form__label {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.modal-form__input {
+  border: 1px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
+  min-height: 32px;
+  width: 100%;
+}
+.modal-form__button {
+  transition: background-color 0.5s;
+  cursor: pointer;
+  border: 1px solid black;
+  background-color: white;
+  height: 32px;
+  min-width: 36px;
+}
+.modal-form__button:hover {
+  background-color: rgba(80, 201, 103, 0.8);
+}
+
+.notification {
+  transition: top 1s;
+  padding: 20px;
+  border: 1px solid red;
+  position: absolute;
+  width: 320px;
+  max-height: 100px;
+}
+.notification__content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.notification img {
+  display: block;
+  width: 15%;
+  object-fit: cover;
+}
+.notification__text {
+  max-height: 40px;
+  overflow: hidden;
+}
+.notification__close {
+  top: -100px;
+}
+.notification__active {
+  top: 15px;
+}
+
+/*# sourceMappingURL=index.css.map */
