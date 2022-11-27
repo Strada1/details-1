@@ -1,94 +1,50 @@
 import { format } from 'date-fns';
-import {getDataUser, setUserName} from "./requests.js";
-import {DATA, inputValue} from "./const.js";
+import { setUserName } from "./requests.js";
+import { inputValue } from "./const.js";
+import { socket } from "./websocket.js";
+import { getItemStorage, setItemStorage } from "./storage.js";
+import { scrollLastElement } from "./scrollMessages.js";
+import { renderClient, renderUserMessage } from "./render.js";
 
 const formMessage = document.querySelector('#setMessage');
-const inputMessage = document.querySelector('#post-name');
 const contentMessages = document.querySelector('.content-message');
 
-function scrollLastElement() {
-    const ELEMENTS = document.querySelector('.content-message');
-    const LAST_MESSAGE = ELEMENTS.lastElementChild;
-    LAST_MESSAGE.scrollIntoView({ block: 'end', behavior: 'smooth' });
-}
+formMessage.addEventListener('submit', renderUserMessage);
 
-function renderMessage(event) {
-  event.preventDefault();
+setItemStorage();
+const array = getItemStorage();
+renderClient(array);
 
-  if (!inputMessage.value) {
-    throw new Error('Пустая строка');
-  }
+socket.onmessage = function getMessage(event) {
+    console.log( "[message] Данные получены с сервера:" , event.data);
 
-  const HTMLTemplateElement = document.querySelector('.user-message');
-  const cloneNode = HTMLTemplateElement.content.cloneNode(true);
-  const message = cloneNode.querySelector('.user-span-message');
-  const date = cloneNode.querySelector('.date-me');
+    const array  =  JSON.parse(event.data);
+    console.log(array)
 
-  message.textContent = inputMessage.value.trim();
-  date.textContent = format(new Date(), 'k:m');
-  contentMessages.append(cloneNode);
-  inputMessage.value = '';
-  scrollLastElement();
-}
+    if(array.user.email !== "me@varensev.ru"){
+        const HTMLTemplateElements = document.querySelector('.client-message');
+        const cloneNodes = HTMLTemplateElements.content.cloneNode(true);
+        const message = cloneNodes.querySelector('.client-span-message');
+        const date = cloneNodes.querySelector('.date-interlocutor');
+        const clientName = cloneNodes.querySelector(".no-select");
 
-formMessage.addEventListener('submit', renderMessage);
+        clientName.textContent = `${array.user.name}: `;
+        message.textContent =  array.text;
+        date.textContent = format(new Date(array.createdAt), 'k:m');
+        contentMessages.append(cloneNodes);
+        scrollLastElement();
+    }
 
-
-
-async function render() {
-    const response = await getDataUser(DATA.urlMessage);
-    const array  =  response.messages;
-
-    const HTMLTemplateElements = document.querySelector('.client-message');
-    const cloneNodes = HTMLTemplateElements.content.cloneNode(true);
-    const message = cloneNodes.querySelector('.client-span-message');
-    const date = cloneNodes.querySelector('.date-interlocutor');
-    const clientName = cloneNodes.querySelector(".no-select");
-
-    array.forEach((obj) => {
-        clientName.textContent = `${obj.user.name}: `;
-        message.textContent =  obj.text;
-        date.textContent = format(new Date(obj.createdAt), 'k:m');
-    });
-
-    contentMessages.append(cloneNodes);
-    console.log(response.text)
-    scrollLastElement();
-}
-
-render();
-
-// function renderMessage (event){
-//     event.preventDefault();
-//
-//     if(inputMessage.value === ""){
-//         console.log(`Пустая строка`);
-//         return;
-//     }
-//
-//     const HTMLTemplateElement =  document.querySelector(".user-message");
-//     const cloneNode = HTMLTemplateElement.content.cloneNode(true);
-//
-//     const message = cloneNode.querySelector(".user-message");
-//     const date = cloneNode.querySelector(".date-me");
-//
-//     message.textContent = input_value;
-//     date.textContent = format( new Date() ,"k:m" );
-//     contentMessages.append(cloneNode);
-//     inputMessage.value = ""
-//     scrollLastElement();
-// }
-
+};
 
 async function setName (event){
     event.preventDefault();
     const name = inputValue.userName.value.trim();
     console.log(name)
     await setUserName(name)
-    await getDataUser();
+   // await getDataUser();
 }
 const formInputName = document.querySelector("#form-popup");
-
 formInputName.addEventListener("submit", setName);
 
 

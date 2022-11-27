@@ -1,7 +1,7 @@
 import {DATA} from "./const.js";
 import Cookies from "js-cookie";
 
-export async function setToken(email){
+async function setToken(email){
     try {
       const response =  await fetch(DATA.urlPost, {
             method: 'POST',
@@ -12,14 +12,14 @@ export async function setToken(email){
         });
 
         const result = await response.json();
-        console.log('Post: ', result);
+      //  console.log('Post: ', result);
 
     } catch (e) {
         throw new Error (e.message);
     }
 }
 
-export async function getDataUser(url) {
+async function getDataUser(url) {
     const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -28,12 +28,12 @@ export async function getDataUser(url) {
         }
     })
     const result = await response.json();
-    console.log('result: ', result);
+   // console.log('result: ', result);
     console.log('response: ', response.ok);
     return result;
 }
 
-export async function setUserName(name){
+async function setUserName(name){
     try {
         const cookies =  Cookies.get("email");
         const response = await fetch(DATA.urlPost, {
@@ -53,3 +53,5 @@ export async function setUserName(name){
         throw new Error(e.message);
     }
 }
+
+export {setToken, getDataUser, setUserName}
