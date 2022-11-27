@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+
 export class Storage {
     constructor(key ) {
         this.key = key
@@ -18,3 +19,4 @@ export class Storage {
 }
 
 export const newKey = new Storage('newKey')
+

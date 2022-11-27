@@ -1,5 +1,5 @@
-import { ELEMENTS,POPAPS, scrollValue } from "./const.js";
-import {getMessages,sendMessageOnServer, ALL_MESSAGES, getDataUser} from "./request.js";
+import { ELEMENTS,POPAPS, scrollValue, nowPOP } from "./const.js";
+import {getMessages,getDataUser,sendMessageOnServer, ALL_MESSAGES} from "./request.js";
 import { popUp } from "./popup.js";
 import { format } from 'date-fns'
 
@@ -23,12 +23,16 @@ export function loadHistoryMessage(result) {
 }
 
 function scrollRecentlyMessages(start, end) {
+    if(end === 300) {
+        return alert("Сообщений больше нет!")
+    }
     for(let i = start; i < end; i++) {
         renderMessages(ALL_MESSAGES[0].messages[i] , 'Old')
     }
     scrollValue.start = end
     scrollValue.end = end + 20
 }
+
 ELEMENTS.MAIN.addEventListener('scroll' , () => {
     const scrollBottom = ELEMENTS.MAIN.scrollHeight - Math.abs(ELEMENTS.MAIN.scrollTop)
     if(scrollBottom === 425) {

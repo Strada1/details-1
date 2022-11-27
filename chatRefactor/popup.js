@@ -1,9 +1,8 @@
 import { newKey } from "./storage.js";
-import { ELEMENTS} from "./const.js";
+import { ELEMENTS, nowPOP} from "./const.js";
 import {getDataUser, changeName, sendEmail} from "./request.js";
-
+//Попап был сделан первый раз и всё внимание уделялось остальной части чата, не бейте... 
 export function popUp(button ) {
-    const nowPOP = {}
     if(button == 'popupSettings') {
         nowPOP.thisPopUp = document.querySelector(`#${button}`)
         nowPOP.thisPopUp.classList.add('popup--active')

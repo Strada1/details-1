@@ -10,8 +10,6 @@ export const ELEMENTS = {
     CHAT_CODE: document.querySelector('.chat-code__input'),
     CHANGE_NAME: document.querySelector('.changeName'),
     NAME_VALUE: document.querySelector('.nameValue'),
-    BG_LINK: document.querySelector('.bg-link'),
-    CHANGE_BG_BTN: document.querySelector('.change-bg'),
 }
 export const POPAPS = {
     popupSettings: document.querySelector('#popup-settings'),
@@ -28,4 +26,3 @@ export const URL = {
 export const scrollValue = {start:20,end:40}
 export const ALL_MESSAGES = [];
 export const nowPOP = {};
-export const UserKey = {};
