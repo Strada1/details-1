@@ -54,7 +54,7 @@ class Modal {
     this.setTitle(content.title);
     this.setLabel(content.label);
     this.setButtonText(content.buttonText);
-    this.setInputType(inputType);
+    this.setInput(inputType);
 
     this.closeModal = this.closeModal.bind(this);
     this.modalClickHandler = this.modalClickHandler.bind(this);
@@ -93,7 +93,7 @@ class Modal {
     }
   }
 
-  setInputType(inputType) {
+  setInput(inputType) {
     this.input = this.modalElement.querySelector('.modal__input');
     this.input.setAttribute('type', inputType);
   }
@@ -155,6 +155,7 @@ class Modal {
   openModal() {
     if (this.modalElement) {
       document.body.append(this.modalElement);
+      this.input.focus();
       this.button.removeAttribute('disabled');
       setTimeout(() => {
         this.modalElement.classList.add('is-visible');

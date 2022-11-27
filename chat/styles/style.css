@@ -83,13 +83,67 @@
   background-color: var(--additional-darker-color);
 }
 
+.messenger__messages-wrapper {
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  overflow-y: hidden;
+}
+
 .messenger__message-list {
+  position: relative;
+  width: 100%;
   flex-grow: 1;
   display: flex;
   flex-direction: column-reverse;
   align-items: end;
-  overflow-y: scroll;
   padding: var(--page-padding);
+  transition: all ease 0.3s;
+}
+
+.messenger__scroll-up,
+.messenger__scroll-down {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background-color: var(--additional-grey-lighter-color);
+  border-radius: 50%;
+}
+
+.messenger__scroll-up {
+  top: 10px;
+  right: 10px;
+}
+
+.messenger__scroll-up svg {
+  transform: rotate(90deg);
+}
+
+.messenger__scroll-down {
+  right: 10px;
+  bottom: 10px;
+}
+
+.messenger__scroll-down svg {
+  transform: rotate(-90deg);
+}
+
+.messenger__scroll-up:hover,
+.messenger__scroll-down:hover {
+  background-color: var(--additional-grey-lighter-color);
+  opacity: 0.8;
+}
+
+.messenger__scroll-up:active,
+.messenger__scroll-down:active {
+  background-color: var(--additional-grey-lighter-color);
+  opacity: 0.8;
+  box-shadow: none;
 }
 
 .messenger__message:not(:last-child) {

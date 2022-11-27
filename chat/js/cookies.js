@@ -1,4 +1,8 @@
-const BEARER_COOKIE_NAME = 'Bearer';
+const COOKIE_NAMES = {
+  BEARER: 'Bearer',
+  EMAIL: 'Email'
+};
+
 const DEFAULT_COOKIE_MAX_AGE = 60 * 60 * 24;
 
 
@@ -44,5 +48,5 @@ export {
   setCookie,
   getCookie,
   deleteCookie,
-  BEARER_COOKIE_NAME
+  COOKIE_NAMES
 };

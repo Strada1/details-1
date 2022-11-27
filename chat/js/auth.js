@@ -3,7 +3,7 @@ import { sendData, getData } from './data-api.js';
 import {
   setCookie,
   getCookie,
-  BEARER_COOKIE_NAME
+  COOKIE_NAMES
 } from './cookies.js';
 import { validateEmail, isNotEmptyField } from './validation.js';
 import { showError, ERROR_MESSAGES_LIST } from './error.js';
@@ -12,28 +12,27 @@ import { showError, ERROR_MESSAGES_LIST } from './error.js';
 const GET_CODE_URL = 'https://edu.strada.one/api/user';
 const GET_USER_URL = 'https://edu.strada.one/api/user/me';
 
-const STORE = {
+const MODALS = {
   authModal: {},
   confirmModal: {},
-  settingsModal: {},
-  myEmail: ''
+  settingsModal: {}
 };
 
 
 const settingsButtonElement = document.querySelector('.messenger__settings-button');
 
 
-const setNameField = (userName) => STORE.settingsModal.setInputValue(userName);
+const setNameField = (userName) => MODALS.settingsModal.setInputValue(userName);
 
 
 const onSuccessGetUser = (user) => {
   setNameField(user.name);
-  STORE.myEmail = user.email;
+  setCookie(COOKIE_NAMES.EMAIL, user.email, {secure: true});
 };
 
 
 const getUser = () => {
-  const token = getCookie(BEARER_COOKIE_NAME);
+  const token = getCookie(COOKIE_NAMES.BEARER);
 
   getData(
     onSuccessGetUser,
@@ -46,20 +45,20 @@ const getUser = () => {
 
 
 const onChangeNameSuccess = () => {
-  STORE.settingsModal.enableButton();
-  STORE.settingsModal.closeModal();
+  MODALS.settingsModal.enableButton();
+  MODALS.settingsModal.closeModal();
 };
 
 
 const onChangeNameFail = (errorText) => {
-  STORE.settingsModal.enableButton();
+  MODALS.settingsModal.enableButton();
   showError(errorText);
 };
 
 
 const changeName = (newName) => {
   const formData = JSON.stringify({name: newName});
-  const token = getCookie(BEARER_COOKIE_NAME);
+  const token = getCookie(COOKIE_NAMES.BEARER);
 
   console.log(token);
 
@@ -79,41 +78,41 @@ const changeName = (newName) => {
 
 
 const onSettingsButtonClick = () => {
-  STORE.settingsModal.openModal();
+  MODALS.settingsModal.openModal();
 };
 
 
 const initSettings = () => {
-  STORE.settingsModal = new Modal(MODAL_TYPES.get('settings'), changeName, isNotEmptyField);
+  MODALS.settingsModal = new Modal(MODAL_TYPES.get('settings'), changeName, isNotEmptyField);
   settingsButtonElement.addEventListener('click', onSettingsButtonClick);
   getUser();
 };
 
 
 const sendCode = (code) => {
-  setCookie(BEARER_COOKIE_NAME, code, {secure: true});
-  STORE.authModal.enableButton();
-  STORE.confirmModal.closeModal();
-  const token = getCookie(BEARER_COOKIE_NAME);
+  setCookie(COOKIE_NAMES.BEARER, code, {secure: true});
+  MODALS.authModal.enableButton();
+  MODALS.confirmModal.closeModal();
+  const token = getCookie(COOKIE_NAMES.BEARER);
   initSettings(token);
 };
 
 
 const initConfirmation = () => {
-  STORE.confirmModal = new Modal(MODAL_TYPES.get('confirmation'), sendCode, isNotEmptyField);
-  STORE.confirmModal.openModal();
+  MODALS.confirmModal = new Modal(MODAL_TYPES.get('confirmation'), sendCode, isNotEmptyField);
+  MODALS.confirmModal.openModal();
 };
 
 
 const onSendEmailSuccess = () => {
-  STORE.authModal.enableButton();
-  STORE.authModal.closeModal();
+  MODALS.authModal.enableButton();
+  MODALS.authModal.closeModal();
   initConfirmation();
 };
 
 
 const onSendEmailFail = (errorText) => {
-  STORE.authModal.enableButton();
+  MODALS.authModal.enableButton();
   showError(errorText);
 };
 
@@ -134,8 +133,8 @@ const sendEmail = (email) => {
 
 
 const initAuthorization = () => {
-  STORE.authModal = new Modal(MODAL_TYPES.get('authorization'), sendEmail, validateEmail);
-  STORE.authModal.openModal();
+  MODALS.authModal = new Modal(MODAL_TYPES.get('authorization'), sendEmail, validateEmail);
+  MODALS.authModal.openModal();
 };
 
 export {

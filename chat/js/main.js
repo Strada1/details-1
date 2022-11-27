@@ -1,16 +1,22 @@
-import { initForm } from './message-form.js';
-import { initMessageList } from './message-list.js';
+import { initMessenger } from './messenger.js';
+import { initMessageList } from './messages-render.js';
 import { initAuthorization, initSettings } from './auth.js';
-import { getCookie, setCookie, BEARER_COOKIE_NAME } from './cookies.js';
+import { getCookie, setCookie, COOKIE_NAMES } from './cookies.js';
+import { createWebSocket } from './web-socket.js';
+
 
 window.addEventListener('DOMContentLoaded', () => {
-  initForm();
-
-  const token = getCookie(BEARER_COOKIE_NAME);
+  const token = getCookie(COOKIE_NAMES.BEARER);
 
   if (token) {
-    setCookie(BEARER_COOKIE_NAME, token, {secure: true});
-    initMessageList(token)
+    setCookie(COOKIE_NAMES.BEARER, token, {secure: true});
+
+    const socket = createWebSocket(token);
+    socket.onopen = () => {
+      initMessenger(socket);
+    };
+
+    initMessageList(token);
     initSettings();
   } else {
     initAuthorization();
