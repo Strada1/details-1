@@ -1,5 +1,11 @@
 * {
-    box-sizing: border-box;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: black;
 }
 
 body {}
@@ -34,14 +40,15 @@ body {}
     flex-direction: column;
     margin-top: 8px;
     margin-bottom: 8px;
+    overflow-y: auto;
 }
 
 .inputText {
-    width: 75%;
+    width: 65%;
 }
 
 .sendButton {
-    width: 20%;
+    width: 30%;
 }
 
 .msgContainer {

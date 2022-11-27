@@ -572,8 +572,10 @@ nameEnterForm.onsubmit = function() {
     sendName(this.inputName.value);
     return false;
 };
-btnGetNam.onclick = function() {
-    getName();
+// btnGetInformationAbutUser.onclick = () => { getInformationAbutUser(); }; Удалить
+// btnGetNam.onclick = function () { getInformationAbutUser() };
+btnGetHistory.onclick = function() {
+    ShowMessages();
 };
 const messages = [];
 function Message(text) {
@@ -588,14 +590,21 @@ function sendMessage(textmessage) {
     messages.push(message);
     showMessage(message);
 }
-function showMessage(message) {
-    let template = `<div class="msgContainer msgOut id="msgContainer">
-         <div>
-             <span class="msgContainer-author">${message.author}</span>:<span class="msgContainer-text">${message.text}</span>
-         </div>
-         <div class="msgContainerTime">${(0, _dateFns.format)(message.date, "HH:MM")}</div>
-    </div>`;
-    document.getElementById("main").insertAdjacentHTML("beforeend", template);
+// function showMessage(message) {
+//     let sentMessageContainer = document.createElement('div');
+//     sentMessageContainer.append(tmpl.content.cloneNode(true));
+//     sentMessageContainer.getElementsByClassName("msgContainer-author")[0].textContent = message.author;
+//     sentMessageContainer.getElementsByClassName("msgContainerTime")[0].textContent = format(message.date, "HH:MM");
+//     sentMessageContainer.getElementsByClassName("msgContainer-text")[0].innerText = message.text;
+//     main.append(sentMessageContainer);
+// }
+function showMessage(authorMessage, dateMessage, textMessage) {
+    let sentMessageContainer = document.createElement("div");
+    sentMessageContainer.append(tmpl.content.cloneNode(true));
+    sentMessageContainer.getElementsByClassName("msgContainer-author")[0].textContent = authorMessage;
+    sentMessageContainer.getElementsByClassName("msgContainerTime")[0].textContent = (0, _dateFns.format)(new Date(dateMessage), "HH:MM");
+    sentMessageContainer.getElementsByClassName("msgContainer-text")[0].innerText = textMessage;
+    main.append(sentMessageContainer);
 }
 async function sendEmail(emailText) {
     if (emailText === "") return;
@@ -610,6 +619,7 @@ async function sendEmail(emailText) {
         },
         body: JSON.stringify(user)
     });
+    if (!response.ok) alert(response.status);
     let result = await response.json();
     alert(result.message);
 }
@@ -642,11 +652,11 @@ async function sendName(nameText) {
         },
         body: JSON.stringify(user)
     });
+    if (!response.ok) alert(response.status);
     let result = await response.json();
-    console.log(result);
+    alert(result.message);
 }
-async function getName() {
-    console.log("hhh");
+async function getInformationAbutUser() {
     let token = getCookie("token");
     if (token === "") {
         alert("Code is empty.");
@@ -659,8 +669,36 @@ async function getName() {
             "Authorization": `Bearer ${token}`
         }
     });
+    if (!response.ok) alert(response.status);
     let result = await response.json();
     console.log(result);
+}
+async function getMessagesHistory() {
+    let token = getCookie("token");
+    if (token === "") {
+        alert("Code is empty.");
+        return;
+    }
+    let response = await fetch((0, _constJs.URL_MESSAGES), {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Authorization": `Bearer ${token}`
+        }
+    });
+    if (!response.ok) alert(response.status);
+    let result = await response.json();
+    console.log(result);
+    return result;
+}
+async function ShowMessages() {
+    let result = getMessagesHistory();
+    result.then((messages)=>messages.messages).then((messages)=>{
+        messages.forEach((message)=>{
+            showMessage(message.user.name, message.createdAt, message.text);
+            return;
+        });
+    });
 }
 
 },{"date-fns":"9yHCA","./const.js":"d9LpT"}],"9yHCA":[function(require,module,exports) {
@@ -3536,8 +3574,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "URL_USER_REGISTRATION", ()=>URL_USER_REGISTRATION);
 parcelHelpers.export(exports, "URL_USER_INFORMATION", ()=>URL_USER_INFORMATION);
+parcelHelpers.export(exports, "URL_MESSAGES", ()=>URL_MESSAGES);
 const URL_USER_REGISTRATION = "https://edu.strada.one/api/user";
 const URL_USER_INFORMATION = "https://edu.strada.one/api/user/me";
+const URL_MESSAGES = "https://edu.strada.one/api/messages/";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire25d8")
 
