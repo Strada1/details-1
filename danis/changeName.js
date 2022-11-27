@@ -1,4 +1,5 @@
 import { urlGetInfoUser } from './consts.js'
+import {setName} from './confirmation.js'
 
 export async function changeName(newName, cookie) {
     const promise = await fetch(urlGetInfoUser, {
@@ -8,8 +9,8 @@ export async function changeName(newName, cookie) {
             'Content-Type': 'application/json;charset=utf-8',
         },
     });
-    const result = await promise.json();
-    console.log(result.user);
+    const result = await promise.json();;
     result.name = newName;
-    console.log(result);
+
+    setName(cookie, result.name)
 }

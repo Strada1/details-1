@@ -8,6 +8,6 @@ export async function setName(cookieCode, nameUser) {
             'Authorization': `Bearer ${cookieCode}`,
             'Content-Type': 'application/json;charset=utf-8',
         },
-        body: JSON.stringify({ name: 'грайм отец' })
+        body: JSON.stringify({ name: nameUser })
     });
 }
