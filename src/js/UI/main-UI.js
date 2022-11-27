@@ -8,7 +8,7 @@ import {
   processingResultsAuthorization,
 } from '../requests/processingResultsRequest';
 import { renderMessage } from './messages';
-import { filterNumberMessages } from '../helps';
+import { getSpliceMessages } from '../helps';
 
 export const ELEMENTS = {
   FORM_MESSAGE: document.querySelector('[data-message-form]'),
@@ -31,13 +31,17 @@ MODAL_DETAILS.FORM_AUTHORIZATION.addEventListener('submit', (event) => {
   authorization();
 });
 
-MODAL_DETAILS.FORM_CONFIRMATION.addEventListener('submit', (event) => {
-  event.preventDefault();
+function confirmation() {
   const token = MODAL_DETAILS.INPUT_CONFIRMATION.value;
   addingTokenCookie(token);
   closeAllModal();
   callNotification(NOTIFICATION_MESSAGE.SAVE_TOKEN);
   addMessageHistory(token);
+}
+
+MODAL_DETAILS.FORM_CONFIRMATION.addEventListener('submit', (event) => {
+  event.preventDefault();
+  confirmation();
 });
 
 MODAL_DETAILS.FORM_SETTINGS.addEventListener('submit', (event) => {
@@ -54,19 +58,15 @@ ELEMENTS.BUTTON_ENTER.addEventListener('click', () => {
   openModal(MODAL.AUTHORIZATION);
 });
 
-ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () => {
-  renderMessage(filterNumberMessages());
-});
-
-ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () => {
-  renderMessage(filterNumberMessages());
-});
-
-ELEMENTS.LIST_MESSAGE.addEventListener('scroll', (event) => {
+function infiniteScrolling(event) {
   const isScrollHeight =
-    (event.currentTarget.scrollHeight / 100) * 60 <
+    (event.currentTarget.scrollHeight / 100) * 65 <
     Math.abs(event.currentTarget.scrollTop);
   if (isScrollHeight) {
-    renderMessage(filterNumberMessages());
+    renderMessage(getSpliceMessages());
   }
+}
+
+ELEMENTS.LIST_MESSAGE.addEventListener('scroll', (event) => {
+  infiniteScrolling(event);
 });

@@ -1,6 +1,5 @@
 import Cookies from 'js-cookie';
 import { format } from 'date-fns';
-import { ELEMENTS } from './main-UI';
 import { CookieName } from '../cookie';
 
 const MESSAGES_ELEMENTS = {
@@ -9,7 +8,7 @@ const MESSAGES_ELEMENTS = {
 };
 
 export function createMessage(user, message, time, isMessageClient) {
-  const elemMessage = ELEMENTS.TEMPLATE.content.cloneNode(true);
+  const elemMessage = MESSAGES_ELEMENTS.TEMPLATE.content.cloneNode(true);
   if (isMessageClient) {
     elemMessage.querySelector('.massage').classList.remove('massage-left');
     elemMessage.querySelector('.massage').classList.add('massage-right');
@@ -23,7 +22,7 @@ export function createMessage(user, message, time, isMessageClient) {
 // TODO: добавить скролл вниз про добавлении сообщений
 export function addMessageUI(user, message, time, userEmail) {
   const isMessageClient = userEmail === Cookies.get(CookieName.CLIENT_EMAIL);
-  ELEMENTS.LIST_MESSAGE.append(
+  MESSAGES_ELEMENTS.LIST_MESSAGE.append(
     createMessage(user, message, time, isMessageClient)
   );
 }

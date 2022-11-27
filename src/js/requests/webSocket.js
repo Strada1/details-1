@@ -8,6 +8,10 @@ import { getCheckMessage } from '../helps';
 import { ValidationError } from '../error/ValidationError';
 import { addMessageUI } from '../UI/messages';
 
+const WEBSOCKET_MESSAGES = {
+  CLOSE: 'работа закончена',
+};
+
 export function openWebSocket() {
   const isCheckToken = Cookies.get(CookieName.AUTHORIZATION_TOKEN);
   if (isCheckToken) {
@@ -62,5 +66,5 @@ ELEMENTS.FORM_MESSAGE.addEventListener('submit', (event) => {
 });
 
 ELEMENTS.BUTTON_EXIT.addEventListener('click', () => {
-  socket.close(1000, 'работа закончена');
+  socket.close(1000, WEBSOCKET_MESSAGES.CLOSE);
 });

@@ -1,7 +1,4 @@
-import Cookies from 'js-cookie';
-import { CookieName } from '../cookie';
 import { HttpError } from '../error/HttpError';
-import { callNotification } from '../UI/notification';
 
 export const URLS = {
   AUTHORIZATION: new URL('https://edu.strada.one/api/user'),
@@ -82,8 +79,3 @@ export class Request {
 }
 
 export const request = new Request(HTTP_METHOD, URLS);
-
-request
-  .getName(Cookies.get(CookieName.AUTHORIZATION_TOKEN))
-  .then((res) => Cookies.set(CookieName.CLIENT_EMAIL, res.email))
-  .catch((error) => callNotification(error.message));

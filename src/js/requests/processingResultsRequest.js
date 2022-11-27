@@ -1,7 +1,7 @@
 import { request } from './requests';
 import { closeAllModal, MODAL, openModal } from '../UI/modal';
 import { callNotification, NOTIFICATION_MESSAGE } from '../UI/notification';
-import { filterNumberMessages } from '../helps';
+import { getSpliceMessages } from '../helps';
 import { renderMessage } from '../UI/messages';
 import { setLocalStorage, LOCAL_STORAGE } from '../localStorage';
 
@@ -21,7 +21,7 @@ export async function addMessageHistory(token) {
   try {
     const historyMessages = await request.getMessageHistory(token);
     setLocalStorage(LOCAL_STORAGE.HISTORY_MESSAGE, historyMessages.messages);
-    const filerHistory = filterNumberMessages();
+    const filerHistory = getSpliceMessages();
     renderMessage(filerHistory);
   } catch (error) {
     callNotification(error.message);

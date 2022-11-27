@@ -6,10 +6,11 @@ import {
   LOCAL_STORAGE,
   setLocalStorage,
 } from './localStorage';
-// TODO: поменять имя функции
-export function filterNumberMessages() {
+
+export function getSpliceMessages() {
   const array = getLocalStorage(LOCAL_STORAGE.HISTORY_MESSAGE);
-  const filteredArray = array.splice(0, 20);
+  const countMessages = 20;
+  const filteredArray = array.splice(0, countMessages);
   setLocalStorage(LOCAL_STORAGE.HISTORY_MESSAGE, array);
   return filteredArray;
 }
