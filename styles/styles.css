@@ -50,6 +50,9 @@ body {
   transition: .5s;
   cursor: pointer;
 }
+.btn-setting {
+  margin-right: 0px;
+}
 .btn-enter {
   padding: 5px 15px;
 }
@@ -62,11 +65,12 @@ body {
   background-position: center right;
   transition: .2s;
 }
-.chat-img{
+.chat-img, .connect-status {
   width: 30px;
   height: 30px;
   border: none;
   border-radius: 50%;
+  background-color: #323232;
 }
 .chat-detailes {
   font-size: 12px;
@@ -134,19 +138,24 @@ body {
   transition:  opacity 1.5s;
   opacity: 1;
 }
-.date-message {
+.date-message, .finish-message {
   align-self: center;
   text-align: center;
   width: 100px;
-  height: 15px;
+  height: 20px;
   margin: 5px 0 5px 0;
   padding: 3px 0 3px 0;
   font-size: 12px;
   font-weight: 400;
   text-transform: capitalize;
   color:  white;
-  background-color: rgba(147, 147, 147, 0.7);
-  border-radius: 3px;
+  /* background-color: rgba(147, 147, 147, 0.7); */
+  background-color: rgb(24, 37, 51);
+  border-radius: 10px;
+}
+.finish-message {
+  width: 200px;
+  height: 20px;
 }
 .nik-from {
   font-size: 15px;
@@ -266,7 +275,6 @@ body {
   border: 1px solid rgb(118, 118, 118);
   border-left: none;
   border-right: none;
-  z-index: 3;
 }
 .message-input {
   position: relative;
@@ -322,7 +330,6 @@ body {
 }
 .wrapper-setting-box.active {
   display: block;
-  z-index: 2;
 }
 
 .login-box {

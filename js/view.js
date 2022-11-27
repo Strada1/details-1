@@ -1,4 +1,11 @@
-export { UI, DATE_FORMAT, ERROR_LIST, COLOR_THEME };
+import { handlerGetCode } from "./ui_service.js";
+
+export { 
+    UI, 
+    DATE_FORMAT, 
+    ERROR_LIST, 
+    COLOR_THEME 
+};
 
 const UI = {
     CHAT: {
@@ -11,6 +18,7 @@ const UI = {
         MYNIK: document.querySelector('.my-nik-img'),
         MYNIK_DETAILS: document.querySelector('.my-nik-detailes'),
         SETTING: document.querySelector('.btn-setting'),
+        STATUS: document.querySelector('.connect-status'),
     },
     AUTH: {
         CODE_BOX: document.querySelector('.wrapper-login-box'),
@@ -24,7 +32,7 @@ const UI = {
         SIGN_INPUT: document.querySelector('.sign-code'),
     },
     NIKNAME: {
-        SETTING: document.querySelector('.wrapper-setting-box'),
+        SETTING_BOX: document.querySelector('.wrapper-setting-box'),
         GETNAME: document.querySelector('.nik-name'),
         CHANGE: document.querySelector('.change'),
         BUTTON_MONO: document.querySelector('.btn-theme-mono'),
@@ -55,7 +63,7 @@ const ERROR_LIST = {
         return;
     },
     wrong_token () {
-        const errorText = 'Неправильно указан токен\n Необходимо пройти авторизацию'
+        const errorText = 'Отсутствует токен\n Необходимо пройти авторизацию'
         popUpError(errorText);
     },
 }
@@ -68,13 +76,11 @@ function popUpError (error) {
     errorText.innerText = error
     const timerId = setTimeout(() => { 
         popUp.classList.remove('pop-up-active');
-        UI.AUTH.CODE_BOX.classList.add();
     }, 10000)
     popUpClose.addEventListener('click', (event) => {
         event.preventDefault()
         popUp.classList.remove('pop-up-active')
         clearTimeout(timerId)
-        UI.AUTH.CODE_BOX.classList.add('active');
     })
 }
 

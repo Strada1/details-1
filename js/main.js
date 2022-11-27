@@ -1,20 +1,37 @@
-import { UI, DATE_FORMAT } from "./view.js";
 import { Storage } from "./storage.js";
 import { MEMBERS } from "./members.js";
 import { } from "./ui_service.js";
-import { sendMessage } from "./network.js";
-import { renderCurrentMessage, renderMyMessage, renderOutMessage, renderPeriod, dateFormation } from "./render.js";
+import { 
+    UI, 
+    DATE_FORMAT 
+} from "./view.js";
+import { 
+    sendMessage, 
+    messagesStorage 
+} from "./network.js";
+import { 
+    renderCurrentMessage, 
+    renderMyMessage, 
+    renderOutMessage, 
+    renderPeriod, 
+    dateFormation, 
+    renderFinish 
+} from "./render.js";
 
-export { renderMessages, userStorage };
+export { 
+    checkMessages,
+    checkCurrentMessage, 
+    userStorage, 
+    messagesStorage, 
+    membersStorage 
+};
 
 let user = {};
 let booleanResult;
-let publicDate = "2022-11-04T12:28:53.553Z";
+let item = 0;
 let membersStorage = new Storage('members', 'local');
-let messagesStorage = new Storage('messages', 'session');
 let userStorage = new Storage('user', 'local');
-
-const arrMembers = ['art@strada.one', 'dariannyko@gmail.com','hollywood7878@yandex.ru', 'ᅠ', 'соня', "sonalavrushina@gmail.com",'kamkinaz64@gmail.com',"ilnazrt@mail.ru",'hunky@list.ru', 'tighineanu00@mail.ru','hamit.magic@gmail.com', '237x237@gmail.com','Egor Sychev','Павел Строгов', 'timofiei.tarasov@gmail.com','Михаил', 'боря китаев','Michael Korolev', 'Kseniya','Alex Rusakov', 'Vitalik', 'Banan 🍌 Baldja','Ya Rolly 🔱', 'Artem Dimitrov', 'Yaroslav Shishkin'];
+const arrMembers = ['art@strada.one', 'dariannyko@gmail.com','hollywood7878@yandex.ru', 'ᅠ', 'соня', 'daniilstef67@gmail.com','igarek-200706@mail.ru','yegres025@yandex.ru','fuser-mgn@yandex.ru',"vitalik.unit@gmail.com","me@varensev.ru","sonalavrushina@gmail.com", 'kamkinaz64@gmail.com',"ilnazrt@mail.ru",'hunky@list.ru', 'tighineanu00@mail.ru','hamit.magic@gmail.com', '237x237@gmail.com','Egor Sychev','Павел Строгов', 'timofiei.tarasov@gmail.com','Михаил', 'боря китаев','Michael Korolev', 'Kseniya','Alex Rusakov', 'Vitalik', 'Banan 🍌 Baldja','Ya Rolly 🔱', 'Artem Dimitrov', 'Yaroslav Shishkin'];
 
 for(let i = 0; i < arrMembers.length; i++) {
     assignIcon(arrMembers[i]);
@@ -32,37 +49,49 @@ function handlerGetMessage(event) {
         return;
     }
     let message = UI.CHAT.MESSAGE.value;
-    // const myMessage = renderCurrentMessage(message);
     sendMessage(message);
     UI.CHAT.MESSAGE.value = '';
     UI.CHAT.MESSAGE.focus();
-    // messagesStorage.set(myMessage);
 };
 
-function renderMessages(MESSAGES) {
-    // renderPeriod(dateFormation(publicDate));
-    MESSAGES.forEach(message => {
-        publicDate = dateDetection(message, publicDate);
-        if(message.user.email === userStorage.get()) {
-            renderMyMessage(message);
-        } else {
-            const chatMembers = membersStorage.get();
-            renderOutMessage(message, chatMembers);
-        }
-    });
-};
-
-function dateDetection(message, publicDate) {
-    const currentDate = message.createdAt;
-    if(new Date(publicDate).getMonth() < new Date(currentDate).getMonth() ||
-        new Date(publicDate).getMonth() === new Date(currentDate).getMonth() &&
-        new Date(publicDate).getDate() < new Date(currentDate).getDate()) {
-        publicDate = currentDate;
-        renderPeriod(dateFormation(publicDate));
-        return publicDate;
+function checkCurrentMessage(message) {
+    const myEmail = userStorage.get();
+    console.log(message);
+    if(message.user.email === myEmail) {
+        renderMyMessage(message);
+    } else {
+        renderOutMessage(message);
     }
-    return publicDate;
+}
+
+function checkMessages() {
+    let MESSAGES = messagesStorage.get();
+    const myEmail = userStorage.get();
+    // let publicDate = dateDetection(MESSAGES[item], publicDate);
+    for (let count = 0; count < 20; count++) {
+        if(item < MESSAGES.length) {
+            if(MESSAGES[item].user.email === myEmail) {
+                renderMyMessage(MESSAGES[item]);
+            } else {
+                renderOutMessage(MESSAGES[item]);
+            }
+            item++;
+            if(item === MESSAGES.length) renderFinish();
+        }
+    }
 };
+
+// function dateDetection(message, publicDate) {
+//     const currentDate = message.createdAt;
+//     if(new Date(publicDate).getMonth() > new Date(currentDate).getMonth() ||
+//         new Date(publicDate).getMonth() === new Date(currentDate).getMonth() &&
+//         new Date(publicDate).getDate() > new Date(currentDate).getDate()) {
+//         publicDate = currentDate;
+//         renderPeriod(dateFormation(publicDate));
+//         return publicDate;
+//     }
+//     return publicDate;
+// };
 
 function assignIcon(nameReceived) {
     for (let i = 0; i < MEMBERS.length; i++) {
@@ -97,19 +126,3 @@ function getCurrentTime() {
 
 getCurrentTime();
 setInterval(getCurrentTime, 1000);
-
-// function recursionRender(DATA_MESSAGES, publicDate, count) {
-//     const lengthList = DATA_MESSAGES.length;
-//     const message = DATA_MESSAGES[count];
-//     if (count === lengthList) return;
-//     dateDetection(message, publicDate);
-//     if(message.user.name === 'Dmitry S') {
-//         renderMyMessage(message);
-//     } else {
-//         const chatMembers = membersStorage.get();
-//         renderOutMessage(message, chatMembers);
-//     }
-//     count++
-//     recursionRender(DATA_MESSAGES, publicDate, count);
-// }
-

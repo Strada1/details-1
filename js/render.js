@@ -1,5 +1,21 @@
-import { UI, DATE_FORMAT, COLOR_THEME } from "./view.js";
-export { renderCurrentMessage, renderMyMessage, renderOutMessage, renderPeriod, dateFormation };
+import { 
+    UI, 
+    DATE_FORMAT, 
+    COLOR_THEME 
+} from "./view.js";
+
+import { membersStorage } from "./main.js";
+
+export { 
+    renderCurrentMessage, 
+    renderMyMessage, 
+    renderOutMessage, 
+    renderPeriod, 
+    dateFormation, 
+    timeFormation,
+    clearParentDOM,
+    renderFinish,
+};
 
 function renderCurrentMessage(message) {
     const renderMyMessage = document.createElement('div');
@@ -11,8 +27,8 @@ function renderCurrentMessage(message) {
     const timeMessage = timeFormation();  
     dataTime.innerText = timeMessage;
     renderMyMessage.append(dataTime);
-    UI.CHAT.CONTAINER.prepend(renderMyMessage);
-    renderMyMessage.scrollIntoView();
+    UI.CHAT.CONTAINER.append(renderMyMessage);
+    UI.CHAT.CONTAINER.scrollIntoView();
     UI.CHAT.MESSAGE.value = '';
     UI.CHAT.MESSAGE.focus();
     console.log(renderMyMessage);
@@ -28,11 +44,12 @@ function renderMyMessage(message) {
     const timeMessage = timeFormation(message.createdAt);
     dataTime.innerText = timeMessage  + ' ' + ' ✔';
     renderMyMessage.append(dataTime);
-    UI.CHAT.CONTAINER.prepend(renderMyMessage);
-    renderMyMessage.scrollIntoView();
+    UI.CHAT.CONTAINER.append(renderMyMessage);
+    UI.CHAT.CONTAINER.scrollIntoView();
 }
 
-function renderOutMessage(message, chatMembers) {
+function renderOutMessage(message) {
+    const chatMembers = membersStorage.get();
     const renderOutMessage = document.createElement('div');
     renderOutMessage.classList = ('message-wrapper');
     const nikImg = document.createElement('img');
@@ -68,15 +85,22 @@ function renderOutMessage(message, chatMembers) {
     messageTheme.append(dataTime);
     renderOutMessage.append(nikImg);
     renderOutMessage.append(messageTheme);
-    UI.CHAT.CONTAINER.prepend(renderOutMessage);
-    renderOutMessage.scrollIntoView();
+    UI.CHAT.CONTAINER.append(renderOutMessage);
+    UI.CHAT.CONTAINER.scrollIntoView();
 }
 
 function renderPeriod(dateForRender) {
     const renderDate = document.createElement('div');
     renderDate.classList = ('date-message');
     renderDate.innerText = dateForRender;
-    UI.CHAT.CONTAINER.prepend(renderDate);
+    UI.CHAT.CONTAINER.append(renderDate);
+}
+
+function renderFinish() {
+    const renderDate = document.createElement('div');
+    renderDate.classList = ('finish-message');
+    renderDate.innerText = 'Сообщений больше нет';
+    UI.CHAT.CONTAINER.append(renderDate);
 }
 
 function dateFormation(date = new Date()) {
@@ -84,4 +108,11 @@ function dateFormation(date = new Date()) {
 }
 function timeFormation(time = new Date()) {
     return new Date(time).toLocaleTimeString('nu', DATE_FORMAT.TIME);
+}
+
+function clearParentDOM(element) {
+    if (element.firstChild) {
+      element.removeChild(element.firstChild);
+      clearParentDOM(element);
+    }
 }
