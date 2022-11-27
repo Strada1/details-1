@@ -1,0 +1,207 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: #e5e5e5;
+}
+
+span {
+  word-break: break-all;
+}
+input {
+  outline: none;
+  border: 1px solid black;
+  padding-right: 10px;
+  padding-left: 5px;
+}
+
+button {
+  cursor: pointer;
+}
+.container {
+  width: 320px;
+  margin: 0 auto;
+}
+
+.main-block {
+  min-width: 320px;
+  min-height: 533px;
+  padding: 8px;
+  background-color: #f6f6f6;
+  position: relative;
+}
+
+.configuration-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.configuration-wrapper button {
+  padding: 3px 5px;
+  background-color: inherit;
+  border: 1px solid black;
+}
+
+.delivered-message_color {
+  background-color: #e5e5e5;
+}
+
+.sent-message_color {
+  background-color: #eeeef3;
+}
+
+.message-window {
+  width: 304px;
+  height: 437px;
+  border: 1px solid black;
+  padding: 0 8px;
+  padding-top: 8px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+}
+
+.my_message-block {
+  display: flex;
+  justify-content: end;
+  margin-right: -1px;
+  text-align: right;
+  margin-bottom: 8px;
+}
+
+.my_message-wrapper {
+  padding: 8px;
+}
+
+.other_message-block {
+  display: flex;
+  justify-content: start;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.other_message-wrapper {
+  padding: 8px;
+}
+
+.time-message {
+  text-align: right;
+}
+
+.my_message-input {
+  min-width: 267px;
+  min-height: 32px;
+  margin-right: 4px;
+  outline: none;
+}
+
+.send_message {
+  min-width: 29px;
+  min-height: 32px;
+}
+
+.settings_wrapper,
+.sign-in_wrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+  background-color: #535353;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  transition: 0.5s all;
+}
+
+.block-settings {
+  background-color: white;
+  min-width: 273px;
+  min-height: 319px;
+  padding: 0 14px;
+  padding-top: 16px;
+  transition: 0.5s all;
+}
+
+.wrapper_settings,
+.sign-in_settings {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+}
+
+.name_input {
+  min-width: 207px;
+  min-height: 32px;
+}
+
+.btn_name_in_chat {
+  min-width: 30px;
+  min-height: 32px;
+}
+
+.message_clear {
+  display: none;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.me {
+  width: 100px;
+}
+
+.message-window::-webkit-scrollbar {
+  width: 10px; /* ширина scrollbar */
+}
+
+.message-window::-webkit-scrollbar-track {
+  background: #f6f6f6; /* цвет дорожки */
+}
+
+.message-window::-webkit-scrollbar-thumb {
+  background-color: #e5e5e5; /* цвет плашки */
+  border-radius: 30px; /* закругления плашки */
+  border: 3px solid #f6f6f6; /* padding вокруг плашки */
+}
+
+.sign-in_wrapper {
+  display: flex;
+}
+
+.sign-in_settings {
+  margin-bottom: 70px;
+}
+
+.mail_chat,
+.code_chat {
+  margin-bottom: 3px;
+}
+
+.mail_input,
+.code_input {
+  min-width: 245px;
+  min-height: 32px;
+  margin-bottom: 7px;
+}
+
+.btn_mail_send,
+.btn_code_send {
+  min-width: 120px;
+  min-height: 34px;
+  background: #ffffff;
+  border: 1px solid #000000;
+}
+
+.active {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
