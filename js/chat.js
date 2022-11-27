@@ -87,8 +87,8 @@ export function RenderMessages(data, method) {
     ".other-name-message"
   );
   data.user.email === "sonalavrushina@gmail.com"
-    ? (authorMessage.style.color = COLOR_MESSAGE.OTHER)
-    : (authorMessage.style.color = COLOR_MESSAGE.MY);
+    ? (authorMessage.style.color = COLOR_MESSAGE.MY)
+    : (authorMessage.style.color = COLOR_MESSAGE.OTHER);
   const message = MESSAGES.TEMPLATE.content.querySelector(
     ".other_message_view"
   );
