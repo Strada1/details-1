@@ -7,6 +7,7 @@ import {
   ELEMENTS,
   SCROLL_RENDER_VALUES,
   HISTORY_RENDER_VALUES,
+  COLOR_MESSAGE,
 } from "./const.js";
 
 import { mailRequest, changeNameRequest, messagesRequest } from "./request.js";
@@ -67,7 +68,7 @@ export function loadHistoryMessage(array) {
 }
 
 // наверное переборщила с объектами, зато не скажешь мол:
-// "а что значити это число, а что это занчит"
+// "а что значит это число, а что это значит"
 
 function scrollRender(array) {
   for (let i = SCROLL_RENDER_VALUES.START; i < SCROLL_RENDER_VALUES.END; i++) {
@@ -86,8 +87,8 @@ export function RenderMessages(data, method) {
     ".other-name-message"
   );
   data.user.email === "sonalavrushina@gmail.com"
-    ? (authorMessage.style.color = "palevioletred")
-    : (authorMessage.style.color = "olive");
+    ? (authorMessage.style.color = COLOR_MESSAGE.OTHER)
+    : (authorMessage.style.color = COLOR_MESSAGE.MY);
   const message = MESSAGES.TEMPLATE.content.querySelector(
     ".other_message_view"
   );

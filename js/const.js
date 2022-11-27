@@ -1,6 +1,6 @@
 export const ELEMENTS = {
   BUTTON_EXIT: document.querySelector(".btn-exit"),
-  SCROLL_BLOCK: document.querySelector('.message-window')
+  SCROLL_BLOCK: document.querySelector(".message-window"),
 };
 
 export const MESSAGES = {
@@ -35,11 +35,11 @@ export const CONFIRMATION = {
 };
 
 export const ANSWER_REQUEST = {
-  ERROR_REQUEST: 'Произошла ошибка!',
-  ERROR_CHANGE_NAME: 'Ошибка! Имя не сменилось на:',
-  GET_CODE_SUCCES: 'Код на почте!',
-  CHANGE_NAME_SUCCES: 'Ваше имя успешно сменилось на:',
-}
+  ERROR_REQUEST: "Произошла ошибка!",
+  ERROR_CHANGE_NAME: "Ошибка! Имя не сменилось на:",
+  GET_CODE_SUCCES: "Код на почте!",
+  CHANGE_NAME_SUCCES: "Ваше имя успешно сменилось на:",
+};
 
 export const SCROLL_RENDER_VALUES = {
   SCROLL_BACK: 600,
@@ -47,15 +47,20 @@ export const SCROLL_RENDER_VALUES = {
   END: 40,
   INCREASE_NUMBER: 20,
   ALL_MESSAGES: 300,
-}
+};
 
 export const HISTORY_RENDER_VALUES = {
   START: 0,
   END: 20,
-}
+};
 
 export const URL_STRADA = {
   EMAIL: "https://edu.strada.one/api/user",
   ME: "https://edu.strada.one/api/user/me",
   MESSAGES: "https://edu.strada.one/api/messages/",
-}
+};
+
+export const COLOR_MESSAGE = {
+  MY: "palevioletred",
+  OTHER: "olive",
+};
