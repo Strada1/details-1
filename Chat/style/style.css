@@ -273,3 +273,12 @@ input {
 .container.active{
     z-index: 4;
 }
+
+.historyLoaded{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: red;
+    margin-bottom: 8px;
+}

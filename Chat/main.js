@@ -3,7 +3,7 @@ import { setUserName } from "./requests.js";
 import { inputValue } from "./const.js";
 import { socket } from "./websocket.js";
 import { getItemStorage, setItemStorage } from "./storage.js";
-import { scrollLastElement } from "./scrollMessages.js";
+import {scrollLastElement, scrollVue} from "./scrollMessages.js";
 import { renderClient, renderUserMessage } from "./render.js";
 
 const formMessage = document.querySelector('#setMessage');
@@ -12,8 +12,9 @@ const contentMessages = document.querySelector('.content-message');
 formMessage.addEventListener('submit', renderUserMessage);
 
 setItemStorage();
-const array = getItemStorage();
-renderClient(array);
+//const array = getItemStorage();
+
+//renderClient(array);
 
 socket.onmessage = function getMessage(event) {
     console.log( "[message] Данные получены с сервера:" , event.data);
@@ -21,6 +22,7 @@ socket.onmessage = function getMessage(event) {
     const array  =  JSON.parse(event.data);
     console.log(array)
 
+    // TODO: сделать проверку
     if(array.user.email !== "me@varensev.ru"){
         const HTMLTemplateElements = document.querySelector('.client-message');
         const cloneNodes = HTMLTemplateElements.content.cloneNode(true);
@@ -46,5 +48,21 @@ async function setName (event){
 }
 const formInputName = document.querySelector("#form-popup");
 formInputName.addEventListener("submit", setName);
+
+
+const historyLoaded = document.querySelector(".historyLoaded");
+contentMessages.addEventListener('scroll', function() {
+    // получаем высоту элемента, на котором произошло событие
+    console.log(this.scrollTop)
+    if(this.scrollTop ===0){
+        historyLoaded.textContent = "Вся история загружена";
+    } else {
+        historyLoaded.textContent = "";
+       //const arr = scrollVue();
+     //  renderClient(arr);
+    }
+})
+
+scrollVue();
 
 
