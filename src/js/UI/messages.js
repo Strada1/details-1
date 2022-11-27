@@ -11,9 +11,15 @@ const POSITION_MESSAGES = {
   RIGHT: 'massage-right',
   LEFT: 'massage-left',
 };
+
+function scrollStartMessages() {
+  MESSAGES_ELEMENTS.LIST_MESSAGE.scrollTo(0, 0);
+}
+
 export function createMessage(user, message, time, isMessageClient) {
   const elemMessage = MESSAGES_ELEMENTS.TEMPLATE.content.cloneNode(true);
   if (isMessageClient) {
+    scrollStartMessages();
     elemMessage
       .querySelector('.massage')
       .classList.remove(POSITION_MESSAGES.LEFT);
@@ -27,7 +33,6 @@ export function createMessage(user, message, time, isMessageClient) {
   return elemMessage;
 }
 
-// TODO: добавить скролл вниз про добавлении сообщений
 export function addMessageScroll(user, message, time, userEmail) {
   const isMessageClient = userEmail === Cookies.get(CookieName.CLIENT_EMAIL);
   MESSAGES_ELEMENTS.LIST_MESSAGE.append(
