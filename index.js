@@ -20,7 +20,7 @@ window.onload = function () {
 function saveHistoryStorage() {
   getHistory().then((history) => {
     localStorage.setItem('messages', JSON.stringify(history.messages));
-    const HISTORY = JSON.parse(localStorage.getItem('messages')).splice(0, 20);
+    const HISTORY = JSON.parse(localStorage.getItem('messages')).slice(0, 20);
     checkHistory(HISTORY);
   });
 }
