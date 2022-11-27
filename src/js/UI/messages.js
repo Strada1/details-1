@@ -7,11 +7,19 @@ const MESSAGES_ELEMENTS = {
   LIST_MESSAGE: document.querySelector('.chat__main'),
 };
 
+const POSITION_MESSAGES = {
+  RIGHT: 'massage-right',
+  LEFT: 'massage-left',
+};
 export function createMessage(user, message, time, isMessageClient) {
   const elemMessage = MESSAGES_ELEMENTS.TEMPLATE.content.cloneNode(true);
   if (isMessageClient) {
-    elemMessage.querySelector('.massage').classList.remove('massage-left');
-    elemMessage.querySelector('.massage').classList.add('massage-right');
+    elemMessage
+      .querySelector('.massage')
+      .classList.remove(POSITION_MESSAGES.LEFT);
+    elemMessage
+      .querySelector('.massage')
+      .classList.add(POSITION_MESSAGES.RIGHT);
   }
   elemMessage.querySelector('.massage__text').textContent = message;
   elemMessage.querySelector('.massage__name').textContent = user;
@@ -20,16 +28,24 @@ export function createMessage(user, message, time, isMessageClient) {
 }
 
 // TODO: добавить скролл вниз про добавлении сообщений
-export function addMessageUI(user, message, time, userEmail) {
+export function addMessageScroll(user, message, time, userEmail) {
   const isMessageClient = userEmail === Cookies.get(CookieName.CLIENT_EMAIL);
   MESSAGES_ELEMENTS.LIST_MESSAGE.append(
     createMessage(user, message, time, isMessageClient)
   );
 }
 
-export function renderMessage(array) {
+export function addMessageUI(user, message, time, userEmail) {
+  const isMessageClient = userEmail === Cookies.get(CookieName.CLIENT_EMAIL);
+  MESSAGES_ELEMENTS.LIST_MESSAGE.prepend(
+    createMessage(user, message, time, isMessageClient)
+  );
+}
+
+export function renderMessage(array, scroll) {
+  const formatMessages = scroll ? addMessageScroll : addMessageUI;
   array.forEach((message) => {
-    addMessageUI(
+    formatMessages(
       message.user.name,
       message.text,
       format(new Date(message.createdAt), 'HH:mm'),

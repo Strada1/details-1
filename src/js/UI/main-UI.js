@@ -63,7 +63,7 @@ function infiniteScrolling(event) {
     (event.currentTarget.scrollHeight / 100) * 65 <
     Math.abs(event.currentTarget.scrollTop);
   if (isScrollHeight) {
-    renderMessage(getSpliceMessages());
+    renderMessage(getSpliceMessages(), true);
   }
 }
 

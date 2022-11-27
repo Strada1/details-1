@@ -22,7 +22,7 @@ export async function addMessageHistory(token) {
     const historyMessages = await request.getMessageHistory(token);
     setLocalStorage(LOCAL_STORAGE.HISTORY_MESSAGE, historyMessages.messages);
     const filerHistory = getSpliceMessages();
-    renderMessage(filerHistory);
+    renderMessage(filerHistory, true);
   } catch (error) {
     callNotification(error.message);
   }
