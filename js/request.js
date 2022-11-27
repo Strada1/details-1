@@ -1,14 +1,9 @@
 import { changeNameMessage, loadHistoryMessage} from "./chat.js";
-import { AUTHORIZATION} from "./const.js";
+import { AUTHORIZATION, ANSWER_REQUEST, URL_STRADA} from "./const.js";
 import { comeChat } from "./popup.js";
 
-const urlStrada = "https://edu.strada.one/api/user";
-const urlStradaMe = "https://edu.strada.one/api/user/me";
-const urlStradaMessages = "https://edu.strada.one/api/messages/";
-
-
 export async function mailRequest() {
-  const result = await fetch(urlStrada, {
+  const result = await fetch(URL_STRADA.EMAIL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -16,14 +11,14 @@ export async function mailRequest() {
     body: JSON.stringify({email: `${AUTHORIZATION.INPUT_MAIL.value}`}),
   });
   if (!(result.ok)) {
-    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Произошла ошибка!";
+    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = ANSWER_REQUEST.ERROR_REQUEST;
   } else {
-    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Код на почте!";
+    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = ANSWER_REQUEST.GET_CODE_SUCCES;
   }
 }
 
 export async function changeNameRequest(name, account) {
-  const result = await fetch(urlStrada, {
+  const result = await fetch(URL_STRADA.EMAIL, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -32,14 +27,14 @@ export async function changeNameRequest(name, account) {
     body: JSON.stringify({ name: name }),
   });
   if (result.ok) {
-    changeNameMessage("Ваше имя успешно сменилось на:", name);
+    changeNameMessage(ANSWER_REQUEST.CHANGE_NAME_SUCCES, name);
   } else {
-    changeNameMessage("Ошибка! Имя не сменилось на:", name);
+    changeNameMessage(ANSWER_REQUEST.ERROR_CHANGE_NAME, name);
   }
 }
 
 export async function userDataRequest(account) {
-  const result = await fetch(urlStradaMe, {
+  const result = await fetch(URL_STRADA.ME, {
     method: "GET",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -49,7 +44,7 @@ export async function userDataRequest(account) {
  }
 
 export async function messagesRequest(account) {
-  const result = await fetch(urlStradaMessages, {
+  const result = await fetch(URL_STRADA.MESSAGES, {
     method: "GET",
     headers: {
       "Content-Type": "application/json; charset=utf-8",
@@ -61,6 +56,6 @@ export async function messagesRequest(account) {
     loadHistoryMessage(answer)
     comeChat();
   } else {
-    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = "Произошла ошибка!";
+    AUTHORIZATION.AUTHORIZATION_MESSAGE.textContent = ANSWER_REQUEST.ERROR_REQUEST;
   }
 }

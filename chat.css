@@ -59,6 +59,7 @@ button {
   padding-top: 8px;
   overflow: auto;
   margin-bottom: 8px;
+  overflow-x:hidden;
 }
 
 .my_message-block {
@@ -84,8 +85,8 @@ button {
   margin-bottom: 8px;
 }
 
-
-.time-message, .time-my-message {
+.time-message,
+.time-my-message {
   text-align: right;
   color: #535353;
   font-style: italic;

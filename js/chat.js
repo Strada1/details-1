@@ -5,6 +5,8 @@ import {
   CONFIRMATION,
   MESSAGES,
   ELEMENTS,
+  SCROLL_RENDER_VALUES,
+  HISTORY_RENDER_VALUES,
 } from "./const.js";
 
 import { mailRequest, changeNameRequest, messagesRequest } from "./request.js";
@@ -20,7 +22,66 @@ CONFIRMATION.FORM_CONFIRMATION.addEventListener("submit", saveUserCode);
 SETTINGS.CHANGE_NAME_FORM.addEventListener("submit", changeName);
 MESSAGES.MESSAGE_FORM.addEventListener("submit", sendMessage);
 
-export function RenderMessages(data, whereInsert) {
+const socket = new WebSocket(`wss://edu.strada.one/websockets?${cookieGet("code")}`);
+socket.onmessage = function (event) {
+  RenderMessages(JSON.parse(event.data), "append");
+  MESSAGES.MESSAGE_BLOCK.scrollIntoView(false);
+};
+
+function saveUserCode(event) {
+  event.preventDefault();
+  cookieSet("code", CONFIRMATION.CODE_INPUT.value);
+  messagesRequest(cookieGet("code"));
+}
+
+function sendMessage(event) {
+  event.preventDefault();
+  socket.send(JSON.stringify({ text: MESSAGES.MESSAGE_INPUT.value }));
+  MESSAGES.MESSAGE_INPUT.value = ""
+}
+
+function changeName(event) {
+  event.preventDefault();
+  changeNameRequest(SETTINGS.CHANGE_NAME_INPUT.value, cookieGet("code"));
+}
+
+export function changeNameMessage(message, name) {
+  SETTINGS.MESSAGE_CHANGE_NAME.textContent = `${message} ${name}`;
+}
+
+export function deleteAccountHistory() {
+  AUTHORIZATION.AUTHORIZATION_WRAPPER.style.display = "flex";
+  Cookies.remove("code");
+}
+
+export function loadHistoryMessage(array) {
+  for (let i = HISTORY_RENDER_VALUES.START; i < HISTORY_RENDER_VALUES.END; i++) {
+    RenderMessages(array.messages[i], "prepend");
+    MESSAGES.MESSAGE_BLOCK.scrollIntoView(false);
+  }
+  ELEMENTS.SCROLL_BLOCK.addEventListener("scroll", function () {
+    if (ELEMENTS.SCROLL_BLOCK.scrollTop === 0) {
+      scrollRender(array);
+    }
+  });
+}
+
+// наверное переборщила с объектами, зато не скажешь мол:
+// "а что значити это число, а что это занчит"
+
+function scrollRender(array) {
+  for (let i = SCROLL_RENDER_VALUES.START; i < SCROLL_RENDER_VALUES.END; i++) {
+    RenderMessages(array.messages[i], "prepend");
+    ELEMENTS.SCROLL_BLOCK.scrollTop = SCROLL_RENDER_VALUES.SCROLL_BACK;
+  }
+  SCROLL_RENDER_VALUES.START = SCROLL_RENDER_VALUES.END;
+  SCROLL_RENDER_VALUES.END += SCROLL_RENDER_VALUES.INCREASE_NUMBER;
+  if (SCROLL_RENDER_VALUES.START === SCROLL_RENDER_VALUES.ALL_MESSAGES) {
+    alert("Все выгрузилось!");
+  }
+}
+
+export function RenderMessages(data, method) {
   const authorMessage = MESSAGES.TEMPLATE.content.querySelector(
     ".other-name-message"
   );
@@ -35,81 +96,11 @@ export function RenderMessages(data, whereInsert) {
   timeMessage.textContent = format(new Date(data.createdAt), "k:mm");
   authorMessage.textContent = data.user.name;
   const cloneMessages = MESSAGES.TEMPLATE.content.cloneNode(true);
-  const methodInsert = whereInsert;
+  const methodInsert = method;
 
   if (methodInsert === "append") {
     MESSAGES.MESSAGE_BLOCK.append(cloneMessages);
   } else {
     MESSAGES.MESSAGE_BLOCK.prepend(cloneMessages);
-    ELEMENTS.SCROLL_BLOCK.scrollTop === 300;
-  }
-}
-
-function saveUserCode(event) {
-  event.preventDefault();
-  const codeInput = CONFIRMATION.CODE_INPUT.value;
-  cookieSet("code", codeInput);
-  const cookieCode = cookieGet("code");
-  messagesRequest(cookieCode);
-}
-
-const cookieCode = cookieGet("code");
-const socket = new WebSocket(`wss://edu.strada.one/websockets?${cookieCode}`);
-socket.onmessage = function (event) {
-  RenderMessages(JSON.parse(event.data), "append");
-  MESSAGES.MESSAGE_BLOCK.scrollIntoView(false);
-};
-
-function sendMessage(event) {
-  event.preventDefault();
-  const message = MESSAGES.MESSAGE_INPUT.value;
-  socket.send(JSON.stringify({ text: message }));
-  MESSAGES.MESSAGE_INPUT.value = "";
-}
-
-function changeName(event) {
-  event.preventDefault();
-  const inputName = SETTINGS.CHANGE_NAME_INPUT.value;
-  const cookieCode = cookieGet("code");
-  changeNameRequest(inputName, cookieCode);
-  SETTINGS.CHANGE_NAME_INPUT.value = "";
-}
-
-export function changeNameMessage(message, name) {
-  SETTINGS.MESSAGE_CHANGE_NAME.textContent = `${message} ${name}`;
-}
-
-export function deleteAccountHistory() {
-  document.location.reload();
-  Cookies.remove("code");
-}
-
-export function loadHistoryMessage(array) {
-  for (let i = 0; i < 20; i++) {
-    RenderMessages(array.messages[i], "prepend");
-    MESSAGES.MESSAGE_BLOCK.scrollIntoView(false);
-  }
-  ELEMENTS.SCROLL_BLOCK.addEventListener("scroll", function () {
-    if (ELEMENTS.SCROLL_BLOCK.scrollTop === 0) {
-      scrollRender(array);
-    }
-  });
-}
-
-let start = 20;
-let end = 40;
-
-//scrollTop = 600, чтобы во время рендера истории скрол спускался чуть вниз,
-//а не осталавался на месте.
-
-function scrollRender(array) {
-  for (let i = start; i < end; i++) {
-    RenderMessages(array.messages[i], "prepend");
-    ELEMENTS.SCROLL_BLOCK.scrollTop = 600;
-  }
-  start = end;
-  end = end + 20;
-  if (start === 300) {
-    alert("Все выгрузилось!");
   }
 }
