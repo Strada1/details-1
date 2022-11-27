@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="chat">
+      <div class="container">
+        <div class="chat__wrapper">
+          <div class="chat__inner">
+            <div class="chat__head">
+              <button class="chat__btn chat__btn--settings">Настройки</button>
+              <button class="chat__btn">Выйти</button>
+            </div>
+            <div class="chat__body"></div>
+            <form class="chat__form">
+              <input type="text" placeholder="сообщение" class="chat__input chat__input--message" />
+              <button class="chat__btn chat__btn--send">-></button>
+            </form>
+          </div>
+          <div class="popup popup--name">
+            <div class="popup__head">
+              <p>Настройки</p>
+              <button class="popup__close">+</button>
+            </div>
+
+            <div class="popup__text">Имя в чате</div>
+            <form class="chat__form">
+              <input type="text" placeholder="Стив" class="chat__input chat__input--name" />
+              <button class="popup__btn popup__btn--name">-></button>
+            </form>
+          </div>
+          <div class="popup popup--authorization active">
+            <div class="popup__head">
+              <p>Авторизация</p>
+              <button class="popup__close">+</button>
+            </div>
+            <div class="popup__text">Почта:</div>
+            <form class="chat__form chat__form--autorization">
+              <input type="email" placeholder="" class="chat__input chat__input--authorization" />
+              <button class="popup__btn popup__btn--autorization">Получить код</button>
+            </form>
+          </div>
+          <div class="popup popup--confirmation">
+            <div class="popup__head">
+              <p>Подтверждение</p>
+              <button class="popup__close">+</button>
+            </div>
+
+            <div class="popup__text">Код:</div>
+            <form class="chat__form chat__form--confirmation">
+              <input type="text" placeholder="" class="chat__input chat__input--confirmation" />
+              <button class="popup__btn popup__btn--confirmation">Войти</button>
+            </form>
+          </div>
+        </div>
+        <template id="tmpl"> <div class="message">Привет, Мир!</div> </template>
+        <button class="button_click">click</button>
+      </div>
+    </section>
+    <script src="./js/main.js" type="module"></script>
+  </body>
+</html>
