@@ -1,4 +1,5 @@
-import { ELEMENT, POPUP, User } from './const'
+import { ELEMENT, POPUP, maxMessages } from './const'
+import { addMessage, } from './functions'
 
 
 if (!document.cookie) {
@@ -21,7 +22,10 @@ if (!document.cookie) {
         })
     });
     socket()
-}
+} 
+socket()
+showAllMessages()
+
 
 async function getTheCode() {
     const form = document.getElementById(POPUP.AUTHORIZATION.FORM_ID);
@@ -61,12 +65,10 @@ async function setNewName() {
     console.log(result);
 }
 
-async function getMessagesHistory() {
-
+export async function getMessagesHistory() {
     const responce = await fetch("https://edu.strada.one/api/messages", {
         method: "GET",
         headers: {
-            "Content-Type": "application/json",
             "Authorization": `Bearer ${document.cookie}`,
         }
     });
@@ -74,52 +76,43 @@ async function getMessagesHistory() {
     return result;
 }
 
-showAllMessages()
+
 function showAllMessages() {
     const result = getMessagesHistory()
     result
         .then(messages => messages.messages)
         .then(messages => {
-            messages.slice().reverse()
-                .forEach(message => {
+            let i = 0;
+			let j = maxMessages;
+			messages
+                .splice(i, j)
+                .reverse()
+                .forEach((message) => {
                     addMessage(message.text, message.user.name, message.createdAt, message.user.email);
-                });
-        });
-    socket();
-}
+                })
+            
+            ELEMENT.messagesArea.addEventListener('scroll', () => {
+                if (ELEMENT.messagesArea.scrollTop === 0) {
+                    if (messages.length !== 0) {
+                        messages
+                            .splice(i, j)
+                            .reverse()
+                            .forEach((message) => {
+                                addMessage(message.text, message.user.name, message.createdAt, message.user.email, 'false');
+                        });
+                    }
+                }
 
+            })
+    });
 
-function addMessage(messageText, name = User.me.name, time = "", email = User.me.email) {
-	time = getTime(time);
-	if (messageText.trim() === "") {
-		return;
-	}
-
-	const messageBlock = createMessage(messageText, name, time, email);
-	ELEMENT.messagesArea.append(messageBlock);
-	scrollMessagesToEnd();
 }
 
 function authorization() {
     const form = document.getElementById(POPUP.CONFIRMATION.FORM_ID);
     const input = form.querySelector(".popup__input");
     const token = input.value;
-    saveToken(token);
-}
-
-
-function createMessage(messageText, name, time, email) {
-	let messageBlock;
-	if (email !== User.me.email) {
-		messageBlock = ELEMENT.INTERLOCUTOR_MESSAGE_TEMPLATE.content.cloneNode(true);
-		messageBlock.querySelector(".message__text").textContent = `${name}: ${messageText}`;
-	} else {
-		messageBlock = ELEMENT.tmpl.content.cloneNode(true);
-		messageBlock.querySelector(".message__text").textContent = `${messageText}`;
-	}
-	messageBlock.querySelector(".message__time").textContent = time;
-    ELEMENT.formMessage.value = "";
-	return messageBlock;
+    document.cookie = token;
 }
 
 export function showPopup(popupType) {
@@ -153,26 +146,6 @@ ELEMENT.POPUP_CLOSE_BUTTONS.forEach(button => {
     button.addEventListener("click", closePopup);
 });
 
-function getTime(time) {
-    if (time) {
-        time = new Date(time);
-    } else {
-        time = new Date();
-    }
-
-    const hours = time.getHours();
-    let minutes = time.getMinutes();
-    if (minutes < 10) {
-        minutes = `0${time.getMinutes()}`;
-    }
-
-    return `${hours}:${minutes}`;
-}
-
-function scrollMessagesToEnd() {
-    ELEMENT.messagesArea.scrollTop = ELEMENT.messagesArea.scrollHeight;
-}
-
 function createPopup(popupType) {
     const popup = document.getElementById("popupTemplate").content.cloneNode(true);
     popup.querySelector(".popup__title").textContent = popupType.TITLE;
@@ -183,17 +156,11 @@ function createPopup(popupType) {
     return popup;
 }
 
-function saveToken(token) {
-	document.cookie = token;
-}
-
-function socket() {
-    const socket = new WebSocket(`ws://edu.strada.one/websockets?${document.cookie}`);
+export function socket() {
+    const socket = new WebSocket(`wss://edu.strada.one/websockets?${document.cookie}`);
 
     socket.onmessage = function (event) {
-
 		const data = JSON.parse(event.data);
-        console.log(data.user.email)
 		addMessage(data.text, data.user.name, data.createdAt, data.user.email);
 	};
     
@@ -202,12 +169,11 @@ function socket() {
         const msg = ELEMENT.formMessage.value;
         if (msg.trim()) {
             socket.send(JSON.stringify({ text: msg }));
-            
         } else alert ('Please enter smth');
         
     })
 
     socket.onerror = function(error) {
-        console.log(JSON.stringify({error}));
+        console.log(JSON.stringify(error, ["message", "arguments", "type", "name"]));
     };
 }

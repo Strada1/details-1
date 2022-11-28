@@ -42,3 +42,5 @@ export const User = {
         email: "krokhmall@ya.ru",
     }
 }
+
+export const maxMessages = 20;
