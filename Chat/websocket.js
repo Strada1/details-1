@@ -5,6 +5,7 @@ const socket = new WebSocket(`${DATA.websocket}${Cookies.get('email')}`);
 function sentMessage (message,e) {
     socket.send(JSON.stringify({text: message}));
     console.log("[open] Соединение установлено");
+    return message;
 }
 
 function getMessage(event) {

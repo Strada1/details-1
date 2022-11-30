@@ -4,21 +4,23 @@ import {sentMessage, socket} from "./websocket.js";
 
 function renderClient(array) {
     // const array = getItemStorage();
-
     array.forEach((obj) => {
-        const HTMLTemplateElements = document.querySelector('.client-message');
-        const cloneNodes = HTMLTemplateElements.content.cloneNode(true);
-        const message = cloneNodes.querySelector('.client-span-message');
-        const date = cloneNodes.querySelector('.date-interlocutor');
-        const clientName = cloneNodes.querySelector(".no-select");
+        if(obj){
+            const HTMLTemplateElements = document.querySelector('.client-message');
+            const cloneNodes = HTMLTemplateElements.content.cloneNode(true);
+            const message = cloneNodes.querySelector('.client-span-message');
+            const date = cloneNodes.querySelector('.date-interlocutor');
+            const clientName = cloneNodes.querySelector(".no-select");
 
-        clientName.textContent = `${obj.user.name}: `;
-        message.textContent =  obj.text;
-        date.textContent = format(new Date(obj.createdAt), 'k:m');
-        contentMessages.append(cloneNodes);
+            clientName.textContent = `${obj.user.name}: `;
+            message.textContent =  obj.text;
+            date.textContent = format(new Date(obj.createdAt), 'k:m');
+            contentMessages.append(cloneNodes);
+        }
+
     });
 
-    scrollLastElement();
+   // scrollLastElement();
 }
 
 const inputMessage = document.querySelector('#post-name');

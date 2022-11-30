@@ -3,7 +3,7 @@ import { setUserName } from "./requests.js";
 import { inputValue } from "./const.js";
 import { socket } from "./websocket.js";
 import { getItemStorage, setItemStorage } from "./storage.js";
-import {scrollLastElement, scrollVue} from "./scrollMessages.js";
+import {lazyLoad, scrollLastElement, spliceArr} from "./scrollMessages.js";
 import { renderClient, renderUserMessage } from "./render.js";
 
 const formMessage = document.querySelector('#setMessage');
@@ -52,17 +52,19 @@ formInputName.addEventListener("submit", setName);
 
 const historyLoaded = document.querySelector(".historyLoaded");
 contentMessages.addEventListener('scroll', function() {
-    // получаем высоту элемента, на котором произошло событие
     console.log(this.scrollTop)
-    if(this.scrollTop ===0){
+    if(this.scrollTop === 0){
         historyLoaded.textContent = "Вся история загружена";
     } else {
         historyLoaded.textContent = "";
-       //const arr = scrollVue();
-     //  renderClient(arr);
+        lazyLoad();
     }
+
+
 })
 
-scrollVue();
+window.onload = ( (event) => {
+    spliceArr();
+});
 
 

@@ -1,5 +1,6 @@
-import {getItemStorage} from "./storage.js";
+import {getItemStorage} from "./storage";
 import {renderClient} from "./render";
+
 
 function scrollLastElement() {
     const ELEMENTS = document.querySelector('.content-message');
@@ -7,23 +8,27 @@ function scrollLastElement() {
     LAST_MESSAGE.scrollIntoView({ block: 'end', behavior: 'smooth' });
 }
 
-let countStart = 0
-let countEnd = 20;
+function spliceArr() {
 
-function scrollVue() {
     const array = getItemStorage();
     if(!array){
         return;
     }
-
-    // if(array.length === countEnd){
-    //
-    //     newArr = [ ...array.splice(countStart,countEnd) ] ;
-    //
-    // }
-    const newArr = array.splice(countStart,countEnd) ;
+    const newArr = array.splice(0,countEnd) ;
     renderClient(newArr);
+    scrollLastElement();
 
 }
 
-export {scrollLastElement, scrollVue}
+
+let item = 0;
+const countEnd = 20;
+function lazyLoad() {
+    let array = getItemStorage();
+    for (let i = 0; i <= countEnd ; i++){
+       renderClient([array[item]]);
+       item++;
+    }
+}
+
+export {scrollLastElement, spliceArr, lazyLoad}
