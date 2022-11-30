@@ -1,0 +1,22 @@
+{
+  "name": "52-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "parcel": "^2.8.0",
+    "typescript": "^4.9.3"
+  }
+}
