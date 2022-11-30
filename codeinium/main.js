@@ -1,4 +1,4 @@
-import { intervalToDuration } from 'date-fns'
+import { intervalToDuration, formatDuration, milliseconds } from 'date-fns'
 
 const ELEMENTS = {
     INPUT: document.querySelector('#date'),
@@ -6,12 +6,28 @@ const ELEMENTS = {
     NEWDATE: document.querySelector('.new-date')
 }
 
-function dateCount() {
+function dateCountdown(timerId) {
+    const startDate = new Date(Date.now());
+    const endDate = new Date(ELEMENTS.INPUT.value);
+
     const dateNew = intervalToDuration({
-        start: new Date(Date.now()),
-        end: new Date(ELEMENTS.INPUT.value)
-    })
-    ELEMENTS.NEWDATE.textContent = `${dateNew.years} год/лет, ${dateNew.days} день/дней, ${dateNew.hours} час/часов`;
+        start: startDate,
+        end: endDate,
+    }) 
+    
+    const monthToDays = Math.floor(dateNew?.months * 30.4167);
+    ELEMENTS.NEWDATE.textContent = `
+        ${dateNew?.years} years, 
+        ${dateNew?.days + monthToDays} days, 
+        ${dateNew?.hours} hours, 
+        ${dateNew?.minutes} minutes,              
+        ${dateNew?.seconds} seconds
+    `; //bonus: minites, seconds
+    
 }
 
-ELEMENTS.BUTTON.addEventListener('click', dateCount)
+function setTimer() {
+    const timerId = setInterval(() => dateCountdown(timerId), 1000) 
+}
+
+ELEMENTS.BUTTON.addEventListener('click', setTimer)
