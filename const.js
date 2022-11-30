@@ -1,14 +1,11 @@
-"use strict";
-exports.__esModule = true;
-exports.OPERATION = exports.ELEMENT = void 0;
-exports.ELEMENT = {
+export const ELEMENT = {
     BUTTON: document.getElementById("btn"),
     FIRST_INPUT: document.getElementById("firstInput"),
     SECOND_INPUT: document.getElementById("secondInput"),
     OPERATION: document.getElementById("select"),
     RESULT: document.getElementById("calc_result")
 };
-exports.OPERATION = {
+export const OPERATION = {
     ADD: "+",
     SUBSTRACT: "-",
     MULTI: "*",
