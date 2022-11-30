@@ -537,12 +537,19 @@ var _uiJs = require("./ui.js");
 var _requestJs = require("./request.js");
 var _messages = require("./messages");
 const set = new Set();
+function getStringify(item) {
+    try {
+        return JSON.stringify(item.trim());
+    } catch (e) {
+        alert(e.message);
+    }
+}
 (0, _constJs.ELEMENTS).authorizationForm.addEventListener("submit", (event)=>{
     event.preventDefault();
     (0, _requestJs.setCookie)("thisUser", (0, _constJs.ELEMENTS).emailInput.value.trim());
-    (0, _requestJs.sendRequest)((0, _constJs.METHOD).POST, (0, _constJs.ELEMENTS).URL + "/user", {
-        body: JSON.stringify({
-            email: (0, _constJs.ELEMENTS).emailInput.value.trim()
+    (0, _requestJs.sendRequest)((0, _constJs.METHOD).POST, `${(0, _constJs.ELEMENTS).URL}${"/user"}`, {
+        body: getStringify({
+            email: (0, _constJs.ELEMENTS).emailInput.value
         })
     });
     (0, _constJs.ELEMENTS).emailInput.value = "";
@@ -559,23 +566,24 @@ const set = new Set();
 (0, _constJs.ELEMENTS).nameForm.addEventListener("submit", (event)=>{
     event.preventDefault();
     const token = (0, _requestJs.getCookie)("token");
-    if ((0, _constJs.ELEMENTS).name.value !== "") (0, _requestJs.sendRequest)((0, _constJs.METHOD).PATCH, (0, _constJs.ELEMENTS).URL + "/user", {
-        body: JSON.stringify({
-            name: (0, _constJs.ELEMENTS).name.value.trim()
+    if ((0, _constJs.ELEMENTS).name.value !== "") (0, _requestJs.sendRequest)((0, _constJs.METHOD).PATCH, `${(0, _constJs.ELEMENTS).URL}${"/user"}`, {
+        body: getStringify({
+            name: (0, _constJs.ELEMENTS).name.value
         })
     }, {
-        Authorization: `Bearer ${token}`
+        Authorization: `${(0, _constJs.ELEMENTS).authorizationWord} ${token}`
     });
     else (0, _uiJs.showWarning)((0, _constJs.ELEMENTS).nameWarning);
     (0, _constJs.ELEMENTS).name.value = "";
 });
 window.onload = function showCurrentHistory() {
-    if (!(0, _requestJs.getCookie)("token")) {
+    const token = (0, _requestJs.getCookie)("token");
+    if (!token) {
         (0, _uiJs.showModal)((0, _constJs.ELEMENTS).modalAuthorization);
         return;
     }
-    const responseResult = (0, _requestJs.sendRequest)((0, _constJs.METHOD).GET, (0, _constJs.ELEMENTS).URL + "/messages/", {}, {
-        Authorization: `Bearer ${(0, _requestJs.getCookie)("token")}`
+    const responseResult = (0, _requestJs.sendRequest)((0, _constJs.METHOD).GET, `${(0, _constJs.ELEMENTS).URL}${"/messages/"}`, {}, {
+        Authorization: `${(0, _constJs.ELEMENTS).authorizationWord} ${token}`
     });
     responseResult.then((result)=>{
         localStorage.setItem("history", JSON.stringify(result.messages));
@@ -673,7 +681,8 @@ const ELEMENTS = {
     interlocutorMessages: [
         "message",
         "message--interlocutor"
-    ]
+    ],
+    authorizationWord: "Bearer"
 };
 const ELEM_HEIGHTS = {
     windowHeight: document.documentElement.clientHeight,

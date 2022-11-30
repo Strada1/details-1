@@ -12,11 +12,20 @@ import { addMessage, downloadHistory } from "./messages";
 
 const set = new Set();
 
+function getStringify(item) {
+try {
+  return JSON.stringify(item.trim());
+} catch(e) {
+  alert (e.message);
+}
+}
+
+
 ELEMENTS.authorizationForm.addEventListener("submit", (event) => {
   event.preventDefault();
   setCookie("thisUser", ELEMENTS.emailInput.value.trim());
-  sendRequest(METHOD.POST, ELEMENTS.URL + "/user", {
-    body: JSON.stringify({ email: ELEMENTS.emailInput.value.trim() }),
+  sendRequest(METHOD.POST, `${ELEMENTS.URL}${'/user'}`, {
+    body: getStringify({ email: ELEMENTS.emailInput.value}),
   });
   ELEMENTS.emailInput.value = "";
   closeModal(ELEMENTS.modalAuthorization);
@@ -37,9 +46,9 @@ ELEMENTS.nameForm.addEventListener("submit", (event) => {
   if (ELEMENTS.name.value !== "") {
     sendRequest(
       METHOD.PATCH,
-      ELEMENTS.URL + "/user",
-      { body: JSON.stringify({ name: ELEMENTS.name.value.trim() }) },
-      { Authorization: `Bearer ${token}` }
+      `${ELEMENTS.URL}${'/user'}`,
+      { body: getStringify({name: ELEMENTS.name.value}) },
+      { Authorization: `${ELEMENTS.authorizationWord} ${token}` }
     );
   } else {
     showWarning(ELEMENTS.nameWarning);
@@ -48,15 +57,16 @@ ELEMENTS.nameForm.addEventListener("submit", (event) => {
 });
 
 window.onload = function showCurrentHistory() {
-  if (!getCookie("token")) {
+  const token = getCookie("token");
+  if (!token) {
     showModal(ELEMENTS.modalAuthorization);
     return;
   }
   const responseResult = sendRequest(
     METHOD.GET,
-    ELEMENTS.URL + "/messages/",
+    `${ELEMENTS.URL}${'/messages/'}`,
     {},
-    { Authorization: `Bearer ${getCookie("token")}` }
+    { Authorization: `${ELEMENTS.authorizationWord} ${token}` }
   );
 
   responseResult.then((result) => {

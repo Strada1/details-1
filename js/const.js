@@ -26,6 +26,7 @@
     nameWarning: document.querySelector("#modal-name .modal__warning"),
     myMessages: ["message", "message--user-me", "message--sent"],
     interlocutorMessages: ["message", "message--interlocutor"],
+    authorizationWord: 'Bearer',
   };
   
  export const ELEM_HEIGHTS = {

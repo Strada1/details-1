@@ -39,3 +39,4 @@ export async function sendRequest(method, URL, body = {}, headers = {}) {
     console.log(err);
   }
 }
+
