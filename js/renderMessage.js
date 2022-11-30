@@ -18,11 +18,11 @@ socket.onmessage = async function(event) {
   let userName = message.user.name;
   time = format(new Date(time), "kk':'mm");
   if (userEmail == myEmail) {
-    let push  = 1;
-    addMessageToDOM(text, time, push);
+    let method  = 1;
+    addMessageToDOM(text, time, method);
   } else {
-    let push  = 1;
-    companionMessageToDOM(text, time, userName, push);
+    let method  = 1;
+    companionMessageToDOM(text, time, userName, method);
   }
 };
 
@@ -37,7 +37,7 @@ function getMessageInput(event) {
   }
 }
 
-export function addMessageToDOM(message, time, push) {
+export function addMessageToDOM(message, time, method) {
   const userContent = document.createElement("div");
   userContent.append(ELEMENT.TEMPLATE.content.cloneNode(true));
   const contentMyMessage = userContent.querySelector(".text__my__SMS");
@@ -46,17 +46,18 @@ export function addMessageToDOM(message, time, push) {
   contentMyMessage.textContent = `${message}`;
   timeMyMessage.textContent = time;
 
-  if(push) {
+  if(method) {
     ELEMENT.CHAT_CONTAINER.append(userContent);
     scrollLastElement();
   } else {
     ELEMENT.CHAT_CONTAINER.prepend(userContent);
     scrollRenderElement()
   }
-   
 }
 
-export function companionMessageToDOM(message, time, name , push) {
+// JSON PARCE В ТРАЙ КЕТЧ!!!
+// переписать на принятие обьекта, а не 4 аргументов
+export function companionMessageToDOM(message, time, name , method) {
   const userContent = document.createElement("div");
   userContent.append(ELEMENT.TEMPLATE_COMPANION.content.cloneNode(true));
   const contentMyMessage = userContent.querySelector(".text__his_SMS");
@@ -65,7 +66,7 @@ export function companionMessageToDOM(message, time, name , push) {
   contentMyMessage.textContent = `${name}: ${message}`;
   timeMyMessage.textContent = time;
 
-  if(push) {
+  if(method) {
     ELEMENT.CHAT_CONTAINER.append(userContent);
     scrollLastElement();
   } else {

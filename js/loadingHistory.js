@@ -48,20 +48,21 @@ async function getMessagesResult(result, lengthArray, myEmail) {
      time = format(new Date(time), "kk':'mm");
     if (userEmail == myEmail) {
       if(+localStorage.getItem("number1") == 0) {
-        let push = 1
-        addMessageToDOM(message, time, push);
+        let method = 1
+        addMessageToDOM(message, time, method);
       } else {
-        let push = 0
-        addMessageToDOM(message, time, push);
+        let method = 0
+        addMessageToDOM(message, time, method);
       }
       
     } else {
       if(+localStorage.getItem("number1") == 0) {
-        let push = 1
-        companionMessageToDOM(message, time, userName, push);
+        let method = 1
+        // переписать на принятие обьекта, а не 4 аргументов
+        companionMessageToDOM(message, time, userName, method);
       } else {
-        let push = 0
-        companionMessageToDOM(message, time, userName, push);
+        let method = 0
+        companionMessageToDOM(message, time, userName, method);
       }
       
     }
