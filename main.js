@@ -1,48 +1,34 @@
-"use strict";
-var _a;
-exports.__esModule = true;
-var const_1 = require("./const");
-var getOperand = function (element) {
-    var operand;
+import { ELEMENTS, SYMBOLS } from "./const";
+const notNull = (element) => {
+    let elNotNull;
     if (element !== null) {
-        operand = Number(element.value);
+        elNotNull = element;
     }
-    else
-        operand = false;
-    return operand;
+    ;
+    return elNotNull;
 };
-var getOperator = function (element) {
-    var operator;
-    if (element !== null) {
-        operator = element.value;
-    }
-    return operator;
-};
-var math = function () {
-    var mathResult;
-    var firstOperand = getOperand(const_1.ELEMENTS.firstNumber);
-    var secondOperand = getOperand(const_1.ELEMENTS.secondNumber);
-    var operator = getOperator(const_1.ELEMENTS.operator);
-    if (firstOperand && secondOperand) {
-        switch (operator) {
-            case const_1.SYMBOLS.add:
-                mathResult = firstOperand + secondOperand;
-                break;
-            case const_1.SYMBOLS.sub:
-                mathResult = firstOperand - secondOperand;
-                break;
-            case const_1.SYMBOLS.multi:
-                mathResult = firstOperand * secondOperand;
-                break;
-            case const_1.SYMBOLS.div:
-                mathResult = firstOperand / secondOperand;
-                break;
-        }
-    }
-    else
-        mathResult = 'АШЫБКАжужуж';
-    if (const_1.ELEMENTS.result !== null) {
-        const_1.ELEMENTS.result.textContent = mathResult;
+const math = () => {
+    const firstOperand = Number((notNull(ELEMENTS.firstNumber)).value);
+    const secondOperand = Number((notNull(ELEMENTS.secondNumber)).value);
+    const operator = notNull(ELEMENTS.operator).value;
+    const result = (notNull(ELEMENTS.result));
+    switch (operator) {
+        case SYMBOLS.add:
+            let mathResultAdd = String(firstOperand + secondOperand);
+            result.textContent = mathResultAdd;
+            break;
+        case SYMBOLS.sub:
+            let mathResultSub = String(firstOperand - secondOperand);
+            result.textContent = mathResultSub;
+            break;
+        case SYMBOLS.multi:
+            let mathResultMulti = String(firstOperand * secondOperand);
+            result.textContent = mathResultMulti;
+            break;
+        case SYMBOLS.div:
+            let mathResultDiv = String(firstOperand / secondOperand);
+            result.textContent = mathResultDiv;
+            break;
     }
 };
-(_a = const_1.ELEMENTS.btnEqual) === null || _a === void 0 ? void 0 : _a.addEventListener('click', math);
+ELEMENTS.btnEqual?.addEventListener('click', math);

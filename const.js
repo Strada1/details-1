@@ -1,18 +1,14 @@
-"use strict";
-exports.__esModule = true;
-exports.SYMBOLS = exports.ELEMENTS = void 0;
-var ELEMENTS = {
+const ELEMENTS = {
     firstNumber: document.querySelector('.firstNumber'),
     secondNumber: document.querySelector('.secondNumber'),
     operator: document.querySelector('.operator'),
     btnEqual: document.querySelector('.button'),
-    result: document.querySelector('.result')
+    result: document.querySelector('.result'),
 };
-exports.ELEMENTS = ELEMENTS;
-var SYMBOLS = {
+const SYMBOLS = {
     add: '+',
     sub: '-',
     multi: '*',
-    div: '/'
+    div: '/',
 };
-exports.SYMBOLS = SYMBOLS;
+export { ELEMENTS, SYMBOLS };

@@ -1,46 +1,37 @@
 import { ELEMENTS, SYMBOLS } from "./const";
 
-const getOperand = (element) => {
-  let operand;
+const notNull = (element) : HTMLInputElement => {
+  let elNotNull;
   if (element !== null) {
-  operand = Number(element.value)
-  } else operand = false;
-  return operand;
-};
-
-const getOperator = (element) : string => {
-  let operator;
-  if (element !== null) {
-    operator = element.value;
-  }
-  return operator;
+    elNotNull = element;
+  };
+  return elNotNull;
 };
 
 
 const math = () => {
-  let mathResult;
-  const firstOperand = getOperand(ELEMENTS.firstNumber);
-  const secondOperand = getOperand(ELEMENTS.secondNumber);
-  const operator = getOperator(ELEMENTS.operator);
-  if (firstOperand && secondOperand) {
+  const firstOperand = Number((notNull(ELEMENTS.firstNumber)).value);
+  const secondOperand = Number((notNull(ELEMENTS.secondNumber)).value);
+  const operator = notNull(ELEMENTS.operator).value;
+  const result = (notNull(ELEMENTS.result));
     switch (operator) {
       case SYMBOLS.add :
-         mathResult = firstOperand + secondOperand;
+         let mathResultAdd : string = String(firstOperand + secondOperand);
+         result.textContent = mathResultAdd;
          break;
       case SYMBOLS.sub :
-         mathResult = firstOperand - secondOperand;
+         let mathResultSub : string = String(firstOperand - secondOperand);
+         result.textContent = mathResultSub;
          break;
       case SYMBOLS.multi :
-         mathResult = firstOperand * secondOperand;
+        let mathResultMulti : string = String(firstOperand * secondOperand);
+        result.textContent = mathResultMulti;
          break;
       case SYMBOLS.div :
-         mathResult = firstOperand / secondOperand;
+        let mathResultDiv : string = String(firstOperand / secondOperand);
+        result.textContent = mathResultDiv;
          break;
     } 
-  } else mathResult = 'АШЫБКАжужуж';
-  if (ELEMENTS.result !== null) {
-    ELEMENTS.result.textContent = mathResult;
-  }
 }
 
 ELEMENTS.btnEqual?.addEventListener('click', math);
