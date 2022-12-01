@@ -1,0 +1,34 @@
+.calculator {
+  width: 1143px;
+  height: 1000px;
+  background: #fff;
+  border-radius: 103px;
+  margin: 0 auto;
+}
+
+.numbers {
+  height: 100%;
+  width: 342px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+}
+
+body {
+  background: #000;
+}
+
+.number {
+  width: 95px;
+}
+
+.operation {
+  width: 39px;
+}
+
+.operation-result {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=index.3a01df49.css.map */
