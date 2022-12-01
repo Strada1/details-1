@@ -532,115 +532,147 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"1Z4Rq":[function(require,module,exports) {
-var _constJs = require("./const.js");
-var _uiJs = require("./ui.js");
-var _requestJs = require("./request.js");
-var _messages = require("./messages");
+"use strict";
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+const const_1 = require("../ts/const");
+const ui_1 = require("../ts/ui");
+const request_js_1 = require("../ts/request");
+const messages_1 = require("../ts/messages");
 const set = new Set();
 function getStringify(item) {
     try {
-        return JSON.stringify(item.trim());
-    } catch (e) {
-        alert(e.message);
+        return JSON.stringify(item);
+    } catch (error) {
+        alert(error.message);
     }
 }
-(0, _constJs.ELEMENTS).authorizationForm.addEventListener("submit", (event)=>{
+const_1.ELEMENTS.authorizationForm.addEventListener("submit", (event)=>{
     event.preventDefault();
-    (0, _requestJs.setCookie)("thisUser", (0, _constJs.ELEMENTS).emailInput.value.trim());
-    (0, _requestJs.sendRequest)((0, _constJs.METHOD).POST, `${(0, _constJs.ELEMENTS).URL}${"/user"}`, {
-        body: getStringify({
-            email: (0, _constJs.ELEMENTS).emailInput.value
-        })
+    (0, request_js_1.setCookie)("thisUser", const_1.ELEMENTS.emailInput.value.trim());
+    (0, request_js_1.sendRequest)({
+        method: const_1.METHOD.POST,
+        URL: `${const_1.ELEMENTS.URL}${"/user"}`,
+        body: {
+            body: getStringify({
+                email: const_1.ELEMENTS.emailInput.value.trim()
+            })
+        }
     });
-    (0, _constJs.ELEMENTS).emailInput.value = "";
-    (0, _uiJs.closeModal)((0, _constJs.ELEMENTS).modalAuthorization);
-    (0, _uiJs.showModal)((0, _constJs.ELEMENTS).modalCode);
+    const_1.ELEMENTS.emailInput.value = "";
+    (0, ui_1.closeModal)(const_1.ELEMENTS.modalAuthorization);
+    (0, ui_1.showModal)(const_1.ELEMENTS.modalCode);
 });
-(0, _constJs.ELEMENTS).codeForm.addEventListener("submit", (event)=>{
+const_1.ELEMENTS.codeForm.addEventListener("submit", (event)=>{
     event.preventDefault();
-    (0, _requestJs.setCookie)("token", (0, _constJs.ELEMENTS).code.value.trim());
-    (0, _constJs.ELEMENTS).code.value = "";
-    (0, _uiJs.closeModal)((0, _constJs.ELEMENTS).modalCode);
+    (0, request_js_1.setCookie)("token", const_1.ELEMENTS.code.value.trim());
+    const_1.ELEMENTS.code.value = "";
+    (0, ui_1.closeModal)(const_1.ELEMENTS.modalCode);
     document.location.reload();
 });
-(0, _constJs.ELEMENTS).nameForm.addEventListener("submit", (event)=>{
+const_1.ELEMENTS.nameForm.addEventListener("submit", (event)=>{
     event.preventDefault();
-    const token = (0, _requestJs.getCookie)("token");
-    if ((0, _constJs.ELEMENTS).name.value !== "") (0, _requestJs.sendRequest)((0, _constJs.METHOD).PATCH, `${(0, _constJs.ELEMENTS).URL}${"/user"}`, {
-        body: getStringify({
-            name: (0, _constJs.ELEMENTS).name.value
-        })
-    }, {
-        Authorization: `${(0, _constJs.ELEMENTS).authorizationWord} ${token}`
+    const token = (0, request_js_1.getCookie)("token");
+    if (const_1.ELEMENTS.name.value !== "") (0, request_js_1.sendRequest)({
+        method: const_1.METHOD.PATCH,
+        URL: `${const_1.ELEMENTS.URL}${"/user"}`,
+        body: {
+            body: getStringify({
+                name: const_1.ELEMENTS.name.value.trim()
+            })
+        },
+        headers: {
+            Authorization: `${const_1.ELEMENTS.authorizationWord} ${token}`
+        }
     });
-    else (0, _uiJs.showWarning)((0, _constJs.ELEMENTS).nameWarning);
-    (0, _constJs.ELEMENTS).name.value = "";
+    else (0, ui_1.showWarning)(const_1.ELEMENTS.nameWarning);
+    const_1.ELEMENTS.name.value = "";
 });
 window.onload = function showCurrentHistory() {
-    const token = (0, _requestJs.getCookie)("token");
+    const token = (0, request_js_1.getCookie)("token");
     if (!token) {
-        (0, _uiJs.showModal)((0, _constJs.ELEMENTS).modalAuthorization);
+        (0, ui_1.showModal)(const_1.ELEMENTS.modalAuthorization);
         return;
     }
-    const responseResult = (0, _requestJs.sendRequest)((0, _constJs.METHOD).GET, `${(0, _constJs.ELEMENTS).URL}${"/messages/"}`, {}, {
-        Authorization: `${(0, _constJs.ELEMENTS).authorizationWord} ${token}`
+    const responseResult = (0, request_js_1.sendRequest)({
+        method: const_1.METHOD.GET,
+        URL: `${const_1.ELEMENTS.URL}${"/messages/"}`,
+        body: {},
+        headers: {
+            Authorization: `${const_1.ELEMENTS.authorizationWord} ${token}`
+        }
     });
     responseResult.then((result)=>{
         localStorage.setItem("history", JSON.stringify(result.messages));
-        (0, _messages.downloadHistory)();
-        (0, _constJs.ELEMENTS).contentWrapper.scrollTop = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight;
+        (0, messages_1.downloadHistory)();
+        if (const_1.ELEMENTS.contentWrapper) const_1.ELEMENTS.contentWrapper.scrollTop = const_1.ELEMENTS.contentWrapper.scrollHeight;
     });
 };
-(0, _constJs.ELEMENTS).scrollDown.hidden = true;
-(0, _constJs.ELEMENTS).contentWrapper.addEventListener("scroll", ()=>{
-    (0, _uiJs.addScrollIcon)();
-    const messagesList = JSON.parse(localStorage.getItem("history"));
-    if ((0, _constJs.ELEMENTS).contentWrapper.scrollTop === 0) {
-        const currentContentHeight = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight;
-        if (messagesList.length >= (0, _constJs.MESSAGE).step) (0, _messages.downloadHistory)();
-        const newContentHeight = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight;
-        (0, _constJs.ELEMENTS).contentWrapper.scrollTop = newContentHeight - currentContentHeight;
+const_1.ELEMENTS.scrollDown.hidden = true;
+const_1.ELEMENTS.contentWrapper.addEventListener("scroll", ()=>{
+    (0, ui_1.addScrollIcon)();
+    const messagesList = JSON.parse(localStorage.getItem("history") || "");
+    if (const_1.ELEMENTS.contentWrapper) {
+        if (const_1.ELEMENTS.contentWrapper.scrollTop === 0) {
+            const currentContentHeight = const_1.ELEMENTS.contentWrapper.scrollHeight;
+            if (messagesList.length >= const_1.MESSAGE.step) (0, messages_1.downloadHistory)();
+            const newContentHeight = const_1.ELEMENTS.contentWrapper.scrollHeight;
+            const_1.ELEMENTS.contentWrapper.scrollTop = newContentHeight - currentContentHeight;
+        }
     }
 });
-const socket = new WebSocket(`wss://edu.strada.one/websockets?${(0, _requestJs.getCookie)("token")}`);
+const socket = new WebSocket(`wss://edu.strada.one/websockets?${(0, request_js_1.getCookie)("token")}`);
 socket.onopen = function() {
     console.log("[open] Соединение установлено");
 };
-(0, _constJs.ELEMENTS).textArea.addEventListener("keydown", (event)=>{
+const_1.ELEMENTS.textArea.addEventListener("keydown", (event)=>{
     set.add(event.key);
     if (set.has("Enter") && !set.has("Shift")) {
         socket.send(JSON.stringify({
-            text: (0, _constJs.ELEMENTS).textArea.value
+            text: const_1.ELEMENTS.textArea.value
         }));
-        (0, _uiJs.returnTextAreaSie)();
+        (0, ui_1.returnTextAreaSie)();
         event.preventDefault();
     }
 });
-(0, _constJs.ELEMENTS).textArea.addEventListener("keyup", (event)=>{
+const_1.ELEMENTS.textArea.addEventListener("keyup", (event)=>{
     set.clear();
-    (0, _uiJs.changeTextAreaSize)(event);
+    (0, ui_1.changeTextAreaSize)(event);
 });
-(0, _constJs.ELEMENTS).messageForm.addEventListener("submit", (event)=>{
+const_1.ELEMENTS.messageForm.addEventListener("submit", (event)=>{
     event.preventDefault();
     socket.send(JSON.stringify({
-        text: (0, _constJs.ELEMENTS).textArea.value
+        text: const_1.ELEMENTS.textArea.value
     }));
-    (0, _uiJs.returnTextAreaSie)();
+    (0, ui_1.returnTextAreaSie)();
 });
 socket.onmessage = function(event) {
     const data = JSON.parse(event.data);
-    if ((0, _requestJs.getCookie)("thisUser") === data.user.email) (0, _messages.addMessage)((0, _constJs.ELEMENTS).myMessages, data.text, data.createdAt, undefined, "append");
-    else (0, _messages.addMessage)((0, _constJs.ELEMENTS).interlocutorMessages, data.text, data.createdAt, data.user.name, "append");
+    if ((0, request_js_1.getCookie)("thisUser") === data.user.email) (0, messages_1.addMessage)({
+        userClass: const_1.ELEMENTS.myMessages,
+        text: data.text,
+        time: data.createdAt,
+        userName: undefined,
+        insert: "append"
+    });
+    else (0, messages_1.addMessage)({
+        userClass: const_1.ELEMENTS.interlocutorMessages,
+        text: data.text,
+        time: data.createdAt,
+        userName: data.user.name,
+        insert: "append"
+    });
 };
-(0, _constJs.ELEMENTS).buttonExit.addEventListener("click", ()=>{
+const_1.ELEMENTS.buttonExit.addEventListener("click", ()=>{
     socket.close();
-    (0, _uiJs.showModal)((0, _constJs.ELEMENTS).modalAuthorization);
-    (0, _requestJs.setCookie)("token", "token", -1);
-    (0, _requestJs.setCookie)("thisUser", "user", -1);
+    (0, ui_1.showModal)(const_1.ELEMENTS.modalAuthorization);
+    (0, request_js_1.setCookie)("token", "token", -1);
+    (0, request_js_1.setCookie)("thisUser", "user", -1);
     localStorage.removeItem("history");
 });
 
-},{"./const.js":"hKAsx","./ui.js":"1hWqh","./request.js":"7c4ZJ","./messages":"cV4xq"}],"hKAsx":[function(require,module,exports) {
+},{"../ts/const":"lATGX","../ts/ui":"aUHBV","../ts/request":"5twFN","../ts/messages":"gPvQh"}],"lATGX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ELEMENTS", ()=>ELEMENTS);
@@ -651,16 +683,17 @@ const ELEMENTS = {
     modalButtonName: document.querySelector(".modal-name"),
     modalName: document.querySelector("#modal-name"),
     modals: document.querySelectorAll("[data-modal]"),
+    modalWindow: document.querySelectorAll(".modal__window"),
+    modalAuthorization: document.querySelector("#modal-authorization"),
+    modalCode: document.querySelector("#modal-code"),
+    closestModal: "[data-modal]",
     buttonsClose: document.querySelectorAll("[data-modal-close]"),
     buttonExit: document.querySelector(".inline-button-exit"),
-    modalWindow: document.querySelectorAll(".modal__window"),
     textArea: document.querySelector(".input-message"),
     contentWindow: document.querySelector(".content"),
     contentWrapper: document.querySelector(".content__wrapper"),
     messageForm: document.querySelector(".texting-area__wrapper"),
     scrollDown: document.querySelector(".scroll-down"),
-    modalAuthorization: document.querySelector("#modal-authorization"),
-    modalCode: document.querySelector("#modal-code"),
     getCodeButton: document.querySelector("#modal-authorization  .button"),
     authorizationForm: document.querySelector("#modal-authorization .input-data"),
     emailInput: document.querySelector("#modal-authorization .modal__input"),
@@ -668,9 +701,7 @@ const ELEMENTS = {
     code: document.querySelector("#modal-code .modal__input"),
     nameForm: document.querySelector("#modal-name .input-data"),
     name: document.querySelector("#modal-name .modal__input"),
-    URL: "https://edu.strada.one/api",
     hiddenClass: "hidden",
-    closestModal: "[data-modal]",
     codeWarning: document.querySelector("#modal-code .modal__warning"),
     nameWarning: document.querySelector("#modal-name .modal__warning"),
     myMessages: [
@@ -682,13 +713,15 @@ const ELEMENTS = {
         "message",
         "message--interlocutor"
     ],
-    authorizationWord: "Bearer"
+    URL: "https://edu.strada.one/api",
+    authorizationWord: "Bearer",
+    template: document.querySelector("#tmpl")
 };
 const ELEM_HEIGHTS = {
     windowHeight: document.documentElement.clientHeight,
     headerHeight: document.querySelector(".header").clientHeight,
-    messageMargin: 15,
     inputMessageHeight: 50,
+    messageMargin: 15,
     inputMessagePadding: 42.5
 };
 const MESSAGE = {
@@ -730,7 +763,7 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"1hWqh":[function(require,module,exports) {
+},{}],"aUHBV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "showModal", ()=>showModal);
@@ -740,64 +773,74 @@ parcelHelpers.export(exports, "addScrollIcon", ()=>addScrollIcon);
 parcelHelpers.export(exports, "showWarning", ()=>showWarning);
 parcelHelpers.export(exports, "returnTextAreaSie", ()=>returnTextAreaSie);
 parcelHelpers.export(exports, "showEndHistory", ()=>showEndHistory);
-var _constJs = require("./const.js");
+var _const = require("./const");
 function showModal(modalItem) {
-    modalItem.classList.remove((0, _constJs.ELEMENTS).hiddenClass);
+    if (modalItem) modalItem.classList.remove((0, _const.ELEMENTS).hiddenClass);
 }
 function closeModal(modalItem) {
-    modalItem.classList.add((0, _constJs.ELEMENTS).hiddenClass);
+    if (modalItem) modalItem.classList.add((0, _const.ELEMENTS).hiddenClass);
 }
-(0, _constJs.ELEMENTS).buttonsClose.forEach(function(item) {
+(0, _const.ELEMENTS).buttonsClose.forEach(function(item) {
     item.addEventListener("click", function() {
-        const currentModal = this.closest((0, _constJs.ELEMENTS).closestModal);
+        const currentModal = this.closest((0, _const.ELEMENTS).closestModal);
         closeModal(currentModal);
     });
 });
-(0, _constJs.ELEMENTS).modals.forEach(function(item) {
+(0, _const.ELEMENTS).modals.forEach(function(item) {
     item.addEventListener("click", function() {
-        this.classList.add((0, _constJs.ELEMENTS).hiddenClass);
+        this.classList.add((0, _const.ELEMENTS).hiddenClass);
     });
 });
-(0, _constJs.ELEMENTS).modalWindow.forEach(function(item) {
+(0, _const.ELEMENTS).modalWindow.forEach(function(item) {
     item.addEventListener("click", function(event) {
         event.stopPropagation();
     });
 });
-(0, _constJs.ELEMENTS).modalButtonName.addEventListener("click", ()=>{
-    showModal((0, _constJs.ELEMENTS).modalName);
+(0, _const.ELEMENTS).modalButtonName.addEventListener("click", ()=>{
+    showModal((0, _const.ELEMENTS).modalName);
 });
 function changeTextAreaSize(event) {
     if (event.target.scrollHeight < 300) {
-        (0, _constJs.ELEMENTS).textArea.style.height = `${(0, _constJs.ELEM_HEIGHTS).inputMessageHeight}px`;
-        let scHeight = event.target.scrollHeight;
-        (0, _constJs.ELEMENTS).textArea.style.height = ` ${scHeight}px`;
-        (0, _constJs.ELEMENTS).contentWindow.style.height = `${(0, _constJs.ELEM_HEIGHTS).windowHeight - ((0, _constJs.ELEM_HEIGHTS).headerHeight + (0, _constJs.ELEM_HEIGHTS).inputMessagePadding + scHeight)}px`;
+        if ((0, _const.ELEM_HEIGHTS).headerHeight && (0, _const.ELEM_HEIGHTS).inputMessagePadding) {
+            (0, _const.ELEMENTS).textArea.style.height = `${(0, _const.ELEM_HEIGHTS).inputMessageHeight}px`;
+            let scHeight = event.target.scrollHeight;
+            (0, _const.ELEMENTS).textArea.style.height = ` ${scHeight}px`;
+            (0, _const.ELEMENTS).contentWindow.style.height = `${(0, _const.ELEM_HEIGHTS).windowHeight - ((0, _const.ELEM_HEIGHTS).headerHeight + (0, _const.ELEM_HEIGHTS).inputMessagePadding + scHeight)}px`;
+        }
     }
 }
 function addScrollIcon() {
-    const lastMessage = (0, _constJs.ELEMENTS).contentWindow.querySelector(".message:last-child");
-    const scrollBottom = (0, _constJs.ELEMENTS).contentWrapper.scrollHeight - (0, _constJs.ELEMENTS).contentWrapper.clientHeight - (0, _constJs.ELEMENTS).contentWrapper.scrollTop;
-    if (scrollBottom < lastMessage.clientHeight + (0, _constJs.ELEM_HEIGHTS).messageMargin) {
-        (0, _constJs.ELEMENTS).scrollDown.hidden = true;
-        return scrollBottom;
-    } else (0, _constJs.ELEMENTS).scrollDown.hidden = false;
+    if ((0, _const.ELEMENTS).contentWindow && (0, _const.ELEMENTS).contentWrapper) {
+        const lastMessage = (0, _const.ELEMENTS).contentWindow.querySelector(".message:last-child");
+        const scrollBottom = (0, _const.ELEMENTS).contentWrapper.scrollHeight - (0, _const.ELEMENTS).contentWrapper.clientHeight - (0, _const.ELEMENTS).contentWrapper.scrollTop;
+        if ((0, _const.ELEM_HEIGHTS).messageMargin) {
+            if (scrollBottom < lastMessage.clientHeight + (0, _const.ELEM_HEIGHTS).messageMargin) {
+                (0, _const.ELEMENTS).scrollDown.hidden = true;
+                return scrollBottom;
+            } else (0, _const.ELEMENTS).scrollDown.hidden = false;
+        }
+    }
 }
-(0, _constJs.ELEMENTS).scrollDown.addEventListener("click", ()=>{
-    const lastMessage = (0, _constJs.ELEMENTS).contentWindow.querySelector(".message:last-child");
-    lastMessage.scrollIntoView({
-        behavior: "smooth"
-    });
+(0, _const.ELEMENTS).scrollDown.addEventListener("click", ()=>{
+    if ((0, _const.ELEMENTS).contentWindow) {
+        const lastMessage = (0, _const.ELEMENTS).contentWindow.querySelector(".message:last-child");
+        lastMessage.scrollIntoView({
+            behavior: "smooth"
+        });
+    }
 });
 function showWarning(element) {
-    element.classList.remove((0, _constJs.ELEMENTS).hiddenClass);
-    setTimeout(()=>{
-        element.classList.add((0, _constJs.ELEMENTS).hiddenClass);
-    }, 3000);
+    if (element) {
+        element.classList.remove((0, _const.ELEMENTS).hiddenClass);
+        setTimeout(()=>{
+            element.classList.add((0, _const.ELEMENTS).hiddenClass);
+        }, 3000);
+    }
 }
 function returnTextAreaSie() {
-    (0, _constJs.ELEMENTS).textArea.value = "";
-    (0, _constJs.ELEMENTS).textArea.style.height = `50px`;
-    (0, _constJs.ELEMENTS).contentWindow.style.height = `${(0, _constJs.ELEM_HEIGHTS).windowHeight - ((0, _constJs.ELEM_HEIGHTS).headerHeight + (0, _constJs.ELEM_HEIGHTS).inputMessagePadding + (0, _constJs.ELEM_HEIGHTS).inputMessageHeight)}px`;
+    (0, _const.ELEMENTS).textArea.value = "";
+    (0, _const.ELEMENTS).textArea.style.height = `50px`;
+    if ((0, _const.ELEM_HEIGHTS).headerHeight && (0, _const.ELEM_HEIGHTS).inputMessagePadding) (0, _const.ELEMENTS).contentWindow.style.height = `${(0, _const.ELEM_HEIGHTS).windowHeight - ((0, _const.ELEM_HEIGHTS).headerHeight + (0, _const.ELEM_HEIGHTS).inputMessagePadding + (0, _const.ELEM_HEIGHTS).inputMessageHeight)}px`;
 }
 function showEndHistory() {
     let div = document.createElement("div");
@@ -805,33 +848,34 @@ function showEndHistory() {
     let p = document.createElement("p");
     p.innerHTML = "Вся история загружена:)";
     div.append(p);
-    (0, _constJs.ELEMENTS).contentWrapper.prepend(div);
+    if ((0, _const.ELEMENTS).contentWrapper) (0, _const.ELEMENTS).contentWrapper.prepend(div);
 }
 
-},{"./const.js":"hKAsx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7c4ZJ":[function(require,module,exports) {
+},{"./const":"lATGX","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5twFN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setCookie", ()=>setCookie);
 parcelHelpers.export(exports, "getCookie", ()=>getCookie);
 parcelHelpers.export(exports, "sendRequest", ()=>sendRequest);
 var _const = require("./const");
+var _ui = require("./ui");
 function setCookie(name, value, age = 1728000) {
     if (value !== "") document.cookie = `${name}=${value}; max-age= ${age}`;
-    else showWarning((0, _const.ELEMENTS).codeWarning);
+    else (0, _ui.showWarning)((0, _const.ELEMENTS).codeWarning);
 }
 function getCookie(name) {
     let matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") + "=([^;]*)"));
     return matches ? decodeURIComponent(matches[1]) : undefined;
 }
-async function sendRequest(method, URL, body = {}, headers = {}) {
+async function sendRequest(item) {
     try {
-        let response = await fetch(URL, {
-            method: method,
+        let response = await fetch(item.URL, {
+            method: item.method,
             headers: {
                 "Content-Type": "application/json",
-                ...headers
+                ...item.headers
             },
-            ...body
+            ...item.body
         });
         if (!response.ok) alert("Ошибка запроса:" + response.status);
         let result = await response.json();
@@ -841,46 +885,55 @@ async function sendRequest(method, URL, body = {}, headers = {}) {
     }
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./const":"hKAsx"}],"cV4xq":[function(require,module,exports) {
+},{"./const":"lATGX","./ui":"aUHBV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gPvQh":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "addMessage", ()=>addMessage);
 parcelHelpers.export(exports, "downloadHistory", ()=>downloadHistory);
-var _constJs = require("./const.js");
-var _requestJs = require("./request.js");
+var _const = require("./const");
+var _request = require("./request");
 var _dateFns = require("date-fns");
-var _uiJs = require("./ui.js");
-function addMessage(userClass, text, time, userName, insert) {
+var _ui = require("./ui");
+function addMessage(message) {
     let div = document.createElement("div");
-    div.classList.add(...userClass);
-    if (text.trim() !== "") {
-        div.append(tmpl.content.cloneNode(true));
-        div.querySelector(".message__text").textContent = text;
-        div.querySelector(".message__delivery-time").textContent = (0, _dateFns.format)(Date.parse(time), "HH:mm");
-        if (insert) (0, _constJs.ELEMENTS).contentWrapper.append(div);
-        else (0, _constJs.ELEMENTS).contentWrapper.prepend(div);
+    div.classList.add(...message.userClass);
+    if (message.text.trim() !== "") {
+        div.append((0, _const.ELEMENTS).template.content.cloneNode(true));
+        div.querySelector(".message__text").textContent = message.text;
+        div.querySelector(".message__delivery-time").textContent = (0, _dateFns.format)(Date.parse(message.time), "HH:mm");
+        if (message.insert && (0, _const.ELEMENTS).contentWrapper) (0, _const.ELEMENTS).contentWrapper.append(div);
+        else if ((0, _const.ELEMENTS).contentWrapper) (0, _const.ELEMENTS).contentWrapper.prepend(div);
     }
-    if (userName) {
+    if (message.userName) {
         let span = document.createElement("span");
         span.classList.add("message__user");
         div.prepend(span);
-        span.textContent = userName;
+        span.textContent = message.userName;
     } else div.scrollIntoView({
         behavior: "smooth"
     });
 }
 function downloadHistory() {
-    const messagesList = JSON.parse(localStorage.getItem("history"));
-    messagesList.slice(0, (0, _constJs.MESSAGE).step).forEach((item)=>{
-        if (item.user.email === (0, _requestJs.getCookie)("thisUser")) addMessage((0, _constJs.ELEMENTS).myMessages, item.text, item.updatedAt);
-        else addMessage((0, _constJs.ELEMENTS).interlocutorMessages, item.text, item.updatedAt, item.user.name);
+    const messagesList = JSON.parse(localStorage.getItem("history") || "");
+    messagesList.slice(0, (0, _const.MESSAGE).step).forEach((item)=>{
+        if (item.user.email === (0, _request.getCookie)("thisUser")) addMessage({
+            userClass: (0, _const.ELEMENTS).myMessages,
+            text: item.text,
+            time: item.updatedAt
+        });
+        else addMessage({
+            userClass: (0, _const.ELEMENTS).interlocutorMessages,
+            text: item.text,
+            time: item.updatedAt,
+            userName: item.user.name
+        });
     });
-    const history = messagesList.filter((item, index)=>index >= (0, _constJs.MESSAGE).step);
+    const history = messagesList.filter((item, index)=>index >= (0, _const.MESSAGE).step);
     localStorage.setItem("history", JSON.stringify(history));
-    if (messagesList.length <= (0, _constJs.MESSAGE).step) (0, _uiJs.showEndHistory)();
+    if (messagesList.length <= (0, _const.MESSAGE).step) (0, _ui.showEndHistory)();
 }
 
-},{"./const.js":"hKAsx","./request.js":"7c4ZJ","date-fns":"9yHCA","./ui.js":"1hWqh","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
+},{"./const":"lATGX","./request":"5twFN","date-fns":"9yHCA","./ui":"aUHBV","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9yHCA":[function(require,module,exports) {
 // This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);

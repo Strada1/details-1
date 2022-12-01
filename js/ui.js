@@ -1,95 +1,104 @@
-import { ELEMENTS, ELEM_HEIGHTS } from "./const.js";
-
-
-export function showModal(modalItem) {
-  modalItem.classList.remove(ELEMENTS.hiddenClass);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.showEndHistory = exports.returnTextAreaSie = exports.showWarning = exports.addScrollIcon = exports.changeTextAreaSize = exports.closeModal = exports.showModal = void 0;
+const const_1 = require("./const");
+function showModal(modalItem) {
+    if (modalItem) {
+        modalItem.classList.remove(const_1.ELEMENTS.hiddenClass);
+    }
 }
-
-export function closeModal(modalItem) {
-  modalItem.classList.add(ELEMENTS.hiddenClass);
+exports.showModal = showModal;
+function closeModal(modalItem) {
+    if (modalItem) {
+        modalItem.classList.add(const_1.ELEMENTS.hiddenClass);
+    }
 }
-
-ELEMENTS.buttonsClose.forEach(function (item) {
-  item.addEventListener("click", function () {
-    const currentModal = this.closest(ELEMENTS.closestModal);
-    closeModal(currentModal);
-  });
+exports.closeModal = closeModal;
+const_1.ELEMENTS.buttonsClose.forEach(function (item) {
+    item.addEventListener("click", function () {
+        const currentModal = this.closest(const_1.ELEMENTS.closestModal);
+        closeModal(currentModal);
+    });
 });
-
-ELEMENTS.modals.forEach(function (item) {
-  item.addEventListener("click", function () {
-    this.classList.add(ELEMENTS.hiddenClass);
-  });
+const_1.ELEMENTS.modals.forEach(function (item) {
+    item.addEventListener("click", function () {
+        this.classList.add(const_1.ELEMENTS.hiddenClass);
+    });
 });
-
-ELEMENTS.modalWindow.forEach(function (item) {
-  item.addEventListener("click", function (event) {
-    event.stopPropagation();
-  });
+const_1.ELEMENTS.modalWindow.forEach(function (item) {
+    item.addEventListener("click", function (event) {
+        event.stopPropagation();
+    });
 });
-
-ELEMENTS.modalButtonName.addEventListener("click", () => {
-  showModal(ELEMENTS.modalName);
+const_1.ELEMENTS.modalButtonName.addEventListener("click", () => {
+    showModal(const_1.ELEMENTS.modalName);
 });
-
-export function changeTextAreaSize(event) {
-  if (event.target.scrollHeight < 300) {
-    ELEMENTS.textArea.style.height = `${ELEM_HEIGHTS.inputMessageHeight}px`;
-    let scHeight = event.target.scrollHeight;
-
-    ELEMENTS.textArea.style.height = ` ${scHeight}px`;
-    ELEMENTS.contentWindow.style.height = `${
-      ELEM_HEIGHTS.windowHeight -
-      (ELEM_HEIGHTS.headerHeight + ELEM_HEIGHTS.inputMessagePadding + scHeight)
-    }px`;
-  }
+function changeTextAreaSize(event) {
+    if (event.target.scrollHeight < 300) {
+        if (const_1.ELEM_HEIGHTS.headerHeight && const_1.ELEM_HEIGHTS.inputMessagePadding) {
+            const_1.ELEMENTS.textArea.style.height = `${const_1.ELEM_HEIGHTS.inputMessageHeight}px`;
+            let scHeight = event.target.scrollHeight;
+            const_1.ELEMENTS.textArea.style.height = ` ${scHeight}px`;
+            const_1.ELEMENTS.contentWindow.style.height = `${const_1.ELEM_HEIGHTS.windowHeight -
+                (const_1.ELEM_HEIGHTS.headerHeight + const_1.ELEM_HEIGHTS.inputMessagePadding + scHeight)}px`;
+        }
+    }
 }
-
-export function addScrollIcon() {
-  const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
-  const scrollBottom =
-    ELEMENTS.contentWrapper.scrollHeight -
-    ELEMENTS.contentWrapper.clientHeight -
-    ELEMENTS.contentWrapper.scrollTop;
-
-  if (scrollBottom < lastMessage.clientHeight + ELEM_HEIGHTS.messageMargin) {
-    ELEMENTS.scrollDown.hidden = true;
-    return scrollBottom;
-  } else {
-    ELEMENTS.scrollDown.hidden = false;
-  }
+exports.changeTextAreaSize = changeTextAreaSize;
+function addScrollIcon() {
+    if (const_1.ELEMENTS.contentWindow && const_1.ELEMENTS.contentWrapper) {
+        const lastMessage = const_1.ELEMENTS.contentWindow.querySelector(".message:last-child");
+        const scrollBottom = const_1.ELEMENTS.contentWrapper.scrollHeight -
+            const_1.ELEMENTS.contentWrapper.clientHeight -
+            const_1.ELEMENTS.contentWrapper.scrollTop;
+        if (const_1.ELEM_HEIGHTS.messageMargin) {
+            if (scrollBottom < lastMessage.clientHeight + const_1.ELEM_HEIGHTS.messageMargin) {
+                const_1.ELEMENTS.scrollDown.hidden = true;
+                return scrollBottom;
+            }
+            else {
+                const_1.ELEMENTS.scrollDown.hidden = false;
+            }
+        }
+    }
 }
-
-ELEMENTS.scrollDown.addEventListener("click", () => {
-  const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
-  lastMessage.scrollIntoView({
-    behavior: "smooth",
-  });
+exports.addScrollIcon = addScrollIcon;
+const_1.ELEMENTS.scrollDown.addEventListener("click", () => {
+    if (const_1.ELEMENTS.contentWindow) {
+        const lastMessage = const_1.ELEMENTS.contentWindow.querySelector(".message:last-child");
+        lastMessage.scrollIntoView({
+            behavior: "smooth",
+        });
+    }
 });
-
-export function showWarning(element) {
-  element.classList.remove(ELEMENTS.hiddenClass);
-  setTimeout(() => {
-    element.classList.add(ELEMENTS.hiddenClass);
-  }, 3000);
+function showWarning(element) {
+    if (element) {
+        element.classList.remove(const_1.ELEMENTS.hiddenClass);
+        setTimeout(() => {
+            element.classList.add(const_1.ELEMENTS.hiddenClass);
+        }, 3000);
+    }
 }
-
-export function returnTextAreaSie() {
-  ELEMENTS.textArea.value = "";
-  ELEMENTS.textArea.style.height = `50px`;
-  ELEMENTS.contentWindow.style.height = `${
-    ELEM_HEIGHTS.windowHeight -
-    (ELEM_HEIGHTS.headerHeight +
-      ELEM_HEIGHTS.inputMessagePadding +
-      ELEM_HEIGHTS.inputMessageHeight)
-  }px`;
+exports.showWarning = showWarning;
+function returnTextAreaSie() {
+    const_1.ELEMENTS.textArea.value = "";
+    const_1.ELEMENTS.textArea.style.height = `50px`;
+    if (const_1.ELEM_HEIGHTS.headerHeight && const_1.ELEM_HEIGHTS.inputMessagePadding) {
+        const_1.ELEMENTS.contentWindow.style.height = `${const_1.ELEM_HEIGHTS.windowHeight -
+            (const_1.ELEM_HEIGHTS.headerHeight +
+                const_1.ELEM_HEIGHTS.inputMessagePadding +
+                const_1.ELEM_HEIGHTS.inputMessageHeight)}px`;
+    }
 }
-
-export function showEndHistory() {
-  let div = document.createElement("div");
-  div.classList.add("messages-warning");
-  let p = document.createElement("p");
-  p.innerHTML = "Вся история загружена:)";
-  div.append(p);
-  ELEMENTS.contentWrapper.prepend(div);
+exports.returnTextAreaSie = returnTextAreaSie;
+function showEndHistory() {
+    let div = document.createElement("div");
+    div.classList.add("messages-warning");
+    let p = document.createElement("p");
+    p.innerHTML = "Вся история загружена:)";
+    div.append(p);
+    if (const_1.ELEMENTS.contentWrapper) {
+        const_1.ELEMENTS.contentWrapper.prepend(div);
+    }
 }
+exports.showEndHistory = showEndHistory;

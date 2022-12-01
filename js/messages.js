@@ -1,56 +1,56 @@
-import { ELEMENTS, MESSAGE } from "./const.js";
-import { getCookie } from "./request.js";
-import { format } from "date-fns";
-import { showEndHistory } from "./ui.js";
-
-export function addMessage(userClass, text, time, userName, insert) {
-  let div = document.createElement("div");
-  div.classList.add(...userClass);
-
-  if (text.trim() !== "") {
-    div.append(tmpl.content.cloneNode(true));
-    div.querySelector(".message__text").textContent = text;
-    div.querySelector(".message__delivery-time").textContent = format(
-      Date.parse(time),
-      "HH:mm"
-    );
-
-    if (insert) {
-      ELEMENTS.contentWrapper.append(div);
-    } else {
-      ELEMENTS.contentWrapper.prepend(div);
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.downloadHistory = exports.addMessage = void 0;
+const const_1 = require("./const");
+const request_1 = require("./request");
+const date_fns_1 = require("date-fns");
+const ui_1 = require("./ui");
+function addMessage(message) {
+    let div = document.createElement("div");
+    div.classList.add(...message.userClass);
+    if (message.text.trim() !== "") {
+        div.append(const_1.ELEMENTS.template.content.cloneNode(true));
+        div.querySelector(".message__text").textContent = message.text;
+        div.querySelector(".message__delivery-time").textContent = (0, date_fns_1.format)(Date.parse(message.time), "HH:mm");
+        if (message.insert && const_1.ELEMENTS.contentWrapper) {
+            const_1.ELEMENTS.contentWrapper.append(div);
+        }
+        else {
+            if (const_1.ELEMENTS.contentWrapper) {
+                const_1.ELEMENTS.contentWrapper.prepend(div);
+            }
+        }
     }
-  }
-
-  if (userName) {
-    let span = document.createElement("span");
-    span.classList.add("message__user");
-    div.prepend(span);
-    span.textContent = userName;
-  } else {
-    div.scrollIntoView({
-      behavior: "smooth",
+    if (message.userName) {
+        let span = document.createElement("span");
+        span.classList.add("message__user");
+        div.prepend(span);
+        span.textContent = message.userName;
+    }
+    else {
+        div.scrollIntoView({
+            behavior: "smooth",
+        });
+    }
+}
+exports.addMessage = addMessage;
+function downloadHistory() {
+    const messagesList = JSON.parse(localStorage.getItem("history") || '');
+    messagesList.slice(0, const_1.MESSAGE.step).forEach((item) => {
+        if (item.user.email === (0, request_1.getCookie)("thisUser")) {
+            addMessage({ userClass: const_1.ELEMENTS.myMessages, text: item.text, time: item.updatedAt });
+        }
+        else {
+            addMessage({ userClass: const_1.ELEMENTS.interlocutorMessages,
+                text: item.text,
+                time: item.updatedAt,
+                userName: item.user.name });
+        }
     });
-  }
-}
-
-export function downloadHistory() {
-  const messagesList = JSON.parse(localStorage.getItem("history"));
-  messagesList.slice(0, MESSAGE.step).forEach((item) => {
-    if (item.user.email === getCookie("thisUser")) {
-      addMessage(ELEMENTS.myMessages, item.text, item.updatedAt);
-    } else {
-      addMessage(
-        ELEMENTS.interlocutorMessages,
-        item.text,
-        item.updatedAt,
-        item.user.name
-      );
+    const history = messagesList.filter((item, index) => index >= const_1.MESSAGE.step);
+    localStorage.setItem("history", JSON.stringify(history));
+    if (messagesList.length <= const_1.MESSAGE.step) {
+        (0, ui_1.showEndHistory)();
     }
-  });
-  const history = messagesList.filter((item, index) => index >= MESSAGE.step);
-  localStorage.setItem("history", JSON.stringify(history));
-  if (messagesList.length <= MESSAGE.step) {
-    showEndHistory();
-  }
 }
+exports.downloadHistory = downloadHistory;

@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Strada1/details-1#readme",
   "dependencies": {
+    "@types/date-fns": "^2.6.0",
     "date-fns": "^2.29.3"
   },
   "devDependencies": {
