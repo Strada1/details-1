@@ -7,13 +7,13 @@ import {
   closePopupConfirmation,
 } from "./POPUP";
 
-POPUP.GET_COD.addEventListener("click", sendCod);
-POPUP.LOGIN.addEventListener("click", loginSetCookie);
-POPUP.SAVE_NAME.addEventListener("click", setName);
+POPUP.GET_COD?.addEventListener("click", sendCod);
+POPUP.LOGIN?.addEventListener("click", loginSetCookie);
+POPUP.SAVE_NAME?.addEventListener("click", setName);
 
 async function sendCod(event) {
   event.preventDefault();
-  const userEmail = POPUP.INPUT.value.trim();
+  const userEmail = (POPUP.INPUT as HTMLInputElement).value.trim();
   Cookies.set("email", `${userEmail}`);
 
   const response = await fetch("https://edu.strada.one/api/user", {
@@ -33,7 +33,7 @@ async function sendCod(event) {
 
 function loginSetCookie(event) {
   event.preventDefault();
-  const cod = POPUP.INPUT_COD.value.trim();
+  const cod = POPUP.INPUT_COD?.value.trim();
   Cookies.set("authorizationCod", `${cod}`);
   console.log("All cookies: ", Cookies.get());
   closePopupConfirmation();
@@ -43,7 +43,7 @@ function loginSetCookie(event) {
 async function setName(event) {
   event.preventDefault();
   console.log("start");
-  const name = POPUP.INPUT_NAME.value.trim();
+  const name = POPUP.INPUT_NAME?.value.trim();
   const response = await fetch("https://edu.strada.one/api/user", {
     method: "PATCH",
     headers: {

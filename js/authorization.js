@@ -7,9 +7,9 @@ exports.getDataUser = void 0;
 const js_cookie_1 = __importDefault(require("js-cookie"));
 const const_1 = require("./const");
 const POPUP_1 = require("./POPUP");
-const_1.POPUP.GET_COD.addEventListener("click", sendCod);
-const_1.POPUP.LOGIN.addEventListener("click", loginSetCookie);
-const_1.POPUP.SAVE_NAME.addEventListener("click", setName);
+const_1.POPUP.GET_COD?.addEventListener("click", sendCod);
+const_1.POPUP.LOGIN?.addEventListener("click", loginSetCookie);
+const_1.POPUP.SAVE_NAME?.addEventListener("click", setName);
 async function sendCod(event) {
     event.preventDefault();
     const userEmail = const_1.POPUP.INPUT.value.trim();
@@ -30,7 +30,7 @@ async function sendCod(event) {
 }
 function loginSetCookie(event) {
     event.preventDefault();
-    const cod = const_1.POPUP.INPUT_COD.value.trim();
+    const cod = const_1.POPUP.INPUT_COD?.value.trim();
     js_cookie_1.default.set("authorizationCod", `${cod}`);
     console.log("All cookies: ", js_cookie_1.default.get());
     (0, POPUP_1.closePopupConfirmation)();
@@ -39,7 +39,7 @@ function loginSetCookie(event) {
 async function setName(event) {
     event.preventDefault();
     console.log("start");
-    const name = const_1.POPUP.INPUT_NAME.value.trim();
+    const name = const_1.POPUP.INPUT_NAME?.value.trim();
     const response = await fetch("https://edu.strada.one/api/user", {
         method: "PATCH",
         headers: {
