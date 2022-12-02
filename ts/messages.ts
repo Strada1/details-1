@@ -12,7 +12,7 @@ import { showEndHistory } from "./ui";
 
 }
 
-export function addMessage(message: messageElements) {
+export function addMessage(message: messageElements): void {
   let div = document.createElement("div");
   div.classList.add(...message.userClass);
 
@@ -45,10 +45,27 @@ export function addMessage(message: messageElements) {
   }
 }
 
-export function downloadHistory() {
-  const messagesList = JSON.parse(localStorage.getItem("history") || '');
+export function stringifyJSON(item: any) {
+  try {
+    return JSON.stringify(item);
+  } catch (error: any) {
+    alert(error.message);
+  }
+}
+
+export function parseJSON(item: string) {
+  try {
+    return JSON.parse(item);
+  } catch (error: any) {
+    alert(error.message);
+  }
+
+}
+
+export function downloadHistory(key: string) {
+  const messagesList = parseJSON(localStorage.getItem("history") || '');
   messagesList.slice(0, MESSAGE.step).forEach((item: any) => {
-    if (item.user.email === getCookie("thisUser")) {
+    if (item.user.email === getCookie(key)) {
       addMessage({userClass: ELEMENTS.myMessages, text: item.text, time: item.updatedAt});
     } else {
       addMessage(
@@ -59,8 +76,8 @@ export function downloadHistory() {
       );
     }
   });
-  const history = messagesList.filter((item: any, index: any) => index >= MESSAGE.step);
-  localStorage.setItem("history", JSON.stringify(history));
+  const history = messagesList.filter((item: any, index: number) => index >= MESSAGE.step);
+    localStorage.setItem("history", stringifyJSON(history) || '');
   if (messagesList.length <= MESSAGE.step) {
     showEndHistory();
   }

@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"gzp3I":[function(require,module,exports) {
+})({"awEvQ":[function(require,module,exports) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "ee62429a5d9dacde";
+module.bundle.HMR_BUNDLE_ID = "0a8ecb283d214d75";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -531,7 +531,7 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"1Z4Rq":[function(require,module,exports) {
+},{}],"bB7Pu":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -666,7 +666,7 @@ function setConnection() {
     });
 }
 
-},{"./const":"hKAsx","./ui":"1hWqh","./request.js":"7c4ZJ","./messages":"cV4xq"}],"hKAsx":[function(require,module,exports) {
+},{"./const":"d9LpT","./ui":"jRvde","./request.js":"1kehM","./messages":"7bNmB"}],"d9LpT":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -726,7 +726,7 @@ exports.METHOD = {
     GET: "GET"
 };
 
-},{}],"1hWqh":[function(require,module,exports) {
+},{}],"jRvde":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -817,7 +817,7 @@ function showEndHistory() {
 }
 exports.showEndHistory = showEndHistory;
 
-},{"./const":"hKAsx"}],"7c4ZJ":[function(require,module,exports) {
+},{"./const":"d9LpT"}],"1kehM":[function(require,module,exports) {
 "use strict";
 var __awaiter = this && this.__awaiter || function(thisArg, _arguments, P, generator) {
     function adopt(value) {
@@ -881,7 +881,7 @@ function sendRequest(item) {
 }
 exports.sendRequest = sendRequest;
 
-},{"./const":"hKAsx","./ui":"1hWqh"}],"cV4xq":[function(require,module,exports) {
+},{"./const":"d9LpT","./ui":"jRvde"}],"7bNmB":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -948,7 +948,7 @@ function downloadHistory(key) {
 }
 exports.downloadHistory = downloadHistory;
 
-},{"./const":"hKAsx","./request":"7c4ZJ","date-fns":"9yHCA","./ui":"1hWqh"}],"9yHCA":[function(require,module,exports) {
+},{"./const":"d9LpT","./request":"1kehM","date-fns":"9yHCA","./ui":"jRvde"}],"9yHCA":[function(require,module,exports) {
 // This file is generated automatically by `scripts/build/indices.ts`. Please, don't change it.
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -14710,6 +14710,6 @@ function yearsToQuarters(years) {
 }
 exports.default = yearsToQuarters;
 
-},{"../_lib/requiredArgs/index.js":"9wUgQ","../constants/index.js":"iOhcx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["gzp3I","1Z4Rq"], "1Z4Rq", "parcelRequire95a1")
+},{"../_lib/requiredArgs/index.js":"9wUgQ","../constants/index.js":"iOhcx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["awEvQ","bB7Pu"], "bB7Pu", "parcelRequire95a1")
 
-//# sourceMappingURL=index.5d9dacde.js.map
+//# sourceMappingURL=index.3d214d75.js.map

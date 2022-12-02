@@ -9,7 +9,7 @@ export function setCookie(name: string, value: string, age = 1728000): void {
   }
 }
 
-export function getCookie(name: string) {
+export function getCookie(name: string): string | undefined {
   let matches = document.cookie.match(
     new RegExp(
       "(?:^|; )" +

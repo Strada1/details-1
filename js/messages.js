@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.downloadHistory = exports.addMessage = void 0;
+exports.downloadHistory = exports.parseJSON = exports.stringifyJSON = exports.addMessage = void 0;
 const const_1 = require("./const");
 const request_1 = require("./request");
 const date_fns_1 = require("date-fns");
@@ -34,10 +34,28 @@ function addMessage(message) {
     }
 }
 exports.addMessage = addMessage;
-function downloadHistory() {
-    const messagesList = JSON.parse(localStorage.getItem("history") || '');
+function stringifyJSON(item) {
+    try {
+        return JSON.stringify(item);
+    }
+    catch (error) {
+        alert(error.message);
+    }
+}
+exports.stringifyJSON = stringifyJSON;
+function parseJSON(item) {
+    try {
+        return JSON.parse(item);
+    }
+    catch (error) {
+        alert(error.message);
+    }
+}
+exports.parseJSON = parseJSON;
+function downloadHistory(key) {
+    const messagesList = parseJSON(localStorage.getItem("history") || '');
     messagesList.slice(0, const_1.MESSAGE.step).forEach((item) => {
-        if (item.user.email === (0, request_1.getCookie)("thisUser")) {
+        if (item.user.email === (0, request_1.getCookie)(key)) {
             addMessage({ userClass: const_1.ELEMENTS.myMessages, text: item.text, time: item.updatedAt });
         }
         else {
@@ -48,7 +66,7 @@ function downloadHistory() {
         }
     });
     const history = messagesList.filter((item, index) => index >= const_1.MESSAGE.step);
-    localStorage.setItem("history", JSON.stringify(history));
+    localStorage.setItem("history", stringifyJSON(history) || '');
     if (messagesList.length <= const_1.MESSAGE.step) {
         (0, ui_1.showEndHistory)();
     }
