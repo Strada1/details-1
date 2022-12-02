@@ -1,4 +1,3 @@
-import { cookieGet, cookieSet } from "./cookie.js";
 import {
   SETTINGS,
   AUTHORIZATION,
@@ -8,42 +7,61 @@ import {
   SCROLL_RENDER_VALUES,
   HISTORY_RENDER_VALUES,
   COLOR_MESSAGE,
+  URL_STRADA,
 } from "./const.js";
 
 import { mailRequest, changeNameRequest, messagesRequest } from "./request.js";
 
 import { format } from "date-fns";
+import { cookieSet } from "./cookie.js";
 import Cookies from "js-cookie";
 
 AUTHORIZATION.AUTHORIZATION_FORM.addEventListener("submit", (event) => {
   event.preventDefault();
-  mailRequest();
+  mailRequest(AUTHORIZATION.INPUT_MAIL.value, URL_STRADA.EMAIL);
 });
 CONFIRMATION.FORM_CONFIRMATION.addEventListener("submit", saveUserCode);
 SETTINGS.CHANGE_NAME_FORM.addEventListener("submit", changeName);
 MESSAGES.MESSAGE_FORM.addEventListener("submit", sendMessage);
 
-const socket = new WebSocket(`wss://edu.strada.one/websockets?${cookieGet("code")}`);
+const socket = new WebSocket(
+  `wss://edu.strada.one/websockets?${ELEMENTS.CODE}`
+);
 socket.onmessage = function (event) {
-  RenderMessages(JSON.parse(event.data), "append");
+  try{
+    RenderMessages(JSON.parse(event.data), "append");
+  } catch(error) {
+    console.log(error.message)
+  }
   MESSAGES.MESSAGE_BLOCK.scrollIntoView(false);
 };
+
+ELEMENTS.SMILE.addEventListener("click", function () {
+  MESSAGES.MESSAGE_INPUT.value = "😔";
+});
 
 function saveUserCode(event) {
   event.preventDefault();
   cookieSet("code", CONFIRMATION.CODE_INPUT.value);
-  messagesRequest(cookieGet("code"));
+  messagesRequest(URL_STRADA.MESSAGES);
 }
 
 function sendMessage(event) {
   event.preventDefault();
-  socket.send(JSON.stringify({ text: MESSAGES.MESSAGE_INPUT.value }));
-  MESSAGES.MESSAGE_INPUT.value = ""
+  try{
+    socket.send(JSON.stringify({ text: MESSAGES.MESSAGE_INPUT.value }));
+    MESSAGES.MESSAGE_INPUT.value = "";
+  } catch(error) {
+    console.log(error.message)
+  }
 }
 
 function changeName(event) {
   event.preventDefault();
-  changeNameRequest(SETTINGS.CHANGE_NAME_INPUT.value, cookieGet("code"));
+  changeNameRequest(
+    SETTINGS.CHANGE_NAME_INPUT.value,
+    URL_STRADA.EMAIL
+  );
 }
 
 export function changeNameMessage(message, name) {
@@ -56,7 +74,11 @@ export function deleteAccountHistory() {
 }
 
 export function loadHistoryMessage(array) {
-  for (let i = HISTORY_RENDER_VALUES.START; i < HISTORY_RENDER_VALUES.END; i++) {
+  for (
+    let i = HISTORY_RENDER_VALUES.START;
+    i < HISTORY_RENDER_VALUES.END;
+    i++
+  ) {
     RenderMessages(array.messages[i], "prepend");
     MESSAGES.MESSAGE_BLOCK.scrollIntoView(false);
   }
@@ -66,9 +88,6 @@ export function loadHistoryMessage(array) {
     }
   });
 }
-
-// наверное переборщила с объектами, зато не скажешь мол:
-// "а что значит это число, а что это значит"
 
 function scrollRender(array) {
   for (let i = SCROLL_RENDER_VALUES.START; i < SCROLL_RENDER_VALUES.END; i++) {
@@ -82,16 +101,13 @@ function scrollRender(array) {
   }
 }
 
+
 export function RenderMessages(data, method) {
-  const authorMessage = MESSAGES.TEMPLATE.content.querySelector(
-    ".other-name-message"
-  );
-  data.user.email === "sonalavrushina@gmail.com"
+  const authorMessage = MESSAGES.TEMPLATE.content.querySelector(".other-name-message");
+  data.user.email === MESSAGES.MAIL
     ? (authorMessage.style.color = COLOR_MESSAGE.MY)
     : (authorMessage.style.color = COLOR_MESSAGE.OTHER);
-  const message = MESSAGES.TEMPLATE.content.querySelector(
-    ".other_message_view"
-  );
+  const message = MESSAGES.TEMPLATE.content.querySelector(".other_message_view");
   message.textContent = data.text;
   const timeMessage = MESSAGES.TEMPLATE.content.querySelector(".time-message");
   timeMessage.textContent = format(new Date(data.createdAt), "k:mm");

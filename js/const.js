@@ -1,6 +1,9 @@
+import { cookieGet } from "./cookie.js";
 export const ELEMENTS = {
   BUTTON_EXIT: document.querySelector(".btn-exit"),
   SCROLL_BLOCK: document.querySelector(".message-window"),
+  SMILE: document.querySelector(".best-smile-ever"),
+  CODE: cookieGet("code"),
 };
 
 export const MESSAGES = {
@@ -9,6 +12,7 @@ export const MESSAGES = {
   TEMPLATE: document.querySelector("#template_other_message"),
   MESSAGE_BLOCK: document.querySelector(".other_message-block"),
   TIME: document.querySelector(".time_message"),
+  MAIL: "sonalavrushina@gmail.com",
 };
 
 export const SETTINGS = {
@@ -63,4 +67,20 @@ export const URL_STRADA = {
 export const COLOR_MESSAGE = {
   MY: "palevioletred",
   OTHER: "olive",
+};
+
+export const REQUEST_HEADERS = {
+  DEFAULT_HEADERS: {
+    "Content-Type": "application/json; charset=utf-8",
+  },
+  AUTHORIZATION_HEADERS: {
+    "Content-Type": "application/json; charset=utf-8",
+    Authorization: `Bearer ${ELEMENTS.CODE}`,
+  },
+};
+
+export const REQUEST_METHOD = {
+  POST: "POST",
+  PATCH: "PATCH",
+  GET: "GET",
 };

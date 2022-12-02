@@ -29,14 +29,15 @@ ELEMENTS.BUTTON_EXIT.addEventListener("click", function () {
 });
 
 export function closePopups(popup) {
-  if (!popup.classList.contains("display_flex")) {
-    popup.classList.add("display_flex");
+  const displayFlex = "display_flex"
+  if (!popup.classList.contains(displayFlex)) {
+    popup.classList.add(displayFlex);
   } else {
-    popup.classList.remove("display_flex");
+    popup.classList.remove(displayFlex);
   }
 }
 
-export function comeChat() {
+export function enterChat() {
   closePopups(CONFIRMATION.CONFIRMATION_WRAPPER);
   AUTHORIZATION.AUTHORIZATION_WRAPPER.style.display = "none";
 }
