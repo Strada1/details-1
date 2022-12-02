@@ -156,6 +156,10 @@ button {
     max-width: 270px;
 }
 
+.message span {
+    word-break: break-all;
+}
+
 .time {
     width: 40px;
     margin-top: 4px;
@@ -179,4 +183,15 @@ button {
 .input__form-send {
     background-image: url();
     text-align: center;
+}
+
+.auth__button {
+    width: 150px;
+    height: 40px;
+    margin: 20px auto;
+    transition: all .3s;
+}
+
+.auth__button:hover {
+    background-color: rgb(136, 198, 198);
 }
