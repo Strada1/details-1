@@ -17,47 +17,46 @@ import {
 
 const set = new Set();
 
-(ELEMENTS.authorizationForm as HTMLFormElement).addEventListener(
-  "submit",
-  (event) => {
-    event.preventDefault();
-    setCookie(
-      "thisUser",
-      (ELEMENTS.emailInput as HTMLInputElement).value.trim()
-    );
+ELEMENTS.authorizationForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  if (ELEMENTS.emailInput) {
+    setCookie("thisUser", ELEMENTS.emailInput.value.trim());
     sendRequest({
       method: METHOD.POST,
       URL: `${ELEMENTS.URL}${"/user"}`,
       body: {
         body: stringifyJSON({
-          email: (ELEMENTS.emailInput as HTMLInputElement).value.trim(),
+          email: ELEMENTS.emailInput.value.trim(),
         }),
       },
     });
-    (ELEMENTS.emailInput as HTMLInputElement).value = "";
+
+    ELEMENTS.emailInput.value = "";
     closeModal(ELEMENTS.modalAuthorization);
     showModal(ELEMENTS.modalCode);
   }
-);
+});
 
-(ELEMENTS.codeForm as HTMLFormElement).addEventListener("submit", (event) => {
+ELEMENTS.codeForm?.addEventListener("submit", (event) => {
   event.preventDefault();
-  setCookie("token", (ELEMENTS.code as HTMLInputElement).value.trim());
-  (ELEMENTS.code as HTMLInputElement).value = "";
+  if (ELEMENTS.code) {
+    setCookie("token", ELEMENTS.code.value.trim());
+    ELEMENTS.code.value = "";
+  }
   closeModal(ELEMENTS.modalCode);
   document.location.reload();
 });
 
-(ELEMENTS.nameForm as HTMLFormElement).addEventListener("submit", (event) => {
+ELEMENTS.nameForm?.addEventListener("submit", (event) => {
   event.preventDefault();
   const token = getCookie("token");
-  if ((ELEMENTS.name as HTMLInputElement).value !== "") {
+  if (ELEMENTS.name && ELEMENTS.name.value) {
     sendRequest({
       method: METHOD.PATCH,
       URL: `${ELEMENTS.URL}${"/user"}`,
       body: {
         body: stringifyJSON({
-          name: (ELEMENTS.name as HTMLInputElement).value.trim(),
+          name: ELEMENTS.name.value.trim(),
         }),
       },
       headers: { Authorization: `${ELEMENTS.authorizationWord} ${token}` },
@@ -65,7 +64,10 @@ const set = new Set();
   } else {
     showWarning(ELEMENTS.nameWarning);
   }
-  (ELEMENTS.name as HTMLInputElement).value = "";
+
+  if (ELEMENTS.name) {
+    ELEMENTS.name.value = "";
+  }
 });
 
 document.addEventListener("DOMContentLoaded", showCurrentHistory);
@@ -84,7 +86,7 @@ function showCurrentHistory() {
   });
 
   responseResult.then((result) => {
-    localStorage.setItem("history", stringifyJSON(result.messages) || '');
+    localStorage.setItem("history", stringifyJSON(result.messages) || "");
     downloadHistory("thisUser");
     if (ELEMENTS.contentWrapper) {
       ELEMENTS.contentWrapper.scrollTop = ELEMENTS.contentWrapper.scrollHeight;
@@ -93,9 +95,11 @@ function showCurrentHistory() {
   setConnection();
 }
 
-(ELEMENTS.scrollDown as HTMLElement).hidden = true;
+if (ELEMENTS.scrollDown) {
+  ELEMENTS.scrollDown.hidden = true;
+}
 
-(ELEMENTS.contentWrapper as HTMLElement).addEventListener("scroll", () => {
+ELEMENTS.contentWrapper?.addEventListener("scroll", () => {
   addScrollIcon();
   const messagesList = parseJSON(localStorage.getItem("history") || "");
   if (ELEMENTS.contentWrapper) {
@@ -116,43 +120,34 @@ function setConnection() {
     `wss://edu.strada.one/websockets?${getCookie("token")}`
   );
 
-  (ELEMENTS.textArea as HTMLTextAreaElement).addEventListener(
-    "keydown",
-    (event) => {
-      set.add(event.key);
+  ELEMENTS.textArea?.addEventListener("keydown", (event) => {
+    set.add(event.key);
 
-      if (set.has("Enter") && !set.has("Shift")) {
-        socket.send(
-          JSON.stringify({
-            text: (ELEMENTS.textArea as HTMLTextAreaElement).value,
-          })
-        );
-        returnTextAreaSie();
-        event.preventDefault();
-      }
-    }
-  );
-
-  (ELEMENTS.textArea as HTMLTextAreaElement).addEventListener(
-    "keyup",
-    (event) => {
-      set.clear();
-      changeTextAreaSize(event);
-    }
-  );
-
-  (ELEMENTS.messageForm as HTMLFormElement).addEventListener(
-    "submit",
-    (event) => {
-      event.preventDefault();
+    if (set.has("Enter") && !set.has("Shift")) {
       socket.send(
         JSON.stringify({
-          text: (ELEMENTS.textArea as HTMLTextAreaElement).value,
+          text: ELEMENTS.textArea?.value,
         })
       );
       returnTextAreaSie();
+      event.preventDefault();
     }
-  );
+  });
+
+  ELEMENTS.textArea?.addEventListener("keyup", (event) => {
+    set.clear();
+    changeTextAreaSize(event);
+  });
+
+  ELEMENTS.messageForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    socket.send(
+      JSON.stringify({
+        text: ELEMENTS.textArea?.value,
+      })
+    );
+    returnTextAreaSie();
+  });
 
   socket.onmessage = function (event) {
     const data = parseJSON(event.data);
@@ -176,7 +171,7 @@ function setConnection() {
     }
   };
 
-  (ELEMENTS.buttonExit as HTMLButtonElement).addEventListener("click", () => {
+  ELEMENTS.buttonExit?.addEventListener("click", () => {
     socket.close();
     showModal(ELEMENTS.modalAuthorization);
     setCookie("token", "token", -1);

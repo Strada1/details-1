@@ -1,8 +1,7 @@
 import { ELEMENTS, ELEM_HEIGHTS } from "./const";
 
-
 export function showModal(modalItem: Element | null) {
-  if(modalItem) {
+  if (modalItem) {
     modalItem.classList.remove(ELEMENTS.hiddenClass);
   }
 }
@@ -32,77 +31,90 @@ ELEMENTS.modalWindow.forEach(function (item) {
   });
 });
 
-(ELEMENTS.modalButtonName as HTMLButtonElement).addEventListener("click", () => {
+ELEMENTS.modalButtonName?.addEventListener("click", () => {
   showModal(ELEMENTS.modalName);
 });
 
 export function changeTextAreaSize(event: Event) {
-
-    if ((event.target as HTMLElement).scrollHeight < 300) {
-      if (ELEM_HEIGHTS.headerHeight && ELEM_HEIGHTS.inputMessagePadding) {
-        (ELEMENTS.textArea as HTMLTextAreaElement).style.height = `${ELEM_HEIGHTS.inputMessageHeight}px`;
+  if ((event.target as HTMLElement).scrollHeight < 300) {
+    if (ELEM_HEIGHTS.headerHeight && ELEM_HEIGHTS.inputMessagePadding) {
+      if (ELEMENTS.textArea && ELEMENTS.contentWindow) {
+        ELEMENTS.textArea.style.height = `${ELEM_HEIGHTS.inputMessageHeight}px`;
         let scHeight = (event.target as HTMLElement).scrollHeight;
-    
-        (ELEMENTS.textArea as HTMLTextAreaElement).style.height = ` ${scHeight}px`;
-        (ELEMENTS.contentWindow as HTMLElement).style.height = `${
+
+        ELEMENTS.textArea.style.height = ` ${scHeight}px`;
+        ELEMENTS.contentWindow.style.height = `${
           ELEM_HEIGHTS.windowHeight -
-          (ELEM_HEIGHTS.headerHeight + ELEM_HEIGHTS.inputMessagePadding + scHeight)
+          (ELEM_HEIGHTS.headerHeight +
+            ELEM_HEIGHTS.inputMessagePadding +
+            scHeight)
         }px`;
       }
-     
     }
   }
+}
 
 export function addScrollIcon() {
   if (ELEMENTS.contentWindow && ELEMENTS.contentWrapper) {
-    const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
+    const lastMessage = ELEMENTS.contentWindow.querySelector(
+      ".message:last-child"
+    );
     const scrollBottom =
       ELEMENTS.contentWrapper.scrollHeight -
       ELEMENTS.contentWrapper.clientHeight -
       ELEMENTS.contentWrapper.scrollTop;
-if (ELEM_HEIGHTS.messageMargin) {
-  if (scrollBottom < (lastMessage as HTMLElement).clientHeight + ELEM_HEIGHTS.messageMargin) {
-    (ELEMENTS.scrollDown as HTMLElement).hidden = true;
-    return scrollBottom;
-  } else {
-    (ELEMENTS.scrollDown as HTMLElement).hidden = false;
-  }
-}    
+    if (ELEM_HEIGHTS.messageMargin && lastMessage) {
+      if (ELEMENTS.scrollDown) {
+        if (
+          scrollBottom <
+          lastMessage.clientHeight + ELEM_HEIGHTS.messageMargin
+        ) {
+          ELEMENTS.scrollDown.hidden = true;
+          return scrollBottom;
+        } else {
+          ELEMENTS.scrollDown.hidden = false;
+        }
+      }
+    }
   }
 }
 
-(ELEMENTS.scrollDown as HTMLElement).addEventListener("click", () => {
-  if(ELEMENTS.contentWindow) {
-    const lastMessage = ELEMENTS.contentWindow.querySelector(".message:last-child");
-    (lastMessage as HTMLElement).scrollIntoView({
-      behavior: "smooth",
-    });
+ELEMENTS.scrollDown?.addEventListener("click", () => {
+  if (ELEMENTS.contentWindow) {
+    const lastMessage = ELEMENTS.contentWindow.querySelector(
+      ".message:last-child"
+    );
+    if (lastMessage) {
+      lastMessage.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
   }
-  
 });
 
 export function showWarning(element: Element | null) {
   if (element) {
     element.classList.remove(ELEMENTS.hiddenClass);
     setTimeout(() => {
-    element.classList.add(ELEMENTS.hiddenClass);
-  }, 3000);
+      element.classList.add(ELEMENTS.hiddenClass);
+    }, 3000);
   }
 }
 
 export function returnTextAreaSie() {
-  (ELEMENTS.textArea as HTMLTextAreaElement).value = "";
-  (ELEMENTS.textArea as HTMLTextAreaElement).style.height = `50px`;
+  if (ELEMENTS.textArea) {
+    ELEMENTS.textArea.value = "";
+    ELEMENTS.textArea.style.height = `50px`;
+  }
 
-  if(ELEM_HEIGHTS.headerHeight && ELEM_HEIGHTS.inputMessagePadding) {
-    (ELEMENTS.contentWindow as HTMLElement).style.height = `${
+  if (ELEMENTS.contentWindow) {
+    ELEMENTS.contentWindow.style.height = `${
       ELEM_HEIGHTS.windowHeight -
       (ELEM_HEIGHTS.headerHeight +
         ELEM_HEIGHTS.inputMessagePadding +
         ELEM_HEIGHTS.inputMessageHeight)
     }px`;
   }
-  
 }
 
 export function showEndHistory() {

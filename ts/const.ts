@@ -1,5 +1,5 @@
 interface elements {
-  modalButtonName: Element | null;
+  modalButtonName: HTMLButtonElement | null;
   modalName: Element | null;
   modals: NodeList;
   modalWindow: NodeList;
@@ -7,19 +7,19 @@ interface elements {
   modalCode: Element | null;
   closestModal: string;
   buttonsClose: NodeList;
-  buttonExit: Element | null;
-  textArea: Element | null;
-  contentWindow: Element | null;
+  buttonExit: HTMLButtonElement | null;
+  textArea: HTMLTextAreaElement | null;
+  contentWindow: HTMLElement | null;
   contentWrapper: Element | null;
-  messageForm: Element | null;
-  scrollDown: Element | null;
+  messageForm: HTMLFormElement | null;
+  scrollDown: HTMLElement | null;
   getCodeButton: Element | null;
-  authorizationForm: Element | null;
-  emailInput: Element | null;
-  codeForm: Element | null;
-  code: Element | null;
-  nameForm: Element | null;
-  name: Element | null;
+  authorizationForm: HTMLFormElement | null;
+  emailInput: HTMLInputElement | null;
+  codeForm: HTMLFormElement | null;
+  code: HTMLInputElement | null;
+  nameForm: HTMLFormElement | null;
+  name: HTMLInputElement | null;
   hiddenClass: string;
   codeWarning: Element | null;
   nameWarning: Element | null;
@@ -27,7 +27,7 @@ interface elements {
   interlocutorMessages: string[];
   URL: string;
   authorizationWord: string;
-  template: Element | null;
+  template: HTMLTemplateElement | null;
 }
 
 export const ELEMENTS: elements = {
@@ -59,15 +59,15 @@ export const ELEMENTS: elements = {
   interlocutorMessages: ["message", "message--interlocutor"],
   URL: "https://edu.strada.one/api",
   authorizationWord: "Bearer",
-  template: document.querySelector('#tmpl'),
+  template: document.querySelector("#tmpl"),
 };
 
 interface elementsHeights {
-  windowHeight: number,
-  headerHeight: number | null,
-  inputMessageHeight: number,
-  messageMargin ?: number,
-  inputMessagePadding ?: number,
+  windowHeight: number;
+  headerHeight: number;
+  inputMessageHeight: number;
+  messageMargin: number;
+  inputMessagePadding: number;
 }
 
 export const ELEM_HEIGHTS: elementsHeights = {
@@ -79,16 +79,16 @@ export const ELEM_HEIGHTS: elementsHeights = {
 };
 
 interface message {
-  step: number,
+  step: number;
 }
 export const MESSAGE: message = {
   step: 20,
 };
 
 interface requestMethod {
-  POST: string,
-  PATCH: string,
-  GET: string,
+  POST: string;
+  PATCH: string;
+  GET: string;
 }
 export const METHOD: requestMethod = {
   POST: "POST",

@@ -30,7 +30,7 @@ exports.ELEMENTS = {
     interlocutorMessages: ["message", "message--interlocutor"],
     URL: "https://edu.strada.one/api",
     authorizationWord: "Bearer",
-    template: document.querySelector('#tmpl'),
+    template: document.querySelector("#tmpl"),
 };
 exports.ELEM_HEIGHTS = {
     windowHeight: document.documentElement.clientHeight,
