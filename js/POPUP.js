@@ -1,36 +1,34 @@
-import { ELEMENT } from "./const.js";
-import { POPUP } from "./const.js";
-
-ELEMENT.SETTINGS.addEventListener("click", openPopupSettings);
-POPUP.CLOSE_SETTINGS.addEventListener("click", closePopupSettings);
-
-ELEMENT.AUTHORIZATION.addEventListener("click", openPopupAuthorization);
-POPUP.CLOSE_AUTHORIZATION.addEventListener("click", closePopupAuthorization);
-
-POPUP.GET_COD.addEventListener("click", openPopupConfirmation);
-POPUP.CLOSE_CONFIRMATION.addEventListener("click", closePopupConfirmation);
-
-export function openPopupSettings() {
-  POPUP.SETTINGS.classList.add("open");
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.closePopupConfirmation = exports.openPopupAuthorization = exports.closePopupSettings = exports.openPopupSettings = void 0;
+const const_1 = require("./const");
+const const_2 = require("./const");
+const_1.ELEMENT.SETTINGS.addEventListener("click", openPopupSettings);
+const_2.POPUP.CLOSE_SETTINGS.addEventListener("click", closePopupSettings);
+const_1.ELEMENT.AUTHORIZATION.addEventListener("click", openPopupAuthorization);
+const_2.POPUP.CLOSE_AUTHORIZATION.addEventListener("click", closePopupAuthorization);
+const_2.POPUP.GET_COD.addEventListener("click", openPopupConfirmation);
+const_2.POPUP.CLOSE_CONFIRMATION.addEventListener("click", closePopupConfirmation);
+function openPopupSettings() {
+    const_2.POPUP.SETTINGS.classList.add("open");
 }
-
-export function closePopupSettings() {
-  POPUP.SETTINGS.className = "popup__setings";
+exports.openPopupSettings = openPopupSettings;
+function closePopupSettings() {
+    const_2.POPUP.SETTINGS.className = "popup__setings";
 }
-
-export function openPopupAuthorization() {
-  POPUP.AUTHORIZATION.classList.add("open");
+exports.closePopupSettings = closePopupSettings;
+function openPopupAuthorization() {
+    const_2.POPUP.AUTHORIZATION.classList.add("open");
 }
-
+exports.openPopupAuthorization = openPopupAuthorization;
 function closePopupAuthorization() {
-  POPUP.AUTHORIZATION.className = "popup__authorization";
+    const_2.POPUP.AUTHORIZATION.className = "popup__authorization";
 }
-
 function openPopupConfirmation() {
-  closePopupAuthorization();
-  POPUP.CONFIRMATION.classList.add("open");
+    closePopupAuthorization();
+    const_2.POPUP.CONFIRMATION.classList.add("open");
 }
-
-export function closePopupConfirmation() {
-  POPUP.CONFIRMATION.className = "popup__confirmation";
+function closePopupConfirmation() {
+    const_2.POPUP.CONFIRMATION.className = "popup__confirmation";
 }
+exports.closePopupConfirmation = closePopupConfirmation;

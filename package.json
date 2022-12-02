@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Strada1/details-1#readme",
   "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
     "parcel": "^2.8.0"
   },
   "dependencies": {
