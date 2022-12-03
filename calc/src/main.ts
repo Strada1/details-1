@@ -15,7 +15,10 @@ function checkInput(firstNumber: string ,secondNumber : string) {
     (<HTMLSelectElement>element.result).textContent = '';
 });
 
+
+
 (<HTMLSelectElement>element.equals).addEventListener("click", function () {
+
     const operation = (<HTMLSelectElement>element.operation).value;
     const firstNumber = (<HTMLSelectElement>element.firstNumber).value;
     const secondNumber = (<HTMLSelectElement>element.secondNumber).value;
