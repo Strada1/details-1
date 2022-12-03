@@ -1,16 +1,5 @@
 import { HttpError } from '../error/HttpError';
-
-export const URLS = {
-  AUTHORIZATION: new URL('https://edu.strada.one/api/user'),
-  USER: new URL('https://edu.strada.one/api/user/me'),
-  MESSAGES: new URL('https://edu.strada.one/api/messages/'),
-};
-
-export const HTTP_METHOD = {
-  GET: 'GET',
-  POST: 'POST',
-  PATCH: 'PATCH',
-};
+import { URLS, HTTP_METHOD } from '../const';
 
 export class Request {
   constructor(methods, urls) {

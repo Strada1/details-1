@@ -1,25 +1,14 @@
 import Cookies from 'js-cookie';
 import { format } from 'date-fns';
-import { CookieName } from '../cookie';
+import { COOKIE_NAME, ELEMENTS_UI, POSITION_MESSAGES } from '../const';
 
-const MESSAGES_ELEMENTS = {
-  TEMPLATE: document.querySelector('#template-massage'),
-  LIST_MESSAGE: document.querySelector('.chat__main'),
-};
-
-const POSITION_MESSAGES = {
-  RIGHT: 'massage-right',
-  LEFT: 'massage-left',
-};
-
-function scrollStartMessages() {
-  MESSAGES_ELEMENTS.LIST_MESSAGE.scrollTo(0, 0);
+export function scrollStartMessages() {
+  ELEMENTS_UI.LIST_MESSAGE.scrollTo(0, 0);
 }
 
 export function createMessage(user, message, time, isMessageClient) {
-  const elemMessage = MESSAGES_ELEMENTS.TEMPLATE.content.cloneNode(true);
+  const elemMessage = ELEMENTS_UI.TEMPLATE.content.cloneNode(true);
   if (isMessageClient) {
-    scrollStartMessages();
     elemMessage
       .querySelector('.massage')
       .classList.remove(POSITION_MESSAGES.LEFT);
@@ -34,15 +23,15 @@ export function createMessage(user, message, time, isMessageClient) {
 }
 
 export function addMessageScroll(user, message, time, userEmail) {
-  const isMessageClient = userEmail === Cookies.get(CookieName.CLIENT_EMAIL);
-  MESSAGES_ELEMENTS.LIST_MESSAGE.append(
+  const isMessageClient = userEmail === Cookies.get(COOKIE_NAME.CLIENT_EMAIL);
+  ELEMENTS_UI.LIST_MESSAGE.append(
     createMessage(user, message, time, isMessageClient)
   );
 }
 
 export function addMessageUI(user, message, time, userEmail) {
-  const isMessageClient = userEmail === Cookies.get(CookieName.CLIENT_EMAIL);
-  MESSAGES_ELEMENTS.LIST_MESSAGE.prepend(
+  const isMessageClient = userEmail === Cookies.get(COOKIE_NAME.CLIENT_EMAIL);
+  ELEMENTS_UI.LIST_MESSAGE.prepend(
     createMessage(user, message, time, isMessageClient)
   );
 }

@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie';
-import { addingTokenCookie, CookieName } from '../cookie';
-import { callNotification, NOTIFICATION_MESSAGE } from './notification';
-import { closeAllModal, MODAL, MODAL_DETAILS, openModal } from './modal';
+import { addingTokenCookie } from '../cookie';
+import { callNotification } from './notification';
+import { closeAllModal, openModal } from './modal';
 import {
   addMessageHistory,
   changeName,
@@ -9,20 +9,17 @@ import {
 } from '../requests/processingResultsRequest';
 import { renderMessage } from './messages';
 import { getSpliceMessages } from '../helps';
-
-export const ELEMENTS = {
-  FORM_MESSAGE: document.querySelector('[data-message-form]'),
-  INPUT_MESSAGE: document.querySelector('[data-message-input]'),
-  TEMPLATE: document.querySelector('#template-massage'),
-  LIST_MESSAGE: document.querySelector('.chat__main'),
-  BUTTON_SETTINGS: document.querySelector('.chat__settings'),
-  BUTTON_EXIT: document.querySelector('.chat__exit'),
-  BUTTON_ENTER: document.querySelector('.chat__enter'),
-};
+import {
+  COOKIE_NAME,
+  ELEMENTS_UI,
+  MODAL,
+  MODAL_DETAILS,
+  NOTIFICATION_MESSAGE,
+} from '../const';
 
 function authorization() {
   const email = MODAL_DETAILS.INPUT_AUTHORIZATION.value;
-  Cookies.set(CookieName.CLIENT_EMAIL, email);
+  Cookies.set(COOKIE_NAME.CLIENT_EMAIL, email);
   processingResultsAuthorization(email);
 }
 
@@ -47,14 +44,14 @@ MODAL_DETAILS.FORM_CONFIRMATION.addEventListener('submit', (event) => {
 MODAL_DETAILS.FORM_SETTINGS.addEventListener('submit', (event) => {
   event.preventDefault();
   const name = { name: MODAL_DETAILS.INPUT_SETTINGS.value };
-  changeName(name, Cookies.get(CookieName.AUTHORIZATION_TOKEN));
+  changeName(name, Cookies.get(COOKIE_NAME.AUTHORIZATION_TOKEN));
 });
 
-ELEMENTS.BUTTON_SETTINGS.addEventListener('click', () =>
+ELEMENTS_UI.BUTTON_SETTINGS.addEventListener('click', () =>
   openModal(MODAL.SETTINGS)
 );
 
-ELEMENTS.BUTTON_ENTER.addEventListener('click', () => {
+ELEMENTS_UI.BUTTON_ENTER.addEventListener('click', () => {
   openModal(MODAL.AUTHORIZATION);
 });
 
@@ -67,6 +64,6 @@ function infiniteScrolling(event) {
   }
 }
 
-ELEMENTS.LIST_MESSAGE.addEventListener('scroll', (event) => {
+ELEMENTS_UI.LIST_MESSAGE.addEventListener('scroll', (event) => {
   infiniteScrolling(event);
 });

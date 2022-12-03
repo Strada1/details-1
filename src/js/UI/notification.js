@@ -1,17 +1,4 @@
-const NOTIFICATION_UI = {
-  BOX: document.querySelector('.notification'),
-  TEXT: document.querySelector('.notification__text'),
-};
-
-const NOTIFICATION_STATUS = {
-  ACTIVE: 'notification__active',
-  CLOSE: 'notification__close',
-};
-
-export const NOTIFICATION_MESSAGE = {
-  SAVE_TOKEN: 'Токен сохранен',
-  NAME_CHANGE: 'Имя изменено',
-};
+import { NOTIFICATION_STATUS, NOTIFICATION_UI } from '../const';
 
 function closeNotification() {
   NOTIFICATION_UI.BOX.classList.add(NOTIFICATION_STATUS.CLOSE);

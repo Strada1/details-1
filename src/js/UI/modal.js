@@ -1,23 +1,4 @@
-export const MODAL = {
-  SETTINGS: document.querySelector('#settings'),
-  AUTHORIZATION: document.querySelector('#authorization'),
-  CONFIRMATION: document.querySelector('#confirmation'),
-};
-const MODAL_STATUS = {
-  OPEN: 'show',
-  CLOSE: 'hide',
-};
-
-export const MODAL_DETAILS = {
-  CLOSES: document.querySelectorAll('[data-modal-close]'),
-  ALL_MODAL: document.querySelectorAll('.modal'),
-  FORM_AUTHORIZATION: document.querySelector('[data-authorization-form]'),
-  INPUT_AUTHORIZATION: document.querySelector('[data-authorization-input]'),
-  FORM_CONFIRMATION: document.querySelector('[data-confirmation-form]'),
-  INPUT_CONFIRMATION: document.querySelector('[data-confirmation-input]'),
-  FORM_SETTINGS: document.querySelector('[data-settings-form]'),
-  INPUT_SETTINGS: document.querySelector('[data-settings-input]'),
-};
+import { MODAL, MODAL_DETAILS, MODAL_STATUS } from '../const';
 
 export function openModal(modal) {
   modal.classList.add(MODAL_STATUS.OPEN);
