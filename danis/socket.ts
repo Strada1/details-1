@@ -5,8 +5,8 @@ import { format } from 'date-fns'
 
 const socketName = new WebSocket(`${getSocketUrl}${document.cookie}`)
 
-export function postMessageToServer(textMessage: string): void {
-    socketName.send(JSON.stringify({ text: textMessage }));
+export function postMessageToServer(text: string): void {
+    socketName.send(JSON.stringify({ text }));
 }
 
 export async function onmessage() {

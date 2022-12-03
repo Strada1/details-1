@@ -42,8 +42,8 @@ var createMessage_1 = require("./createMessage");
 var getUserInfo_1 = require("./getUserInfo");
 var date_fns_1 = require("date-fns");
 var socketName = new WebSocket("".concat(consts_1.getSocketUrl).concat(document.cookie));
-function postMessageToServer(textMessage) {
-    socketName.send(JSON.stringify({ text: textMessage }));
+function postMessageToServer(text) {
+    socketName.send(JSON.stringify({ text: text }));
 }
 exports.postMessageToServer = postMessageToServer;
 function onmessage() {

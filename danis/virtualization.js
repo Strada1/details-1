@@ -53,11 +53,12 @@ function virtualization() {
         }
         function renderMessages(array) {
             array.map(function (item, index) {
+                var arrayIndex = array[index];
                 if (array[index].user.email === getEmail_1) {
-                    (0, createMessage_1.createMessage)(array[index].text, array[index].user.name, (0, date_fns_1.format)(Date.parse(array[index].createdAt), "HH:mm"), consts_1.addClassForMe);
+                    (0, createMessage_1.createMessage)(arrayIndex.text, arrayIndex.user.name, (0, date_fns_1.format)(Date.parse(arrayIndex.createdAt), "HH:mm"), consts_1.addClassForMe);
                 }
                 else {
-                    (0, createMessage_1.createMessage)(array[index].text, array[index].user.name, (0, date_fns_1.format)(Date.parse(array[index].createdAt), "HH:mm"), consts_1.addClassForAnother);
+                    (0, createMessage_1.createMessage)(arrayIndex.text, arrayIndex.user.name, (0, date_fns_1.format)(Date.parse(arrayIndex.createdAt), "HH:mm"), consts_1.addClassForAnother);
                 }
             });
         }

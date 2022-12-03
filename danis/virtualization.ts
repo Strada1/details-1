@@ -34,10 +34,11 @@ export async function virtualization() {
 
         function renderMessages(array: any) {
             array.map(function (item, index) {
+                const arrayIndex = array[index];
                 if (array[index].user.email === getEmail) {
-                    createMessage(array[index].text, array[index].user.name, format(Date.parse(array[index].createdAt), "HH:mm"), addClassForMe);
+                    createMessage(arrayIndex.text, arrayIndex.user.name, format(Date.parse(arrayIndex.createdAt), "HH:mm"), addClassForMe);
                 } else {
-                    createMessage(array[index].text, array[index].user.name, format(Date.parse(array[index].createdAt), "HH:mm"), addClassForAnother);
+                    createMessage(arrayIndex.text, arrayIndex.user.name, format(Date.parse(arrayIndex.createdAt), "HH:mm"), addClassForAnother);
                 }
             });
         }
