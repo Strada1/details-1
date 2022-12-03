@@ -4,7 +4,7 @@ exports.createMessage = void 0;
 var consts_js_1 = require("./consts.js");
 function createMessage(textContent, userName, date, who) {
     var sampleMessage = document.createElement('div');
-    sampleMessage.className = "message_container user_message ".concat(who);
+    sampleMessage.className = "".concat(consts_js_1.mainClassNameContainer, " ").concat(who);
     if (consts_js_1.tmpl) {
         var sample = consts_js_1.tmpl.cloneNode(true);
         sampleMessage.append(sample.content);

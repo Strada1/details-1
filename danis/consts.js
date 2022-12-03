@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.messagesCountEnd = exports.messagesCountStart = exports.userNameSelector = exports.messageTimeSelector = exports.messageItemSelector = exports.addClassForAnother = exports.addClassForMe = exports.getUserInfoUrl = exports.getSocketUrl = exports.localStorageNameHistoryMessages = exports.cookieName = exports.httpRequests = exports.urlGetHistoryMessages = exports.chatBlock = exports.urlGetInfoUser = exports.inputForm = exports.inputPassword = exports.inputBlock = exports.autorizationBlock = exports.autorizationForm = exports.headerApplication = exports.getMessageUrl = exports.emailInput = exports.inputMessage = exports.tmpl = exports.windowChat = exports.mainForm = exports.classActive = exports.closeButton = exports.popup = exports.settingsButton = void 0;
+exports.mainClassNameContainer = exports.messagesCountEnd = exports.messagesCountStart = exports.userNameSelector = exports.messageTimeSelector = exports.messageItemSelector = exports.addClassForAnother = exports.addClassForMe = exports.getUserInfoUrl = exports.getSocketUrl = exports.localStorageNameHistoryMessages = exports.cookieName = exports.httpRequests = exports.urlGetHistoryMessages = exports.chatBlock = exports.urlGetInfoUser = exports.inputForm = exports.inputPassword = exports.inputBlock = exports.autorizationBlock = exports.autorizationForm = exports.headerApplication = exports.getMessageUrl = exports.emailInput = exports.inputMessage = exports.tmpl = exports.windowChat = exports.mainForm = exports.classActive = exports.closeButton = exports.popup = exports.settingsButton = void 0;
 var settingsButton = document.querySelector('.hero__block-buttons-head-setings');
 exports.settingsButton = settingsButton;
 var popup = document.querySelector('.popup');
@@ -61,6 +61,8 @@ var messagesCountStart = 20;
 exports.messagesCountStart = messagesCountStart;
 var messagesCountEnd = 40;
 exports.messagesCountEnd = messagesCountEnd;
+var mainClassNameContainer = 'message_container user_message';
+exports.mainClassNameContainer = mainClassNameContainer;
 var httpRequests = {
     GET: "GET",
     POST: "POST",

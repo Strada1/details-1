@@ -17,51 +17,66 @@ function loadHistoryMessage() {
 }
 if (consts_1.settingsButton) {
     consts_1.settingsButton.addEventListener("click", function () {
-        if (consts_1.popup) {
-            consts_1.popup.classList.toggle(consts_1.classActive);
-        }
+        settingsPopap();
     });
+}
+function settingsPopap() {
+    if (consts_1.popup) {
+        consts_1.popup.classList.toggle(consts_1.classActive);
+    }
 }
 if (consts_1.closeButton) {
     consts_1.closeButton.addEventListener("click", function () {
-        if (consts_1.popup) {
-            consts_1.popup.classList.remove(consts_1.classActive);
-        }
+        closeSetingsPopap();
     });
+}
+function closeSetingsPopap() {
+    if (consts_1.popup) {
+        consts_1.popup.classList.remove(consts_1.classActive);
+    }
 }
 if (consts_1.mainForm) {
     consts_1.mainForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        if (consts_1.inputMessage) {
-            (0, socket_1.postMessageToServer)(consts_1.inputMessage.value.trim());
-            consts_1.inputMessage.value = '';
-        }
+        sendMessage();
     });
+}
+function sendMessage() {
+    if (consts_1.inputMessage) {
+        (0, socket_1.postMessageToServer)(consts_1.inputMessage.value.trim());
+        consts_1.inputMessage.value = '';
+    }
 }
 if (consts_1.autorizationForm) {
     consts_1.autorizationForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        if (consts_1.emailInput) {
-            (0, autorization_1.autorization)(consts_1.emailInput.value);
-            if (consts_1.autorizationBlock && consts_1.inputBlock) {
-                consts_1.autorizationBlock.classList.remove(consts_1.classActive);
-                consts_1.inputBlock.classList.add(consts_1.classActive);
-            }
-        }
+        swicthPopup();
     });
+}
+function swicthPopup() {
+    if (consts_1.emailInput) {
+        (0, autorization_1.autorization)(consts_1.emailInput.value);
+        if (consts_1.autorizationBlock && consts_1.inputBlock) {
+            consts_1.autorizationBlock.classList.remove(consts_1.classActive);
+            consts_1.inputBlock.classList.add(consts_1.classActive);
+        }
+    }
 }
 if (consts_1.inputForm) {
     consts_1.inputForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        if (consts_1.inputPassword && consts_1.emailInput) {
-            (0, confirm_1.confirmAutorization)(consts_1.inputPassword.value.trim(), consts_1.emailInput.value);
-            if (consts_1.inputBlock && consts_1.chatBlock) {
-                consts_1.inputBlock.classList.remove(consts_1.classActive);
-                consts_1.chatBlock.classList.add(consts_1.classActive);
-                loadHistoryMessage();
-            }
-        }
+        switchBlocks();
     });
+}
+function switchBlocks() {
+    if (consts_1.inputPassword && consts_1.emailInput) {
+        (0, confirm_1.confirmAutorization)(consts_1.inputPassword.value.trim(), consts_1.emailInput.value);
+        if (consts_1.inputBlock && consts_1.chatBlock) {
+            consts_1.inputBlock.classList.remove(consts_1.classActive);
+            consts_1.chatBlock.classList.add(consts_1.classActive);
+            loadHistoryMessage();
+        }
+    }
 }
 function checkedAutorization() {
     if (document.cookie) {

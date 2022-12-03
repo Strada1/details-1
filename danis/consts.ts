@@ -28,6 +28,7 @@ const messageTimeSelector: string = '.message_time';
 const userNameSelector: string = '.user_name';
 const messagesCountStart: number = 20;
 const messagesCountEnd: number = 40;
+const mainClassNameContainer: string = 'message_container user_message';
 
 interface HttpRequest {
     readonly GET: string,
@@ -74,5 +75,6 @@ export {
     userNameSelector,
     messagesCountStart,
     messagesCountEnd,
+    mainClassNameContainer
 }
 

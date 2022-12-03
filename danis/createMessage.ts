@@ -1,8 +1,8 @@
-import { windowChat, tmpl, messageItemSelector, messageTimeSelector, userNameSelector } from './consts.js';
+import { windowChat, tmpl, messageItemSelector, messageTimeSelector, userNameSelector, mainClassNameContainer } from './consts.js';
 
 export function createMessage(textContent: string, userName: string, date: string, who: string): void {
     const sampleMessage = document.createElement('div');
-    sampleMessage.className = `message_container user_message ${who}`;
+    sampleMessage.className = `${mainClassNameContainer} ${who}`;
 
     if (tmpl) {
         const sample: any = tmpl.cloneNode(true)

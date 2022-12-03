@@ -73,9 +73,7 @@ function virtualization() {
                     return [4 /*yield*/, (0, getUserInfo_1.getUserInfo)()];
                 case 1:
                     getEmail_1 = _a.sent();
-                    console.log(arrayMessages_1);
                     sliceArrayMessages_1 = arrayMessages_1.slice(0, consts_1.messagesCountStart);
-                    console.log(sliceArrayMessages_1);
                     if (consts_1.windowChat) {
                         consts_1.windowChat.addEventListener("scroll", function () {
                             scrollLurking();
