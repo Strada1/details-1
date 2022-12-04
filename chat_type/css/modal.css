@@ -1,0 +1,88 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+}
+.modal-body {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  transition: all 500ms;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+.modal-container {
+  box-sizing: border-box;
+  height: 400px;
+  width: 300px;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  z-index: 10;
+  transition: all 500ms;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40%;
+}
+
+.modal-close {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.modal-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+
+}
+
+.form-title {
+  line-height: 80%;
+}
+
+.modal-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+  border: 1px solid black;
+}
+
+.modal-button {
+  height: 30px;
+  width: fit-content;
+  border: 1px solid black;
+  background-color: white;
+  cursor: pointer;
+}
+
+.modal-shortcut-button {
+  color: rgb(112, 110, 110);
+  margin-top: 8px;
+  font-style: italic;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.modal-shortcut-button:hover {
+  text-decoration: underline;
+}
+
+.shortcut-hidden {
+  display: none;
+}

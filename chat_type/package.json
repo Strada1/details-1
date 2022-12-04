@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
+    "parcel-bundler": "^1.8.1"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "js-cookie": "^3.0.1"
+  },
+  "scripts": {
+    "pack": "npx parcel index.html"
+  }
+}

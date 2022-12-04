@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <link rel="stylesheet" href="./css/main-style.css">
+  <link rel="stylesheet" href="./css/top-style.css">
+  <link rel="stylesheet" href="./css/mid-style.css">
+  <link rel="stylesheet" href="./css/bottom-style.css">
+  <link rel="stylesheet" href="./css/modal.css">
+</head>
+<body>
+  <div id="app-wrapper">
+    <div id="top-section">
+      <div id="settings-button">Настройки</div>
+      <div id="log-button">Выйти</div>
+    </div>
+    <div id="mid-section">
+      <div id="chat-screen">
+      </div>
+    </div>
+    <form id="message-form">
+      <input id="message-input" type="text" placeholder="сообщение..">
+      <button id="send-message-button">>></button>
+    </form>
+    <template id="message-template">
+      <div class="message-container">
+        <div class="message message-sent">
+          <span class="message-from">Я</span><span>:</span>
+          <span class="message-text"></span>
+          <span class="message-time">18:45</span>
+        </div>
+      </div>
+    </template>
+    <template id="modal">
+      <div class="modal-body hidden">
+        <div class="modal-container">
+          <div class="modal-header">
+            <span class="modal-title">Настройки</span>
+            <span class="modal-close">&times;</span>
+          </div>
+          <form class="modal-form">
+            <span class="form-title">Имя в чате</span>
+            <input class="modal-input" type="text">
+            <button class="modal-button">>></button>
+          </form>
+          <span class="modal-shortcut-button shortcut-hidden">Уже есть код?</span>
+        </div>
+      </div>
+    </template>
+  </div>
+  <script type="module" src="./js/index.js"></script>
+</body>
+</html>

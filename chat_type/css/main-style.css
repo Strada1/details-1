@@ -1,0 +1,26 @@
+html, body {
+  height: 100%;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: lightgray;
+  font-family: sans-serif;
+}
+
+#app-wrapper {
+  height: 500px;
+  width: 300px;
+  padding: 10px;
+  display: flex;
+  row-gap: 2%;
+  flex-direction: column;
+  background-color: white;
+}
+
+.test-buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
