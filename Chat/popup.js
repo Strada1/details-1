@@ -1,23 +1,22 @@
-import {buttonSetting} from "./const.js";
-
-buttonSetting.openPopupButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  buttonSetting.popupBg.classList.add('active');
-  buttonSetting.popup.classList.add('active');
+"use strict";
+var _a, _b;
+Object.defineProperty(exports, "__esModule", { value: true });
+const const_1 = require("./const");
+(_a = const_1.buttonSetting.openPopupButton) === null || _a === void 0 ? void 0 : _a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const_1.buttonSetting.popupBg.classList.add('active');
+    const_1.buttonSetting.popup.classList.add('active');
 });
-
 function removePopup() {
-  buttonSetting.popupBg.classList.remove('active');
-  buttonSetting.popup.classList.remove('active');
+    const_1.buttonSetting.popupBg.classList.remove('active');
+    const_1.buttonSetting.popup.classList.remove('active');
 }
-
-buttonSetting.closePopupButton.addEventListener('click', (e) => {
-  e.preventDefault();
-  removePopup();
-});
-
-document.addEventListener('click', (e) => {
-  if (e.target === buttonSetting.popupBg) {
+(_b = const_1.buttonSetting.closePopupButton) === null || _b === void 0 ? void 0 : _b.addEventListener('click', (e) => {
+    e.preventDefault();
     removePopup();
-  }
+});
+document.addEventListener('click', (e) => {
+    if (e.target === const_1.buttonSetting.popupBg) {
+        removePopup();
+    }
 });
