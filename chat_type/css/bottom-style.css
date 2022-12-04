@@ -1,0 +1,19 @@
+#bottom-section {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#message-input, #send-message-button {
+  border: 1px solid black;
+  padding: 6px 6px;
+  font-size: 15px;
+}
+
+#message-input {
+  width: 250px;
+}
+#send-message-button {
+  cursor: pointer;
+}

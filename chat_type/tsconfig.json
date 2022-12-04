@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "module": "commonjs",
+      "target": "ES2022",
+      "outDir": "js",
+      "rootDir": "ts"
+  }
+}
