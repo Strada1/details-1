@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="style/styleAuth.css">
+    <link rel="stylesheet" href="style/styleConfirm.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+
+    <title>Chat</title>
+</head>
+<body>
+
+<div class="auth__bg">
+    <div class="auth">
+        <div id="auth-header">
+            <span>Авторизация</span>
+            <button class="close-auth" id="exit-auth">+</button>
+        </div>
+
+        <div class="content-auth">
+            <span>Почта: </span>
+
+            <div>
+                <!--                    action="" method="post"-->
+                <form id="form-auth">
+                    <input class="input-auth" type="email"  placeholder="Введите почту">
+                    <div>
+                        <button class="post-auth" type="submit" >Получить код</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="confirm__bg">
+    <div class="confirm">
+        <div id="confirm-header">
+            <span>Подтверждение</span>
+            <button class="close-confirm" id="exit-confirm">+</button>
+        </div>
+
+        <div class="content-auth">
+            <span>Код: </span>
+            <div>
+                <form id="form-confirm" action="" >
+                    <input class="input-confirm" type="text" name="name" placeholder="Введите код">
+                    <div>
+                        <button class="post-confirm" type="submit">Войти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="chat">
+        <div class="buttonHeader">
+            <button id="setting">Настройки</button>
+            <button id="exit">Выйти</button>
+        </div>
+
+        <div class="content">
+
+            <div class="flex-end">
+                <div class="content-message">
+                <p class="historyLoaded"></p>
+                    <template class="client-message">
+                        <div class="interlocutor">
+                            <span class="no-select">Собеседник мой: </span><span class="client-span-message"></span>
+                            <p class="date-interlocutor no-select">22:00</p>
+                        </div>
+                    </template>
+
+                    <template class="user-message">
+                        <div class="flex-me-end">
+                            <div class="me">
+                                <span class="no-select">Я:  </span><span class="user-span-message"></span>
+                                <p class="date-me no-select">22:00</p>
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+            <!--action="" method="post" type="submit"-->
+            <form  id="setMessage"  type="reset" onsubmit = return false;>
+                <input id="post-name" type="text"  placeholder="сообщение...">
+                <button id="sentMessage"  type="submit">-></button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="popup__bg">
+    <div class="popup">
+        <div id="popup-header">
+            <span>Настройки</span>
+            <button class="close-popup" id="exit-popup">+</button>
+        </div>
+
+        <div class="content-popup">
+             <span id="s">Имя в чате</span>
+                <div>
+                    <form id="form-popup" action="" >
+                        <input class="input-popup" type="text" name="name" placeholder="...">
+                        <div>
+                            <button class="post-popup" type="submit">-></button>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+
+<script type="module" defer src="main.js"></script>
+<script type="module" defer src="authorization.js"></script>
+<script type="module" defer src="popup.js"></script>
+</body>
+</html>
