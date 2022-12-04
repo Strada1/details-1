@@ -1,0 +1,112 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Chat</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="main.js"></script>
+</head>
+
+<body>
+    <div class="content">
+
+        <div class="header">
+            <button id="btn-settings">Настройки</button>
+            <button class="btn-right">Выйти</button>
+        </div>
+
+        <div id="messages" class="messages">
+            <!-- <div class="message">
+                <div class="msg-text">
+                    <span>Он: </span> Добрый день!
+                </div>
+                <div class="msg-time">18:01</div>
+            </div>
+            <div class="message me">
+                <div class="msg-text">
+                    <span>Я: </span> Добрый день! Добрый день! Добрый день! Добрый день!
+                </div>
+                <div class="msg-time">18:12</div>
+            </div> -->
+        </div>
+
+        <div class="send-panel">
+            <form id="send-form" autocomplete="off">
+                <input id="input-msg" type="text" placeholder="Сообщение">
+                <button type="submit" class="btn-right">-></button>
+            </form>
+        </div>
+
+        <!-- popup -->
+
+        <div id="popup-settings" class="popup">
+            <div class="popup-container">
+                <div class="popup-header">
+                    <div class="popup-title">Настройки</div>
+                    <div class="popup-close" id="btn-settings-close">X</div>
+                </div>
+                <div class="popup-content">
+                    <div class="label">Имя в чате</div>
+                    <div class="input">
+                        <form id="popup-settings-form" autocomplete="off">
+                            <input id="input-name" type="text" placeholder="Имя">
+                            <button type="submit" class="btn-right">-></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div id="authorization" class="popup">
+            <div class="popup-container">
+                <div class="popup-header">
+                    <div class="popup-title">Авторизация</div>
+                    <div class="popup-close" id="authorization-close">X</div>
+                </div>
+                <div class="popup-content">
+                    <div class="label">Почта:</div>
+                    <div class="input">
+                        <form id="authorization-form" autocomplete="off">
+                            <input id="input-email" type="text">
+                            <button class="auth" type="submit" placeholder="Получить код">Получить код</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="confirmation" class="popup">
+            <div class="popup-container">
+                <div class="popup-header">
+                    <div class="popup-title">Подтверждение</div>
+                    <div class="popup-close" id="confirmation-close">X</div>
+                </div>
+                <div class="popup-content">
+                    <div class="label">Код:</div>
+                    <div class="input">
+                        <form id="confirmation-form" autocomplete="off">
+                            <input id="input-code" type="text">
+                            <button class="auth" type="submit" placeholder="Войти">Войти</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <template id="tmpl-message">
+        <div class="message">
+            <div class="msg-text">
+            </div>
+            <div class="msg-time"></div>
+        </div>
+    </template>
+</body>
+
+</html>

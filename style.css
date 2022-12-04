@@ -1,0 +1,137 @@
+body {
+    font-family: sans-serif;
+    background-color: gray;
+    font-size: 14px;
+}
+
+.content {
+    background-color: white;
+    width: 300px;
+    height: 400px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+input {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+input:focus {
+    outline: none !important;
+}
+
+button {
+    background-color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 5px;
+}
+
+button:hover {
+    background-color: rgb(242, 241, 241);
+}
+
+button:active {
+    background-color: rgb(235, 234, 234);
+}
+
+.auth {
+    margin-top: 10px;
+    display: block;
+}
+
+.btn-right {
+    float: right;
+}
+
+.messages {
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    height: 325px;
+    margin: 5px 0;
+    padding: 5px;
+    overflow-y: scroll;
+}
+
+.message {
+    float: left;
+    background-color: rgb(219, 207, 255);
+    max-width: 160px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    overflow-wrap: break-word;
+    clear: both;
+}
+
+.me {
+    float: right;
+    background-color: #94ff9b;
+}
+
+.message .msg-time {
+    display: block;
+    float: right;
+    font-weight: 100;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.send-panel input {
+    padding: 5px;
+    width: 260px;
+}
+
+.popup {
+    width: 290px;
+    height: 400px;
+    margin: 0 auto;
+    padding: 5px;
+    background-color: rgba(100, 100, 100, 0.98);
+    overflow: hidden;
+    position: fixed;
+    top: 8px;
+}
+
+.popup-container {
+    margin: 40px auto 0px auto;
+    width: 200px;
+    height: 300px;
+    padding: 10px;
+    background-color: #f6f6f6;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.popup-header {
+    width: 100%;
+    display: inline-block;
+    padding-bottom: 20px;
+}
+
+.popup-header .popup-title {
+    width: 100px;
+    float: left;
+}
+
+.popup-header .popup-close {
+    float: right;
+    cursor: pointer;
+}
+
+.popup-header .popup-close:hover {
+    color: gray;
+}
+
+.popup-content .label {
+    padding-bottom: 5px;
+}
+
+.popup-content input {
+    padding: 5px;
+    width: 150px;
+}
