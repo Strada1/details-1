@@ -15,7 +15,7 @@ export function openPopupSettings() {
 }
 
 export function closePopupSettings() {
-  POPUP.SETTINGS.className = "popup__setings";
+  (POPUP.SETTINGS as HTMLButtonElement).className = "popup__setings";
 }
 
 export function openPopupAuthorization() {

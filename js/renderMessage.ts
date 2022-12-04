@@ -1,11 +1,11 @@
 import { format } from "date-fns";
 import { ELEMENT } from "./const";
 import Cookies from "js-cookie";
-ELEMENT.SEND_MESSAGE.addEventListener("submit", getMessageInput);
+ELEMENT.SEND_MESSAGE?.addEventListener("submit", getMessageInput);
 
 const socket = new WebSocket(`wss://edu.strada.one/websockets?${Cookies.get("authorizationCod")}`);
 
-function sendMessageWebSocet(message) {
+function sendMessageWebSocet(message: string) {
 	socket.send(JSON.stringify({ text: `${message}` }));
 }
 
@@ -26,9 +26,10 @@ socket.onmessage = async function(event) {
   }
 };
 
-function getMessageInput(event) {
+
+function getMessageInput(event: Event) {
   event.preventDefault()
-  const message = ELEMENT.INPUT_MESSAGE.value;
+  const message = (ELEMENT.INPUT_MESSAGE as HTMLInputElement).value;
   if (!message) {
     alert("Пустая строка, введите сообщение!");
   } else {

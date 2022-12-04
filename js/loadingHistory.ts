@@ -47,7 +47,7 @@ async function getMessagesResult(result, lengthArray, myEmail) {
 
      time = format(new Date(time), "kk':'mm");
     if (userEmail == myEmail) {
-      if(+localStorage.getItem("number1") == 0) {
+      if(Number(localStorage.getItem("number1")) == 0) {
         let method = 1
         addMessageToDOM(message, time, method);
       } else {
@@ -56,7 +56,7 @@ async function getMessagesResult(result, lengthArray, myEmail) {
       }
       
     } else {
-      if(+localStorage.getItem("number1") == 0) {
+      if(Number(localStorage.getItem("number1")) == 0) {
         let method = 1
         // переписать на принятие обьекта, а не 4 аргументов
         companionMessageToDOM(message, time, userName, method);

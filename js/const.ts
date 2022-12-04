@@ -53,7 +53,7 @@ interface Numbers {
 	INPUT_NAME: Element | null;
 	SAVE_NAME: Element | null;
 	CLOSE_AUTHORIZATION: Element | null;
-	SETTINGS: HTMLButtonElement | null;
+	SETTINGS: Element | null;
 	AUTHORIZATION: Element | null;
 	CONFIRMATION: Element | null;
 	CLOSE_CONFIRMATION: Element | null;

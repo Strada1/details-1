@@ -41,13 +41,13 @@ async function getMessagesResult(result, lengthArray, myEmail) {
         return;
     }
     else {
-        let message = result[lengthArray].text;
+        let message: string = result[lengthArray].text;
         let time = result[lengthArray].createdAt;
         let userEmail = result[lengthArray].user.email;
         let userName = result[lengthArray].user.name;
         time = (0, date_fns_1.format)(new Date(time), "kk':'mm");
         if (userEmail == myEmail) {
-            if (+localStorage.getItem("number1") == 0) {
+            if (Number(localStorage.getItem("number1")) == 0) {
                 let method = 1;
                 (0, renderMessage_1.addMessageToDOM)(message, time, method);
             }
@@ -57,7 +57,7 @@ async function getMessagesResult(result, lengthArray, myEmail) {
             }
         }
         else {
-            if (+localStorage.getItem("number1") == 0) {
+            if (Number(localStorage.getItem("number1")) == 0) {
                 let method = 1;
                 // переписать на принятие обьекта, а не 4 аргументов
                 (0, renderMessage_1.companionMessageToDOM)(message, time, userName, method);

@@ -11,7 +11,7 @@ POPUP.GET_COD?.addEventListener("click", sendCod);
 POPUP.LOGIN?.addEventListener("click", loginSetCookie);
 POPUP.SAVE_NAME?.addEventListener("click", setName);
 
-async function sendCod(event) {
+async function sendCod(event: Event) {
   event.preventDefault();
   const userEmail = (POPUP.INPUT as HTMLInputElement).value.trim();
   Cookies.set("email", `${userEmail}`);
@@ -31,19 +31,19 @@ async function sendCod(event) {
   }
 }
 
-function loginSetCookie(event) {
+function loginSetCookie(event: Event) {
   event.preventDefault();
-  const cod = POPUP.INPUT_COD?.value.trim();
+  const cod = (POPUP.INPUT_COD as HTMLInputElement).value.trim();
   Cookies.set("authorizationCod", `${cod}`);
   console.log("All cookies: ", Cookies.get());
   closePopupConfirmation();
   openPopupSettings();
 }
 
-async function setName(event) {
+async function setName(event: Event) {
   event.preventDefault();
   console.log("start");
-  const name = POPUP.INPUT_NAME?.value.trim();
+  const name = (POPUP.INPUT_NAME as HTMLInputElement).value.trim();
   const response = await fetch("https://edu.strada.one/api/user", {
     method: "PATCH",
     headers: {
