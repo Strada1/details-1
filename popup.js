@@ -1,6 +1,9 @@
 export const ACTIVE = "active";
 export const REMOVE = "remove";
 export const ADD = "add";
+const AUTH = "AUTH";
+const CODE = "CODE";
+const SETTINGS = "SETTINGS";
 
 export const POPUPELEMENTS = {
   popupBg: document.querySelector(".popup__bg"),
@@ -10,52 +13,71 @@ export const POPUPELEMENTS = {
   popupBgAuth: document.querySelector(".popup__bg_auth"),
   popupAuth: document.querySelector(".popup_auth"),
   closePopupButtonAuth: document.querySelector(".close-popup-auth"),
-  popupBgKod: document.querySelector(".popup__bg_kod"),
-  popupKod: document.querySelector(".popup_kod"),
-  closePopupButtonKod: document.querySelector(".close-popup-kod"),
+  popupBgCode: document.querySelector(".popup__bg_code"),
+  popupCode: document.querySelector(".popup_code"),
+  closePopupButtonCode: document.querySelector(".close-popup-code"),
 };
 
-export function authPopUp(action) {
-  if (action === REMOVE) {
-    POPUPELEMENTS.popupAuth.classList.remove(ACTIVE);
-    POPUPELEMENTS.popupBgAuth.classList.remove(ACTIVE);
-  }
-  if (action === ADD) {
-    POPUPELEMENTS.popupBgAuth.classList.add(ACTIVE);
-    POPUPELEMENTS.popupAuth.classList.add(ACTIVE);
+function removePopup(popup) {
+  switch (popup) {
+    case AUTH:
+      POPUPELEMENTS.popupAuth.classList.remove(ACTIVE);
+      POPUPELEMENTS.popupBgAuth.classList.remove(ACTIVE);
+      break;
+    case CODE:
+      POPUPELEMENTS.popupCode.classList.remove(ACTIVE);
+      POPUPELEMENTS.popupBgCode.classList.remove(ACTIVE);
+      break;
+    case SETTINGS:
+      POPUPELEMENTS.popup.classList.remove(ACTIVE);
+      POPUPELEMENTS.popupBg.classList.remove(ACTIVE);
+      break;
   }
 }
 
-export function kodPopUp(action) {
-  if (action === REMOVE) {
-    POPUPELEMENTS.popupBgKod.classList.remove(ACTIVE);
-    POPUPELEMENTS.popupKod.classList.remove(ACTIVE);
+function addPopup(popup) {
+  switch (popup) {
+    case AUTH:
+      POPUPELEMENTS.popupAuth.classList.add(ACTIVE);
+      POPUPELEMENTS.popupBgAuth.classList.add(ACTIVE);
+      break;
+    case CODE:
+      POPUPELEMENTS.popupCode.classList.add(ACTIVE);
+      POPUPELEMENTS.popupBgCode.classList.add(ACTIVE);
+      break;
+    case SETTINGS:
+      POPUPELEMENTS.popup.classList.add(ACTIVE);
+      POPUPELEMENTS.popupBg.classList.add(ACTIVE);
+      break;
   }
-  if (action === ADD) {
-    POPUPELEMENTS.popupBgKod.classList.add(ACTIVE);
-    POPUPELEMENTS.popupKod.classList.add(ACTIVE);
+}
+
+export function authPopUp(action) {
+  const isPopupRemove = action === REMOVE ? removePopup(AUTH) : addPopup(AUTH);
+  return isPopupRemove;
+}
+
+export function codePopUp(action) {
+  if (action === REMOVE) {
+    removePopup(CODE);
+  } else {
+    addPopup(CODE);
   }
 }
 
 POPUPELEMENTS.openPopupButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
     event.preventDefault();
-    POPUPELEMENTS.popupBg.classList.add(ACTIVE);
-    POPUPELEMENTS.popup.classList.add(ACTIVE);
+    addPopup(SETTINGS);
   });
 });
 
-function removeActive() {
-  POPUPELEMENTS.popupBg.classList.remove(ACTIVE);
-  POPUPELEMENTS.popup.classList.remove(ACTIVE);
-}
-
 POPUPELEMENTS.closePopupButton.addEventListener("click", () => {
-  removeActive();
+  removePopup(SETTINGS);
 });
 
 document.addEventListener("click", (event) => {
   if (event.target === POPUPELEMENTS.popupBg) {
-    removeActive();
+    removePopup(SETTINGS);
   }
 });

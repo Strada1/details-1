@@ -58,8 +58,8 @@ span {
 #email-input,
 #name-button,
 #email-button,
-#kod-input,
-#kod-button {
+#code-input,
+#code-button {
   font-size: 24px;
   border: none;
   outline: 2px solid black;
@@ -74,7 +74,7 @@ span {
   width: 320px;
 }
 #email-button,
-#kod-button,
+#code-button,
 #name-button {
   width: 44px;
   height: 44px;
@@ -176,7 +176,7 @@ span {
 
 .close-popup-auth,
 .close-popup,
-.close-popup-kod {
+.close-popup-code {
   padding: 10px;
   margin: 10px;
   font-size: 18px;
@@ -191,7 +191,7 @@ span {
 }
 .popup__bg,
 .popup__bg_auth,
-.popup__bg_kod {
+.popup__bg_code {
   position: fixed;
   top: 0;
   left: 0;
@@ -205,14 +205,14 @@ span {
 
 .popup__bg.active,
 .popup__bg_auth.active,
-.popup__bg_kod.active {
+.popup__bg_code.active {
   opacity: 1;
   pointer-events: all;
 }
 
 .popup,
 .popup_auth,
-.popup_kod {
+.popup_code {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -225,14 +225,14 @@ span {
 
 .popup.active,
 .popup_auth.active,
-.popup_kod.active {
+.popup_code.active {
   transform: translate(-50%, -50%) scale(1);
   transition: 0.5s all;
 }
 
 .close-popup,
 .close-popup-auth,
-.close-popup-kod {
+.close-popup-code {
   position: absolute;
   top: 10px;
   right: 10px;

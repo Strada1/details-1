@@ -7,7 +7,7 @@ import {
 } from "./const.js";
 import { format } from "date-fns";
 import Cookie from "js-cookie";
-import { ADD, REMOVE, authPopUp, kodPopUp } from "./popup.js";
+import { ADD, REMOVE, authPopUp, codePopUp } from "./popup.js";
 
 // сделать обработку ошибок
 
@@ -15,34 +15,34 @@ async function dataRequests() {
   getData(HISTORY_URL);
   await getHistoryData();
 }
-async function setDataKodForm(event) {
+async function setDataCodeForm(event) {
   event.preventDefault();
-  const token = ELEMENTS.KOD_INPUT.value;
+  const token = ELEMENTS.CODE_INPUT.value;
   Cookie.set("Authorization", `Bearer ${token}`, { expires: 3 });
   Cookie.set("token", `${token}`);
-  kodPopUp(REMOVE);
+  codePopUp(REMOVE);
   await dataRequests();
 }
 function setDataEmailForm(event) {
   event.preventDefault();
   authPopUp(REMOVE);
-  kodPopUp(ADD);
+  codePopUp(ADD);
   const email = ELEMENTS.EMAIL_INPUT.value;
-  getCodeRequest(email);
-  ELEMENTS.EMAIL_INPUT.value = "";
-  ELEMENTS.KOD_FORM.addEventListener("submit", setDataKodForm);
+  registryUser(email);
+  ELEMENTS.CODE_FORM.addEventListener("submit", setDataCodeForm);
 }
-async function onLoadWindow() {
+async function onAppStart() {
   if (Cookie.get("Authorization")) {
     authPopUp(REMOVE);
-    kodPopUp(REMOVE);
+    codePopUp(REMOVE);
     await dataRequests();
   } else {
     authPopUp(ADD);
     ELEMENTS.EMAIL_FORM.addEventListener("submit", setDataEmailForm);
   }
 }
-window.onload = onLoadWindow();
+
+window.onload = onAppStart();
 
 function halfRender(array) {
   const tempArray = array.slice(0, 20);
@@ -94,7 +94,7 @@ async function getData(url) {
   return response.json();
 }
 
-async function getCodeRequest(email) {
+async function registryUser(email) {
   const response = await fetch(STRADA_URL, {
     method: "POST",
     headers: {
@@ -104,7 +104,7 @@ async function getCodeRequest(email) {
   });
 }
 
-async function kodFormRequest(name) {
+async function codeFormRequest(name) {
   const response = await fetch(STRADA_URL, {
     method: "PATCH",
     headers: {
@@ -140,7 +140,7 @@ function messageRendering(data, onmessage = "history") {
 }
 
 socket.onmessage = function (event) {
-  console.log(JSON.parse(event.data));
+  // console.log(JSON.parse(event.data));
   const data = JSON.parse(event.data);
   messageRendering(data, "new");
 };
@@ -158,7 +158,7 @@ ELEMENTS.MESSAGE_FORM.addEventListener("submit", sendMessageHandler);
 async function changeNickname(event) {
   event.preventDefault();
   const newUserName = ELEMENTS.SETTING_INPUT.value;
-  kodFormRequest(newUserName);
+  codeFormRequest(newUserName);
   const currentName = await getUserName();
   ELEMENTS.SETTING_NAME.textContent = `Имя в чате - ${currentName}`;
   ELEMENTS.SETTING_INPUT.value = "";
@@ -171,3 +171,4 @@ async function openSettings(event) {
   ELEMENTS.SETTING_NAME.textContent = `Имя в чате - ${currentName}`;
 }
 ELEMENTS.SETTING_BUTTON.addEventListener("click", openSettings);
+
