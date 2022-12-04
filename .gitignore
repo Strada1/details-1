@@ -1,0 +1,11 @@
+.DS_store
+.idea/
+.idea/*
+.vscode
+*.sublime
+npm-debug.*
+
+dist/
+node_modules/
+app/css/*
+.parcel-cache
