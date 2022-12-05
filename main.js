@@ -1,5 +1,5 @@
 import { UI } from "./ui.js";
-import {wsOpen, wsListener, wsSend} from "./ws.js"
+import { wsOpen, wsListener, wsSend } from "./ws.js"
 
 
 let socket;
@@ -19,7 +19,7 @@ UI.sendEmail.addEventListener('submit', (e) => {
 UI.popupTokenForm.addEventListener('submit', (e) => {
     e.preventDefault();
     saveToken();
-    socket =  wsOpen();
+    socket = wsOpen();
     wsListener(socket);
 })
 
@@ -42,7 +42,7 @@ export function newMessage(text, time = new Date(), userName) {
     div.childNodes[1].textContent = `${userName}:`;
     // console.log(getCookie('name'));
     if (userName == 'Boris') {
-        console.log('aaaaaasssssssssssss');
+        // console.log('aaaaaasssssssssssss');
         div.classList.add('my', 'sent');
         div.childNodes[1].textContent = `Я:`;
     }
@@ -57,10 +57,12 @@ export function newMessage(text, time = new Date(), userName) {
     // UI.chatArea.append(div);
 }
 
+
+
 function printMessages(messagesArray) {
     // console.log(messagesArray.messages[0]);
-    messagesArray.messages.reverse();
-    for (let message of messagesArray.messages) {
+    // messagesArray.messages.reverse();
+    for (let message of messagesArray) {
         const text = message.text;
         const time = new Date(message.createdAt);
         let userName = message.user.name;
@@ -167,7 +169,16 @@ async function getMessages() {
         },
         // body: JSON.stringify({ name: nameUser })
     })
-    const result = await response.json();
-    console.log(result);
-    printMessages(result);
+
+    if (response.ok) {
+        const result = await response.json();
+        console.log(result);
+        const messages = result.messages.reverse();
+        localStorage.setItem('messages', JSON.stringify(messages));
+        if (localStorage.getItem('messages')) {
+            console.log('Сообщения сохранены в лс');
+        }
+        printMessages(JSON.parse(localStorage.getItem('messages')).slice(0, 19));
+        // printMessages(result);
+    }
 }
