@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+
+    <link href="/css/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <template id="message-tpl">
+        <div class="message">
+            <div>
+                <b class="message__name">Name:</b>
+                <span class="message__body">Добрый день!</span>
+                <!-- А это второе и, кажется, оно очень длинное, чтобы поместиться на одной строке -->
+                <div class="message__time">18:45</div>
+            </div>
+        </div>
+    </template>
+
+    <!-- App -->
+    <main id="app">
+        <header class="toolbar">
+            <button class="btn toolbar__settings" disabled>Настройки</button>
+            <button class="btn toolbar__auth">Вход</button>
+        </header>
+        <div class="chat-body">
+            <div class="meassage-list meassage-list_disabled">
+
+            </div>
+            <form class="chat-form">
+                <input type="text" name="text" class="text-input" disabled autocomplete="off" autofocus/>
+                <button type="submit" class="btn" disabled> -> </button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Dialogs start -->
+    <dialog class="autorization-dialog dialog">
+        <header>
+            <span class="dialog__title">Авторизация</span>
+            <button class="dialog__close">+</button>
+        </header>
+        <section class="dialog__body">
+            <form class="form">
+                <label class="form__input">
+                    Почта:
+                    <input required type="email" class="text-input" name="email" placeholder="E-mail" autofocus/>
+                </label>
+                <button type="submit" class="btn">Получить код</button>
+            </form>
+        </section>
+    </dialog>
+    <dialog class="confirmation-dialog dialog">
+        <header>
+            <span class="dialog__title">Подтверждение</span>
+            <button class="dialog__close">+</button>
+        </header>
+        <section class="dialog__body">
+            <form class="form">
+                <label class="form__input">
+                    Код:
+                    <input required type="text" class="text-input" name="code" placeholder="Code" autofocus/>
+                </label>
+                <button type="submit" class="btn">Войти</button>
+            </form>
+        </section>
+    </dialog>
+    <dialog class="settings-dialog dialog">
+        <header>
+            <span class="dialog__title">Настройки</span>
+            <button class="dialog__close">+</button>
+        </header>
+        <section class="dialog__body">
+            <form class="form">
+                <label class="form__input">
+                    Имя в чате:
+                    <input required minlength="2" type="text" class="text-input" name="name" placeholder="Nickname" autofocus/>
+                </label>
+                <button type="submit" class="btn">Сохранить</button>
+            </form>
+        </section>
+    </dialog>
+
+    <!-- SplashLoader -->
+    <dialog class="loader-dialog">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            x="0px" y="0px" width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;"
+            xml:space="preserve">
+            <rect x="0" y="0" width="4" height="20">
+                <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="0s" dur="0.6s"
+                    repeatCount="indefinite" />
+            </rect>
+            <rect x="7" y="0" width="4" height="20">
+                <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="0.2s" dur="0.6s"
+                    repeatCount="indefinite" />
+            </rect>
+            <rect x="14" y="0" width="4" height="20">
+                <animate attributeName="opacity" attributeType="XML" values="1; .2; 1" begin="0.4s" dur="0.6s"
+                    repeatCount="indefinite" />
+            </rect>
+        </svg>
+    </dialog>
+    <script type="module" src="/js/index.js"></script>
+</body>
+
+</html>
