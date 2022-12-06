@@ -28,3 +28,7 @@ export const INPUTS_FORMS = {
 export const TEMPLATES = {
 	MESSAGE: document.querySelector('.message'),
 };
+
+export const CONTENT_CHAT = {
+	VIEW: document.querySelector('.content__chat'),
+};

@@ -25,7 +25,5 @@ export function createMessage(user = 'me', userName = '', inputValue, timeValue 
 
 	const chat = document.querySelector('.content__chat');
 
-	chat.append(myMessage);
-
-	return (chat.scrollTop = chat.scrollHeight);
+	return chat.append(myMessage);
 }

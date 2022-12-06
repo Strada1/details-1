@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 
-import { MODAL_VIEW, FORM, BUTTONS, INPUTS_FORMS } from './const';
+import { MODAL_VIEW, FORM, BUTTONS, INPUTS_FORMS, CONTENT_CHAT } from './const';
 
 import { patch, get } from './fetch';
 
@@ -11,6 +11,8 @@ import { authorization } from './auth';
 import { getHistory } from './history';
 
 import { socket } from './webSocket';
+
+import { checkPosition } from './scroll';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const cookieUserName = Cookies.get('user');
@@ -28,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		getHistory();
 	}
 });
+
+CONTENT_CHAT.VIEW.addEventListener('scroll', checkPosition);
+
+CONTENT_CHAT.VIEW.addEventListener('resize', checkPosition);
 
 BUTTONS.CLOSE_MODAL.addEventListener('click', () => {
 	MODAL_VIEW.SETTINGS.classList.add('hide');
@@ -56,9 +62,13 @@ window.addEventListener('keydown', evt => {
 
 FORM.SEND_MESSAGE.addEventListener('submit', event => {
 	event.preventDefault();
+
+	const chat = document.querySelector('.content__chat');
+
 	createMessage('me', '', FORM.MESSAGE_INPUT.value);
 
 	socket.send(JSON.stringify({ text: FORM.MESSAGE_INPUT.value }));
+	chat.scrollTop = chat.scrollHeight;
 
 	FORM.MESSAGE_INPUT.value = '';
 });
