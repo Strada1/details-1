@@ -1,8 +1,11 @@
 import { CONTENT_CHAT } from './const';
+
 import Cookies from 'js-cookie';
+
 import { createMessage } from './message';
 
 const history = JSON.parse(localStorage.getItem('messages'));
+console.log(history.reverse());
 let minIndex = 21;
 let maxIndex = 40;
 
@@ -14,7 +17,7 @@ export function checkPosition() {
 	const position = scrolled + clientHeight;
 
 	if (position >= threshold) {
-		sliceArray(history);
+		sliceArray(history.reverse());
 	}
 }
 
@@ -38,6 +41,6 @@ export function sliceArray(historyMessage) {
 	});
 
 	if (0 === history.length) {
-		alert('Все история загружена ');
+		// alert('Все история загружена ');
 	}
 }

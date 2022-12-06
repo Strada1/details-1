@@ -63,12 +63,10 @@ window.addEventListener('keydown', evt => {
 FORM.SEND_MESSAGE.addEventListener('submit', event => {
 	event.preventDefault();
 
-	const chat = document.querySelector('.content__chat');
-
 	createMessage('me', '', FORM.MESSAGE_INPUT.value);
 
 	socket.send(JSON.stringify({ text: FORM.MESSAGE_INPUT.value }));
-	chat.scrollTop = chat.scrollHeight;
+	CONTENT_CHAT.VIEW.scrollTop = CONTENT_CHAT.VIEW.scrollHeight;
 
 	FORM.MESSAGE_INPUT.value = '';
 });

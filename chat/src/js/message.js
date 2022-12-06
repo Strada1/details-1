@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { CONTENT_CHAT } from './const';
 
 export function createMessage(user = 'me', userName = '', inputValue, timeValue = new Date()) {
 	const myMessage = document.createElement('div');
@@ -23,7 +24,5 @@ export function createMessage(user = 'me', userName = '', inputValue, timeValue 
 
 	timeText.textContent = format(new Date(timeValue), 'HH:mm');
 
-	const chat = document.querySelector('.content__chat');
-
-	return chat.append(myMessage);
+	return CONTENT_CHAT.VIEW.append(myMessage);
 }
