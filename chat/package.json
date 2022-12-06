@@ -1,0 +1,29 @@
+{
+	"name": "weather-app",
+	"version": "1.0.0",
+	"description": "",
+	"main": "main.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Strada1/details-1.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Strada1/details-1/issues"
+	},
+	"homepage": "https://github.com/Strada1/details-1#readme",
+	"devDependencies": {
+		"@parcel/transformer-sass": "^2.8.0",
+		"parcel": "^2.8.0",
+		"tailwindcss": "^3.2.4"
+	},
+	"dependencies": {
+		"date-fns": "^2.29.3",
+		"js-cookie": "^3.0.1",
+		"saas": "^1.0.0"
+	}
+}
