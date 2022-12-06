@@ -1,0 +1,265 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e5e5e5;
+}
+
+.chat__wrapper {
+  width: 350px;
+  height: 535px;
+  margin: 30px auto;
+  padding: 8px;
+  border: 1px solid #000000;
+  background-color: #ffff;
+  font-family: "Roboto", sans-serif;
+}
+
+.chat__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.chat__buttons-settings,
+.chat__buttons-exit {
+  height: 32px;
+  background-color: #ffff;
+  border: 1px solid #000000;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chat__buttons-settings {
+  width: 98px;
+  padding: 6px 8px 7px;
+}
+
+.chat__buttons-exit {
+  width: 66px;
+  padding: 7px 8px 12px;
+}
+
+.chat__buttons-settings:hover,
+.chat__buttons-exit:hover {
+  background-color: #f6f6f6;
+}
+
+.chat__buttons-settings:active,
+.chat__buttons-exit:active {
+  background-color: #e5e5e5;
+}
+
+.chat__container {
+  margin-bottom: 10px;
+  width: 332px;
+  height: 437px;
+  border: 1px solid #000000;
+  padding: 8px;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.chat__container-window {
+  width: 297px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.chat__container-message {
+  max-width: 288px;
+  padding: 8px;
+  margin-bottom: 8px;
+  font-size: 16px;
+  line-height: 18.75px;
+  overflow-wrap: break-word;
+}
+
+.my-message {
+  align-self: flex-end;
+}
+
+.sent {
+  background-color: #f6f6f6;
+}
+
+.delivered {
+  background-color: #e5e5e5;
+}
+
+.text {
+  margin-bottom: 4px;
+}
+
+.sender {
+  color: rgb(135, 75, 192);
+  font-weight: 700;
+}
+
+.time {
+  text-align: right;
+  font-style: italic;
+  font-weight: 300;
+  color: #333333;
+}
+
+.chat__input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.chat__input-field {
+  width: 295px;
+  height: 32px;
+  outline: none;
+  padding: 7px;
+  border: 1px solid #000000;
+}
+
+.chat__input-button {
+  width: 29px;
+  height: 32px;
+  padding: 6px 7px 8px;
+  background-color: #ffff;
+  border: 1px solid #000000;
+}
+
+.chat__input-button:hover,
+.pop-up__content-input-button:hover,
+.button-authorization:hover,
+.button-confirmation:hover {
+  background-color: #f6f6f6;
+}
+
+.chat__input-button:active,
+.pop-up__content-input-button:active,
+.button-authorization:active,
+.button-confirmation:active {
+  background-color: #e5e5e5;
+}
+
+/* Pop Up */
+.pop-up {
+  font-family: "Roboto", sans-serif;
+  font-size: 19px;
+}
+
+.pop-up__content {
+  position: absolute;
+  top: 30px;
+  left: 665px;
+  width: 350px;
+  height: 535px;
+  background-color: #535353;
+  padding: 106px 33px 108px;
+
+  display: none;
+}
+
+.pop-up__content-window {
+  width: 273px;
+  height: 319px;
+  background-color: #ffff;
+  padding: 16px 14px;
+}
+
+.pop-up__content-header {
+  margin-bottom: 8px;
+}
+
+.pop-up__content-close,
+.close-authorization,
+.close-confirmation {
+  position: relative;
+  top: -28px;
+  left: 225px;
+  font-size: 24px;
+  opacity: 0.45;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  background-color: #ffff;
+  outline: none;
+  border: none;
+}
+
+.close-authorization,
+.close-confirmation {
+  top: -78px;
+}
+
+.mail-authorization,
+.code-confirmation {
+  margin-bottom: 7px;
+}
+
+.pop-up__content-close:active,
+.close-authorization:active,
+.close-confirmation:active {
+  opacity: 1;
+}
+
+.pop-up__content-input-field,
+.field-authorization,
+.field-confirmation {
+  width: 207px;
+  height: 32px;
+  outline: none;
+  border: 1px solid #000000;
+  padding: 7px;
+}
+
+.field-authorization,
+.field-confirmation {
+  width: 245px;
+  margin-bottom: 7px;
+}
+
+.pop-up__content-input-button,
+.button-authorization,
+.button-confirmation {
+  width: 32px;
+  height: 32px;
+  padding: 6px 7px 8px;
+  background-color: #ffff;
+  border: 1px solid #000000;
+}
+
+.button-authorization {
+  width: 145px;
+  height: 34px;
+}
+
+.button-confirmation {
+  width: 82px;
+  height: 34px;
+}
+
+.title-authorization,
+.title-confirmation {
+  margin-bottom: 50px;
+}
+
+.selected {
+  display: block;
+}
+
+.header {
+  width: 600px;
+  height: 90px;
+  padding-top: 10px;
+  margin: 10px auto;
+  text-align: center;
+  font-size: 35px;
+  font-family: "Roboto", sans-serif;
+  color: rgb(135, 75, 192);
+  background-color: rgb(206, 200, 211);
+  border-radius: 50px;
+  box-shadow: 0 7px 5px 0 #9a819e;
+}
