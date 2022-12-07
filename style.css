@@ -195,3 +195,9 @@ button {
 .auth__button:hover {
     background-color: rgb(136, 198, 198);
 }
+
+.nomoremess {
+    margin: 10px auto;
+    color: red;
+    font-size: large;
+}

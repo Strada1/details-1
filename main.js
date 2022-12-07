@@ -34,7 +34,7 @@ UI.settingsButton.addEventListener('click', () => {
 
 UI.authButton.addEventListener('click', getToAuthorization)
 
-export function newMessage(text, time = new Date(), userName) {
+export function newMessage(text, time = new Date(), userName, where = '') {
     let message = UI.template.content.cloneNode(true);
     let div = document.createElement('div');
     div.append(message);
@@ -52,8 +52,13 @@ export function newMessage(text, time = new Date(), userName) {
     // const currentDate = new Date();
     timeStamp.childNodes[1].textContent = time.getHours();
     timeStamp.childNodes[5].textContent = time.getMinutes();
-
-    UI.chatArea.prepend(div);
+    // console.log(UI.chatArea.childNodes.length);
+    if (where === 'prepend') {
+        UI.chatArea.prepend(div);
+    } else {
+        // console.log(UI.chatArea.firstChild);
+        UI.chatArea.lastChild.after(div);
+    }
     // UI.chatArea.append(div);
 }
 
@@ -61,12 +66,29 @@ export function newMessage(text, time = new Date(), userName) {
 
 function printMessages(messagesArray) {
     // console.log(messagesArray.messages[0]);
-    // messagesArray.messages.reverse();
+    messagesArray.reverse();
+    console.log(messagesArray);
+    if (!messagesArray.length) {
+        let div = document.createElement('div');
+        let p = document.createElement('p');
+        div.classList.add('nomoremess')
+        p.textContent = 'NO more mess';
+        div.append(p);
+        // UI.chatArea.lastChild.after(div);
+        UI.chatArea.append(div);
+        UI.chatArea.removeEventListener('scroll', scrollControll);
+        return;
+    }
     for (let message of messagesArray) {
         const text = message.text;
         const time = new Date(message.createdAt);
         let userName = message.user.name;
-        newMessage(text, time, userName);
+        if (UI.chatArea.childNodes.length < 2) {
+            const where = 'prepend'
+            newMessage(text, time, userName, where);
+        } else {
+            newMessage(text, time, userName);
+        }
     }
 }
 
@@ -171,14 +193,35 @@ async function getMessages() {
     })
 
     if (response.ok) {
-        const result = await response.json();
-        console.log(result);
-        const messages = result.messages.reverse();
-        localStorage.setItem('messages', JSON.stringify(messages));
-        if (localStorage.getItem('messages')) {
-            console.log('Сообщения сохранены в лс');
-        }
-        printMessages(JSON.parse(localStorage.getItem('messages')).slice(0, 19));
-        // printMessages(result);
+        const messagesArray = await response.json();
+        messagesArray.messages.reverse();
+        console.log(messagesArray.messages);
+        saveMessagesToLS(messagesArray.messages);
+        printMessages(getNext20Messages(JSON.parse(localStorage.getItem('messages'))));
+        // if (UI.chatArea.scrollHeight + UI.chatArea.scrollTop < 300) {
+        //     printMessages(getNext20Messages(JSON.parse(localStorage.getItem('messages'))));
+        // }
+        // printMessages(JSON.parse(localStorage.getItem('messages')));
     }
 }
+
+function saveMessagesToLS(messagesArray) {
+    localStorage.setItem('messages', JSON.stringify(messagesArray));
+    console.log('Полученные сообщения сохранены');
+}
+
+function getNext20Messages(messagesArray) {
+    console.log(messagesArray.lenght);
+    const messagesToPrint = messagesArray.splice(-20, 20);
+    saveMessagesToLS(messagesArray);
+    return messagesToPrint;
+}
+
+function scrollControll() {
+    console.log(UI.chatArea.scrollHeight + UI.chatArea.scrollTop);
+    if (UI.chatArea.scrollHeight + UI.chatArea.scrollTop < 500 && localStorage.getItem('messages').length) {
+        printMessages(getNext20Messages(JSON.parse(localStorage.getItem('messages'))));
+    }
+}
+
+UI.chatArea.addEventListener('scroll', scrollControll);

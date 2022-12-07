@@ -20,7 +20,7 @@ export function wsListener(socket) {
         console.log(e.data);
         const message = JSON.parse(e.data);
         console.log(message);
-        newMessage(message.text, new Date(message.createdAt), message.user.name);
+        newMessage(message.text, new Date(message.createdAt), message.user.name, 'prepend');
     }
 
 }
