@@ -1,5 +1,11 @@
 {
   "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
     "parcel": "^2.8.0"
+  },
+  "dependencies": {
+    "cookies-ts": "^1.0.5",
+    "date-fns": "^2.29.3",
+    "js-cookie": "^3.0.1"
   }
 }
