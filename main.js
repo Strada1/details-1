@@ -6,7 +6,6 @@ let socket;
 
 UI.inputForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    // newMessage(UI.inputForm.childNodes[1].value);
     wsSend(socket, UI.inputForm.childNodes[1].value)
     UI.inputForm.childNodes[1].value = '';
 })
@@ -40,32 +39,33 @@ export function newMessage(text, time = new Date(), userName, where = '') {
     div.append(message);
     div.classList.add('message');
     div.childNodes[1].textContent = `${userName}:`;
-    // console.log(getCookie('name'));
     if (userName == 'Boris') {
-        // console.log('aaaaaasssssssssssss');
         div.classList.add('my', 'sent');
         div.childNodes[1].textContent = `Я:`;
     }
     div.childNodes[3].textContent = text;
     const timeStamp = div.childNodes[5];
-    // console.log(time.childNodes);
-    // const currentDate = new Date();
-    timeStamp.childNodes[1].textContent = time.getHours();
-    timeStamp.childNodes[5].textContent = time.getMinutes();
-    // console.log(UI.chatArea.childNodes.length);
+    const hours =  timePlus0(time.getHours());
+    const minutes = timePlus0(time.getMinutes());
+    timeStamp.childNodes[1].textContent = hours;
+    timeStamp.childNodes[5].textContent = minutes;
     if (where === 'prepend') {
         UI.chatArea.prepend(div);
     } else {
-        // console.log(UI.chatArea.firstChild);
         UI.chatArea.lastChild.after(div);
     }
-    // UI.chatArea.append(div);
 }
 
-
+function timePlus0(time) {
+    time = String(time);
+    console.log(typeof(time));
+    if (time.length == 1) {
+        time = '0' + time;
+    }
+    return time;
+}
 
 function printMessages(messagesArray) {
-    // console.log(messagesArray.messages[0]);
     messagesArray.reverse();
     console.log(messagesArray);
     if (!messagesArray.length) {
@@ -74,7 +74,6 @@ function printMessages(messagesArray) {
         div.classList.add('nomoremess')
         p.textContent = 'NO more mess';
         div.append(p);
-        // UI.chatArea.lastChild.after(div);
         UI.chatArea.append(div);
         UI.chatArea.removeEventListener('scroll', scrollControll);
         return;
@@ -110,7 +109,6 @@ async function sendTokenRequest() {
         if (response.ok) {
             alert(`Все окей, статус ответа: ${response.status}`);
             getToAuthorization();
-            // sendToken()
         }
     } catch {
         console.log(err);
@@ -172,7 +170,6 @@ async function getUserInfo() {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json;charset=utf-8',
         },
-        // body: JSON.stringify({ name: nameUser })
     })
     const result = await response.json();
     console.log(result);
@@ -189,7 +186,6 @@ async function getMessages() {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json;charset=utf-8',
         },
-        // body: JSON.stringify({ name: nameUser })
     })
 
     if (response.ok) {
@@ -198,10 +194,6 @@ async function getMessages() {
         console.log(messagesArray.messages);
         saveMessagesToLS(messagesArray.messages);
         printMessages(getNext20Messages(JSON.parse(localStorage.getItem('messages'))));
-        // if (UI.chatArea.scrollHeight + UI.chatArea.scrollTop < 300) {
-        //     printMessages(getNext20Messages(JSON.parse(localStorage.getItem('messages'))));
-        // }
-        // printMessages(JSON.parse(localStorage.getItem('messages')));
     }
 }
 
@@ -218,10 +210,24 @@ function getNext20Messages(messagesArray) {
 }
 
 function scrollControll() {
-    console.log(UI.chatArea.scrollHeight + UI.chatArea.scrollTop);
     if (UI.chatArea.scrollHeight + UI.chatArea.scrollTop < 500 && localStorage.getItem('messages').length) {
         printMessages(getNext20Messages(JSON.parse(localStorage.getItem('messages'))));
     }
 }
 
+function toTheBeginingButtonControll() {
+    if (UI.chatArea.scrollHeight > 1500) {
+        UI.toTheBeginingButton.classList.remove('popup__hidden');
+    } 
+    if (UI.chatArea.scrollTop > -900) {
+        UI.toTheBeginingButton.classList.add('popup__hidden');
+    }
+}
+
+UI.chatArea.addEventListener('scroll',toTheBeginingButtonControll);
+
 UI.chatArea.addEventListener('scroll', scrollControll);
+
+UI.toTheBeginingButton.addEventListener('click', () => {
+    UI.chatArea.scrollTop = 0;
+})

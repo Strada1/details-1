@@ -12,7 +12,8 @@ const UI = {
     popupNameInput: document.getElementById('popupNameInput'),
     currentName: document.getElementById('currentName'),
     settingsButton: document.querySelector('.settings'),
-    authButton: document.getElementById('authButton',)
+    authButton: document.getElementById('authButton'),
+    toTheBeginingButton: document.getElementById('toTheBeginingButtonHolder'),
 }
 console.log(UI.inputForm.firstChild.textContent)
 console.log(UI.sendEmail);
