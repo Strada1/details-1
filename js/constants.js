@@ -2,6 +2,7 @@ export const ELEMENTS = {
   MESSAGE_FORM: document.querySelector('#messageForm'),
   MESSAGE_INPUT: document.querySelector('#messageInput'),
   MESSAGE_TEMPLATE: document.querySelector('#messageTemplate'),
+  MESSAGE_SCREEN: document.querySelector('#messageScreen'),
   MESSAGE_LIST: document.querySelector('#messageList'),
   AUTHORIZATION_BTN: document.querySelector('#authBtn'),
 };
@@ -40,4 +41,8 @@ export const STYLES = {
   MESSAGE_TEMPLATE: 'companion-message',
   MY_MESSAGE: 'user-message',
   COMPANION_MESSAGE: 'companion-message',
+};
+
+export const STORAGE = {
+  ALL_MESSAGE_HISTORY: {},
 };

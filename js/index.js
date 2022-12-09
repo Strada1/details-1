@@ -11,6 +11,16 @@ const socket = new WebSocket(
 
 window.addEventListener('load', renderApp);
 
+ELEMENTS.MESSAGE_LIST.addEventListener('scroll', function () {
+  let scrollBotton =
+    ELEMENTS.MESSAGE_LIST.scrollHeight -
+    Math.abs(ELEMENTS.MESSAGE_LIST.scrollTop) -
+    ELEMENTS.MESSAGE_LIST.clientHeight;
+  if (scrollBotton === 0) {
+    console.log('HISTORY!!!');
+  }
+});
+
 ELEMENTS.MESSAGE_FORM.addEventListener('submit', (event) => addMessage(event));
 POPUPS.SETTINGS.addEventListener('click', (event) =>
   openSettingsHandler(event)
@@ -83,7 +93,8 @@ function renderMessage(data, style) {
   template.querySelector('.message-text').append(message);
   template.querySelector('.message-date').textContent = messageDate;
   element.append(template);
-  ELEMENTS.MESSAGE_LIST.append(element);
+  ELEMENTS.MESSAGE_LIST.prepend(element);
+  scrollToLastMessage();
 }
 
 function useHistory() {
@@ -108,7 +119,7 @@ function cloneTemplate(template) {
 
 function scrollToLastMessage() {
   const lastMessage = ELEMENTS.MESSAGE_LIST.lastElementChild;
-  lastMessage.scrollIntoView(false);
+  lastMessage.scrollIntoView({ block: 'start' });
 }
 
 // function checkMessage(text) {
