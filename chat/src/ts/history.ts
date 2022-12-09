@@ -7,7 +7,8 @@ import { createMessage } from './message';
 import { socket } from './webSocket';
 
 export function getHistory() {
-	const history = getHistoryMessages(Cookies.get('user'));
+	const userCookies = Cookies.get('user') || '';
+	const history = getHistoryMessages(userCookies);
 
 	socket.onmessage = function (event) {
 		const data = JSON.parse(event.data);
@@ -20,9 +21,9 @@ export function getHistory() {
 		.then(data => {
 			localStorage.setItem('messages', JSON.stringify(data.messages));
 
-			const messages = JSON.parse(localStorage.getItem('messages'));
+			const messages = JSON.parse(localStorage.getItem('messages') || '');
 
-			messages.reverse().filter((item, index) => {
+			messages.reverse().filter((item: any, index: number) => {
 				if (0 <= index && index < 20) {
 					if (item.user.name === Cookies.get('userName')) {
 						return createMessage('me', '', item.text, item.updatedAt);

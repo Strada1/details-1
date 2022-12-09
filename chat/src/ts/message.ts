@@ -2,12 +2,17 @@ import { format } from 'date-fns';
 
 import { CONTENT_CHAT } from './const';
 
-export function createMessage(user = 'me', userName = '', inputValue, timeValue = new Date()) {
-	const myMessage = document.createElement('div');
-	const content = document.createElement('div');
-	const text = document.createElement('p');
-	const time = document.createElement('div');
-	const timeText = document.createElement('span');
+export function createMessage(
+	user: string = 'me',
+	userName: string = '',
+	inputValue: any,
+	timeValue: Date = new Date(),
+) {
+	const myMessage = document.createElement('div') as HTMLDivElement;
+	const content = document.createElement('div') as HTMLDivElement;
+	const text = document.createElement('p') as HTMLParagraphElement;
+	const time = document.createElement('div') as HTMLDivElement;
+	const timeText = document.createElement('span') as HTMLSpanElement;
 
 	myMessage.classList.add(`content__${user}`);
 	myMessage.classList.add('message');
@@ -25,5 +30,5 @@ export function createMessage(user = 'me', userName = '', inputValue, timeValue 
 
 	timeText.textContent = format(new Date(timeValue), 'HH:mm');
 
-	return CONTENT_CHAT.VIEW.append(myMessage);
+	return CONTENT_CHAT.VIEW?.append(myMessage);
 }
