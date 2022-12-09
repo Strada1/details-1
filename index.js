@@ -39,10 +39,9 @@ window.onload = function() {
   CONFIRM.FORM.onsubmit = SaveCodeToCookie;
   CONFIRM.BUTTON.onclick = SaveCodeToCookie;
 
-  Initialize();
+  UpdateChat();
 }
 //=========================================
-
 
 function SaveCodeToCookie() {
   let tokenValue = CONFIRM.INPUT.value;
@@ -55,7 +54,6 @@ function SaveCodeToCookie() {
 async function SendEmailCode() {
   try {
     let userEmail = AUTHORIZATION.INPUT.value;
-
     let response = await fetch(URL.CHANGE_USER, {
       method: "POST",
       headers: {
@@ -118,12 +116,8 @@ async function ShowMessages(userData) {
   })
   .then(() => {
       let chatScreenContainer = document.querySelector('.chatScreen');
-      let lastElem = chatScreenContainer.lastElementChild;
-      console.log(lastElem.textContent);
-      lastElem.scrollIntoView(false);
+      chatScreenContainer.scrollTo(0, chatScreenContainer.scrollHeight);
   });
-  
-  
 }
 
 function removeAllMessages(){
@@ -139,7 +133,7 @@ async function GetUser() {
 			method: "GET",
 			headers: {
 				"Authorization": document.cookie
-			},
+			}
 		});
     let result = await response.json();
 		return result;
@@ -152,7 +146,6 @@ async function ChangeName() {
   try {
     let inputName = document.getElementById('inputName');
     let userName = inputName.value;
-
     const response = await fetch(URL.CHANGE_USER, {
       method: "PATCH",
       headers: {
@@ -161,8 +154,7 @@ async function ChangeName() {
       },
       body: JSON.stringify({ name: userName }),
     });
-
-    settings.classList.remove('active');
+    SETTINGS.POPUP.classList.remove('active');
   }
   catch (error) {
 		alert(error);
@@ -171,50 +163,48 @@ async function ChangeName() {
 
 function Connect(userData) {
   let token = document.cookie.slice(7);
-  const socket = new WebSocket(`ws://edu.strada.one/websockets?${token}`);
-
-  //load chat messages history from server while opening socket
-  socket.onopen = function() {
-    ShowMessages(userData);
-  };
-
-  //create chat message by form onsubmit
-  sendMessageForm.addEventListener("submit", (event) => {
-    event.preventDefault();
-    let myMessageText = CHAT_MESSAGE.INPUT.value;
-    if (myMessageText != "") {
-      socket.send(JSON.stringify({ text: `${myMessageText}` }));
-      console.log('ушло');
+  try {
+      const socket = new WebSocket(`ws://edu.strada.one/websockets?${token}`);
+      //load chat messages history from server while opening socket
+      socket.onopen = function() {
       ShowMessages(userData);
-      
-    }
-  });
+      };
 
-  //create chat message by button onclick
-  sendButton.addEventListener("click", (event) => {
-    event.preventDefault();
-    let myMessageText = CHAT_MESSAGE.INPUT.value;
-    if (myMessageText != "") {
-      socket.send(JSON.stringify({ text: `${myMessageText}` }));
-      console.log('ушло');
-      ShowMessages(userData);
-    }
-    
-  });
-    
-  socket.onmessage = function(event) { 
-    console.log(event.data) 
-  };
+      //create chat message by form onsubmit
+      CHAT_MESSAGE.FORM.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let myMessageText = CHAT_MESSAGE.INPUT.value;
+      if (myMessageText != "") {
+        socket.send(JSON.stringify({ text: `${myMessageText}` }));
+        console.log('ушло');
+        ShowMessages(userData); 
+      }
+      });
+
+      //create chat message by button onclick
+      CHAT_MESSAGE.BUTTON.addEventListener("click", (event) => {
+      event.preventDefault();
+      let myMessageText = CHAT_MESSAGE.INPUT.value;
+      if (myMessageText != "") {
+        socket.send(JSON.stringify({ text: `${myMessageText}` }));
+        console.log('ушло');
+        ShowMessages(userData);
+      }});
+
+      socket.onmessage = function(event) { 
+      console.log(event.data) 
+      };
+  }
+  catch (error) {
+		alert(error);
+	}
 } 
 
-async function Initialize() {
-  removeAllMessages();
-  let userData = await GetUser();
-  Connect(userData);
+async function UpdateChat() {
+  if (document.cookie) {
+    removeAllMessages();
+    let userData = await GetUser();
+    Connect(userData);
+  }  
 }
 
-/*
-let chatScreenContainer = document.querySelector('.chatScreen');
-let lastElem = chatScreenContainer.lastElementChild;
-console.log(lastElem.textContent);
-*/
