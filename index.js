@@ -5,20 +5,20 @@ import { SETTINGS, AUTHORIZATION, CONFIRM, CHAT_MESSAGE, URL } from "./const.js"
 window.onload = function() {
   AUTHORIZATION.OPEN.addEventListener('click', (event) => {
     event.preventDefault();
-    autorization.classList.add('active');
+    AUTHORIZATION.POPUP.classList.add('active');
   });
   AUTHORIZATION.CLOSE.addEventListener('click', (event) => {
     event.preventDefault();
-    autorization.classList.remove('active');
+    AUTHORIZATION.POPUP.classList.remove('active');
   });
 
   SETTINGS.OPEN.addEventListener('click', (event) => {
     event.preventDefault();
-    settings.classList.add('active');
+    SETTINGS.POPUP.classList.add('active');
   });
   SETTINGS.CLOSE.addEventListener('click', (event) => {
     event.preventDefault();
-    settings.classList.remove('active');
+    SETTINGS.POPUP.classList.remove('active');
   });
 
   AUTHORIZATION.BUTTON.addEventListener('click', (event) => {
@@ -27,7 +27,7 @@ window.onload = function() {
   });
   CONFIRM.CLOSE.addEventListener('click', (event) => {
     event.preventDefault();
-    confirmation.classList.remove('active');
+    CONFIRM.POPUP.classList.remove('active');
   });
   
   SETTINGS.FORM.onsubmit = ChangeName;
