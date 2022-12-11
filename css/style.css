@@ -55,11 +55,11 @@ body {
 .message-list {
     display: flex;
     flex-direction: column-reverse;
-     flex-wrap: nowrap;
+     /* flex-wrap: nowrap; */
 
     align-content: stretch;
      align-items: flex-start;
-     min-height: 440px;
+     /* min-height: 440px; */
     overflow: auto;
     height: 440px;
     -ms-overflow-style: none;

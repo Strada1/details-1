@@ -44,5 +44,16 @@ export const STYLES = {
 };
 
 export const STORAGE = {
-  ALL_MESSAGE_HISTORY: {},
+  ALL_MESSAGE_HISTORY: JSON.parse(localStorage.getItem('messages')),
+};
+
+export const MESSAGES = {
+  MIN_HISTORY_INDEX: 1,
+  MAX_HISTORY_INDEX: 19,
+  STEP_INDEX: 20,
+};
+
+export const METHOD = {
+  APPEND: 'append',
+  PREPEND: 'prepend',
 };

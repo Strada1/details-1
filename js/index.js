@@ -1,4 +1,12 @@
-import { ELEMENTS, POPUPS, STYLES, USERS } from './constants';
+import {
+  ELEMENTS,
+  POPUPS,
+  STYLES,
+  USERS,
+  MESSAGES,
+  STORAGE,
+  METHOD,
+} from './constants';
 import { format } from 'date-fns';
 import { openSettingsHandler } from './popups';
 import { showPopup } from './helpers';
@@ -9,6 +17,9 @@ const socket = new WebSocket(
   `ws://edu.strada.one/websockets?${Cookies.get('authorizationCode')}`
 );
 
+let minIndex = 20;
+let maxIndex = 40;
+
 window.addEventListener('load', renderApp);
 
 ELEMENTS.MESSAGE_LIST.addEventListener('scroll', function () {
@@ -16,8 +27,10 @@ ELEMENTS.MESSAGE_LIST.addEventListener('scroll', function () {
     ELEMENTS.MESSAGE_LIST.scrollHeight -
     Math.abs(ELEMENTS.MESSAGE_LIST.scrollTop) -
     ELEMENTS.MESSAGE_LIST.clientHeight;
-  if (scrollBotton === 0) {
-    console.log('HISTORY!!!');
+  console.log(scrollBotton);
+  if (scrollBotton === 1) {
+    console.log('END!');
+    getChunkMessages(STORAGE.ALL_MESSAGE_HISTORY);
   }
 });
 
@@ -35,12 +48,38 @@ function renderApp() {
   if (!Cookies.get('authorizationCode')) {
     showPopup(POPUPS.AUTHORIZATION_BLOCK);
   }
+  saveHisotyLocalStorage();
+}
 
-  useHistory();
-  // s
-  // renderButtons(true);
-  // let res = getUserData();
-  // res.then((data) => console.log('DATA', data));
+function saveHisotyLocalStorage() {
+  getMessageHistory().then((history) => {
+    localStorage.setItem('messages', JSON.stringify(history.messages));
+  });
+  const historyMessage = JSON.parse(localStorage.getItem('messages')).filter(
+    (item, index) => {
+      if (
+        MESSAGES.MIN_HISTORY_INDEX <= index &&
+        MESSAGES.MAX_HISTORY_INDEX > index
+      ) {
+        return item;
+      }
+    }
+  );
+
+  useHistory(historyMessage, METHOD.PREPEND);
+}
+
+function getChunkMessages(historyMessage) {
+  const messages = historyMessage.filter((item, index) => {
+    if (minIndex <= index && index < maxIndex) return item;
+  });
+  minIndex += MESSAGES.STEP_INDEX;
+  maxIndex += MESSAGES.STEP_INDEX;
+  useHistory(messages, METHOD.APPEND);
+
+  if (history.length === 0) {
+    alert('ВСЁ!');
+  }
 }
 
 // function renderButtons(authorization) {
@@ -77,15 +116,15 @@ socket.onmessage = function (event) {
   const message = JSON.parse(event.data);
 
   if (message.user.email === Cookies.get('email')) {
-    renderMessage(message, STYLES.MY_MESSAGE);
+    renderMessage(message, STYLES.MY_MESSAGE, METHOD.APPEND);
     return;
   }
-  renderMessage(message, STYLES.COMPANION_MESSAGE);
+  renderMessage(message, STYLES.COMPANION_MESSAGE, METHOD.APPEND);
 };
 
-function renderMessage(data, style) {
+function renderMessage(data, style, method) {
   let message = data.text ?? data;
-  const messageDate = format(new Date(data.updatedAt), 'HH:mm');
+  const messageDate = format(new Date(data.updatedAt), 'HH:mm dd/MM/yyyy');
   const template = cloneTemplate(ELEMENTS.MESSAGE_TEMPLATE);
   const element = document.createElement('li');
   element.classList.add('message-item', `${style}`);
@@ -93,23 +132,27 @@ function renderMessage(data, style) {
   template.querySelector('.message-text').append(message);
   template.querySelector('.message-date').textContent = messageDate;
   element.append(template);
+
+  if ((method = METHOD.APPEND)) {
+    ELEMENTS.MESSAGE_LIST.append(element);
+    return;
+  }
+
   ELEMENTS.MESSAGE_LIST.prepend(element);
   scrollToLastMessage();
 }
 
-function useHistory() {
-  getMessageHistory().then((history) => {
-    history.messages.reverse().forEach((currentUser) => {
-      if (currentUser.user.email === Cookies.get('email')) {
-        renderMessage(currentUser, STYLES.MY_MESSAGE);
-
-        scrollToLastMessage();
-        return;
-      }
-      renderMessage(currentUser, STYLES.COMPANION_MESSAGE);
+function useHistory(messages, method) {
+  messages.forEach((currentUser) => {
+    if (currentUser.user.email === Cookies.get('email')) {
+      renderMessage(currentUser, STYLES.MY_MESSAGE, method);
 
       scrollToLastMessage();
-    });
+      return;
+    }
+    renderMessage(currentUser, STYLES.COMPANION_MESSAGE, method);
+
+    scrollToLastMessage();
   });
 }
 
@@ -118,7 +161,7 @@ function cloneTemplate(template) {
 }
 
 function scrollToLastMessage() {
-  const lastMessage = ELEMENTS.MESSAGE_LIST.lastElementChild;
+  const lastMessage = ELEMENTS.MESSAGE_LIST.firstElementChild;
   lastMessage.scrollIntoView({ block: 'start' });
 }
 
