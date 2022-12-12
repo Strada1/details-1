@@ -1,0 +1,66 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-size: inherit;
+  padding: 0;
+}
+body {
+  
+font-family: 'Roboto', sans-serif;
+  
+font-size: 16px;
+  
+min-height: 100vh;
+  
+padding: 200px 0;
+  
+background: #a8cfbf;
+}
+.container {max-width: 1170px;margin: 0 auto;}
+.app-wrap {position: relative;width: 320px;height: 533px;margin: 0 auto;padding: 8px;background: #fff;overflow: hidden;border-radius: 3px;box-shadow: inset 0 0 4px #ccc;}
+.messenger {display: flex;flex-direction: column;height: 100%;}
+.messenger__header {display: flex;justify-content: space-between;width: 100%;}
+.btn {padding: 6px 8px;cursor: pointer;}
+.setting {}
+.exit {
+}
+.messenger__body {flex: 1 1 auto;margin: 8px 0;padding: 8px;border: 1px solid;display: flex;flex-direction: column;/* justify-content: flex-end; */overflow: auto;}
+.message {position: relative;display: none;max-width: 85%;background: #E5E5E5;margin-bottom: 8px;padding: 8px 8px 27px 8px;}
+.message:last-child {margin-bottom: 0px}
+.message.user {
+   display: block;
+   margin-left: 15%;
+   background: #F7F7F7;
+}
+.message.recipient {
+ display: block;
+}
+.text {display: inline;}
+.name {}
+.time {position: absolute;bottom: 8px;right: 8px;font-style: italic;font-weight: 300;font-size: 14px;color: #7e7e7e;}
+
+.messenger__footer {
+}
+.send-message {display: flex;}
+.input-message {flex: 1;padding: 6px 8px;}
+.send {margin-left: 8px;}
+.messenger__popups {position: absolute;display: none;top: 0;left: 0;width: 100%;height: 100%;background: #232323c4;}
+.messenger__popups.open {display: flex;flex-direction: column;flex-wrap: wrap;align-content: center;justify-content: center;}
+.popup__body {position: relative;background: #fff;margin: 27px;padding: 14px;min-height: 300px;}
+.popup__title {font-size: 18px;line-height: 19px;padding-right: 25px;margin-bottom: 40px;}
+.popup__close {position: absolute;top: 14px;right: 14px;width: 20px;height: 20px;border: none;border-radius: 100%;cursor: pointer;}
+.popup__form {display: flex;}
+.popup__form.login {display: block;}
+.popup__form.login .popup__input {
+  width: 100%;
+  padding: 6px 8px;
+  margin-bottom: 14px;
+}
+.popup__form.verification {display: block;}
+.popup__form.verification .popup__input {
+width: 100%;
+  padding: 6px 8px;
+  margin-bottom: 14px;
+}
+.btn.popup-setting {margin-left: 8px;}
+.form-title {margin-bottom: 14px;}
