@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Messenger</title>
+   <link rel="stylesheet" href="./styles/style.css">
+</head>
+
+<body>
+
+   <div class="container">
+      <div class="app-wrap">
+
+         <div class="messenger">
+            <!-- APP HEADER -->
+            <div class="messenger__header">
+               <button class="btn setting">Настройки</button>
+               <button class="btn login">Войти</button>
+            </div>
+
+            <!-- APP BODY -->
+            <div class="messenger__body">
+
+            </div>
+
+            <!-- template for message -->
+            <template id="message-tmp">
+               <div class="message">
+                  <div>
+                     <span class="name"></span>
+                     <span class="text"></span>
+                  </div>
+                  <div class="time"></div>
+               </div>
+            </template>
+
+            <!-- APP FOOTER -->
+            <div class="messenger__footer">
+               <form class="send-message">
+                  <input class="input-message" type="text" placeholder="Сообщение...">
+                  <button class="btn send" type="submit">►</button>
+               </form>
+            </div>
+         </div>
+
+         <!-- APP POPUPS -->
+         <div class="messenger__popups popup-setting">
+            <div class="popup__body">
+               <div class="popup__title">Настройки</div>
+               <button class="popup__close">x</button>
+               <div class="form-title">Имя в чате</div>
+               <form class="popup__form setting">
+                  <input class="popup__input" type="text" placeholder="...">
+                  <button class="btn popup-setting" type="submit">►</button>
+               </form>
+            </div>
+         </div>
+
+         <div class="messenger__popups popup-login">
+            <div class="popup__body">
+               <div class="popup__title">Авторизация</div>
+               <button class="popup__close">x</button>
+               <div class="form-title">Почта:</div>
+               <form class="popup__form login">
+                  <input class="popup__input" type="text" value="web.nikiforov94@gmail.com">
+                  <button class="btn popup-login" type="submit">Получить код</button>
+               </form>
+            </div>
+         </div>
+
+         <div class="messenger__popups popup-verification">
+            <div class="popup__body">
+               <div class="popup__title">Подтверждение</div>
+               <button class="popup__close">x</button>
+               <div class="form-title">Код:</div>
+               <form class="popup__form verification">
+                  <input class="popup__input" type="text" placeholder="">
+                  <button class="btn popup-verification" type="submit">Войти</button>
+               </form>
+            </div>
+         </div>
+
+      </div>
+   </div>
+
+   <script type="module" src="./scripts/app.js"></script>
+</body>
+
+</html>
