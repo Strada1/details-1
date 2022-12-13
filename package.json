@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "eslint-config-airbnb-typescript": "^17.0.0"
+  }
+}

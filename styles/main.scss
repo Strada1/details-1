@@ -1,0 +1,268 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  font-family: 'Roboto';
+}
+
+.chat {
+  padding: 9px 8px;
+  border: 1px solid #000;
+  width: 320px;
+  height: 533px;
+  // .chat__header
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // .chat__btn
+
+  &__btn {
+    font: inherit;
+    padding: 6px 8px;
+    background-color: transparent;
+    border: 1px solid #000;
+    cursor: pointer;
+  }
+
+  // .chat__btn--settings
+
+  &__btn--settings {
+  }
+
+  // .chat__btn--logout
+
+  &__btn--logout {
+  }
+
+  // .chat__main
+
+  &__main {
+    border: 1px solid #000;
+    margin-top: 7px;
+    padding: 8px;
+    height: 433px;
+    overflow: hidden auto;
+  }
+
+  // .chat__messages
+
+  &__messages {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    padding-top: 60px;
+  }
+
+  // .chat__message
+
+  &__message {
+    padding: 8px;
+    margin: 8px 0;
+    background-color: #E5E5E5;
+    width: fit-content;
+  }
+
+  // .chat__message--self
+
+  &__message--self {
+    margin-left: auto;
+  }
+
+  // .chat__text
+
+  &__text {
+    display: block;
+  }
+
+  // .chat__author
+
+  &__author {
+  }
+
+  // .chat__time
+
+  &__time {
+    font-style: italic;
+    text-align: right;
+    color: #333333;
+    margin-top: 4px;
+  }
+
+  // .chat__message--his
+
+  &__message--his {
+  }
+
+  &__message--unread {
+    background-color: #F7F7F7;
+  }
+
+  // .chat__footer
+
+  &__footer {
+    margin-top: 8px;
+  }
+
+  // .chat__input
+
+  &__input {
+    font: inherit;
+    padding: 0px 8px;
+    flex-grow: 1;
+  }
+
+  // .chat__btn--send
+
+  &__btn--send {
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+
+  &__form {
+    &--send-message {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: none;
+
+  &.show {
+    display: flex;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #535353;
+    z-index: -1;
+  }
+  &__wrap {
+    background-color: #fff;
+    width: 273px;
+    height: 319px;
+    padding: 16px 14px;
+  }
+
+  // .modal__header
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  // .modal__title
+
+  &__title {
+    
+  }
+
+  // .modal__btn-close
+
+  &__btn-close {
+    font-size: 0;
+    line-height: 0;
+    width: 20px;
+    height: 20px;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath opacity='0.45' d='M12.4653 3.53246L13.9071 4.9743L5.63731 13.2441L4.19547 11.8023L12.4653 3.53246ZM5.5793 3.37502L14.3629 12.1586L12.8299 13.6916L4.04632 4.90801L5.5793 3.37502Z' fill='black'/%3E%3C/svg%3E%0A");
+  }
+
+  // .modal__body
+
+  &__body {
+    margin-top: 16px;
+  }
+
+  // .modal__form
+
+  &__form {
+    margin-top: 8px;
+  }
+
+  // .modal__form--settings
+
+  &__form--settings {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__form--confirm {
+    .chat__btn {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+  }
+}
+
+.modal--auth {
+  .modal__form {
+    flex-direction: column;
+  }
+  .chat__input {
+    height: 32px;
+    width: 100%;
+  }
+  .chat__btn--send-text {
+    margin-top: 10px;
+  }
+}
+.chat {
+
+  // .chat__input
+
+  &__input {
+  }
+
+  // .chat__btn
+
+  &__btn {
+  }
+
+  // .chat__btn--send
+
+  &__btn--send {
+  }
+}
+
+.info-bar {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  line-height: 1.5;
+  color: #000;
+  padding: 5px 10px;
+  border-radius: 20px;
+  opacity: 0.8;
+  width: 170px;
+  border: 1px solid;
+  text-align: center;
+}

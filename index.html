@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/main.css">
+</head>
+<body>
+  <div class="chat">
+    <div class="chat__header">
+      <button class="chat__btn chat__btn--settings">Настройки</button>
+      <button class="chat__btn chat__btn--logout">Выйти</button>
+    </div>
+    <div class="chat__main">
+      <div class="chat__messages">
+        <div class="info-bar show">Больше нет сообщений</div>
+      </div>
+    </div>
+    <div class="chat__footer">
+      <form action="" class="chat__form chat__form--send-message">
+        <input class="chat__input" type="text" placeholder="сообщение...">
+        <button class="chat__btn chat__btn--send">-></button>
+      </form>
+    </div>
+  </div>
+
+  <template id="chatMessageSelf">
+    <div class="chat__message chat__message--self chat__message--unread">
+      <div class="chat__text"></div>
+      <div class="chat__time"></div>
+    </div>
+  </template>
+  <template id="chatMessage">
+    <div class="chat__message chat__message--unread">
+      <div class="chat__text"></div>
+      <div class="chat__time"></div>
+    </div>
+  </template>
+
+  <div class="modal modal--settings">
+    <div class="modal__wrap">
+      <div class="modal__header">
+        <div class="modal__title">Настройки</div>
+        <button class="modal__btn-close">Закрыть</button>
+      </div>
+      <div class="modal__body">
+        <div class="modal__title">Имя в чате</div>
+        <form action="" class="modal__form modal__form--settings">
+          <input class="chat__input" type="text" placeholder="Ваше имя">
+          <button class="chat__btn chat__btn--send">-></button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal--auth">
+    <div class="modal__wrap">
+      <div class="modal__header">
+        <div class="modal__title">Авторизация</div>
+        <button class="modal__btn-close">Закрыть</button>
+      </div>
+      <div class="modal__body">
+        <div class="modal__title">Почта</div>
+        <form action="" class="modal__form modal__form--auth">
+          <input class="chat__input" type="email" placeholder="" required>
+          <button class="chat__btn chat__btn--send-text">Получить код</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal--confirm">
+    <div class="modal__wrap">
+      <div class="modal__header">
+        <div class="modal__title">Подтверждение</div>
+        <button class="modal__btn-close">Закрыть</button>
+      </div>
+      <div class="modal__body">
+        <div class="modal__title">Код</div>
+        <form action="" class="modal__form modal__form--confirm">
+          <input class="chat__input" type="text" placeholder="">
+          <button class="chat__btn chat__btn--send">Войти</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/main.js" type="module"></script>
+</body>
+</html>
