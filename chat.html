@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Чат</title>
+    <link rel="stylesheet" href="./chat.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="main-block">
+            <div class="configuration-wrapper">
+                <button class="btn-settings">Настройки</button>
+                <button class="best-smile-ever">😔</button>
+                <button class="btn-exit">Выйти</button>
+            </div>
+            <div class="message-window">
+                <template id="template_my_message">
+                    <div class="my_message-block">
+                        <div class="my_message-wrapper delivered-message_color">
+                            <span class="my_message_view"></span>
+                            <p class="time-my-message"></p>
+                        </div>
+                    </div>
+                </template>
+                <div class="other_message-block">
+                    <template id="template_other_message">
+                        <div class="other_message-wrapper delivered-message_color">
+                            <p class="other-name-message"></p>
+                            <span class="other_message_view"></span>
+                            <p class="time-message"></p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="input_wrapper">
+                <form action="" class="message_form">
+                    <input type="text" class="my_message-input" placeholder="Сообщение">
+                    <button class="send_message">→</button>
+                </form>
+            </div>
+            <div class="settings_wrapper">
+                <div class="block-settings">
+                    <div class="wrapper_settings">
+                        <div class="settings">Настройки</div>
+                        <button class="close-window" id="settings-btn">x</button>
+                    </div>
+                    <div class="name_in_chat">Имя в чате</div>
+                    <div class="name-select_wrapper">
+                        <form class="settings-form">
+                            <input type="text" class="name_input" id="change-name">
+                            <button class="btn_name_in_chat">→</button>
+                        </form>
+                        <p class="result-message"></p>
+                        <p class="user-name-now"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="authorization_wrapper">
+                <div class="block-authorization">
+                    <div class="wrapper_authorization">
+                        <div class="authorization">Авторизация</div>
+                    </div>
+                    <div class="name_in_chat">Почта:</div>
+                    <div class="name-select_wrapper">
+                        <form class="authorization-form">
+                            <input type="email" class="name_input" id="input-for-mail">
+                            <button class="btn-get-code">Получить код</button>
+                        </form>
+                        <button class="btn-get-code">Вести код</button>
+                    </div>
+                </div>
+            </div>
+            <div class="confirmation_wrapper">
+                <div class="block-confirmation">
+                    <div class="wrapper_confirmation">
+                        <div class="confirmation">Подтверждение</div>
+                    </div>
+                    <div class="name_in_chat">Код:</div>
+                    <div class="name-select_wrapper">
+                        <form class="confirmation-form">
+                            <input type="text" class="name_input" id="input-for-code">
+                            <button class="btn_name_in_chat" id='come-in-chat'>Войти</button>
+                        </form>
+                        <p class="message-authorization"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="module" src="./js/chat.js"></script>
+</body>
+
+</html>
